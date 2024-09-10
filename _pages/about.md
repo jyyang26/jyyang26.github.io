@@ -21,7 +21,8 @@ My name is Junyao Yang, a final year undergraduate student majoring in **Compute
 
 Education
 ======
-- **South China University of Technology**, Guangzhou, China<br>B.E. in Computer Science Union Class(top 30 students selected from undergraduates)<br>2021 ~ 2025 (expected)
+- **South China University of Technology**, Guangzhou, China  
+  B.E. in Computer Science Union Class(top 30 students selected from undergraduates)<br>2021 ~ 2025 (expected)
 
 Experience
 ======
