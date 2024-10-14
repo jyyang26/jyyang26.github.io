@@ -20,12 +20,12 @@ My name is Junyao Yang, a final year undergraduate student majoring in **Compute
 - [04/2024] I joined Tencent as a machine learning intern.
 - [03/2024] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
 
-# Research <sub>(* co-author, # correspondence author)</sub>
+# Research 
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
 *Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang**, ZhengdongLu, Huiping Zhuang, Cen Chen*<br>
 [Arxiv](https://arxiv.org/abs/2406.01394) <br>
-Preprint, 10/2024
-
+Preprint, 10/2024 <br>
+<span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
 Education
 ======
