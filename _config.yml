@@ -23,7 +23,7 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Junyao Yang"
-  pronouns         : he/his# example: "he/his"  
+  pronouns         : "he/his"# example: "he/his"  
   bio              : "..."
   location         : "Shenzhen, China"
   employer         : "South China University of Technology"
