@@ -6,22 +6,22 @@
 
 main:
   - title: "About Me"
-    url: /publications/
+    url: /
 
   - title: "News"
-    url: /talks/    
+    url: /#News  
 
   - title: "Education"
-    url: /teaching/    
+    url: /#Research    
     
   - title: "Experience"
-    url: /portfolio/
+    url: /#Experience
         
   - title: "Publications"
-    url: /year-archive/
+    url: /#Publications
     
   - title: "Honor and Awards"
-    url: /cv/
+    url: /#
     
   - title: "Patents"
-    url: /markdown/
+    url: /#Patents
