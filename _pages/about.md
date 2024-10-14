@@ -45,7 +45,7 @@ Experience
   - <small>LLM Acceleration</small>
   - <small>LLM Memory Utilization Optimization</small>
 - 2023.06 - 2024.08, Research Intern in South China University of Technology, Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/),     Guangzhou, China.
-  - <small>Reinforcement learning</small>
+  - <small>Reinforcement Learning</small>
   - <small>UAV Navigation</small>
 
 
