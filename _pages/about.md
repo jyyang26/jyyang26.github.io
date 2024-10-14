@@ -51,8 +51,15 @@ Experiences
 
 Honor and Awards
 ======
+-	[2024.10] Second-Class Scholarship of South China University of Technology
+- [2024.11 & 2023.11 & 2022.11] Outstanding Student Leader 
+- [2024.11 & 2023.11 & 2022.11] Merit Student 
+- [2023.05] Outstanding Student Union Member
+- [2022.10] Third-Class Scholarship of South China University of Technology
+- [2022.09] Second-Class Award in CUMCM at Guangdong Province 
 
 Patents
 ======
-
-
+**An Intelligent Obstacle Avoidance and Destination Landing Unmanned Aerial Vehicles Based on Multi-Layer Neural Networks**<br>
+*Guanglong Du, Xiaojian Qiu, **Junyao Yang**, Jiancheng Li, Xueqian Wang, Xiaojun Zhu* (Student First Author)<br>
+2023.08  Publication Number: CN117170403A  
