@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "About Me"
+title: "Junyao Yang(杨竣尧) "
 author_profile: true
 redirect_from: 
   - /about/
