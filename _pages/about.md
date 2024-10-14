@@ -36,7 +36,7 @@ Education
 Experience
 ======
 - 2024.07 - Present, Research Intern in South China University of Technology, Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/),     Guangzhou, China.
-  - <small>LLM Privacy Protection During Inference</small>
+  - <small>LLM Privacy-Preserving Inference</small>
   - <small>LLM Attack</small>
 - 2024.04 - 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**,     Shenzhen, China.
   - <small>LLM Deployment</small>
