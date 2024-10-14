@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-My name is Junyao Yang, a final year undergraduate student majoring in **Computer Science** at the [School of Computer Science & Engineering](https://www2.scut.edu.cn/cs/), [South China University of Technology](https://www.scut.edu.cn/new/). My research interests include:
+My name is Junyao Yang, a final year undergraduate student majoring in **Computer Science** at the [School of Computer Science & Engineering](https://www2.scut.edu.cn/cs/), [South China University of Technology(SCUT)](https://www.scut.edu.cn/new/). My research interests include:
 
 - **LLM Privacy**
 - **Model Acceleration**
@@ -19,18 +19,22 @@ My name is Junyao Yang, a final year undergraduate student majoring in **Compute
 - [04/2024] I joined Tencent as a machine learning intern.
 - [03/2024] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
 
+Research
+======
+
 Education
 ======
 - **South China University of Technology**, Guangzhou, China  
   B.E. in Computer Science Union Class(top 30 students in undergraduates)  
   2021 ~ 2025 (expected)
 
-Experience
+Experiences
 ======
 
+Honor and Awards
+======
 
-
-Publications
+Patents
 ======
 
 
