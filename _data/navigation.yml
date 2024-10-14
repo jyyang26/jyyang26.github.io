@@ -9,19 +9,19 @@ main:
     url: /
 
   - title: "News"
-    url: /#News  
+    url: /#news  
 
   - title: "Research"
-    url: /#Research    
+    url: /#research    
     
   - title: "Education"
-    url: /#Education
+    url: /#education
     
   - title: "Experience"
-    url: /#Experience
+    url: /#experience
     
   - title: "Honor and Awards"
     url: /#honor-and-awards
     
   - title: "Patents"
-    url: /#Patents
+    url: /#patents
