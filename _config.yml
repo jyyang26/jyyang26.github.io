@@ -21,7 +21,7 @@ repository               : "jyyang26/jyyang26.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "证件照.jpeg"
   name             : "Junyao Yang"
   pronouns         : "he/his"# example: "he/his"  
   bio              : "Junyao Yang's Homepage"
