@@ -21,8 +21,9 @@ My name is Junyao Yang, a final year undergraduate student majoring in **Compute
 - [03/2024] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
 
 # Research <sub>(* co-author, # correspondence author)</sub>
-**PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration**<br>
-*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang**, ZhengdongLu, Huiping Zhuang, Cen Chen*
+**[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
+*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang**, ZhengdongLu, Huiping Zhuang, Cen Chen*<br>
+[Arxiv](https://arxiv.org/abs/2406.01394) <br>
 Preprint, 10/2024
 
 
