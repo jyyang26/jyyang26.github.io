@@ -11,14 +11,14 @@ main:
   - title: "News"
     url: /#News  
 
-  - title: "Education"
+  - title: "Research"
     url: /#Research    
+    
+  - title: "Education"
+    url: /#Education
     
   - title: "Experience"
     url: /#Experience
-        
-  - title: "Publications"
-    url: /#Publications
     
   - title: "Honor and Awards"
     url: /#honor-and-awards
