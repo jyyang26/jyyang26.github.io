@@ -8,11 +8,11 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Junyao Yang's Homepage"
+title                    : "Homepage"
 title_separator          : "-"
 name                     : &name "Junyao Yang"
 description              : &description "personal description"
-url                      : https://jyyang26.github.io/ # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://jyyang26.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "jyyang26/jyyang26.github.io"
 
@@ -24,7 +24,7 @@ author:
   avatar           : "profile.png"
   name             : "Junyao Yang"
   pronouns         : "he/his"# example: "he/his"  
-  bio              : "..."
+  bio              : "Junyao Yang's Homepage"
   location         : "Shenzhen, China"
   employer         : "South China University of Technology"
   uri              : # URL
