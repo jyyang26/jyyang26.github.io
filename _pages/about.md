@@ -13,18 +13,18 @@ My name is Junyao Yang, a final year undergraduate student majoring in **Compute
 - **Model Acceleration**
 
 # News
-- [10/2024] **PrivactRestore** is available now! Check my work **[here](https://arxiv.org/abs/2406.01394)**!
-- [07/2024] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
-- [03/2024] I spent a wonderful time at Tencent as a machine learning intern!
-- [07/2024] **Contextless CS** is available now, which reaches **20,000 DAU**! Check my work **[here](https://kf.qq.com/)**!
-- [04/2024] I joined Tencent as a machine learning intern.
-- [03/2024] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
+- [2024.10] **PrivactRestore** is available now! Check my work **[here](https://arxiv.org/abs/2406.01394)**!
+- [2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
+- [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
+- [2024.07] **Contextless CS** is available now, which reaches **20,000 DAU**! Check my work **[here](https://kf.qq.com/)**!
+- [2024.04] I joined Tencent as a machine learning intern.
+- [2024.03] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
 
 # Research 
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
 *Ziqian Zeng\*<sup>\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang**, ZhengdongLu, Huiping Zhuang, Cen Chen*<br>
 [Arxiv](https://arxiv.org/abs/2406.01394) <br>
-Preprint, 10/2024 <br>
+Preprint, 2024.10 <br>
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
 Education
@@ -35,6 +35,18 @@ Education
 
 Experiences
 ======
+- 2024.07 - Present, Research Intern in South China University of Technology, Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/), Guangzhou, China.
+  - LLM Privacy Protection During Inference
+  - LLM Attack
+- 2024.04 - 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**, Shenzhen, China.
+  - LLM Deployment
+  - LLM Fine-Tuning
+- 2024.01 - 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**, Shenzhen, China.
+  - LLM Acceleration
+  - LLM Memory Utilization Optimization
+- 2023.06 - 2024.08, Research Intern in South China University of Technology, Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/), Guangzhou, China.
+  - Reinforcement learning
+  - UAV Navigation
 
 Honor and Awards
 ======
