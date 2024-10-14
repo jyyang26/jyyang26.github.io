@@ -33,7 +33,7 @@ Education
   B.E. in Computer Science Union Class(top 30 students in undergraduates)  
   2021 ~ 2025 (expected)
 
-Experiences
+Experience
 ======
 - 2024.07 - Present, Research Intern in South China University of Technology, Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/),     Guangzhou, China.
   - <small>LLM Privacy Protection During Inference</small>
