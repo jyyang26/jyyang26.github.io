@@ -36,17 +36,13 @@ Education
 Experience
 ======
 - 2024.07 - Present, Research Intern in South China University of Technology, Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/),     Guangzhou, China.
-  - <small>LLM Privacy-Preserving Inference</small>
-  - <small>LLM Attack</small>
+  - <small>LLM Privacy-Preserving Inference & LLM Attack</small>
 - 2024.04 - 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**,     Shenzhen, China.
-  - <small>LLM Deployment</small>
-  - <small>LLM Fine-Tuning</small>
+  - <small>LLM Deployment & LLM Fine-Tuning</small>
 - 2024.01 - 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**,     Shenzhen, China.
-  - <small>LLM Acceleration</small>
-  - <small>LLM Memory Utilization Optimization</small>
+  - <small>LLM Acceleration & LLM Memory Utilization Optimization</small>
 - 2023.06 - 2024.08, Research Intern in South China University of Technology, Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/),     Guangzhou, China.
-  - <small>Reinforcement Learning</small>
-  - <small>UAV Navigation</small>
+  - <small>Reinforcement Learning & UAV Navigation</small>
 
 
 Honor and Awards
