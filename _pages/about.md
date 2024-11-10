@@ -7,12 +7,14 @@ redirect_from:
   - /about.html
 ---
 
-My name is Junyao Yang, a final year undergraduate student majoring in **Computer Science** at the [School of Computer Science & Engineering](https://www2.scut.edu.cn/cs/), [South China University of Technology(SCUT)](https://www.scut.edu.cn/new/). My research interests include:
+👋 Hi there, my name is Junyao Yang, a final year undergraduate student majoring in **Computer Science** at the [School of Computer Science & Engineering](https://www2.scut.edu.cn/cs/), [South China University of Technology(SCUT)](https://www.scut.edu.cn/new/). My research interests My research interests lie in Natural Language Processing and Language Models.
+
+My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy**, **Knowledge Editing** and **Malicious Attacks** of LLMs and so on:
 
 - **LLM Privacy**
 - **Model Acceleration**
 
-# News
+# 🔥 News
 - [2024.10] **PrivactRestore** is available now! Check my work **[here](https://arxiv.org/abs/2406.01394)**!
 - [2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
 - [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
@@ -20,20 +22,20 @@ My name is Junyao Yang, a final year undergraduate student majoring in **Compute
 - [2024.04] I joined Tencent as a machine learning intern.
 - [2024.03] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
 
-# Research 
+# 🧐 Research 
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
 *Ziqian Zeng\*<sup>\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang**, ZhengdongLu, Huiping Zhuang, Cen Chen*<br>
 [Arxiv](https://arxiv.org/abs/2406.01394) <br>
 Preprint, 2024.10 <br>
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
-Education
+✏️ Education
 ======
 - **South China University of Technology**, Guangzhou, China  
   B.E. in Computer Science Union Class(top 30 students in undergraduates)  
   2021 ~ 2025 (expected)
 
-Experience
+💻 Experience
 ======
 - 2024.07 - Present, Research Intern in South China University of Technology, Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/),     Guangzhou, China.
   - <small>LLM Privacy-Preserving Inference & LLM Attack</small>
@@ -45,7 +47,7 @@ Experience
   - <small>Reinforcement Learning & UAV Navigation</small>
 
 
-Honor and Awards
+🎖️ Honor and Awards
 ======
 -	[2024.10] Second-Class Scholarship of South China University of Technology
 - [2024.11 & 2023.11 & 2022.11] Outstanding Student Leader 
@@ -54,7 +56,7 @@ Honor and Awards
 - [2022.10] Third-Class Scholarship of South China University of Technology
 - [2022.09] Second-Class Award in CUMCM at Guangdong Province 
 
-Patents
+📘 Patents
 ======
 **An Intelligent Obstacle Avoidance and Destination Landing Unmanned Aerial Vehicles Based on Multi-Layer Neural Networks**<br>
 *Guanglong Du, Xiaojian Qiu, **Junyao Yang**, Jiancheng Li, Xueqian Wang, Xiaojun Zhu* (Student First Author)<br>
