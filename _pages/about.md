@@ -24,7 +24,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 # 🧐 Research 
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
-*Ziqian Zeng\*<sup>\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang**, ZhengdongLu, Huiping Zhuang, Cen Chen*<br>
+*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, ZhengdongLu, Huiping Zhuang, Cen Chen*<br>
 [arxiv](https://arxiv.org/abs/2406.01394) 
 preprint, 2024.10 <br>
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
@@ -34,6 +34,9 @@ preprint, 2024.10 <br>
 - **South China University of Technology**, Guangzhou, China  
   B.E. in Computer Science Union Class(top 30 students in undergraduates)  
   2021 ~ 2025 (expected)
+- **Shenzhen Experimental School**, Shenzhen, China  
+  High School Diploma  
+  2018 ~ 2021
 
 💻 Experience
 ======
