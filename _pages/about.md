@@ -11,8 +11,8 @@ redirect_from:
 
 My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy**, **Knowledge Editing** and **Malicious Attacks** of LLMs and so on:
 
+- **Trustworthy Artificial Intelligence**
 - **LLM Privacy**
-- **Model Acceleration**
 
 # 🔥 News
 - [2024.10] **PrivactRestore** is available now! Check my work **[here](https://arxiv.org/abs/2406.01394)**!
