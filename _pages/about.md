@@ -25,7 +25,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 # 🧐 Research 
 **RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis**<br>
-*Jianwei Wang<sup>\*</sup>, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
+*Jianwei Wang, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
 arXiv preprint, 2025.02 <br>
 
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
