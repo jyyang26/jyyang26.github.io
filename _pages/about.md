@@ -15,7 +15,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 - **LLM Privacy**
 
 # 🔥 News
-- [2024.10] **RewardDS** has been submitted to ACL! Check our work **[here](https://arxiv.org/abs/2502.18517)**!
+- [2025.02] **RewardDS** has been submitted to ACL! Check our work **[here](https://arxiv.org/abs/2502.18517)**!
 - [2024.10] **PrivactRestore** is available now! Check our work **[here](https://arxiv.org/abs/2406.01394)**!
 - [2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
 - [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
