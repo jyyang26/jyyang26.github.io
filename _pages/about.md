@@ -15,8 +15,8 @@ My research story revolves around **the Underlying Principles and Understanding 
 - **LLM Privacy**
 
 # 🔥 News
-- [2024.10] **RewardDS** has been submitted to ACL, preprint will be available soon!
-- [2024.10] **PrivactRestore** is available now! Check my work **[here](https://arxiv.org/abs/2406.01394)**!
+- [2024.10] **RewardDS** has been submitted to ACL! Check our work **[here](https://arxiv.org/abs/2502.18517)**!
+- [2024.10] **PrivactRestore** is available now! Check our work **[here](https://arxiv.org/abs/2406.01394)**!
 - [2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
 - [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
 - [2024.07] **Contextless CS** is available now, which reaches **20,000 DAU**! Check my work **[here](https://kf.qq.com/)**!
@@ -24,12 +24,12 @@ My research story revolves around **the Underlying Principles and Understanding 
 - [2024.03] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
 
 # 🧐 Research 
-**RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis**<br>
+**[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
 *Jianwei Wang, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
 arXiv preprint, 2025.02 <br>
 
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
-*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, ZhengdongLu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
+*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
 arXiv preprint, 2024.10 <br>
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
