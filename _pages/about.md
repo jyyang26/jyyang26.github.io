@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-👋 Hi there, my name is Junyao Yang. I am a final-year undergraduate student majoring in Computer Science at the [School of Computer Science & Engineering](https://www2.scut.edu.cn/cs/), **[South China University of Technology(SCUT)](https://www.scut.edu.cn/new/)**. I am also an incoming graduate student at [Department of Computer Science](https://cs.duke.edu/), **[Duke University](https://duke.edu/)**, where I will continue to pursue Computer Science. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
+👋 Hi there, my name is Junyao Yang. I am a final-year undergraduate student majoring in Computer Science at the School of Computer Science & Engineering, South China University of Technology(SCUT). I am also an incoming graduate student at Department of Computer Science, Duke University, where I will continue to pursue Computer Science. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
 
 My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy**, **Knowledge Editing** and **Malicious Attacks** of LLMs and so on:
 
