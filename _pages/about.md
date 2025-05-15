@@ -18,7 +18,8 @@ My research story revolves around **the Underlying Principles and Understanding 
 <!-- - [2024.10] **PrivactRestore** is available now! Check our work **[here](https://arxiv.org/abs/2406.01394)**! -->
 
 # 🔥 News
-- [2025.02] Please check our newest papers: **[RewardDS](https://arxiv.org/abs/2502.18517)** and **[PrivacyRestore](https://arxiv.org/abs/2406.01394)**! Thanks to the help of other collaborators.
+- [2025.05] 🎉🎉 My first co-1st-author paper **[PrivacyRestore](https://arxiv.org/abs/2406.01394)** has been accepted to **ACL 2025 Main**! Deeply grateful to all my mentors and collaborators. See you in Vienna!
+- [2025.02] 🚀🚀 Please check our newest papers: **[RewardDS](https://arxiv.org/abs/2502.18517)** and **[PrivacyRestore](https://arxiv.org/abs/2406.01394)**! Thanks to the help of other collaborators.
 - [2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
 - [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
 - [2024.07] **Contextless CS** is available now, which reaches **20,000 DAU**! Check my work **[here](https://kf.qq.com/)**!
