@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-👋 Hi there, my name is Junyao Yang. I am a final-year undergraduate student in Computer Science at the School of Computer Science & Engineering, South China University of Technology (SCUT). I am also an incoming graduate student at the School of Computing, National University of Singapore, where I will be pursuing a specialization in Artificial Intelligence. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
+👋 Hi there, my name is Junyao Yang. I am a final-year undergraduate student in Computer Science at the School of Computer Science & Engineering, South China University of Technology (SCUT). I am also an incoming graduate student at the School of Computing, National University of Singapore(NUS), where I will be pursuing a specialization in Artificial Intelligence. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
 
 My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy**, **Knowledge Editing** and **Malicious Attacks** of LLMs and so on:
 
