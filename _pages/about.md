@@ -14,7 +14,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 - **Trustworthy Artificial Intelligence**
 - **LLM Privacy**
 
-<span style="font-family: 'Calibri', sans-serif;">> Looking for Ph.D. Opportunity in 26Fall/27Spring Intake.</span>
+> Looking for Ph.D. Opportunity in 26Fall/27Spring Intake.</span>
 
 
 <!-- - [2025.02] **RewardDS** is available now! Check our work **[here](https://arxiv.org/abs/2502.18517)**! -->
