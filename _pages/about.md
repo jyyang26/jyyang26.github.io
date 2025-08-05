@@ -84,19 +84,20 @@ arXiv preprint, 2025.02 <br>
 </p>
 - 2024.07 ~ Present, Research Intern, South China University of Technology <br>
   Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/), Guangzhou, China. <br>
-  Topics: LLM Privacy-Preserving Inference & LLM Reasoning <br>
+  Topics: LLM Privacy & Reasoning <br>
   
 <p>
     <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.04 ~ 2024.07, Machine Learning Intern, **[Tencent](https://kf.qq.com/)**, Shenzhen, China. <br>
-  Topics: LLM Deployment & LLM Fine-Tuning <br>
+  Topics: LLM Deployment & Fine-Tuning <br>
 
-<p>
-    <img src="images/SZSE.jpg" alt="szse" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
-</p>
+
 - 2024.01 ~ 2024.04, Machine Learning Intern, **[SZSE](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
-  Topic: LLM Acceleration <br>
+  Topics: LLM Acceleration & Memory Optimizing <br>
+  <p>
+    <img src="images/SZSE.jpg" alt="szse" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
+  </p>
 
 <p>
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
