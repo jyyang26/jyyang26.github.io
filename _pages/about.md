@@ -89,19 +89,19 @@ arXiv preprint, 2025.02 <br>
 <p>
     <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
-- 2024.04 ~ 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**, Shenzhen, China. <br>
+- 2024.04 ~ 2024.07, Machine Learning Intern, **[Tencent](https://kf.qq.com/)**, Shenzhen, China. <br>
   Topics: LLM Deployment & LLM Fine-Tuning <br>
 
 <p>
     <img src="images/SZSE.jpg" alt="szse" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
-- 2024.01 ~ 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
+- 2024.01 ~ 2024.04, Machine Learning Intern, **[SZSE](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
   Topics: LLM Acceleration & LLM Memory Utilization Optimization <br>
 
 <p>
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
-- 2023.06 ~ 2024.08, Research Intern in South China University of Technology <br>
+- 2023.06 ~ 2024.08, Research Intern, South China University of Technology <br>
   Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/), Guangzhou, China. <br>
   Topics: Reinforcement Learning & UAV Navigation <br>
 
