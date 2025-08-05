@@ -77,7 +77,7 @@ arXiv preprint, 2025.02 <br>
 </p>
 - 2025.06 ~ Present, Research Intern, Shanghai AI Lab <br>
   Supervisor: [Dongrui Liu](https://shenqildr.github.io/), Shanghai, China. <br>
-  Topics: LLM Privacy-Preserving Inference & LLM Reasoning <br>
+  Topics: Trustworthy Machine Learning & LLM Reasoning <br>
 
 <p>
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
