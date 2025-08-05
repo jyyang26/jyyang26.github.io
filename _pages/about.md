@@ -93,7 +93,7 @@ arXiv preprint, 2025.02 <br>
     <img src="images/SZSE.jpg" alt="szse" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.01 ~ 2024.04, Machine Learning Intern, **[SZSE](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
-  Topics: LLM Acceleration & Memory Optimizing  Fine-Tuning <br>
+  Topics: LLM Acceleration & Memory Optimizing  <br>
 <p>
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
