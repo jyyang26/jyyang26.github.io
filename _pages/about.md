@@ -51,19 +51,19 @@ arXiv preprint, 2025.02 <br>
 
 ✏️ Education
 ======
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/NUS.jpg" alt="NUS" style="float: right; margin-right: 20px;; width: 80px; height: 49.61151079px;">
 </p>
 - **National University of Singapore**, Singapore <br>
   M.S. in Artificial Intelligence <br>
   2025 ~ 2027 (expected) <br>
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - **South China University of Technology**, Guangzhou, China  
   B.E. in Computer Science Union Class (top 30 students in undergraduates)  
   2021 ~ 2025
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/SZSY_Logo.png" alt="SZSY" style="float: right; margin-right: 20px;; width: 80px; height: 59.07356948px;">
 </p>
 - **Shenzhen Experimental School**, Shenzhen, China  
@@ -72,26 +72,26 @@ arXiv preprint, 2025.02 <br>
 
 💻 Experience
 ======
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.07 ~ Present, Research Intern, South China University of Technology <br>
   Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/),     Guangzhou, China. <br>
   Topics: LLM Privacy-Preserving Inference & LLM Reasoning <br>
   
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 32.89546716px;">
 </p>
 - 2024.04 ~ 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**,     Shenzhen, China. <br>
   Topics: LLM Deployment & LLM Fine-Tuning <br>
 
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/SZSE.jpg" alt="SZSE.jpg" style="float: right; margin-right: 20px;; width: 80px; height: 57.74834437px;">
 </p>
 - 2024.01 ~ 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
   Topics: LLM Acceleration & LLM Memory Utilization Optimization <br>
 
-<p>
+<p style="display: flex; align-items: center; height: 100px;">
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2023.06 ~ 2024.08, Research Intern in South China University of Technology <br>
