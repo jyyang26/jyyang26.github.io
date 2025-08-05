@@ -52,7 +52,7 @@ arXiv preprint, 2025.02 <br>
 ✏️ Education
 ======
 <p>
-    <img src="images/NUS.jpg" alt="NUS" style="float: right; margin-right: 20px;; width: 80px; height: 49.61151079px;">
+    <img src="images/NUS.jpg" alt="NUS" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - **National University of Singapore**, Singapore <br>
   M.S. in Artificial Intelligence <br>
@@ -64,7 +64,7 @@ arXiv preprint, 2025.02 <br>
   B.E. in Computer Science Union Class (top 30 students in undergraduates)  
   2021 ~ 2025
 <p>
-    <img src="images/SZSY_Logo.png" alt="SZSY" style="float: right; margin-right: 20px;; width: 80px; height: 59.07356948px;">
+    <img src="images/SZSY_Logo.png" alt="SZSY" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - **Shenzhen Experimental School**, Shenzhen, China  
   High School Diploma  
@@ -73,6 +73,13 @@ arXiv preprint, 2025.02 <br>
 💻 Experience
 ======
 <p>
+    <img src="images/ailab.png" alt="ailab" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
+</p>
+- 2025.06 ~ Present, Research Intern, Shanghai AI Lab <br>
+  Supervisor: [Dongrui Liu](https://shenqildr.github.io/), Shanghai, China. <br>
+  Topics: LLM Privacy-Preserving Inference & LLM Reasoning <br>
+
+<p>
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.07 ~ Present, Research Intern, South China University of Technology <br>
@@ -80,13 +87,13 @@ arXiv preprint, 2025.02 <br>
   Topics: LLM Privacy-Preserving Inference & LLM Reasoning <br>
   
 <p>
-    <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 32.89546716px;">
+    <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.04 ~ 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**,     Shenzhen, China. <br>
   Topics: LLM Deployment & LLM Fine-Tuning <br>
 
 <p>
-    <img src="images/SZSE.jpg" alt="SZSE.jpg" style="float: right; margin-right: 20px;; width: 80px; height: 57.74834437px;">
+    <img src="images/SZSE.jpg" alt="SZSE.jpg" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.01 ~ 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
   Topics: LLM Acceleration & LLM Memory Utilization Optimization <br>
