@@ -9,7 +9,7 @@ redirect_from:
 
 👋 Hi there, my name is Junyao Yang. I am a final-year undergraduate student in Computer Science at the School of Computer Science & Engineering, South China University of Technology (SCUT). I am also an incoming graduate student at the School of Computing, National University of Singapore (NUS), where I will be pursuing a specialization in Artificial Intelligence. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
 
-My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Knowledge Editing** [In Progress] and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
+My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Knowledge Editing** **[RCP-Merging]** and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
 
 - **Trustworthy Artificial Intelligence**
 - **LLM Privacy**
@@ -52,19 +52,19 @@ arXiv preprint, 2025.02 <br>
 ✏️ Education
 ======
 <p>
-    <img src="images/NUS.jpg" alt="NUS" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/NUS.jpg" alt="NUS" style="float: right; margin-right: 20px;; width: 80px; height: 49.61151079px;">
 </p>
 - **National University of Singapore**, Singapore <br>
   M.S. in Artificial Intelligence <br>
   2025 ~ 2027 (expected) <br>
 <p>
-    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - **South China University of Technology**, Guangzhou, China  
   B.E. in Computer Science Union Class (top 30 students in undergraduates)  
   2021 ~ 2025
 <p>
-    <img src="images/SZSY_logo.png" alt="SZSY" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/SZSY_Logo.png" alt="SZSY" style="float: right; margin-right: 20px;; width: 80px; height: 59.07356948px;">
 </p>
 - **Shenzhen Experimental School**, Shenzhen, China  
   High School Diploma  
@@ -73,30 +73,30 @@ arXiv preprint, 2025.02 <br>
 💻 Experience
 ======
 <p>
-    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.07 ~ Present, Research Intern, South China University of Technology <br>
   Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/),     Guangzhou, China. <br>
   Topics: LLM Privacy-Preserving Inference & LLM Reasoning <br>
   
 <p>
-    <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 32.89546716px;">
 </p>
 - 2024.04 ~ 2024.07, Machine Learning Intern in **[Tencent](https://kf.qq.com/)**,     Shenzhen, China. <br>
-  Topics: LLM Deployment & LLM Fine-Tuning
+  Topics: LLM Deployment & LLM Fine-Tuning <br>
 
 <p>
-    <img src="images/SZSE.jpg" alt="SZSE.jpg" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/SZSE.jpg" alt="SZSE.jpg" style="float: right; margin-right: 20px;; width: 80px; height: 57.74834437px;">
 </p>
-- 2024.01 ~ 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**,     Shenzhen, China. <br>
-  Topics: LLM Acceleration & LLM Memory Utilization Optimization
+- 2024.01 ~ 2024.04, Machine Learning Intern in **[Shenzhen Stock Exchange](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
+  Topics: LLM Acceleration & LLM Memory Utilization Optimization <br>
 
 <p>
-    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 60px; height: 80px;">
+    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2023.06 ~ 2024.08, Research Intern in South China University of Technology <br>
   Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/),     Guangzhou, China. <br>
-  Topics: Reinforcement Learning & UAV Navigation
+  Topics: Reinforcement Learning & UAV Navigation <br>
 
 
 🎖️ Honor and Awards
