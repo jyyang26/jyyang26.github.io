@@ -35,21 +35,27 @@ My research story revolves around **the Underlying Principles and Understanding 
 # 🧐 Research 
 
 <p>
-    <img src="images/rcp.png" alt="rcp" style="float: left; margin-left: 20px;; width: 120px; height: 120px;">
+  <a href="https://arxiv.org/abs/2508.03140">
+    <img src="images/rcp.png" alt="rcp" style="float: left; margin-left: 20px;; width: 150px; height: 150px;">
+  </a>
 </p>
 **[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
 ***Junyao Yang**, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
 arXiv preprint, 2025.08 <br>
 
 <p>
-    <img src="images/restore.png" alt="restore" style="float: left; margin-left: 20px;; width: 120px; height: 120px;">
+  <a href="https://arxiv.org/abs/2406.01394">
+    <img src="images/restore.png" alt="restore" style="float: left; margin-left: 20px;; width: 150px; height: 150px;">
+  </a>
 </p>
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
 *Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
 **ACL 2025 Main**<br>
 
 <p>
-    <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-left: 20px;; width: 120px; height: 120px;">
+  <a href="https://arxiv.org/abs/2502.18517">
+    <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-left: 20px; width: 150px; height: 150px;">
+  </a>
 </p>
 **[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
 *Jianwei Wang, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
