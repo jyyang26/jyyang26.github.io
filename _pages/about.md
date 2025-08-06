@@ -12,7 +12,7 @@ redirect_from:
 My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Knowledge Editing** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
 
 - **Trustworthy Artificial Intelligence**
-- **LLM Privacy**
+- **Large Language Models Reasoning**
 
 > Looking for Ph.D. Opportunity in 26Fall/27Spring Intake.
 
