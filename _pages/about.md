@@ -9,7 +9,7 @@ redirect_from:
 
 👋 Hi there, my name is Junyao Yang. I am a final-year undergraduate student in Computer Science at the School of Computer Science & Engineering, South China University of Technology (SCUT). I am also an incoming graduate student at the School of Computing, National University of Singapore (NUS), where I will be pursuing a specialization in Artificial Intelligence. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
 
-My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Knowledge Editing** **[RCP-Merging]** and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
+My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Knowledge Editing** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
 
 - **Trustworthy Artificial Intelligence**
 - **LLM Privacy**
@@ -22,7 +22,7 @@ My research story revolves around **the Underlying Principles and Understanding 
  <!--  a novel merging framework that integrates domain-specific LLMs with long Chain-of-Thought (CoT) capability while maintaining performance in their original domain! -->
  
 # 🔥 News
-- [2025.05] 🚀🚀 Check out my latest work: RCP-Merging! The paper and code will be available soon.
+- [2025.05] 🚀🚀 Check out my latest work: **[RCP-Merging](https://arxiv.org/abs/2508.03140)**! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
 - [2025.05] 🎉🎉 Successfully passed my undergraduate thesis defense!
 - [2025.05] 🎉🎉 My first Co-First-Author paper **[PrivacyRestore](https://arxiv.org/abs/2406.01394)** has been accepted to **ACL 2025 Main**! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!
 - [2025.02] 🚀🚀 Please check our newest papers: **[RewardDS](https://arxiv.org/abs/2502.18517)** and **[PrivacyRestore](https://arxiv.org/abs/2406.01394)**! Thanks to the help of other collaborators.
@@ -34,7 +34,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 # 🧐 Research 
 
-**RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior**<br>
+**[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
 ***Junyao Yang**, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
 arXiv preprint, 2025.08 <br>
 
