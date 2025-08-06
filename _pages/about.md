@@ -36,7 +36,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 <p>
   <a href="https://arxiv.org/abs/2508.03140">
-    <img src="images/rcp.png" alt="rcp" style="float: left; margin-left: 20px;; width: 150px; height: 150px;">
+    <img src="images/rcp.png" alt="rcp" style="float: left;  margin-right: 20px; margin-left: 20px;; width: 150px; height: 150px;">
   </a>
 </p>
 **[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
@@ -45,7 +45,7 @@ arXiv preprint, 2025.08 <br>
 
 <p>
   <a href="https://arxiv.org/abs/2406.01394">
-    <img src="images/restore.png" alt="restore" style="float: left; margin-left: 20px;; width: 150px; height: 150px;">
+    <img src="images/restore.png" alt="restore" style="float: left; margin-right: 20px; margin-left: 20px;; width: 150px; height: 150px;">
   </a>
 </p>
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
@@ -54,7 +54,7 @@ arXiv preprint, 2025.08 <br>
 
 <p>
   <a href="https://arxiv.org/abs/2502.18517">
-    <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-left: 20px; width: 150px; height: 150px;">
+    <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-right: 20px; margin-left: 20px;; width: 150px; height: 150px;">
   </a>
 </p>
 **[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
