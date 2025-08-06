@@ -14,7 +14,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 - **Trustworthy Artificial Intelligence**
 - **Large Language Models Reasoning**
 
-> Looking for Ph.D. Opportunity in 26Fall/27Spring Intake.
+<!-- > Looking for Ph.D. Opportunity in 26Fall/27Spring Intake. -->
 
 
 <!-- - [2025.02] **RewardDS** is available now! Check our work **[here](https://arxiv.org/abs/2502.18517)**! -->
