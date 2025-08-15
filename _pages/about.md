@@ -9,7 +9,7 @@ redirect_from:
 
 👋 Hi there, my name is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in **Natural Language Processing** and **Language Models**. Here is my **[CV](https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing)**.
 
-My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **LLM Privacy** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Reasoning Model Merging** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
+My research story revolves around **the Underlying Principles and Understanding of LLMs**, particularly focusing on how to enhance the **"Reliability"** and **"Safety"** of LLM-generated information, which connects to related areas such as **Trustworthy LLM** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**, **[RewardDS](https://arxiv.org/abs/2502.18517)**], **Reasoning Model Merging** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** and **Malicious Attacks** [**[PrivacyRestore](https://arxiv.org/abs/2406.01394)**], of LLMs and so on:
 
 - **Trustworthy Artificial Intelligence**
 - **Large Language Models Reasoning**
