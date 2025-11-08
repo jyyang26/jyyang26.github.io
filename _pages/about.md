@@ -42,7 +42,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   </a>
 </p>
 **[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
-***Junyao Yang**, *Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\*\#</sup>*<br>
+**Junyao Yang**, *Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\*\#</sup>*<br>
 **AAAI 2026 Main Track** <br>
 
 <p>
