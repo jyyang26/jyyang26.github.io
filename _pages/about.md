@@ -103,7 +103,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   </a>
   <img src="images/AAAI2026.jpg" alt="AAAI2026" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
 </p>
-**[AAAI 2026]** **[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
+**[AAAI 2026 Main Track]** **[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
 **Junyao Yang**, *Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\*\#</sup>*<br>
 <br style="clear: both;">
 
@@ -113,9 +113,9 @@ My research story revolves around **the Underlying Principles and Understanding 
   </a>
   <img src="images/ACL2025.jpg" alt="ACL2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
 </p>
-**[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
+**[ACL 2025 Main]** **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
 *Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
-**ACL 2025 Main**<br style="clear: both;">
+<br style="clear: both;">
 
 <p>
   <a href="https://arxiv.org/abs/2502.18517">
@@ -123,9 +123,9 @@ My research story revolves around **the Underlying Principles and Understanding 
   </a>
   <img src="images/EMNLP2025.jpg" alt="EMNLP2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
 </p>
-**[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
+**[EMNLP 2025 Main]** **[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
 *Jianwei Wang, Chengming Shi, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
-**EMNLP 2025 Main** <br style="clear: both;">
+ <br style="clear: both;">
 
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
