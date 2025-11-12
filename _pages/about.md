@@ -98,38 +98,47 @@ My research story revolves around **the Underlying Principles and Understanding 
 *Jianwei Wang, Chengming Shi, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
  <br> -->
 
-<p>
-  <a href="https://arxiv.org/abs/2508.03140">
-    <img src="images/rcp.png" alt="rcp" style="float: left; margin-right: 20px; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
-  </a>
-  <img src="images/AAAI2026.jpg" alt="AAAI2026" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
-</p>
-**[AAAI 2026 Main Track]** <br>
-**[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
-**Junyao Yang**, *Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\*\#</sup>*<br>
-<br style="clear: both;">
+<div style="margin-bottom: 30px;">
+  <div style="float: left; margin-right: 20px; width: 120px;">
+    <a href="https://arxiv.org/abs/2508.03140">
+      <img src="images/rcp.png" alt="rcp" style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
+    </a>
+    <img src="images/AAAI2026.jpg" alt="AAAI2026" style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+  </div>
+  <strong>[AAAI 2026 Main Track]</strong><br>
+  <strong><a href="https://arxiv.org/abs/2508.03140">[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior]</a></strong><br>
+  <strong>Junyao Yang</strong>, <em>Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>*#</sup></em><br>
+  [cite_start]<strong>TL;DR:</strong> A model merging framework that integrates domain-specific models with reasoning models by treating reasoning capabilities as a prior, enhancing domain performance while preserving chain-of-thought reasoning abilities[cite: 35, 36, 38].
+  <br style="clear: both;">
+</div>
 
-<p>
-  <a href="https://arxiv.org/abs/2406.01394">
-    <img src="images/restore.png" alt="restore" style="float: left; margin-right: 20px; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
-  </a>
-  <img src="images/ACL2025.jpg" alt="ACL2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
-</p>
-**[ACL 2025 Main]** <br>
-**[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
-*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
-<br style="clear: both;">
+<div style="margin-bottom: 30px;">
+  <div style="float: left; margin-right: 20px; width: 120px;">
+    <a href="https://arxiv.org/abs/2406.01394">
+      <img src="images/restore.png" alt="restore" style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
+    </a>
+    <img src="images/ACL2025.jpg" alt="ACL2025" style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+  </div>
+  <strong>[ACL 2025 Main]</strong><br>
+  <strong><a href="https://arxiv.org/abs/2406.01394">[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration]</a></strong><br>
+  <em>Ziqian Zeng<sup>*#</sup>, Jianwei Wang<sup>*</sup>, <strong>Junyao Yang<sup>*</sup></strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</em><br>
+  [cite_start]<strong>TL;DR:</strong> A privacy-preserving inference framework that removes sensitive spans from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining[cite: 1018, 1020, 1045].
+  <br style="clear: both;">
+</div>
 
-<p>
-  <a href="https://arxiv.org/abs/2502.18517">
-    <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-right: 20px; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
-  </a>
-  <img src="images/EMNLP2025.jpg" alt="EMNLP2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
-</p>
-**[EMNLP 2025 Main]** <br>
-**[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
-*Jianwei Wang, Chengming Shi, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
- <br style="clear: both;">
+<div style="margin-bottom: 30px;">
+  <div style="float: left; margin-right: 20px; width: 120px;">
+    <a href="https://arxiv.org/abs/2502.18517">
+      <img src="images/rewardds.png" alt="rewardds" style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
+    </a>
+    <img src="images/EMNLP2025.jpg" alt="EMNLP2025" style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+  </div>
+  <strong>[EMNLP 2025 Main]</strong><br>
+  <strong><a href="https://arxiv.org/abs/2502.18517">[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis]</a></strong><br>
+  <em>Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>#</sup></em><br>
+  [cite_start]<strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information[cite: 2445, 2446, 2525].
+  <br style="clear: both;">
+</div>
 
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
