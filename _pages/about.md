@@ -26,34 +26,34 @@ My research story revolves around **the Underlying Principles and Understanding 
 <div style="max-height: 350px; overflow-y: auto;">
   <ul>
     <li>
-      [2025.11] 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!
+      [2025.11] 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #0066cc;"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!
     </li>
     <li>
-      [2025.08] 🎉🎉 <a href="https://arxiv.org/abs/2502.18517"><strong>RewardDS</strong></a> has been accepted to <strong>EMNLP 2025 Main</strong>!
+      [2025.08] 🎉🎉 <a href="https://arxiv.org/abs/2502.18517" style="text-decoration: underline; color: #0066cc;"><strong>RewardDS</strong></a> has been accepted to <strong>EMNLP 2025 Main</strong>!
     </li>
     <li>
-      [2025.08] I joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by Dr. <a href="https://shenqildr.github.io/">Dongrui Liu</a>.
+      [2025.08] I joined <a href="https://ai45.shlab.org.cn/" style="text-decoration: underline; color: #0066cc;">Shanghai AI Lab</a> as a Research Intern, advised by Dr. <a href="https://shenqildr.github.io/" style="text-decoration: underline; color: #0066cc;">Dongrui Liu</a>.
     </li>
     <li>
-      [2025.08] 🚀🚀 Check out my latest work: <strong><a href="https://arxiv.org/abs/2508.03140"><strong>RCP-Merging</strong></a></strong>! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
+      [2025.08] 🚀🚀 Check out my latest work: <strong><a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #0066cc;"><strong>RCP-Merging</strong></a></strong>! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
     </li>
     <li>
       [2025.05] 🎉🎉 Successfully passed my undergraduate thesis defense!
     </li>
     <li>
-      [2025.05] 🎉🎉 <strong>Co-First-Author paper</strong> <a href="https://arxiv.org/abs/2406.01394"><strong>PrivacyRestore</strong></a> has been accepted to <strong>ACL 2025 Main</strong>! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!
+      [2025.05] 🎉🎉 <strong>Co-First-Author paper</strong> <a href="https://arxiv.org/abs/2406.01394" style="text-decoration: underline; color: #0066cc;"><strong>PrivacyRestore</strong></a> has been accepted to <strong>ACL 2025 Main</strong>! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!
     </li>
     <li>
-      [2025.02] 🚀🚀 Please check our newest papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>! Thanks to the help of other collaborators.
+      [2025.02] 🚀🚀 Please check our newest papers: <strong><a href="https://arxiv.org/abs/2502.18517" style="text-decoration: underline; color: #0066cc;">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394" style="text-decoration: underline; color: #0066cc;">PrivacyRestore</a></strong>! Thanks to the help of other collaborators.
     </li>
     <li>
-      [2024.07] I joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.
+      [2024.07] I joined <a href="https://github.com/ZeroNLP" style="text-decoration: underline; color: #0066cc;">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/" style="text-decoration: underline; color: #0066cc;">Ziqian Zeng</a>.
     </li>
     <li>
       [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
     </li>
     <li>
-      [2024.07] <strong>Contextless CS</strong> is available now, which reaches <strong>20,000 DAU</strong>! Check my work <strong><a href="https://kf.qq.com/">here</a></strong>!
+      [2024.07] <strong>Contextless CS</strong> is available now, which reaches <strong>20,000 DAU</strong>! Check my work <strong><a href="https://kf.qq.com/" style="text-decoration: underline; color: #0066cc;">here</a></strong>!
     </li>
     <li>
       [2024.04] I joined Tencent as a machine learning intern.
