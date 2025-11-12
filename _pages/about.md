@@ -213,18 +213,20 @@ My research story revolves around **the Underlying Principles and Understanding 
 </p>
 - 2024.04 ~ 2024.07, Machine Learning Intern, **[Tencent](https://kf.qq.com/)**, Shenzhen, China. <br>
   Topics: LLM Deployment & Fine-Tuning <br>
-<p>
-    <img src="images/SZSE.png" alt="szse" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
+  
+<p style="clear: both;">
+    <img src="images/SZSE.png" alt="szse" style="float: right; margin-right: 20px; width: 80px; height: 80px;">
 </p>
 - 2024.01 ~ 2024.04, Machine Learning Intern, **[SZSE](https://www.szse.cn/English/index.html)**, Shenzhen, China. <br>
   Topics: LLM Acceleration & Memory Optimizing  <br>
-<p>
-    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
+
+<p style="clear: both;">
+    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px; width: 80px; height: 80px;">
 </p>
 - 2023.06 ~ 2024.08, Research Intern, South China University of Technology <br>
   Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/), Guangzhou, China. <br>
   Topics: Reinforcement Learning & UAV Navigation <br>
-
+  
 🎖️ Honor and Awards
 ======
 -	[2024.10] Second-Class Scholarship of South China University of Technology
