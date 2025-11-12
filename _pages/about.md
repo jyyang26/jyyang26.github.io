@@ -22,7 +22,7 @@ My research story revolves around **the Underlying Principles and Understanding 
  <!--  a novel merging framework that integrates domain-specific LLMs with long Chain-of-Thought (CoT) capability while maintaining performance in their original domain! -->
  
 # 🔥 News
-- [2025.11] 🎉🎉 **First-Author paper** **[RCP-Merging]([https://arxiv.org/abs/2502.18517](https://arxiv.org/abs/2508.03140))** has been accepted to **AAAI 2026**! See you in Singapore!
+- [2025.11] 🎉🎉 **First-Author paper** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** has been accepted to **AAAI 2026 Main Track**! See you in Singapore!
 - [2025.08] 🎉🎉 **[RewardDS](https://arxiv.org/abs/2502.18517)** has been accepted to **EMNLP 2025 Main**! 
 - [2025.08] 🚀🚀 Check out my latest work: **[RCP-Merging](https://arxiv.org/abs/2508.03140)**! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
 - [2025.05] 🎉🎉 Successfully passed my undergraduate thesis defense!
