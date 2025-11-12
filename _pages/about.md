@@ -22,7 +22,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 <!-- - [2024.10] **PrivactRestore** is available now! Check our work **[here](https://arxiv.org/abs/2406.01394)**! -->
  <!--  a novel merging framework that integrates domain-specific LLMs with long Chain-of-Thought (CoT) capability while maintaining performance in their original domain! -->
  
-# 🔥 News
+# 🔥 News {#news}
 <div style="max-height: 350px; overflow-y: auto;">
   <ul>
     <li>
@@ -68,7 +68,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 <br>
 
-# 🧐 Research 
+# 🧐 Research {#research}
 
 <!-- <p>
   <a href="https://arxiv.org/abs/2508.03140">
