@@ -1,6 +1,7 @@
-  ---
+---
 permalink: /
-title: "Junyao Yang(杨竣尧) "
+title: "Junyao Yang(杨竣尧)"
+layout: single
 author_profile: true
 redirect_from: 
   - /about/
