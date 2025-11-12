@@ -23,7 +23,8 @@ My research story revolves around **the Underlying Principles and Understanding 
  
 # 🔥 News
 - [2025.11] 🎉🎉 **First-Author paper** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** has been accepted to **AAAI 2026 Main Track**! See you in Singapore!
-- [2025.08] 🎉🎉 **[RewardDS](https://arxiv.org/abs/2502.18517)** has been accepted to **EMNLP 2025 Main**! 
+- [2025.08] 🎉🎉 **[RewardDS](https://arxiv.org/abs/2502.18517)** has been accepted to **EMNLP 2025 Main**!
+- [2025.08] I joined [Shanghai AI Lab](https://ai45.shlab.org.cn/) as a Research Intern, advised by Dr. [Dongrui Liu](https://shenqildr.github.io/).
 - [2025.08] 🚀🚀 Check out my latest work: **[RCP-Merging](https://arxiv.org/abs/2508.03140)**! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
 - [2025.05] 🎉🎉 Successfully passed my undergraduate thesis defense!
 - [2025.05] 🎉🎉 **Co-First-Author paper** **[PrivacyRestore](https://arxiv.org/abs/2406.01394)** has been accepted to **ACL 2025 Main**! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!
