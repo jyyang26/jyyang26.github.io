@@ -99,11 +99,11 @@ My research story revolves around **the Underlying Principles and Understanding 
  <br> -->
 
 <div style="margin-bottom: 30px;">
-  <div style="float: left; margin-right: 20px; width: 120px;">
+  <div style="float: left; margin-right: 20px; width: 100px;">
     <a href="https://arxiv.org/abs/2508.03140">
-      <img src="images/rcp.png" alt="rcp" style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
+      <img src="images/rcp.png" alt="rcp" style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
     </a>
-    <img src="images/AAAI2026.jpg" alt="AAAI2026" style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+    <img src="images/AAAI2026.jpg" alt="AAAI2026" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
   </div>
   <strong>[AAAI 2026 Main Track]</strong><br>
   <strong><a href="https://arxiv.org/abs/2508.03140">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a></strong><br>
@@ -113,11 +113,11 @@ My research story revolves around **the Underlying Principles and Understanding 
 </div>
 
 <div style="margin-bottom: 30px;">
-  <div style="float: left; margin-right: 20px; width: 120px;">
+  <div style="float: left; margin-right: 20px; width: 100px;">
     <a href="https://arxiv.org/abs/2406.01394">
-      <img src="images/restore.png" alt="restore" style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
+      <img src="images/restore.png" alt="restore" style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
     </a>
-    <img src="images/ACL2025.jpg" alt="ACL2025" style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+    <img src="images/ACL2025.jpg" alt="ACL2025" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
   </div>
   <strong>[ACL 2025 Main]</strong><br>
   <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a></strong><br>
@@ -127,11 +127,11 @@ My research story revolves around **the Underlying Principles and Understanding 
 </div>
 
 <div style="margin-bottom: 30px;">
-  <div style="float: left; margin-right: 20px; width: 120px;">
+  <div style="float: left; margin-right: 20px; width: 100px;">
     <a href="https://arxiv.org/abs/2502.18517">
-      <img src="images/rewardds.png" alt="rewardds" style="width: 120px; height: 120px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
+      <img src="images/rewardds.png" alt="rewardds" style="width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; border-radius: 5px;">
     </a>
-    <img src="images/EMNLP2025.jpg" alt="EMNLP2025" style="width: 120px; height: 120px; object-fit: cover; border-radius: 5px;">
+    <img src="images/EMNLP2025.jpg" alt="EMNLP2025" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
   </div>
   <strong>[EMNLP 2025 Main]</strong><br>
   <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a></strong><br>
@@ -139,7 +139,6 @@ My research story revolves around **the Underlying Principles and Understanding 
   <span style="font-size: 80%;"><strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information.</span>
   <br style="clear: both;">
 </div>
-
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
 ✏️ Education
