@@ -7,3 +7,21 @@
 main:
   - title: "About Me"
     url: /
+
+  - title: "News"
+    url: /#news
+
+  - title: "Research"
+    url: /#research
+
+  - title: "Education"
+    url: /
+
+  - title: "Experience"
+    url: /
+    
+  - title: "Honor and Awards"
+    url: /
+
+
+
