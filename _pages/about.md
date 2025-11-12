@@ -101,7 +101,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   <a href="https://arxiv.org/abs/2508.03140">
     <img src="images/rcp.png" alt="rcp" style="float: left; margin-right: 20px; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
   </a>
-  <img src="image/AAAI2026.jpg" alt="AAAI2026" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
+  <img src="images/AAAI2026.jpg" alt="AAAI2026" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
 </p>
 **[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
 **Junyao Yang**, *Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\*\#</sup>*<br>
@@ -111,7 +111,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   <a href="https://arxiv.org/abs/2406.01394">
     <img src="images/restore.png" alt="restore" style="float: left; margin-right: 20px; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
   </a>
-  <img src="image/ACL2025.jpg" alt="ACL2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
+  <img src="images/ACL2025.jpg" alt="ACL2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
 </p>
 **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
 *Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
@@ -121,7 +121,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   <a href="https://arxiv.org/abs/2502.18517">
     <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-right: 20px; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
   </a>
-  <img src="image/EMNLP2025.jpg" alt="EMNLP2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
+  <img src="images/EMNLP2025.jpg" alt="EMNLP2025" style="float: right; margin-left: 20px; width: 120px; height: 120px; object-fit: cover;">
 </p>
 **[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
 *Jianwei Wang, Chengming Shi, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
