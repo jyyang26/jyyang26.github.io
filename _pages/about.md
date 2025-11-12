@@ -23,18 +23,23 @@ My research story revolves around **the Underlying Principles and Understanding 
  <!--  a novel merging framework that integrates domain-specific LLMs with long Chain-of-Thought (CoT) capability while maintaining performance in their original domain! -->
  
 # 🔥 News
-- [2025.11] 🎉🎉 **First-Author paper** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** has been accepted to **AAAI 2026 Main Track**! See you in Singapore!
-- [2025.08] 🎉🎉 **[RewardDS](https://arxiv.org/abs/2502.18517)** has been accepted to **EMNLP 2025 Main**!
-- [2025.08] I joined [Shanghai AI Lab](https://ai45.shlab.org.cn/) as a Research Intern, advised by Dr. [Dongrui Liu](https://shenqildr.github.io/).
-- [2025.08] 🚀🚀 Check out my latest work: **[RCP-Merging](https://arxiv.org/abs/2508.03140)**! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
-- [2025.05] 🎉🎉 Successfully passed my undergraduate thesis defense!
-- [2025.05] 🎉🎉 **Co-First-Author paper** **[PrivacyRestore](https://arxiv.org/abs/2406.01394)** has been accepted to **ACL 2025 Main**! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!
-- [2025.02] 🚀🚀 Please check our newest papers: **[RewardDS](https://arxiv.org/abs/2502.18517)** and **[PrivacyRestore](https://arxiv.org/abs/2406.01394)**! Thanks to the help of other collaborators.
-- [2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
-- [2024.07] I spent a wonderful time at Tencent as a machine learning intern!
-- [2024.07] **Contextless CS** is available now, which reaches **20,000 DAU**! Check my work **[here](https://kf.qq.com/)**!
-- [2024.04] I joined Tencent as a machine learning intern.
-- [2024.03] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
+<div style="max-height: 300px; overflow-y: auto;">
+<ul>
+<li>[2025.11] 🎉🎉 **First-Author paper** **[RCP-Merging](https://arxiv.org/abs/2508.03140)** has been accepted to **AAAI 2026 Main Track**! See you in Singapore!
+<li>[2025.08] 🎉🎉 **[RewardDS](https://arxiv.org/abs/2502.18517)** has been accepted to **EMNLP 2025 Main**!
+<li>[2025.08] I joined [Shanghai AI Lab](https://ai45.shlab.org.cn/) as a Research Intern, advised by Dr. [Dongrui Liu](https://shenqildr.github.io/).
+<li>[2025.08] 🚀🚀 Check out my latest work: **[RCP-Merging](https://arxiv.org/abs/2508.03140)**! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
+<li>[2025.05] 🎉🎉 Successfully passed my undergraduate thesis defense!
+<li>[2025.05] 🎉🎉 **Co-First-Author paper** **[PrivacyRestore](https://arxiv.org/abs/2406.01394)** has been accepted to **ACL 2025 Main**! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!
+<li>[2025.02] 🚀🚀 Please check our newest papers: **[RewardDS](https://arxiv.org/abs/2502.18517)** and **[PrivacyRestore](https://arxiv.org/abs/2406.01394)**! Thanks to the help of other collaborators.
+<li>[2024.07] I joined [ZeroNLP](https://github.com/ZeroNLP) as a Research Assistant, advised by Prof. [Ziqian Zeng](https://ziqianzeng.github.io/).
+<li>[2024.07] I spent a wonderful time at Tencent as a machine learning intern!
+<li>[2024.07] **Contextless CS** is available now, which reaches **20,000 DAU**! Check my work **[here](https://kf.qq.com/)**!
+<li>[2024.04] I joined Tencent as a machine learning intern.
+<li>[2024.03] I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!
+</ul>
+<div style="height: 2em;"></div>
+</div>
 
 # 🧐 Research 
 
