@@ -23,7 +23,7 @@ My research story revolves around **the Underlying Principles and Understanding 
  <!--  a novel merging framework that integrates domain-specific LLMs with long Chain-of-Thought (CoT) capability while maintaining performance in their original domain! -->
  
 # 🔥 News
-<div style="max-height: 300px; overflow-y: auto;">
+<div style="max-height: 350px; overflow-y: auto;">
   <ul>
     <li>
       [2025.11] 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!
