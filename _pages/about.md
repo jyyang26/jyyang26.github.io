@@ -108,7 +108,9 @@ My research story revolves around **the Underlying Principles and Understanding 
   <strong>[AAAI 2026 Main Track]</strong><br>
   <strong><a href="https://arxiv.org/abs/2508.03140">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a></strong><br>
   <strong>Junyao Yang</strong>, <em>Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>*#</sup></em><br>
-  <span style="font-size: 80%;"><strong>TL;DR:</strong> A model merging framework that integrates domain-specific models with reasoning models by treating reasoning capabilities as a prior, enhancing domain performance while preserving chain-of-thought reasoning abilities.</span>
+  <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
+    <strong>TL;DR:</strong> A model merging framework that integrates domain-specific models with reasoning models by treating reasoning capabilities as a prior, enhancing domain performance while preserving chain-of-thought reasoning abilities.
+  </div>
   <br style="clear: both;">
 </div>
 
@@ -122,7 +124,9 @@ My research story revolves around **the Underlying Principles and Understanding 
   <strong>[ACL 2025 Main]</strong><br>
   <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a></strong><br>
   <em>Ziqian Zeng<sup>*#</sup>, Jianwei Wang<sup>*</sup>, <strong>Junyao Yang<sup>*</sup></strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</em><br>
-  <span style="font-size: 80%;"><strong>TL;DR:</strong> A privacy-preserving inference framework that removes sensitive spans from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.</span>
+  <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
+    <strong>TL;DR:</strong> A privacy-preserving inference framework that removes sensitive spans from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.
+  </div>
   <br style="clear: both;">
 </div>
 
@@ -136,9 +140,13 @@ My research story revolves around **the Underlying Principles and Understanding 
   <strong>[EMNLP 2025 Main]</strong><br>
   <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a></strong><br>
   <em>Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>#</sup></em><br>
-  <span style="font-size: 80%;"><strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information.</span>
+  <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
+    <strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information.
+  </div>
   <br style="clear: both;">
 </div>
+
+
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
 ✏️ Education
