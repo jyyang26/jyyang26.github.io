@@ -65,6 +65,9 @@ My research story revolves around **the Underlying Principles and Understanding 
   <div style="height: 2em;"></div>
 </div>
 
+
+<br>
+
 # 🧐 Research 
 
 <p>
