@@ -173,7 +173,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 <span style="color: grey;"><sub>(<sup>\*</sup> co-author, <sup>#</sup> correspondence author)</sub></span>
 
-✏️ Education
+✏️ Education {#education}
 ======
 <p>
     <img src="images/NUS.jpg" alt="NUS" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
@@ -194,7 +194,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   High School Diploma  
   2018 ~ 2021
 
-💻 Experience
+💻 Experience {#experience}
 ======
 <p>
     <img src="images/ailab.png" alt="ailab" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
@@ -227,7 +227,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   Supervisor: Prof. [Guanglong Du](https://www2.scut.edu.cn/duguanglong/), Guangzhou, China. <br>
   Topics: Reinforcement Learning & UAV Navigation <br>
   
-🎖️ Honor and Awards
+🎖️ Honor and Awards {#honor}
 ======
 -	[2024.10] Second-Class Scholarship of South China University of Technology
 - [2024.11 & 2023.11 & 2022.11] Outstanding Student Leader 
