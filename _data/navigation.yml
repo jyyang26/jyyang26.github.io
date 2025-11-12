@@ -15,13 +15,13 @@ main:
     url: /#research
 
   - title: "Education"
-    url: /
+    url: /#education
 
   - title: "Experience"
-    url: /
+    url: /#experience
     
   - title: "Honor and Awards"
-    url: /
+    url: /#honor
 
 
 
