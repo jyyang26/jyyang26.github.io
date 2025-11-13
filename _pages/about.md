@@ -147,7 +147,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     <strong><a href="https://arxiv.org/abs/2406.01394" style="text-decoration: underline; color: #52ADC8;">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a></strong><br>
     <em>Ziqian Zeng<sup>*#</sup>, Jianwei Wang<sup>*</sup>, <strong>Junyao Yang<sup>*</sup></strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</em><br>
     <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
-      <strong>TL;DR:</strong> A privacy-preserving inference framework that removes sensitive spans from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.
+      <strong>TL;DR:</strong> A privacy-preserving inference framework that removes privacy information from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.
     </div>
   </div>
 </div>
