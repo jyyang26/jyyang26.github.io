@@ -68,7 +68,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 <br>
 
-# 🧐 Research {#research}
+# 🧐 Publications {#research}
 
 <!-- <p>
   <a href="https://arxiv.org/abs/2508.03140">
