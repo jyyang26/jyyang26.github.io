@@ -206,7 +206,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2024.07 ~ Present, Research Intern, South China University of Technology <br>
-  Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/), Collaborator: [Jianwei Wang](https://scholar.google.com/citations?user=eRFVxQ8AAAAJ&hl=zh-CN) [Haoran Li](https://hlibt.student.ust.hk/), Guangzhou, China. <br>
+  Supervisor: Prof. [Ziqian Zeng](https://ziqianzeng.github.io/), Collaborator: [Jianwei Wang](https://scholar.google.com/citations?user=eRFVxQ8AAAAJ&hl=zh-CN), [Haoran Li](https://hlibt.student.ust.hk/), Guangzhou, China. <br>
   Topics: LLM Privacy & Reasoning <br>
 <p>
     <img src="images/Tencent.png" alt="Tencent" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
