@@ -200,7 +200,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     <img src="images/ailab.png" alt="ailab" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
 </p>
 - 2025.06 ~ Present, Research Intern, Shanghai AI Lab <br>
-  Supervisor: [Dongrui Liu](https://shenqildr.github.io/), Collaborator: [Chen Qian](https://scholar.google.com/citations?user=knR4ZusAAAAJ&hl=en) Shanghai, China. <br>
+  Supervisor: [Dongrui Liu](https://shenqildr.github.io/), Collaborator: [Chen Qian](https://scholar.google.com/citations?user=knR4ZusAAAAJ&hl=en), Shanghai, China. <br>
   Topics: Trustworthy Machine Learning & LLM Reasoning <br>
 <p>
     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" style="float: right; margin-right: 20px;; width: 80px; height: 80px;">
