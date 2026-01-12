@@ -26,7 +26,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 <div style="max-height: 350px; overflow-y: auto;">
   <ul>
     <li>
-      [2026.01] 🚀🚀 Please check our newest papers: <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.
+      [2026.01] 🚀🚀 Please check our newest paper: <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.
     </li>
     <li>
       [2025.11] 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #52ADC8;"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!
