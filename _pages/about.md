@@ -115,7 +115,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     <a href="https://arxiv.org/abs/2508.03140" style="display: block;">
       <img src="images/rcp.png" alt="rcp"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
     </a>
-    <img src="images/AAAI2026.jpg" alt="AAAI2026"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
+    <!-- <img src="images/AAAI2026.jpg" alt="AAAI2026"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;"> -->
   </div>
   
   <div style="flex: 1;">
@@ -133,7 +133,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     <a href="https://arxiv.org/abs/2406.01394" style="display: block;">
       <img src="images/restore.png" alt="restore"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
     </a>
-    <img src="images/ACL2025.jpg" alt="ACL2025"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
+    <!-- <img src="images/ACL2025.jpg" alt="ACL2025"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;"> -->
   </div>
 
   <div style="flex: 1;">
@@ -151,7 +151,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     <a href="https://arxiv.org/abs/2502.18517" style="display: block;">
       <img src="images/rewardds.png" alt="rewardds"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
     </a>
-    <img src="images/EMNLP2025.jpg" alt="EMNLP2025"  style="width: 100%; height: auto;object-fit: cover; border-radius: 5px; display: block;">
+    <!-- <img src="images/EMNLP2025.jpg" alt="EMNLP2025"  style="width: 100%; height: auto;object-fit: cover; border-radius: 5px; display: block;"> -->
   </div>
 
   <div style="flex: 1;">
