@@ -26,6 +26,9 @@ My research story revolves around **the Underlying Principles and Understanding 
 <div style="max-height: 350px; overflow-y: auto;">
   <ul>
     <li>
+      [2026.02] 🚀🚀 Please check our newest papers: <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.
+    </li>
+    <li>
       [2025.11] 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #52ADC8;"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!
     </li>
     <li>
@@ -70,34 +73,6 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 # 🧐 Publications {#research}
 
-<!-- <p>
-  <a href="https://arxiv.org/abs/2508.03140">
-    <img src="images/rcp.png" alt="rcp" style="float: left;  margin-right: 20px; margin-left: 20px;; width: 120px; height: 120px;">
-  </a>
-</p>
-**[RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior](https://arxiv.org/abs/2508.03140)**<br>
-**Junyao Yang**, *Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\*\#</sup>*<br>
-**AAAI 2026** <br>
-
-<p>
-  <a href="https://arxiv.org/abs/2406.01394">
-    <img src="images/restore.png" alt="restore" style="float: left; margin-right: 20px; margin-left: 20px;; width: 120px; height: 120px;">
-  </a>
-</p>
-**[ACL 2025 Main]** **[PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration](https://arxiv.org/abs/2406.01394)**<br>
-*Ziqian Zeng<sup>\*\#</sup>, Jianwei Wang<sup>\*</sup>, **Junyao Yang<sup>\*</sup>**, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen*<br>
-<br>
-
-<p>
-  <a href="https://arxiv.org/abs/2502.18517">
-    <img src="images/rewardds.png" alt="rewardds" style="float: left; margin-right: 20px; margin-left: 20px;; width: 120px; height: 120px;">
-  </a>
-</p>
-**[EMNLP 2025 Main]** <br>
-**[RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis](https://arxiv.org/abs/2502.18517)**<br>
-*Jianwei Wang, Chengming Shi, **Junyao Yang**, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>\#</sup>*<br>
- <br> -->
-
 <style>
   /* 定义悬浮卡片样式 */
   .paper-card {
@@ -115,6 +90,24 @@ My research story revolves around **the Underlying Principles and Understanding 
     transform: translateY(-2px);
   }
 </style>
+
+
+<div class="paper-card">
+  <div style="width: 100px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+    <a href="https://arxiv.org/abs/2601.05560" style="display: block;">
+      <img src="images/ReasonAny_github_main_fig.png" alt="ReasonAny" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; display: block;">
+    </a>
+  </div>
+   
+  <div style="flex: 1;">
+    <strong>[arXiv Preprint]</strong><br>
+    <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a></strong><br>
+    <strong>Junyao Yang</strong>, Chen Qian, Dongrui Liu, Wen Shen, Yong Liu, Jing Shao<br>
+    <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
+      <strong>TL;DR:</strong> A training-free framework that resolves "destructive performance collapse" by identifying that reasoning relies on low-gradient parameters. It employs Contrastive Gradient Identification to successfully merge robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine, Finance) without compromising their specialized utility.
+    </div>
+  </div>
+</div>
 
 <div class="paper-card">
   <div style="width: 100px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
