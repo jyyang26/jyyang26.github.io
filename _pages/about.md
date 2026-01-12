@@ -93,7 +93,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 
 <div class="paper-card">
-  <div style="width: 100px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+  <div style="width: 180px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
     <a href="https://arxiv.org/abs/2601.05560" style="display: block;">
       <img src="images/ReasonAny_main_fig.png" alt="ReasonAny"  style="width: 100%; height: auto; border-radius: 5px; display: block;">
       <!-- <img src="images/rcp.png" alt="ReasonAny" style="width: 100%; height: auto; border-radius: 5px; display: block;"> -->
@@ -111,7 +111,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 </div>
 
 <div class="paper-card">
-  <div style="width: 100px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+  <div style="width: 180px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
     <a href="https://arxiv.org/abs/2508.03140" style="display: block;">
       <img src="images/rcp.png" alt="rcp" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; display: block;">
     </a>
@@ -129,7 +129,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 </div>
 
 <div class="paper-card">
-  <div style="width: 100px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+  <div style="width: 180px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
     <a href="https://arxiv.org/abs/2406.01394" style="display: block;">
       <img src="images/restore.png" alt="restore" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; display: block;">
     </a>
@@ -147,7 +147,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 </div>
 
 <div class="paper-card">
-  <div style="width: 100px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
+  <div style="width: 180px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
     <a href="https://arxiv.org/abs/2502.18517" style="display: block;">
       <img src="images/rewardds.png" alt="rewardds" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px; display: block;">
     </a>
