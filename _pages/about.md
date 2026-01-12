@@ -102,7 +102,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   <div style="flex: 1;">
     <!-- <strong>[arXiv Preprint]</strong><br> -->
     <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a></strong><br>
-    <strong>Junyao Yang</strong>, Chen Qian, Dongrui Liu, Wen Shen, Yong Liu, Jing Shao<br>
+    <strong>Junyao Yang</strong>, <em>Chen Qian, Dongrui Liu<sup>*#</sup>, Wen Shen, Yong Liu<sup>*#</sup>, Jing Shao<sup>*#</sup></em><br>
     <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
       <strong>TL;DR:</strong> A training-free framework that resolves "destructive performance collapse" by identifying that reasoning relies on low-gradient parameters. It employs Contrastive Gradient Identification to successfully merge robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine, Finance) without compromising their specialized utility.
     </div>
