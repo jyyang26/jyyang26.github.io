@@ -101,7 +101,7 @@ My research story revolves around **the Underlying Principles and Understanding 
   </div>
    
   <div style="flex: 1;">
-    <strong>[arXiv Preprint]</strong><br> 
+    <strong><em>[arXiv Preprint]</em></strong><br> 
     <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a></strong><br>
     <strong>Junyao Yang</strong>, <em>Chen Qian, Dongrui Liu<sup>*#</sup>, Wen Shen, Yong Liu<sup>*#</sup>, Jing Shao<sup>*#</sup></em><br>
     <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
