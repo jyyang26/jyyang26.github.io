@@ -35,7 +35,7 @@ My research story revolves around **the Underlying Principles and Understanding 
       [2025.08] 🎉🎉 <a href="https://arxiv.org/abs/2502.18517" style="text-decoration: underline; color: #52ADC8;"><strong>RewardDS</strong></a> has been accepted to <strong>EMNLP 2025 Main</strong>!
     </li>
     <li>
-      [2025.08] I joined <a href="https://ai45.shlab.org.cn/" style="text-decoration: underline; color: #52ADC8;">Shanghai AI Lab</a> as a Research Intern, advised by Dr. <a href="https://shenqildr.github.io/" style="text-decoration: underline; color: #52ADC8;">Dongrui Liu</a>.
+      [2025.08] I joined <a href="https://ai45.shlab.org.cn/" style="text-decoration: underline; color: #52ADC8;">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/" style="text-decoration: underline; color: #52ADC8;">Dongrui Liu</a>.
     </li>
     <li>
       [2025.08] 🚀🚀 Check out my latest work: <strong><a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #52ADC8;"><strong>RCP-Merging</strong></a></strong>! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!
