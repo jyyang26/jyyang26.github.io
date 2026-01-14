@@ -125,7 +125,7 @@ My research story revolves around **the Underlying Principles and Understanding 
       <strong>TL;DR:</strong> A training-free framework that resolves "destructive performance collapse" by identifying that reasoning relies on low-gradient parameters. It employs Contrastive Gradient Identification to successfully merge robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine, Finance) without compromising their specialized utility.
     </div>
     
-    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 80%;">
       <a href="https://arxiv.org/abs/2601.05560" class="pub-link">arXiv</a>
       <span class="link-sep">/</span>
       <a href="https://github.com/jyyang26/ReasonAny" class="pub-link">Code</a>
@@ -151,7 +151,7 @@ My research story revolves around **the Underlying Principles and Understanding 
       <strong>TL;DR:</strong> A model merging framework that integrates domain-specific models with reasoning models by treating reasoning capabilities as a prior, enhancing domain performance while preserving chain-of-thought reasoning abilities.
     </div>
     
-    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 80%;">
       <a href="https://arxiv.org/abs/2508.03140" class="pub-link">arXiv</a>
       <span class="link-sep">/</span>
       <a href="https://github.com/ZeroNLP/RCP-Merging" class="pub-link">Code</a>
@@ -177,7 +177,7 @@ My research story revolves around **the Underlying Principles and Understanding 
       <strong>TL;DR:</strong> A privacy-preserving inference framework that removes privacy information from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.
     </div>
     
-    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 80%;">
       <a href="https://arxiv.org/abs/2406.01394" class="pub-link">arXiv</a>
       <span class="link-sep">/</span>
       <a href="https://github.com/ZeroNLP/PrivacyRestore" class="pub-link">Code</a>
@@ -202,7 +202,7 @@ My research story revolves around **the Underlying Principles and Understanding 
       <strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information.
     </div>
     
-    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 80%;">
       <a href="https://arxiv.org/abs/2502.18517" class="pub-link">arXiv</a>
       <span class="link-sep">/</span>
       <a href="https://github.com/wjw136/RewardDS" class="pub-link">Code</a>
