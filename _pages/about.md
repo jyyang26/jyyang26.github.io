@@ -89,6 +89,23 @@ My research story revolves around **the Underlying Principles and Understanding 
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
   }
+
+  /* 链接通用样式 */
+  .pub-link {
+    text-decoration: none;
+    color: #2472b5; /* 经典的学术蓝链接色 */
+    font-weight: 600;
+  }
+  
+  .pub-link:hover {
+    text-decoration: underline;
+  }
+
+  /* 分隔符样式：实现长空格 */
+  .link-sep {
+    margin: 0 10px; /* 左右各10px的间距 */
+    color: #333;
+  }
 </style>
 
 
@@ -96,7 +113,6 @@ My research story revolves around **the Underlying Principles and Understanding 
   <div style="width: 180px; margin-right: 20px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px;">
     <a href="https://arxiv.org/abs/2601.05560" style="display: block;">
       <img src="images/ReasonAny_main_fig.png" alt="ReasonAny"  style="width: 100%; height: auto; border-radius: 5px; display: block;">
-      <!-- <img src="images/rcp.png" alt="ReasonAny" style="width: 100%; height: auto; border-radius: 5px; display: block;"> -->
     </a>
   </div>
    
@@ -104,9 +120,18 @@ My research story revolves around **the Underlying Principles and Understanding 
     <strong><em>[arXiv Preprint]</em></strong><br> 
     <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a></strong><br>
     <strong>Junyao Yang</strong>, <em>Chen Qian, Dongrui Liu<sup>*#</sup>, Wen Shen, Yong Liu<sup>*#</sup>, Jing Shao<sup>*#</sup></em><br>
+
     <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
       <strong>TL;DR:</strong> A training-free framework that resolves "destructive performance collapse" by identifying that reasoning relies on low-gradient parameters. It employs Contrastive Gradient Identification to successfully merge robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine, Finance) without compromising their specialized utility.
     </div>
+    
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+      <a href="https://arxiv.org/abs/2601.05560" class="pub-link">arXiv</a>
+      <span class="link-sep">/</span>
+      <a href="https://github.com/jyyang26/ReasonAny" class="pub-link">Code</a>
+    </div>
+
+
   </div>
 </div>
 
@@ -115,16 +140,24 @@ My research story revolves around **the Underlying Principles and Understanding 
     <a href="https://arxiv.org/abs/2508.03140" style="display: block;">
       <img src="images/rcp.png" alt="rcp"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
     </a>
-    <!-- <img src="images/AAAI2026.jpg" alt="AAAI2026"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;"> -->
   </div>
   
   <div style="flex: 1;">
     <strong>[AAAI 2026 Main Track]</strong><br>
     <strong><a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #52ADC8;">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a></strong><br>
     <strong>Junyao Yang</strong>, <em>Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>*#</sup></em><br>
-    <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
+
+<div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
       <strong>TL;DR:</strong> A model merging framework that integrates domain-specific models with reasoning models by treating reasoning capabilities as a prior, enhancing domain performance while preserving chain-of-thought reasoning abilities.
     </div>
+    
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+      <a href="https://arxiv.org/abs/2508.03140" class="pub-link">arXiv</a>
+      <span class="link-sep">/</span>
+      <a href="https://github.com/ZeroNLP/RCP-Merging" class="pub-link">Code</a>
+    </div>
+
+    
   </div>
 </div>
 
@@ -133,16 +166,24 @@ My research story revolves around **the Underlying Principles and Understanding 
     <a href="https://arxiv.org/abs/2406.01394" style="display: block;">
       <img src="images/restore.png" alt="restore"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
     </a>
-    <!-- <img src="images/ACL2025.jpg" alt="ACL2025"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;"> -->
   </div>
 
   <div style="flex: 1;">
     <strong>[ACL 2025 Main]</strong><br>
     <strong><a href="https://arxiv.org/abs/2406.01394" style="text-decoration: underline; color: #52ADC8;">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a></strong><br>
     <em>Ziqian Zeng<sup>*#</sup>, Jianwei Wang<sup>*</sup>, <strong>Junyao Yang<sup>*</sup></strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</em><br>
-    <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
+
+        <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
       <strong>TL;DR:</strong> A privacy-preserving inference framework that removes privacy information from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.
     </div>
+    
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+      <a href="https://arxiv.org/abs/2406.01394" class="pub-link">arXiv</a>
+      <span class="link-sep">/</span>
+      <a href="https://github.com/ZeroNLP/PrivacyRestore" class="pub-link">Code</a>
+    </div>
+
+
   </div>
 </div>
 
@@ -151,7 +192,6 @@ My research story revolves around **the Underlying Principles and Understanding 
     <a href="https://arxiv.org/abs/2502.18517" style="display: block;">
       <img src="images/rewardds.png" alt="rewardds"  style="width: 100%; height: auto; object-fit: cover; border-radius: 5px; display: block;">
     </a>
-    <!-- <img src="images/EMNLP2025.jpg" alt="EMNLP2025"  style="width: 100%; height: auto;object-fit: cover; border-radius: 5px; display: block;"> -->
   </div>
 
   <div style="flex: 1;">
@@ -161,6 +201,14 @@ My research story revolves around **the Underlying Principles and Understanding 
     <div style="background-color: #f9f9f9; border-left: 4px solid #5fbbf3; padding: 10px; color: #808080; font-size: 80%; margin-top: 8px;">
       <strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information.
     </div>
+    
+    <div style="margin-top: 5px; margin-bottom: 5px; font-size: 1.05em;">
+      <a href="https://arxiv.org/abs/2502.18517" class="pub-link">arXiv</a>
+      <span class="link-sep">/</span>
+      <a href="https://github.com/wjw136/RewardDS" class="pub-link">Code</a>
+    </div>
+
+
   </div>
 </div>
 
