@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Junyao Yang(杨竣尧) ✈️AAAI26"
+title: "Junyao Yang(杨竣尧) @AAAI 2026"
 layout: single
 author_profile: true
 redirect_from: 
