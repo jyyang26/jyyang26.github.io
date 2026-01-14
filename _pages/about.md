@@ -29,7 +29,7 @@ My research story revolves around **the Underlying Principles and Understanding 
     [2026.01]  ✈️✈️ I will attend AAAI 2026 at Singapore during Jan 22-27, 2025. Let’s connect!
       </li>
     <li>
-      [2026.01] 🚀🚀 Please check our newest paper: <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.
+      [2026.01] 🚀🚀 Please check our latest paper: <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.
     </li>
     <li>
       [2025.11] 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140" style="text-decoration: underline; color: #52ADC8;"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!
