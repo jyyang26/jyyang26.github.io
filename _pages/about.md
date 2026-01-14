@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Junyao Yang(杨竣尧)"
+title: "Junyao Yang(杨竣尧) ✈️AAAI26"
 layout: single
 author_profile: true
 redirect_from: 
@@ -25,6 +25,9 @@ My research story revolves around **the Underlying Principles and Understanding 
 # 🔥 News {#news}
 <div style="max-height: 350px; overflow-y: auto;">
   <ul>
+    <li>
+    [2026.01]  ✈️✈️ I will attend AAAI 2026 at Singapore during Jan 22-27, 2025. Let’s connect!
+      </li>
     <li>
       [2026.01] 🚀🚀 Please check our newest paper: <strong><a href="https://arxiv.org/abs/2601.05560" style="text-decoration: underline; color: #52ADC8;">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.
     </li>
