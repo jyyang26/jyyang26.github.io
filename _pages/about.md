@@ -289,6 +289,6 @@ My research story revolves around **the Underlying Principles and Understanding 
 
 
 <br>
-<div style="text-align: center;">
-  <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc"></script>
+<div style="width: 180px; margin: 0 auto; text-align: center;">
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&cl=ffffff&w=a"></script>
 </div>
