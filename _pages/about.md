@@ -216,7 +216,7 @@ My research story revolves around **the Underlying Principles and Understanding 
 - **Trustworthy Artificial Intelligence**
 - **Large Language Models Reasoning**
 
- # 🔥 News {#news}
+# 🔥 News {#news}
 
 <div class="news-container">
   <ul class="news-list">
