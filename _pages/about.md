@@ -10,14 +10,11 @@ redirect_from:
 
 <style>
     /* =========================================
-       1. 布局核心修正 (解决宽度和空白问题)
+       1. 全局布局修正 (解决宽度和留白)
        ========================================= */
     
-    /* 1.1 消除顶部空白 */
-    /* 隐藏主题自带导航 */
+    /* 1.1 消除顶部空白和隐藏默认元素 */
     .masthead { display: none !important; }
-    
-    /* 移除所有可能的顶部内边距和外边距 */
     .page__inner-wrap {
         padding-top: 0 !important;
         margin-top: 0 !important;
@@ -27,32 +24,53 @@ redirect_from:
         padding-top: 0 !important;
         margin-top: 0 !important;
     }
-    .archive {
+    .page__header, .page__title, .archive {
+        display: none !important;
         margin-top: 0 !important;
         padding-top: 0 !important;
-    }
-    /* 隐藏默认标题占位 */
-    .page__header, .page__title {
-        display: none !important;
-        margin-bottom: 0 !important;
         height: 0 !important;
     }
 
-    /* 1.2 宽度控制：屏幕宽度的 75% */
-    /* 桌面端强制 75% 宽度 */
-    @media (min-width: 1200px) {
+    /* 1.2 宽度控制核心逻辑 */
+    /* 针对超宽屏幕 (>1600px)：占比 88%，留出适量边距 */
+    @media (min-width: 1600px) {
         .page__inner-wrap {
-            max-width: 75% !important; /* 核心修改：占满屏幕 75% */
-            width: 75% !important;
+            max-width: 88% !important;
+            width: 88% !important;
             margin-left: auto !important;
             margin-right: auto !important;
         }
     }
-    /* 平板/小屏幕端放宽到 90% 以免太挤 */
-    @media (max-width: 1199px) {
+    /* 针对常规桌面宽屏 (1200px - 1599px)：占比 92%，减少留白 */
+    @media (min-width: 1200px) and (max-width: 1599px) {
         .page__inner-wrap {
-            max-width: 90% !important;
-            width: 90% !important;
+            max-width: 92% !important;
+            width: 92% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+    /* 针对笔记本/平板横屏 (960px - 1199px)：占比 95% */
+    @media (min-width: 960px) and (max-width: 1199px) {
+        .page__inner-wrap {
+            max-width: 95% !important;
+            width: 95% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+    }
+    
+    /* 针对移动端/窄屏 (<960px)：解决左右不对称问题 */
+    @media (max-width: 959px) {
+        .page__inner-wrap {
+            max-width: 100% !important;
+            width: 100% !important;
+            /* 强制左右内边距一致，解决不对称 */
+            padding-left: 15px !important;
+            padding-right: 15px !important; 
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            box-sizing: border-box !important;
         }
     }
 
@@ -63,24 +81,28 @@ redirect_from:
         position: sticky;
         top: 0;
         z-index: 1000;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(0,0,0,0.06);
         padding: 12px 0;
-        margin-bottom: 40px; /* 导航栏和内容的间距 */
+        margin-bottom: 30px; 
         display: flex;
         justify-content: center;
-        width: 100vw; /* 强行让导航栏背景铺满全屏宽度 */
-        margin-left: calc(-50vw + 50%); /* 修正 margin 让其居中铺满 */
+        width: 100vw; 
+        margin-left: calc(-50vw + 50%); 
         margin-right: calc(-50vw + 50%);
     }
     
-    /* 导航内容容器，保持和页面主体一样的宽度逻辑 */
     .nav-container {
         display: flex;
-        gap: 35px;
+        gap: 30px;
         align-items: center;
+        /* 让导航内容宽度与页面主体宽度保持一致的逻辑 */
+        width: 100%;
+        max-width: 1600px; /* 限制最大宽，防止在超宽屏太散 */
+        justify-content: center;
+        flex-wrap: wrap; /* 移动端自动换行 */
     }
 
     .nav-link {
@@ -92,15 +114,15 @@ redirect_from:
         align-items: center;
         gap: 6px;
         transition: all 0.2s;
-        padding: 5px 0;
+        padding: 5px 10px;
+        border-radius: 6px;
     }
     
     .nav-link:hover {
         color: #4361ee;
-        border-bottom: 2px solid #4361ee;
+        background: rgba(67, 97, 238, 0.05);
     }
 
-    /* 锚点偏移修正 */
     section { scroll-margin-top: 80px; }
 
     /* =========================================
@@ -121,34 +143,38 @@ redirect_from:
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    /* 容器 */
     .profile-wrapper {
         display: flex;
-        flex-direction: column; /* 移动端默认竖排 */
+        flex-direction: column; 
         gap: 30px;
         width: 100%;
     }
 
-    /* 桌面端布局：左侧固定，右侧自适应 */
+    /* 桌面端布局 */
     @media (min-width: 960px) {
         .profile-wrapper {
-            flex-direction: row; /* 横向排列 */
+            flex-direction: row; 
             align-items: flex-start;
         }
 
-        /* 左边栏：宽度固定不变 */
         .custom-sidebar {
             width: 300px;
-            flex: 0 0 300px; /* 禁止缩放 */
+            flex: 0 0 300px; 
             position: sticky;
-            top: 80px; /* 随页面滚动悬浮 */
+            top: 80px; 
         }
 
-        /* 右边栏：宽度自动填满剩余空间 */
         .custom-content {
             flex: 1; 
-            min-width: 0; /* 防止内容撑破 Flex 容器 */
-            width: 100%;  /* 确保占满 flex 给予的剩余空间 */
+            min-width: 0; 
+            width: 100%;  
+        }
+    }
+    
+    /* 移动端特殊修正 */
+    @media (max-width: 959px) {
+        .custom-sidebar, .custom-content {
+            width: 100%; /* 占满容器 */
         }
     }
 
@@ -203,7 +229,6 @@ redirect_from:
         margin-bottom: 20px;
     }
 
-    /* 社交图标栏 */
     .social-icons {
         display: flex;
         justify-content: center;
@@ -264,7 +289,7 @@ redirect_from:
         margin: 0;
     }
 
-    /* News 列表 */
+    /* News */
     .news-list {
         list-style: none;
         padding: 0;
@@ -290,7 +315,7 @@ redirect_from:
         margin-right: 8px;
     }
 
-    /* --- Publications (布局优化：左图右文) --- */
+    /* --- Publications --- */
     .paper-entry {
         display: flex;
         flex-direction: column;
@@ -300,7 +325,6 @@ redirect_from:
         border-bottom: 1px solid #f3f4f6;
     }
     
-    /* 桌面端变为横向 flex */
     @media (min-width: 768px) {
         .paper-entry { 
             flex-direction: row; 
@@ -309,18 +333,17 @@ redirect_from:
     }
     .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
-    /* 图片容器：固定宽度，确保所有图片模块左侧对齐 */
     .paper-thumb {
         width: 100%; 
         border-radius: 8px;
         overflow: hidden;
         border: 1px solid #eee;
-        flex-shrink: 0; /* 禁止图片被挤压 */
+        flex-shrink: 0; 
     }
     
     @media (min-width: 768px) {
         .paper-thumb {
-            width: 240px; /* 固定宽度，比之前更宽 */
+            width: 240px; 
         }
     }
 
@@ -332,10 +355,9 @@ redirect_from:
     }
     .paper-thumb:hover img { transform: scale(1.03); }
     
-    /* 介绍内容：占满剩余宽度 (flex: 1) */
     .paper-info { 
         flex: 1; 
-        min-width: 0; /* 关键：防止文本不换行导致溢出 */
+        min-width: 0; 
         display: flex;
         flex-direction: column;
     }
@@ -363,7 +385,7 @@ redirect_from:
     .paper-links a { margin-right: 12px; color: #6b7280; text-decoration: none; border-bottom: 1px dotted #9ca3af; font-weight: 500;}
     .paper-links a:hover { color: #4361ee; border-bottom: 1px solid #4361ee;}
 
-    /* --- Education (Grid 布局) --- */
+    /* --- Education --- */
     .edu-row {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
