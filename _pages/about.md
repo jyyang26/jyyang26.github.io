@@ -10,16 +10,15 @@ redirect_from:
 
 <style>
     /* =========================================
-       1. 暴力清除顶部空白 (针对 Issue 1)
+       1. 暴力清除顶部空白
        ========================================= */
     
-    /* 重置基础标签 */
     html, body {
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    /* 隐藏主题默认的 Header/Title 区域 */
+    /* 隐藏主题默认 Header */
     .masthead, .page__header, .page__title, .archive, .page__footer {
         display: none !important;
         height: 0 !important;
@@ -29,14 +28,12 @@ redirect_from:
         visibility: hidden !important;
     }
 
-    /* 清除内容容器的默认边距 */
     #main, .initial-content, .page__inner-wrap, .page__content {
         margin-top: 0 !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
     }
 
-    /* 确保页面宽度能撑开，不受主题默认 max-width 限制 */
     .page__inner-wrap {
         max-width: 100% !important;
         width: 100% !important;
@@ -45,29 +42,45 @@ redirect_from:
     }
 
     /* =========================================
-       2. 自定义导航栏
+       2. 自定义导航栏 (单行优化)
        ========================================= */
     .custom-nav {
         position: sticky;
         top: 0;
-        z-index: 9999; /* 确保在最上层 */
+        z-index: 9999;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(0,0,0,0.06);
-        padding: 12px 0;
+        padding: 15px 0;
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 40px; /* 导航栏下方留出间距 */
+        margin-bottom: 40px;
     }
     
     .nav-container {
         display: flex;
-        gap: 30px;
+        gap: 25px; /* 稍微减小间距，防止换行 */
         align-items: center;
-        flex-wrap: wrap;
         justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    /* 桌面端强制不换行 */
+    @media (min-width: 768px) {
+        .nav-container {
+            flex-wrap: nowrap;
+        }
+    }
+    
+    /* 移动端允许换行 */
+    @media (max-width: 767px) {
+        .nav-container {
+            flex-wrap: wrap;
+            gap: 15px;
+        }
     }
 
     .nav-link {
@@ -79,8 +92,9 @@ redirect_from:
         align-items: center;
         gap: 6px;
         transition: all 0.2s;
-        padding: 6px 12px;
+        padding: 5px 8px;
         border-radius: 8px;
+        white-space: nowrap; /* 防止文字折行 */
     }
     
     .nav-link:hover {
@@ -91,7 +105,7 @@ redirect_from:
     section { scroll-margin-top: 80px; }
 
     /* =========================================
-       3. 核心布局系统 (针对 Issue 2)
+       3. 核心布局系统 (桌面端右侧 50vw)
        ========================================= */
     :root {
         --primary-btn: #4361ee;
@@ -121,22 +135,22 @@ redirect_from:
         .profile-wrapper {
             flex-direction: row; 
             align-items: flex-start;
-            justify-content: center; /* 整体居中 */
-            gap: 40px; /* 左右两栏的间距 */
+            justify-content: center;
+            gap: 40px; 
         }
 
-        /* 左侧边栏：固定宽度 */
+        /* 左侧边栏 */
         .custom-sidebar {
             width: 320px;
-            flex-shrink: 0; /* 禁止缩小 */
+            flex-shrink: 0; 
             position: sticky;
-            top: 80px; 
+            top: 90px; 
         }
 
-        /* 右侧内容：宽度设置为浏览器显示宽度的 50% */
+        /* 右侧内容：浏览器宽度的 50% */
         .custom-content {
-            width: 50vw; /* 核心修改：Viewport Width 的 50% */
-            flex-shrink: 0; /* 禁止缩小，保持 50vw */
+            width: 50vw; 
+            flex-shrink: 0; 
             min-width: 0; 
         }
     }
@@ -149,7 +163,7 @@ redirect_from:
             box-sizing: border-box;
         }
         .custom-sidebar, .custom-content {
-            width: 100%; /* 占满容器 */
+            width: 100%; 
         }
     }
 
@@ -210,7 +224,7 @@ redirect_from:
         display: flex;
         justify-content: center;
         gap: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 10px; /* 底部不再留大空间，因为地图移走了 */
         flex-wrap: wrap;
     }
     
@@ -319,7 +333,7 @@ redirect_from:
     
     @media (min-width: 768px) {
         .paper-thumb {
-            width: 250px; /* 稍微加宽图片区域 */
+            width: 250px;
         }
     }
 
@@ -393,6 +407,14 @@ redirect_from:
     .exp-item:hover { background: #f8f9fa; }
     .exp-logo { width: 50px; height: 50px; object-fit: contain; border-radius: 8px; border: 1px solid #eee; background: #fff; padding: 4px; flex-shrink: 0;}
 
+    /* Map Widget Container */
+    .map-widget-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+    }
+
 </style>
 
 <nav class="custom-nav">
@@ -427,10 +449,7 @@ redirect_from:
             </a>
         </div>
         
-        <div style="margin-top: 20px; width: 100%; opacity: 0.8;">
-             <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&cl=ffffff&w=a"></script>
-        </div>
-    </aside>
+        </aside>
 
     <main class="custom-content">
 
@@ -623,6 +642,16 @@ redirect_from:
                 <li>Second-Class Scholarship of SCUT (2024.10)</li>
                 <li>Second-Class Award in CUMCM at Guangdong Province (2022.09)</li>
             </ul>
+        </section>
+
+        <section id="visitor-map" class="content-box">
+            <div class="box-header">
+                <span style="font-size: 24px;">🌏</span>
+                <h2 class="box-title">Page Views</h2>
+            </div>
+            <div class="map-widget-container">
+                 <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&cl=ffffff&w=a"></script>
+            </div>
         </section>
 
     </main>
