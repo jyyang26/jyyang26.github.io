@@ -10,99 +10,64 @@ redirect_from:
 
 <style>
     /* =========================================
-       1. 全局布局修正 (解决宽度和留白)
+       1. 暴力清除顶部空白 (针对 Issue 1)
        ========================================= */
     
-    /* 1.1 消除顶部空白和隐藏默认元素 */
-    .masthead { display: none !important; }
-    .page__inner-wrap {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-        padding-bottom: 40px !important;
-    }
-    .page__content {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }
-    .page__header, .page__title, .archive {
-        display: none !important;
-        margin-top: 0 !important;
-        padding-top: 0 !important;
-        height: 0 !important;
+    /* 重置基础标签 */
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
-    /* 1.2 宽度控制核心逻辑 */
-    /* 针对超宽屏幕 (>1600px)：占比 88%，留出适量边距 */
-    @media (min-width: 1600px) {
-        .page__inner-wrap {
-            max-width: 88% !important;
-            width: 88% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
+    /* 隐藏主题默认的 Header/Title 区域 */
+    .masthead, .page__header, .page__title, .archive, .page__footer {
+        display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+        visibility: hidden !important;
     }
-    /* 针对常规桌面宽屏 (1200px - 1599px)：占比 92%，减少留白 */
-    @media (min-width: 1200px) and (max-width: 1599px) {
-        .page__inner-wrap {
-            max-width: 92% !important;
-            width: 92% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
+
+    /* 清除内容容器的默认边距 */
+    #main, .initial-content, .page__inner-wrap, .page__content {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
-    /* 针对笔记本/平板横屏 (960px - 1199px)：占比 95% */
-    @media (min-width: 960px) and (max-width: 1199px) {
-        .page__inner-wrap {
-            max-width: 95% !important;
-            width: 95% !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-        }
-    }
-    
-    /* 针对移动端/窄屏 (<960px)：解决左右不对称问题 */
-    @media (max-width: 959px) {
-        .page__inner-wrap {
-            max-width: 100% !important;
-            width: 100% !important;
-            /* 强制左右内边距一致，解决不对称 */
-            padding-left: 15px !important;
-            padding-right: 15px !important; 
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-            box-sizing: border-box !important;
-        }
+
+    /* 确保页面宽度能撑开，不受主题默认 max-width 限制 */
+    .page__inner-wrap {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     /* =========================================
-       2. 自定义导航栏 (Navbar)
+       2. 自定义导航栏
        ========================================= */
     .custom-nav {
         position: sticky;
         top: 0;
-        z-index: 1000;
+        z-index: 9999; /* 确保在最上层 */
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(0,0,0,0.06);
         padding: 12px 0;
-        margin-bottom: 30px; 
+        width: 100%;
         display: flex;
         justify-content: center;
-        width: 100vw; 
-        margin-left: calc(-50vw + 50%); 
-        margin-right: calc(-50vw + 50%);
+        margin-bottom: 40px; /* 导航栏下方留出间距 */
     }
     
     .nav-container {
         display: flex;
         gap: 30px;
         align-items: center;
-        /* 让导航内容宽度与页面主体宽度保持一致的逻辑 */
-        width: 100%;
-        max-width: 1600px; /* 限制最大宽，防止在超宽屏太散 */
+        flex-wrap: wrap;
         justify-content: center;
-        flex-wrap: wrap; /* 移动端自动换行 */
     }
 
     .nav-link {
@@ -114,19 +79,19 @@ redirect_from:
         align-items: center;
         gap: 6px;
         transition: all 0.2s;
-        padding: 5px 10px;
-        border-radius: 6px;
+        padding: 6px 12px;
+        border-radius: 8px;
     }
     
     .nav-link:hover {
         color: #4361ee;
-        background: rgba(67, 97, 238, 0.05);
+        background: rgba(67, 97, 238, 0.08);
     }
 
     section { scroll-margin-top: 80px; }
 
     /* =========================================
-       3. 主体布局系统 (Flexbox)
+       3. 核心布局系统 (针对 Issue 2)
        ========================================= */
     :root {
         --primary-btn: #4361ee;
@@ -148,39 +113,51 @@ redirect_from:
         flex-direction: column; 
         gap: 30px;
         width: 100%;
+        padding-bottom: 60px;
     }
 
-    /* 桌面端布局 */
-    @media (min-width: 960px) {
+    /* --- 桌面端布局 (>1024px) --- */
+    @media (min-width: 1024px) {
         .profile-wrapper {
             flex-direction: row; 
             align-items: flex-start;
+            justify-content: center; /* 整体居中 */
+            gap: 40px; /* 左右两栏的间距 */
         }
 
+        /* 左侧边栏：固定宽度 */
         .custom-sidebar {
-            width: 300px;
-            flex: 0 0 300px; 
+            width: 320px;
+            flex-shrink: 0; /* 禁止缩小 */
             position: sticky;
             top: 80px; 
         }
 
+        /* 右侧内容：宽度设置为浏览器显示宽度的 50% */
         .custom-content {
-            flex: 1; 
+            width: 50vw; /* 核心修改：Viewport Width 的 50% */
+            flex-shrink: 0; /* 禁止缩小，保持 50vw */
             min-width: 0; 
-            width: 100%;  
         }
     }
     
-    /* 移动端特殊修正 */
-    @media (max-width: 959px) {
+    /* --- 移动端布局 (<1023px) --- */
+    @media (max-width: 1023px) {
+        .profile-wrapper {
+            padding-left: 15px;
+            padding-right: 15px;
+            box-sizing: border-box;
+        }
         .custom-sidebar, .custom-content {
             width: 100%; /* 占满容器 */
         }
     }
 
     /* =========================================
-       4. 左侧栏样式
+       4. 组件样式细节
        ========================================= */
+    
+    /* 左侧栏 */
     .custom-sidebar {
         background: var(--card-bg);
         border-radius: var(--radius);
@@ -193,8 +170,8 @@ redirect_from:
     }
 
     .avatar-area {
-        width: 140px;
-        height: 140px;
+        width: 150px;
+        height: 150px;
         margin-bottom: 15px;
     }
 
@@ -208,7 +185,7 @@ redirect_from:
     }
 
     .name-title {
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 800;
         color: var(--text-main);
         margin: 10px 0 5px 0;
@@ -216,30 +193,30 @@ redirect_from:
     }
     
     .role-text {
-        color: var(--primary-btn);
-        font-weight: 600;
-        font-size: 14px;
+        color: #4361ee;
+        font-weight: 700;
+        font-size: 15px;
         margin-bottom: 5px;
     }
     
     .affil-text {
         color: var(--text-sub);
-        font-size: 13px;
-        line-height: 1.4;
+        font-size: 14px;
+        line-height: 1.5;
         margin-bottom: 20px;
     }
 
     .social-icons {
         display: flex;
         justify-content: center;
-        gap: 12px;
+        gap: 15px;
         margin-bottom: 20px;
         flex-wrap: wrap;
     }
     
     .s-icon {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
         background: #f3f4f6;
         border-radius: 50%;
         display: flex;
@@ -256,11 +233,9 @@ redirect_from:
         color: white;
         transform: translateY(-2px);
     }
-    .s-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
-    /* =========================================
-       5. 右侧内容样式
-       ========================================= */
+    /* 右侧内容卡片 */
     .custom-content {
         display: flex;
         flex-direction: column;
@@ -270,20 +245,20 @@ redirect_from:
     .content-box {
         background: var(--card-bg);
         border-radius: var(--radius);
-        padding: 30px;
+        padding: 35px;
         box-shadow: var(--shadow);
     }
     
     .box-header {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         margin-bottom: 20px;
-        padding-bottom: 10px;
+        padding-bottom: 15px;
         border-bottom: 1px solid #f0f0f0;
     }
     .box-title {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
         color: var(--text-main);
         margin: 0;
@@ -294,13 +269,13 @@ redirect_from:
         list-style: none;
         padding: 0;
         margin: 0;
-        max-height: 300px;
+        max-height: 350px;
         overflow-y: auto;
     }
     .news-list li {
-        padding: 10px 0;
+        padding: 12px 0;
         border-bottom: 1px dashed #e5e7eb;
-        font-size: 14px;
+        font-size: 15px;
         color: #4b5563;
         line-height: 1.6;
     }
@@ -308,20 +283,20 @@ redirect_from:
         display: inline-block;
         background: #eff6ff;
         color: var(--primary-btn);
-        padding: 2px 6px;
+        padding: 2px 8px;
         border-radius: 4px;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 600;
-        margin-right: 8px;
+        margin-right: 10px;
     }
 
-    /* --- Publications --- */
+    /* Publications */
     .paper-entry {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        margin-bottom: 25px;
-        padding-bottom: 25px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
         border-bottom: 1px solid #f3f4f6;
     }
     
@@ -335,15 +310,16 @@ redirect_from:
     
     .paper-thumb {
         width: 100%; 
-        border-radius: 8px;
+        border-radius: 12px;
         overflow: hidden;
         border: 1px solid #eee;
         flex-shrink: 0; 
+        background: #fafafa;
     }
     
     @media (min-width: 768px) {
         .paper-thumb {
-            width: 240px; 
+            width: 250px; /* 稍微加宽图片区域 */
         }
     }
 
@@ -364,57 +340,58 @@ redirect_from:
 
     .paper-venue {
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 800;
         color: #4361ee;
         text-transform: uppercase;
-        margin-bottom: 5px;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
     }
-    .paper-title { font-size: 16px; font-weight: 700; color: #1f2937; text-decoration: none; display: block; margin-bottom: 8px; line-height: 1.4; }
+    .paper-title { font-size: 17px; font-weight: 700; color: #1f2937; text-decoration: none; display: block; margin-bottom: 8px; line-height: 1.4; }
     .paper-title:hover { color: #4361ee; text-decoration: underline; }
-    .paper-auth { font-size: 14px; color: #4b5563; margin-bottom: 10px; line-height: 1.5; }
+    .paper-auth { font-size: 15px; color: #4b5563; margin-bottom: 12px; line-height: 1.5; }
     .paper-tldr {
-        background: #f9fafb;
-        padding: 8px 12px;
+        background: #f8fafc;
+        padding: 10px 15px;
         border-radius: 8px;
-        font-size: 13px;
-        color: #6b7280;
-        line-height: 1.5;
-        border-left: 3px solid #e5e7eb;
+        font-size: 14px;
+        color: #64748b;
+        line-height: 1.6;
+        border-left: 3px solid #cbd5e1;
     }
-    .paper-links { margin-top: 8px; font-size: 13px; }
-    .paper-links a { margin-right: 12px; color: #6b7280; text-decoration: none; border-bottom: 1px dotted #9ca3af; font-weight: 500;}
+    .paper-links { margin-top: 10px; font-size: 14px; }
+    .paper-links a { margin-right: 15px; color: #6b7280; text-decoration: none; border-bottom: 1px dotted #9ca3af; font-weight: 500;}
     .paper-links a:hover { color: #4361ee; border-bottom: 1px solid #4361ee;}
 
-    /* --- Education --- */
+    /* Education & Grid */
     .edu-row {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
     }
     .edu-card {
         background: #f9fafb;
         border: 1px solid #f3f4f6;
         border-radius: 12px;
-        padding: 15px;
+        padding: 20px;
         display: flex;
         flex-direction: column;
     }
-    .edu-logo { width: 40px; height: 40px; margin-bottom: 10px; object-fit: contain;}
-    .edu-deg { font-weight: 700; font-size: 15px; color: var(--text-main); }
-    .edu-sch { font-size: 13px; color: var(--text-sub); margin-bottom: auto;}
-    .edu-yr { font-size: 12px; color: #9ca3af; margin-top: 8px; }
+    .edu-logo { width: 48px; height: 48px; margin-bottom: 12px; object-fit: contain;}
+    .edu-deg { font-weight: 700; font-size: 16px; color: var(--text-main); margin-bottom: 4px;}
+    .edu-sch { font-size: 14px; color: var(--text-sub); margin-bottom: auto;}
+    .edu-yr { font-size: 13px; color: #9ca3af; margin-top: 10px; }
 
-    /* --- Experience --- */
+    /* Experience */
     .exp-item {
         display: flex;
-        gap: 12px;
+        gap: 15px;
         align-items: flex-start;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 15px;
+        border-radius: 12px;
         transition: background 0.2s;
     }
     .exp-item:hover { background: #f8f9fa; }
-    .exp-logo { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; border: 1px solid #eee; background: #fff; padding: 2px; flex-shrink: 0;}
+    .exp-logo { width: 50px; height: 50px; object-fit: contain; border-radius: 8px; border: 1px solid #eee; background: #fff; padding: 4px; flex-shrink: 0;}
 
 </style>
 
@@ -459,9 +436,10 @@ redirect_from:
 
         <section id="about" class="content-box">
             <div class="box-header">
+                <span style="font-size: 24px;">👋</span>
                 <h2 class="box-title">Professional Summary</h2>
             </div>
-            <div style="font-size: 15px; line-height: 1.7; color: #374151;">
+            <div style="font-size: 15px; line-height: 1.8; color: #374151;">
                 Hi there, my name is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Trustworthy Machine Learning</strong>.
                 <br><br>
                 My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, focusing on <strong>"Robustness"</strong>, <strong>"Safety"</strong>, and <strong>Interpretability</strong>. This connects to areas such as <strong>Trustworthy LLM</strong>, <strong>Reasoning Model Merging</strong>, and <strong>Malicious Attacks</strong>.
@@ -470,6 +448,7 @@ redirect_from:
 
         <section id="news" class="content-box">
              <div class="box-header">
+                <span style="font-size: 24px;">🔥</span>
                 <h2 class="box-title">News</h2>
             </div>
             <ul class="news-list">
@@ -484,6 +463,7 @@ redirect_from:
 
         <section id="publications" class="content-box">
             <div class="box-header">
+                <span style="font-size: 24px;">📝</span>
                 <h2 class="box-title">Selected Publications</h2>
             </div>
 
@@ -570,6 +550,7 @@ redirect_from:
 
         <section id="education" class="content-box">
             <div class="box-header">
+                <span style="font-size: 24px;">🎓</span>
                 <h2 class="box-title">Education</h2>
             </div>
             <div class="edu-row">
@@ -596,6 +577,7 @@ redirect_from:
 
         <section id="experience" class="content-box">
              <div class="box-header">
+                <span style="font-size: 24px;">💻</span>
                 <h2 class="box-title">Experience</h2>
             </div>
              <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -603,28 +585,28 @@ redirect_from:
                     <img src="images/ailab.png" class="exp-logo">
                     <div>
                         <div style="font-weight: 700; font-size: 15px;">Shanghai AI Lab</div>
-                        <div style="font-size: 13px; color: #555;">Research Intern | 2025.06 - Present</div>
+                        <div style="font-size: 14px; color: #555;">Research Intern | 2025.06 - Present</div>
                     </div>
                 </div>
                 <div class="exp-item">
                     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" class="exp-logo">
                     <div>
                         <div style="font-weight: 700; font-size: 15px;">South China University of Technology</div>
-                        <div style="font-size: 13px; color: #555;">Research Intern | 2024.07 - Present</div>
+                        <div style="font-size: 14px; color: #555;">Research Intern | 2024.07 - Present</div>
                     </div>
                 </div>
                 <div class="exp-item">
                     <img src="images/Tencent.png" class="exp-logo">
                     <div>
                         <div style="font-weight: 700; font-size: 15px;">Tencent</div>
-                        <div style="font-size: 13px; color: #555;">Machine Learning Intern | 2024.04 - 2024.07</div>
+                        <div style="font-size: 14px; color: #555;">Machine Learning Intern | 2024.04 - 2024.07</div>
                     </div>
                 </div>
                 <div class="exp-item">
                     <img src="images/SZSE.png" class="exp-logo">
                     <div>
                         <div style="font-weight: 700; font-size: 15px;">SZSE</div>
-                        <div style="font-size: 13px; color: #555;">Machine Learning Intern | 2024.01 - 2024.04</div>
+                        <div style="font-size: 14px; color: #555;">Machine Learning Intern | 2024.01 - 2024.04</div>
                     </div>
                 </div>
             </div>
@@ -632,6 +614,7 @@ redirect_from:
         
         <section id="honors" class="content-box">
             <div class="box-header">
+                <span style="font-size: 24px;">🏆</span>
                 <h2 class="box-title">Honor & Awards</h2>
             </div>
             <ul style="font-size: 14px; line-height: 2; color: #4b5563; padding-left: 20px;">
