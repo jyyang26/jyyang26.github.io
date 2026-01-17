@@ -10,50 +10,88 @@ redirect_from:
 
 <style>
     /* =========================================
-       1. 解决宽度和空白问题的核心覆盖代码
-       (针对 Minimal Mistakes 主题的暴力修正)
+       1. 暴力覆盖主题默认样式 & 隐藏自带导航栏
        ========================================= */
     
-    /* 扩大容器宽度，解决“内容太窄”的问题 */
+    /* 隐藏主题自带的顶部导航栏 */
+    .masthead {
+        display: none !important;
+    }
+
+    /* 扩大容器宽度，让右侧内容更宽 */
     .page__inner-wrap {
-        max-width: 1400px !important; /* 强制加宽容器 */
-        width: 95% !important;
+        max-width: 1600px !important; /* 增加最大宽度 */
+        width: 96% !important;
         margin-left: auto !important;
         margin-right: auto !important;
         padding-top: 0 !important;
+        padding-bottom: 40px !important;
     }
 
-    /* 隐藏主题默认的标题和空白，解决“顶部空白”问题 */
+    /* 隐藏默认标题 */
     .page__header, .page__title {
         display: none !important;
         margin-bottom: 0 !important;
         height: 0 !important;
     }
     
-    /* 消除顶部的默认内边距 */
     .page__content {
-        margin-top: 0 !important;
-        padding-top: 10px !important;
-    }
-
-    /* 如果有 archive 元素，也去掉间距 */
-    .archive {
         margin-top: 0 !important;
         padding-top: 0 !important;
     }
 
     /* =========================================
-       2. 自定义布局样式 (模仿 Alex Johnson 风格)
+       2. 自定义导航栏 (Navbar)
+       ========================================= */
+    .custom-nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.85); /* 半透明白底 */
+        backdrop-filter: blur(10px);           /* 磨砂效果 */
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding: 15px 20px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center; /* 居中排列 */
+        gap: 30px;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .nav-link {
+        color: #555;
+        text-decoration: none !important;
+        font-weight: 600;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+    }
+    
+    .nav-link:hover {
+        color: #4361ee; /* 主题蓝 */
+    }
+
+    /* 修正锚点跳转被导航栏遮挡的问题 */
+    section {
+        scroll-margin-top: 80px; 
+    }
+
+    /* =========================================
+       3. 核心布局系统 (Flexbox)
        ========================================= */
     
     :root {
         --primary-btn: #4361ee;
-        --bg-body: #f8f9fa; /* 更干净的背景色 */
+        --bg-body: #f8f9fa;
         --card-bg: #ffffff;
         --text-main: #1f2937;
         --text-sub: #6b7280;
-        --radius: 24px;
-        --shadow: 0 20px 40px -10px rgba(0,0,0,0.08); /* 悬浮感阴影 */
+        --radius: 20px;
+        --shadow: 0 10px 30px -5px rgba(0,0,0,0.06);
     }
 
     body {
@@ -61,24 +99,39 @@ redirect_from:
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* 主容器：模拟整个大卡片效果 */
+    /* 主容器 */
     .profile-wrapper {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; /* 移动端默认竖向 */
         gap: 30px;
-        margin-top: 20px;
         position: relative;
     }
 
-    /* 桌面端双栏布局 */
+    /* 桌面端样式 (宽度 > 1024px) */
     @media (min-width: 1024px) {
         .profile-wrapper {
-            flex-direction: row;
+            flex-direction: row; /* 变为横向双栏 */
             align-items: flex-start;
+        }
+
+        /* 左侧固定宽度 */
+        .custom-sidebar {
+            width: 340px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 90px; /* 留出导航栏高度 */
+        }
+
+        /* 右侧自动填满剩余空间 */
+        .custom-content {
+            flex: 1; 
+            min-width: 0; /* 防止内容溢出 */
         }
     }
 
-    /* --- 左侧边栏 (Sidebar) --- */
+    /* =========================================
+       4. 左侧栏样式
+       ========================================= */
     .custom-sidebar {
         background: var(--card-bg);
         border-radius: var(--radius);
@@ -88,30 +141,14 @@ redirect_from:
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
-        position: relative;
-        z-index: 10;
     }
 
-    /* 桌面端侧边栏固定宽度和粘性定位 */
-    @media (min-width: 1024px) {
-        .custom-sidebar {
-            width: 340px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 20px;
-        }
-    }
-
-    /* 头像区域 */
     .avatar-area {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
         margin-bottom: 20px;
-        position: relative;
     }
 
-    /* 使用图片作为头像，如果没有图片则显示圆圈 */
     .avatar-img {
         width: 100%;
         height: 100%;
@@ -120,23 +157,9 @@ redirect_from:
         border: 4px solid #fff;
         box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    
-    /* 如果没有头像图片，用这个占位符 */
-    .avatar-placeholder {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-    }
 
     .name-title {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 800;
         color: var(--text-main);
         margin: 5px 0;
@@ -157,18 +180,18 @@ redirect_from:
         margin-bottom: 20px;
     }
 
-    /* 社交图标栏 (模仿图片中的圆圈图标) */
+    /* 图标栏 (含 CV) */
     .social-icons {
         display: flex;
         justify-content: center;
-        gap: 12px;
+        gap: 15px;
         margin-bottom: 25px;
         flex-wrap: wrap;
     }
     
     .s-icon {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
         background: #f3f4f6;
         border-radius: 50%;
         display: flex;
@@ -177,44 +200,45 @@ redirect_from:
         color: #4b5563;
         transition: all 0.2s;
         text-decoration: none !important;
+        position: relative;
     }
+    
+    /* 图标提示文字 Tooltip */
+    .s-icon:hover::after {
+        content: attr(title);
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        color: #fff;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
     .s-icon:hover {
         background: var(--primary-btn);
         color: white;
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
     }
-    .s-icon svg { width: 18px; height: 18px; fill: currentColor; }
+    
+    .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
-    /* Download CV 按钮 */
-    .btn-cv {
-        background-color: var(--primary-btn);
-        color: white !important;
-        padding: 12px 0;
-        width: 100%;
-        border-radius: 12px;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        display: block;
-        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
-        transition: transform 0.2s;
-    }
-    .btn-cv:hover {
-        transform: translateY(-2px);
-        text-decoration: none;
-    }
-
-    /* --- 右侧内容区域 (Main Content) --- */
+    /* =========================================
+       5. 右侧内容样式
+       ========================================= */
+    
     .custom-content {
-        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 25px;
-        /* 防止内容溢出 */
-        min-width: 0; 
     }
 
-    /* 通用内容卡片 */
     .content-box {
         background: var(--card-bg);
         border-radius: var(--radius);
@@ -222,12 +246,13 @@ redirect_from:
         box-shadow: var(--shadow);
     }
     
-    /* 标题样式 (带图标) */
     .box-header {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #f0f0f0;
     }
     .box-title {
         font-size: 20px;
@@ -235,144 +260,143 @@ redirect_from:
         color: var(--text-main);
         margin: 0;
     }
-    .box-icon {
-        background: #eef2ff;
-        color: var(--primary-btn);
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-    }
 
-    /* Bio 文本 */
-    .bio-text {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #374151;
-    }
-    .bio-text a { color: var(--primary-btn); text-decoration: none; font-weight: 500; }
-    .bio-text a:hover { text-decoration: underline; }
-
-    /* --- Education (横向卡片布局 - 解决窄的问题) --- */
-    .edu-row {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 20px;
-    }
-    
-    .edu-card {
-        background: #f9fafb;
-        border: 1px solid #f3f4f6;
-        border-radius: 16px;
-        padding: 20px;
-        transition: transform 0.2s;
-    }
-    .edu-card:hover {
-        transform: translateY(-3px);
-        border-color: #e5e7eb;
-        background: #fff;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-    
-    .edu-logo {
-        width: 40px;
-        height: 40px;
-        background: #fff;
-        border-radius: 8px;
-        padding: 4px;
-        margin-bottom: 12px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        object-fit: contain;
-    }
-    .edu-deg { font-weight: 700; font-size: 15px; color: var(--text-main); margin-bottom: 4px; line-height: 1.3;}
-    .edu-sch { font-size: 13px; color: var(--text-sub); }
-    .edu-yr { font-size: 12px; color: #9ca3af; margin-top: 8px; display: block;}
-
-    /* --- News 列表 --- */
+    /* News 列表 */
     .news-list {
         list-style: none;
         padding: 0;
         margin: 0;
-        max-height: 300px;
+        max-height: 350px;
         overflow-y: auto;
     }
     .news-list li {
-        padding: 10px 0;
+        padding: 12px 0;
         border-bottom: 1px dashed #e5e7eb;
-        font-size: 14px;
+        font-size: 15px;
         color: #4b5563;
-        line-height: 1.5;
+        line-height: 1.6;
     }
-    .news-list li:last-child { border-bottom: none; }
     .news-tag {
         display: inline-block;
         background: #eff6ff;
         color: var(--primary-btn);
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 12px;
+        padding: 2px 8px;
+        border-radius: 6px;
+        font-size: 13px;
         font-weight: 600;
-        margin-right: 6px;
+        margin-right: 8px;
     }
 
-    /* --- Paper 列表 --- */
+    /* --- Publications (图片加大) --- */
     .paper-entry {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        margin-bottom: 25px;
-        padding-bottom: 25px;
+        gap: 25px;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
         border-bottom: 1px solid #f3f4f6;
     }
     @media (min-width: 768px) {
         .paper-entry { flex-direction: row; }
     }
-    .paper-entry:last-child { border-bottom: none; margin-bottom: 0; }
+    .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
+    /* 图片容器宽度调整为原来的1.3倍 (160px * 1.3 ≈ 210px) */
     .paper-thumb {
-        width: 100%;
-        max-width: 160px;
-        border-radius: 8px;
+        width: 100%; 
+        border-radius: 12px;
         overflow: hidden;
         border: 1px solid #eee;
         flex-shrink: 0;
     }
-    .paper-thumb img { width: 100%; height: auto; display: block; }
     
-    .paper-info { flex: 1; }
+    @media (min-width: 768px) {
+        .paper-thumb {
+            width: 220px; /* 增加宽度的核心代码 */
+        }
+    }
+
+    .paper-thumb img { width: 100%; height: auto; display: block; transition: transform 0.3s;}
+    .paper-thumb:hover img { transform: scale(1.03); }
+    
+    /* 介绍内容占满剩余空间 */
+    .paper-info { 
+        flex: 1; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
     .paper-venue {
-        font-size: 11px;
+        font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         color: #6b7280;
         font-weight: 700;
-        margin-bottom: 4px;
-        display: block;
+        margin-bottom: 6px;
     }
-    .paper-title { font-size: 16px; font-weight: 700; color: var(--primary-btn); text-decoration: none; display: block; margin-bottom: 6px; }
-    .paper-auth { font-size: 14px; color: #374151; margin-bottom: 8px; }
+    .paper-title { font-size: 17px; font-weight: 700; color: var(--primary-btn); text-decoration: none; display: block; margin-bottom: 8px; line-height: 1.4; }
+    .paper-auth { font-size: 15px; color: #374151; margin-bottom: 10px; }
     .paper-tldr {
-        background: #f3f4f6;
-        padding: 8px 12px;
-        border-radius: 8px;
-        font-size: 13px;
+        background: #f8fafc;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 14px;
         color: #4b5563;
-        line-height: 1.4;
+        line-height: 1.5;
+        border-left: 4px solid #cbd5e1;
     }
-    .paper-links { margin-top: 8px; font-size: 13px; }
-    .paper-links a { margin-right: 10px; color: var(--text-sub); text-decoration: none; border-bottom: 1px dotted #ccc;}
+    .paper-links { margin-top: 10px; font-size: 14px; }
+    .paper-links a { margin-right: 15px; color: var(--text-sub); text-decoration: none; border-bottom: 1px dotted #ccc; font-weight: 500;}
     .paper-links a:hover { color: var(--primary-btn); border-bottom: 1px solid var(--primary-btn);}
 
+    /* --- Education (横向卡片) --- */
+    .edu-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    .edu-card {
+        background: #f9fafb;
+        border: 1px solid #f3f4f6;
+        border-radius: 16px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .edu-logo { width: 48px; height: 48px; margin-bottom: 15px; object-fit: contain;}
+    .edu-deg { font-weight: 700; font-size: 16px; color: var(--text-main); }
+    .edu-sch { font-size: 14px; color: var(--text-sub); margin-bottom: auto;}
+    .edu-yr { font-size: 13px; color: #9ca3af; margin-top: 10px; font-weight: 500;}
+
+    /* --- Experience --- */
+    .exp-item {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        padding: 15px;
+        border-radius: 12px;
+        transition: background 0.2s;
+    }
+    .exp-item:hover { background: #f8f9fa; }
+    .exp-logo { width: 52px; height: 52px; object-fit: contain; border-radius: 8px; border: 1px solid #eee; background: #fff; padding: 2px; flex-shrink: 0;}
+
 </style>
+
+<nav class="custom-nav">
+    <a href="#about" class="nav-link">About Me</a>
+    <a href="#news" class="nav-link">News</a>
+    <a href="#publications" class="nav-link">Publications</a>
+    <a href="#education" class="nav-link">Education</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#honors" class="nav-link">Honors</a>
+</nav>
 
 <div class="profile-wrapper">
 
     <aside class="custom-sidebar">
         <div class="avatar-area">
-             <div class="avatar-placeholder">JY</div>
+             <img src="../images/IMG_9317.jpeg" alt="Avatar" class="avatar-img"> 
         </div>
 
         <h1 class="name-title">Junyao Yang<br><span style="font-size: 0.6em; color: #888; font-weight: 500;">(杨竣尧)</span></h1>
@@ -382,65 +406,38 @@ redirect_from:
 
         <div class="social-icons">
             <a href="mailto:your-email@u.nus.edu" class="s-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+            
             <a href="https://scholar.google.com" class="s-icon" title="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg></a>
+            
             <a href="https://github.com/jyyang26" class="s-icon" title="Github"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-        </div>
 
-        <a href="https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing" class="btn-cv">
-            Download CV
-        </a>
+            <a href="https://drive.google.com/file/d/17UEE4NB9HbyNba8TwQ5oO3y3Tu7hwhZm/view?usp=sharing" class="s-icon" title="Curriculum Vitae">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </a>
+        </div>
         
-        <div style="margin-top: 30px; width: 100%; opacity: 0.7;">
+        <div style="margin-top: 20px; width: 100%; opacity: 0.8;">
              <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&cl=ffffff&w=a"></script>
         </div>
     </aside>
 
     <main class="custom-content">
 
-        <div class="content-box">
+        <section id="about" class="content-box">
             <div class="box-header">
-                <span class="box-icon">👋</span>
+                <span style="font-size: 24px;">👋</span>
                 <h2 class="box-title">Professional Summary</h2>
             </div>
-            <div class="bio-text">
+            <div style="font-size: 16px; line-height: 1.8; color: #374151;">
                 Hi there, my name is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Trustworthy Machine Learning</strong>.
                 <br><br>
-                My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, focusing on <strong>"Robustness"</strong>, <strong>"Safety"</strong>, and <strong>Interpretability</strong>. This connects to areas such as <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025</a></strong>], <strong>Reasoning Model Merging</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>] and <strong>Malicious Attacks</strong>.
-                <br><br>
-                <span style="color: #6b7280; font-size: 0.9em;">Core Focus: Trustworthy AI & LLM Reasoning</span>
+                My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, focusing on <strong>"Robustness"</strong>, <strong>"Safety"</strong>, and <strong>Interpretability</strong>. This connects to areas such as <strong>Trustworthy LLM</strong>, <strong>Reasoning Model Merging</strong>, and <strong>Malicious Attacks</strong>.
             </div>
-        </div>
+        </section>
 
-        <div class="content-box">
-            <div class="box-header">
-                <span class="box-icon">🎓</span>
-                <h2 class="box-title">Education</h2>
-            </div>
-            <div class="edu-row">
-                <div class="edu-card">
-                    <img src="images/NUS.jpg" alt="NUS" class="edu-logo">
-                    <div class="edu-deg">M.S. in AI</div>
-                    <div class="edu-sch">National University of Singapore</div>
-                    <span class="edu-yr">2025 - 2027 (Expected)</span>
-                </div>
-                <div class="edu-card">
-                    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" class="edu-logo">
-                    <div class="edu-deg">B.E. in CS</div>
-                    <div class="edu-sch">South China University of Technology</div>
-                    <span class="edu-yr">2021 - 2025</span>
-                </div>
-                <div class="edu-card">
-                    <img src="images/SZSY_Logo.png" alt="SZSY" class="edu-logo">
-                    <div class="edu-deg">High School</div>
-                    <div class="edu-sch">Shenzhen Experimental School</div>
-                    <span class="edu-yr">2018 - 2021</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-box">
+        <section id="news" class="content-box">
              <div class="box-header">
-                <span class="box-icon">🔥</span>
+                <span style="font-size: 24px;">🔥</span>
                 <h2 class="box-title">News</h2>
             </div>
             <ul class="news-list">
@@ -451,11 +448,11 @@ redirect_from:
                 <li><span class="news-tag">2025.08</span> Joined <strong>Shanghai AI Lab</strong> as Research Intern.</li>
                 <li><span class="news-tag">2025.05</span> 🎉 <strong>PrivacyRestore</strong> accepted to <strong>ACL 2025 Main</strong>!</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="content-box">
+        <section id="publications" class="content-box">
             <div class="box-header">
-                <span class="box-icon">📝</span>
+                <span style="font-size: 24px;">📝</span>
                 <h2 class="box-title">Selected Publications</h2>
             </div>
 
@@ -538,50 +535,84 @@ redirect_from:
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content-box">
+        <section id="education" class="content-box">
+            <div class="box-header">
+                <span style="font-size: 24px;">🎓</span>
+                <h2 class="box-title">Education</h2>
+            </div>
+            <div class="edu-row">
+                <div class="edu-card">
+                    <img src="images/NUS.jpg" alt="NUS" class="edu-logo">
+                    <div class="edu-deg">M.S. in AI</div>
+                    <div class="edu-sch">National University of Singapore</div>
+                    <span class="edu-yr">2025 - 2027 (Expected)</span>
+                </div>
+                <div class="edu-card">
+                    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" class="edu-logo">
+                    <div class="edu-deg">B.E. in CS</div>
+                    <div class="edu-sch">South China University of Technology</div>
+                    <span class="edu-yr">2021 - 2025</span>
+                </div>
+                <div class="edu-card">
+                    <img src="images/SZSY_Logo.png" alt="SZSY" class="edu-logo">
+                    <div class="edu-deg">High School</div>
+                    <div class="edu-sch">Shenzhen Experimental School</div>
+                    <span class="edu-yr">2018 - 2021</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="content-box">
              <div class="box-header">
-                <span class="box-icon">💻</span>
+                <span style="font-size: 24px;">💻</span>
                 <h2 class="box-title">Experience</h2>
             </div>
-             <div style="display: flex; flex-direction: column; gap: 15px;">
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <img src="images/ailab.png" style="width: 48px; height: 48px; object-fit: contain; border-radius: 8px; border: 1px solid #eee;">
+             <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="exp-item">
+                    <img src="images/ailab.png" class="exp-logo">
                     <div>
-                        <div style="font-weight: 700; color: var(--text-main);">Shanghai AI Lab</div>
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2025.06 - Present</div>
+                        <div style="font-weight: 700; font-size: 16px;">Shanghai AI Lab</div>
+                        <div style="font-size: 14px; color: #555;">Research Intern | 2025.06 - Present</div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" style="width: 48px; height: 48px; object-fit: contain; border-radius: 8px; border: 1px solid #eee;">
+                <div class="exp-item">
+                    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" class="exp-logo">
                     <div>
-                        <div style="font-weight: 700; color: var(--text-main);">South China University of Technology</div>
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2024.07 - Present</div>
+                        <div style="font-weight: 700; font-size: 16px;">South China University of Technology</div>
+                        <div style="font-size: 14px; color: #555;">Research Intern | 2024.07 - Present</div>
                     </div>
                 </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <img src="images/Tencent.png" style="width: 48px; height: 48px; object-fit: contain; border-radius: 8px; border: 1px solid #eee;">
+                <div class="exp-item">
+                    <img src="images/Tencent.png" class="exp-logo">
                     <div>
-                        <div style="font-weight: 700; color: var(--text-main);">Tencent</div>
-                        <div style="font-size: 14px; color: var(--text-sub);">Machine Learning Intern | 2024.04 - 2024.07</div>
+                        <div style="font-weight: 700; font-size: 16px;">Tencent</div>
+                        <div style="font-size: 14px; color: #555;">Machine Learning Intern | 2024.04 - 2024.07</div>
+                    </div>
+                </div>
+                <div class="exp-item">
+                    <img src="images/SZSE.png" class="exp-logo">
+                    <div>
+                        <div style="font-weight: 700; font-size: 16px;">SZSE</div>
+                        <div style="font-size: 14px; color: #555;">Machine Learning Intern | 2024.01 - 2024.04</div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <div class="content-box">
+        <section id="honors" class="content-box">
             <div class="box-header">
-                <span class="box-icon">🏆</span>
+                <span style="font-size: 24px;">🏆</span>
                 <h2 class="box-title">Honor & Awards</h2>
             </div>
-            <ul style="font-size: 14px; line-height: 1.8; color: #4b5563;">
+            <ul style="font-size: 15px; line-height: 2; color: #4b5563; padding-left: 20px;">
                 <li>Excellent Graduation Thesis (2025.06)</li>
                 <li>Outstanding Student Leader (2022-2024)</li>
                 <li>Second-Class Scholarship of SCUT (2024.10)</li>
                 <li>Second-Class Award in CUMCM at Guangdong Province (2022.09)</li>
             </ul>
-        </div>
+        </section>
 
     </main>
 </div>
