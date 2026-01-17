@@ -3,9 +3,9 @@ permalink: /
 title: "Junyao Yang(杨竣尧) @AAAI 2026"
 layout: single
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
+redirect_from: 
+  - /about/
+  - /about.html
 ---
 
 <style>
