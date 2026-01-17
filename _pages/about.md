@@ -3,20 +3,20 @@ permalink: /
 title: "Junyao Yang(杨竣尧) @AAAI 2026"
 layout: single
 author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
+redirect_from: 
+  - /about/
+  - /about.html
 ---
 
 <style>
-    /* 全局变量与基础设置 - 营造高级感的关键 */
+    /* 全局变量 - 保持莫兰迪蓝灰色系的高级感 */
     :root {
-        --accent-color: #4a729a; /* 替换原本刺眼的亮色，使用沉稳的蓝灰色 */
+        --accent-color: #4a729a; 
         --text-color: #333333;
-        --bg-secondary: #f8f9fa; /* 极淡的灰背景 */
+        --bg-secondary: #f8f9fa;
         --border-color: #eaeaea;
-        --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.04); /* 弥散阴影 */
-        --hover-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* 阴影调轻，显得更贴合 */
+        --hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
     }
 
     body {
@@ -36,7 +36,7 @@ redirect_from:
         text-decoration: underline;
     }
 
-    /* 标题样式微调 */
+    /* 标题样式 */
     h1, h2, h3 {
         font-weight: 600;
         letter-spacing: -0.02em;
@@ -44,12 +44,11 @@ redirect_from:
         margin-bottom: 0.8em;
     }
 
-    /* --- News 模块美化 (时间轴风格) --- */
+    /* --- News 模块 (时间轴风格) --- */
     .news-container {
         max-height: 350px;
         overflow-y: auto;
         padding-right: 10px;
-        /* 自定义滚动条样式 */
         scrollbar-width: thin; 
         scrollbar-color: #ccc #f0f0f0;
     }
@@ -68,22 +67,21 @@ redirect_from:
     .news-list {
         list-style: none;
         padding-left: 15px;
-        border-left: 2px solid #eee; /* 左侧时间轴线 */
+        border-left: 2px solid #eee;
         margin: 0;
     }
 
     .news-list li {
         position: relative;
-        margin-bottom: 18px;
+        margin-bottom: 14px; /* 稍微调紧News间距 */
         padding-left: 15px;
         font-size: 0.95em;
     }
 
-    /* 时间轴上的小圆点 */
     .news-list li::before {
         content: '';
         position: absolute;
-        left: -20px; /* 调整圆点位置以对齐线 */
+        left: -20px;
         top: 8px;
         width: 8px;
         height: 8px;
@@ -92,13 +90,13 @@ redirect_from:
         border: 2px solid #fff;
     }
 
-    /* --- 论文卡片 (Paper Card) --- */
+    /* --- 论文卡片 (Paper Card) - 已优化高度 --- */
     .paper-card {
         display: flex;
-        flex-direction: column; /* 移动端优先 */
-        margin-bottom: 24px;
-        padding: 20px;
-        border-radius: 12px;
+        flex-direction: column;
+        margin-bottom: 15px; /* 减少卡片间距 */
+        padding: 15px;      /* 减小内边距，更紧凑 */
+        border-radius: 10px;
         background-color: #fff;
         border: 1px solid var(--border-color);
         transition: all 0.3s ease;
@@ -112,13 +110,13 @@ redirect_from:
 
     .paper-card:hover {
         box-shadow: var(--card-shadow);
-        transform: translateY(-2px);
+        transform: translateY(-1px);
         border-color: transparent;
     }
 
     .paper-img-box {
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         flex-shrink: 0;
     }
     
@@ -126,56 +124,69 @@ redirect_from:
         .paper-img-box {
             width: 180px;
             margin-bottom: 0;
-            margin-right: 24px;
+            margin-right: 20px;
+            padding-top: 2px; /* 微调图片对齐 */
         }
     }
 
     .paper-img {
         width: 100%;
         height: auto;
-        border-radius: 6px;
+        border-radius: 5px;
         border: 1px solid #f0f0f0;
         display: block;
     }
 
     .paper-content {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* 顶对齐 */
     }
 
+    /* 标题更加紧凑 */
     .paper-title {
-        font-size: 1.05em;
+        font-size: 1em;
         font-weight: 700;
         color: var(--accent-color) !important;
         display: block;
-        margin-bottom: 6px;
+        margin-bottom: 3px; /* 极小的标题下间距 */
+        line-height: 1.3;
     }
 
+    .author-list {
+        margin-bottom: 5px;
+        line-height: 1.4;
+    }
+
+    /* TL;DR 盒子变得更扁平 */
     .tldr-box {
         background-color: var(--bg-secondary);
-        border-radius: 6px;
-        padding: 10px 14px;
+        border-radius: 5px;
+        padding: 6px 10px; /* 减少内填充 */
         color: #666;
         font-size: 0.85em;
-        margin-top: 10px;
-        line-height: 1.5;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        line-height: 1.4;
     }
     
     .link-row {
-        margin-top: 10px;
         font-size: 0.85em;
+        margin-top: 2px;
     }
     
     .link-sep {
-        margin: 0 8px;
+        margin: 0 6px;
         color: #ddd;
     }
 
-    /* --- 教育与经历卡片 (Flex布局替代Float) --- */
+    /* --- 教育与经历卡片 --- */
     .info-card {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        padding: 15px 0;
+        padding: 12px 0; /* 减少垂直间距 */
         border-bottom: 1px dashed #eee;
     }
     
@@ -185,20 +196,20 @@ redirect_from:
 
     .info-text {
         flex: 1;
-        padding-right: 20px;
+        padding-right: 15px;
     }
     
     .info-logo {
         flex-shrink: 0;
-        width: 70px; /* 稍微调小Logo显得更精致 */
-        height: 70px;
+        width: 65px; 
+        height: 65px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: #fff;
-        border-radius: 8px;
-        padding: 5px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        border-radius: 6px;
+        padding: 4px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         border: 1px solid #fafafa;
     }
 
@@ -276,12 +287,14 @@ My research story revolves around **the Underlying Principles and Understanding 
     </a>
   </div>
   <div class="paper-content">
-    <span style="font-size: 0.9em; color: #888;"><strong><em>[arXiv Preprint]</em></strong></span><br>
+    <span style="font-size: 0.85em; color: #888; line-height: 1;"><strong><em>[arXiv Preprint]</em></strong></span>
     <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
-    <strong>Junyao Yang</strong>, <em>Chen Qian, Dongrui Liu<sup>*#</sup>, Wen Shen, Yong Liu<sup>*#</sup>, Jing Shao<sup>*#</sup></em><br>
+    <div class="author-list">
+    <strong>Junyao Yang</strong>, <em>Chen Qian, Dongrui Liu<sup>*#</sup>, Wen Shen, Yong Liu<sup>*#</sup>, Jing Shao<sup>*#</sup></em>
+    </div>
 
     <div class="tldr-box">
-      <strong>TL;DR:</strong> A training-free framework that resolves "destructive performance collapse" by identifying that reasoning relies on low-gradient parameters. It employs Contrastive Gradient Identification to successfully merge robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine, Finance) without compromising their specialized utility.
+      <strong>TL;DR:</strong> A training-free framework that resolves "destructive performance collapse" by identifying that reasoning relies on low-gradient parameters. It employs Contrastive Gradient Identification to successfully merge robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine, Finance).
     </div>
     
     <div class="link-row">
@@ -299,9 +312,11 @@ My research story revolves around **the Underlying Principles and Understanding 
     </a>
   </div>
   <div class="paper-content">
-    <span style="font-size: 0.9em; color: #888;"><strong>[AAAI 2026 Main Track]</strong></span><br>
+    <span style="font-size: 0.85em; color: #888; line-height: 1;"><strong>[AAAI 2026 Main Track]</strong></span>
     <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
-    <strong>Junyao Yang</strong>, <em>Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>*#</sup></em><br>
+    <div class="author-list">
+    <strong>Junyao Yang</strong>, <em>Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>*#</sup></em>
+    </div>
 
     <div class="tldr-box">
       <strong>TL;DR:</strong> A model merging framework that integrates domain-specific models with reasoning models by treating reasoning capabilities as a prior, enhancing domain performance while preserving chain-of-thought reasoning abilities.
@@ -322,9 +337,11 @@ My research story revolves around **the Underlying Principles and Understanding 
     </a>
   </div>
   <div class="paper-content">
-    <span style="font-size: 0.9em; color: #888;"><strong>[ACL 2025 Main]</strong></span><br>
+    <span style="font-size: 0.85em; color: #888; line-height: 1;"><strong>[ACL 2025 Main]</strong></span>
     <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
-    <em>Ziqian Zeng<sup>*#</sup>, Jianwei Wang<sup>*</sup>, <strong>Junyao Yang<sup>*</sup></strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</em><br>
+    <div class="author-list">
+    <em>Ziqian Zeng<sup>*#</sup>, Jianwei Wang<sup>*</sup>, <strong>Junyao Yang<sup>*</sup></strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</em>
+    </div>
 
     <div class="tldr-box">
       <strong>TL;DR:</strong> A privacy-preserving inference framework that removes privacy information from user inputs and restores them on the server via activation steering using a protected meta-vector, ensuring data privacy without retraining.
@@ -345,9 +362,11 @@ My research story revolves around **the Underlying Principles and Understanding 
     </a>
   </div>
   <div class="paper-content">
-    <span style="font-size: 0.9em; color: #888;"><strong>[EMNLP 2025 Main]</strong></span><br>
+    <span style="font-size: 0.85em; color: #888; line-height: 1;"><strong>[EMNLP 2025 Main]</strong></span>
     <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
-    <em>Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>#</sup></em><br>
+    <div class="author-list">
+    <em>Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>#</sup></em>
+    </div>
     
     <div class="tldr-box">
       <strong>TL;DR:</strong> A privacy-preserving fine-tuning framework that improves synthetic data quality by using a client-side reward model to filter and refine generated data, mitigating noise while protecting private information.
