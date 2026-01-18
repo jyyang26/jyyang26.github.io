@@ -61,7 +61,7 @@ redirect_from:
     
     .nav-container {
         display: flex;
-        gap: 30px; /* 稍微减小间距，防止换行 */
+        gap: 20px; /* 稍微减小间距，防止换行 */
         align-items: center;
         justify-content: center;
         width: 100%;
