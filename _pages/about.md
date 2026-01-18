@@ -465,7 +465,7 @@ redirect_from:
         <section id="about" class="content-box">
             <div class="box-header">
                 <span style="font-size: 24px;">🤠</span>
-                <h2 class="box-title">Say hi</h2>
+                <h2 class="box-title">About Me</h2>
             </div>
             <div style="font-size: 15px; line-height: 1.8; color: #374151;">
                 👋This is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Trustworthy Machine Learning</strong>.
