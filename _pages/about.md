@@ -61,11 +61,11 @@ redirect_from:
     
     .nav-container {
         display: flex;
-        gap: 25px; /* 稍微减小间距，防止换行 */
+        gap: 30px; /* 稍微减小间距，防止换行 */
         align-items: center;
         justify-content: center;
         width: 100%;
-        max-width: 1200px;
+        max-width: 3000px;
     }
 
     /* 桌面端强制不换行 */
