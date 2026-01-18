@@ -42,7 +42,7 @@ redirect_from:
     }
 
     /* =========================================
-       2. 自定义导航栏 (单行优化)
+       2. 自定义导航栏 (全宽优化)
        ========================================= */
     .custom-nav {
         position: sticky;
@@ -61,11 +61,12 @@ redirect_from:
     
     .nav-container {
         display: flex;
-        gap: 25px; /* 稍微减小间距，防止换行 */
+        gap: 30px; 
         align-items: center;
         justify-content: center;
         width: 100%;
-        max-width: 1200px;
+        padding: 0 20px;
+        box-sizing: border-box;
     }
 
     /* 桌面端强制不换行 */
@@ -92,9 +93,9 @@ redirect_from:
         align-items: center;
         gap: 6px;
         transition: all 0.2s;
-        padding: 5px 8px;
+        padding: 6px 10px;
         border-radius: 8px;
-        white-space: nowrap; /* 防止文字折行 */
+        white-space: nowrap; 
     }
     
     .nav-link:hover {
@@ -224,7 +225,7 @@ redirect_from:
         display: flex;
         justify-content: center;
         gap: 15px;
-        margin-bottom: 10px; /* 底部不再留大空间，因为地图移走了 */
+        margin-bottom: 10px; 
         flex-wrap: wrap;
     }
     
@@ -293,6 +294,16 @@ redirect_from:
         color: #4b5563;
         line-height: 1.6;
     }
+    /* 链接颜色统一为主题色，覆盖原有内联样式 */
+    .news-list a {
+        color: var(--primary-btn) !important;
+        text-decoration: none !important;
+        font-weight: 600;
+    }
+    .news-list a:hover {
+        text-decoration: underline !important;
+    }
+
     .news-tag {
         display: inline-block;
         background: #eff6ff;
@@ -407,12 +418,12 @@ redirect_from:
     .exp-item:hover { background: #f8f9fa; }
     .exp-logo { width: 50px; height: 50px; object-fit: contain; border-radius: 8px; border: 1px solid #eee; background: #fff; padding: 4px; flex-shrink: 0;}
 
-    /* Map Widget Container */
+    /* Map Widget */
     .map-widget-container {
         width: 100%;
         display: flex;
         justify-content: center;
-        overflow: hidden;
+        overflow: hidden; /* 防止溢出 */
     }
 
 </style>
@@ -448,8 +459,7 @@ redirect_from:
                 <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
             </a>
         </div>
-        
-        </aside>
+    </aside>
 
     <main class="custom-content">
 
@@ -461,7 +471,7 @@ redirect_from:
             <div style="font-size: 15px; line-height: 1.8; color: #374151;">
                 Hi there, my name is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Trustworthy Machine Learning</strong>.
                 <br><br>
-                My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, focusing on <strong>"Robustness"</strong>, <strong>"Safety"</strong>, and <strong>Interpretability</strong>. This connects to areas such as <strong>Trustworthy LLM</strong>, <strong>Reasoning Model Merging</strong>, and <strong>Malicious Attacks</strong>.
+                My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, particularly focusing on how to enhance the <strong>"Robustness"</strong> and <strong>"Safety"</strong> of LLM-generated information and understand the <strong>Interpretability</strong> of model mechanisms, which connects to related areas such as <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>], <strong>Reasoning Model Merging</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>] and <strong>Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]
             </div>
         </section>
 
@@ -471,12 +481,20 @@ redirect_from:
                 <h2 class="box-title">News</h2>
             </div>
             <ul class="news-list">
-                <li><span class="news-tag">2026.01</span> 🏄‍♂️ I will attend <strong>AAAI 2026 at Singapore</strong> (Jan 20-27). Let’s connect!</li>
-                <li><span class="news-tag">2026.01</span> 🚀 New paper <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong> is out! Resolving performance collapse in model merging.</li>
-                <li><span class="news-tag">2025.11</span> 🎉 <strong>RCP-Merging</strong> accepted to <strong>AAAI 2026 Main Track</strong>!</li>
-                <li><span class="news-tag">2025.08</span> 🎉 <strong>RewardDS</strong> accepted to <strong>EMNLP 2025 Main</strong>!</li>
-                <li><span class="news-tag">2025.08</span> Joined <strong>Shanghai AI Lab</strong> as Research Intern.</li>
-                <li><span class="news-tag">2025.05</span> 🎉 <strong>PrivacyRestore</strong> accepted to <strong>ACL 2025 Main</strong>!</li>
+                <li><span class="news-tag">2026.01</span> 🏄‍♂️🏄‍♂️ I will attend <strong>AAAI 2026 at Singapore during Jan 20-27</strong>, 2026. Let’s connect!</li>
+                <li><span class="news-tag">2026.01</span> 🚀🚀 Please check our latest paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.</li>
+                <li><span class="news-tag">2025.11</span> 🎉🎉 <strong>First-Author paper</strong> <a href="https://arxiv.org/abs/2508.03140"><strong>RCP-Merging</strong></a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!</li>
+                <li><span class="news-tag">2025.08</span> 🎉🎉 <a href="https://arxiv.org/abs/2502.18517"><strong>RewardDS</strong></a> has been accepted to <strong>EMNLP 2025 Main</strong>!</li>
+                <li><span class="news-tag">2025.08</span> I joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
+                <li><span class="news-tag">2025.08</span> 🚀🚀 Check out my latest work: <strong><a href="https://arxiv.org/abs/2508.03140"><strong>RCP-Merging</strong></a></strong>! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!</li>
+                <li><span class="news-tag">2025.05</span> 🎉🎉 Successfully passed my undergraduate thesis defense!</li>
+                <li><span class="news-tag">2025.05</span> 🎉🎉 <strong>Co-First-Author paper</strong> <a href="https://arxiv.org/abs/2406.01394"><strong>PrivacyRestore</strong></a> has been accepted to <strong>ACL 2025 Main</strong>! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!</li>
+                <li><span class="news-tag">2025.02</span> 🚀🚀 Please check our newest papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>! Thanks to the help of other collaborators.</li>
+                <li><span class="news-tag">2024.07</span> I joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</li>
+                <li><span class="news-tag">2024.07</span> I spent a wonderful time at Tencent as a machine learning intern!</li>
+                <li><span class="news-tag">2024.07</span> <strong>Contextless CS</strong> is available now, which reaches <strong>20,000 DAU</strong>! Check my work <strong><a href="https://kf.qq.com/">here</a></strong>!</li>
+                <li><span class="news-tag">2024.04</span> I joined Tencent as a machine learning intern.</li>
+                <li><span class="news-tag">2024.03</span> I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!</li>
             </ul>
         </section>
 
@@ -625,7 +643,7 @@ redirect_from:
                     <img src="images/SZSE.png" class="exp-logo">
                     <div>
                         <div style="font-weight: 700; font-size: 15px;">SZSE</div>
-                        <div style="font-size: 14px; color: #555;">Machine Learning Intern | 2024.01 - 2024.04</div>
+                        <div style="font-size: 13px; color: #555;">Machine Learning Intern | 2024.01 - 2024.04</div>
                     </div>
                 </div>
             </div>
