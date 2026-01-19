@@ -472,6 +472,8 @@ redirect_from:
                 🤠 Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Trustworthy Machine Learning</strong>.
                 <br><br>
                 My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, particularly focusing on how to enhance the <strong>"Robustness"</strong> and <strong>"Safety"</strong> of LLM-generated information and understand the <strong>Interpretability</strong> of model mechanisms, which connects to related areas such as <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>], <strong>Reasoning Model Merging</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>] and <strong>Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>].
+            <br><br>
+                Currently, I am a research intern at the <a href="https://ai45.shlab.org.cn/">Center of Safe & Trustworthy AI</a> of <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Lab</a>, led by Prof. <a href="https://scholar.google.com.hk/citations?user=VU5ObUwAAAAJ&hl=zh-CN">Jing Shao</a>. I work closely with Dr. <a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=i0paeq4AAAAJ">Dongrui Liu</a> and <a href="https://scholar.google.com/citations?user=knR4ZusAAAAJ&hl=en">Chen Qian</a>. Prior to this, my research journey began at <a href="https://www2.scut.edu.cn/wusie/">SCUT</a> under the guidance of Prof. <a href="https://scholar.google.com/citations?user=fuOr3nAAAAAJ&hl=en">Ziqian Zeng</a>.
             </div>
         </section>
 
@@ -599,7 +601,7 @@ redirect_from:
                 </div>
                 <div class="edu-card">
                     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" class="edu-logo">
-                    <div class="edu-deg">B.E. in CS</div>
+                    <div class="edu-deg">B.S. in CS (with honor)</div>
                     <div class="edu-sch">South China University of Technology</div>
                     <span class="edu-yr">2021 - 2025</span>
                 </div>
