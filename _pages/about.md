@@ -669,7 +669,7 @@ redirect_from:
                 <h2 class="box-title">Page Views</h2>
             </div>
             <div class="map-widget-container">
-                 <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&cl=ffffff&w=a"></script>
+                 <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=eff9f2&w=a&t=n&d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&co=98b1e0&cmo=535cff&ct=f2ecec'></script>
             </div>
         </section>
 
