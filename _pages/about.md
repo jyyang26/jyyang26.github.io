@@ -531,7 +531,7 @@ redirect_from:
                 </div>
                 <div class="paper-info">
                     <span class="paper-venue">AAAI 2026 Main Track</span>
-                    <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long CoT Models with Domain-Specific Models</a>
+                    <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
                     <div class="paper-auth">
                         <strong>Junyao Yang</strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*
                     </div>
@@ -551,7 +551,7 @@ redirect_from:
                 </div>
                 <div class="paper-info">
                     <span class="paper-venue">ACL 2025 Main</span>
-                    <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in LLMs</a>
+                    <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
                     <div class="paper-auth">
                         Ziqian Zeng*, Jianwei Wang*, <strong>Junyao Yang*</strong>, et al.
                     </div>
@@ -571,7 +571,7 @@ redirect_from:
                 </div>
                 <div class="paper-info">
                     <span class="paper-venue">EMNLP 2025 Main</span>
-                    <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning via Reward Driven Data Synthesis</a>
+                    <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
                     <div class="paper-auth">
                          Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, et al.
                     </div>
