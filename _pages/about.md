@@ -513,7 +513,7 @@ redirect_from:
                     <span class="paper-venue">arXiv Preprint</span>
                     <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
                     <div class="paper-auth">
-                        <strong>Junyao Yang</strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>,, Wen Shen, Yong Liu<sup>&dagger;</sup>,, Jing Shao<sup>&dagger;</sup>,
+                        <strong>Junyao Yang</strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup>
                     </div>
                     <div class="paper-tldr">
                         <strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.
@@ -534,7 +534,7 @@ redirect_from:
                     <span class="paper-venue">arXiv Preprint</span>
                     <a href="https://arxiv.org/pdf/2601.15075" class="paper-title">The Why Behind the Action: Unveiling Internal Drivers via Agentic Attribution</a>
                     <div class="paper-auth">
-                        Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>,, <strong>Junyao Yang</strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu
+                        Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong>Junyao Yang</strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu
                     </div>
                     <div class="paper-tldr">
                         <strong>TL;DR:</strong> A hierarchical framework for agentic attribution, using temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.
@@ -555,7 +555,7 @@ redirect_from:
                     <span class="paper-venue">AAAI 2026 Main Track</span>
                     <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
                     <div class="paper-auth">
-                        <strong>Junyao Yang</strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup>,
+                        <strong>Junyao Yang</strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup>
                     </div>
                     <div class="paper-tldr">
                         <strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.
@@ -575,7 +575,7 @@ redirect_from:
                     <span class="paper-venue">ACL 2025 Main</span>
                     <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
                     <div class="paper-auth">
-                        Ziqian Zeng*<sup>&dagger;</sup>,, Jianwei Wang*, <strong>Junyao Yang*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen
+                        Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong>Junyao Yang*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen
                     </div>
                     <div class="paper-tldr">
                         <strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.
@@ -595,7 +595,7 @@ redirect_from:
                     <span class="paper-venue">EMNLP 2025 Main</span>
                     <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
                     <div class="paper-auth">
-                         Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup>,
+                         Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup>
                     </div>
                     <div class="paper-tldr">
                         <strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.
