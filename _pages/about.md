@@ -61,7 +61,7 @@ redirect_from:
     
     .nav-container {
         display: flex;
-        gap: 20px; /* 稍微减小间距，防止换行 */
+        gap: 20px; 
         align-items: center;
         justify-content: center;
         width: 100%;
@@ -293,7 +293,7 @@ redirect_from:
         color: #4b5563;
         line-height: 1.6;
     }
-    /* 链接颜色统一为主题色，覆盖原有内联样式 */
+    
     .news-list a {
         color: var(--primary-btn) !important;
         text-decoration: none !important;
@@ -332,7 +332,7 @@ redirect_from:
     }
     .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
-    /* === 重点修改部分开始 === */
+    /* === 重点修改：强制正方形 === */
     .paper-thumb {
         width: 100%; 
         border-radius: 12px;
@@ -341,32 +341,32 @@ redirect_from:
         flex-shrink: 0; 
         background: #fafafa;
         
-        /* 新增：解决顶格问题，让图片居中并留有空隙 */
-        display: flex;           /* 开启弹性布局 */
-        align-items: center;     /* 垂直居中 */
-        justify-content: center; /* 水平居中 */
-        padding: 10px;           /* 增加内边距，防止图片紧贴边缘 */
-        box-sizing: border-box;  /* 确保padding包含在宽度内 */
+        /* 使用 flex 让图片居中 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        box-sizing: border-box;
     }
-    /* === 重点修改部分结束 === */
     
     @media (min-width: 768px) {
         .paper-thumb {
             width: 250px;
-            /* 建议给一个最小高度，保证视觉统一 */
-            min-height: 150px; 
+            height: 250px; /* 强制高度等于宽度 = 正方形 */
         }
     }
 
     .paper-thumb img { 
-        width: 100%; 
+        max-width: 100%;      /* 限制最大宽度 */
+        max-height: 100%;     /* 限制最大高度 */
+        width: auto;          /* 覆盖之前的 width:100% */
         height: auto; 
         display: block; 
         transition: transform 0.3s;
-        /* 确保图片不会因为padding溢出 */
-        max-width: 100%; 
+        object-fit: contain;  /* 确保完整显示不裁剪 */
     }
     .paper-thumb:hover img { transform: scale(1.03); }
+    /* === 修改结束 === */
     
     .paper-info { 
         flex: 1; 
