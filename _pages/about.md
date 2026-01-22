@@ -528,7 +528,7 @@ redirect_from:
 
             <div class="paper-entry">
                 <div class="paper-thumb">
-                    <a href="https://arxiv.org/pdf/2601.15075"><img src="images/agent_xai_main_fig_final.jpg" alt="Paper Image"></a>
+                    <a href="https://arxiv.org/pdf/2601.15075"><img src="images/agent_xai_main_fig_final_v2.png" alt="Paper Image"></a>
                 </div>
                 <div class="paper-info">
                     <span class="paper-venue">arXiv Preprint</span>
