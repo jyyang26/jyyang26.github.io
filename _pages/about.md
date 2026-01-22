@@ -332,6 +332,7 @@ redirect_from:
     }
     .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
+    /* === 重点修改部分开始 === */
     .paper-thumb {
         width: 100%; 
         border-radius: 12px;
@@ -339,11 +340,21 @@ redirect_from:
         border: 1px solid #eee;
         flex-shrink: 0; 
         background: #fafafa;
+        
+        /* 新增：解决顶格问题，让图片居中并留有空隙 */
+        display: flex;           /* 开启弹性布局 */
+        align-items: center;     /* 垂直居中 */
+        justify-content: center; /* 水平居中 */
+        padding: 10px;           /* 增加内边距，防止图片紧贴边缘 */
+        box-sizing: border-box;  /* 确保padding包含在宽度内 */
     }
+    /* === 重点修改部分结束 === */
     
     @media (min-width: 768px) {
         .paper-thumb {
             width: 250px;
+            /* 建议给一个最小高度，保证视觉统一 */
+            min-height: 150px; 
         }
     }
 
@@ -352,6 +363,8 @@ redirect_from:
         height: auto; 
         display: block; 
         transition: transform 0.3s;
+        /* 确保图片不会因为padding溢出 */
+        max-width: 100%; 
     }
     .paper-thumb:hover img { transform: scale(1.03); }
     
@@ -472,7 +485,7 @@ redirect_from:
                 🤠 Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Trustworthy Machine Learning</strong>.
                 <br><br>
                 🧐 My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, particularly focusing on how to enhance the <strong>"Robustness"</strong> and <strong>"Safety"</strong> of LLM-generated information and understand the <strong>Interpretability</strong> of model mechanisms, which connects to related areas such as <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>], <strong>Reasoning Model Merging</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>] and <strong>Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>].
-            
+             
             </div>
         </section>
 
