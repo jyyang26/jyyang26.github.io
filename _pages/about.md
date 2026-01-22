@@ -495,8 +495,9 @@ redirect_from:
                 <h2 class="box-title">News</h2>
             </div>
             <ul class="news-list">
+            <li><span class="news-tag">2026.01</span> 🚀 Please check our latest paper: <strong><a href="https://arxiv.org/pdf/2601.15075">Agentic Attribution</a></strong>! A hierarchical framework utilize temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</li>
                 <li><span class="news-tag">2026.01</span> 🏄‍♂️ I will attend <strong>AAAI 2026 at Singapore during Jan 20-27</strong>, 2026. Let’s have fun!</li>
-                <li><span class="news-tag">2026.01</span> 🚀 Please check our latest paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models.</li>
+                <li><span class="news-tag">2026.01</span> 🚀 Please check our latest paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models!</li>
                 <li><span class="news-tag">2025.11</span> 🎉 First-Author paper <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!</li>
                 <li><span class="news-tag">2025.08</span> 🎉 <a href="https://arxiv.org/abs/2502.18517">RewardDS</a> has been accepted to <strong>EMNLP 2025 Main</strong>!</li>
                 <li><span class="news-tag">2025.08</span> I joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
