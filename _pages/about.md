@@ -516,7 +516,7 @@ redirect_from:
         <section id="publications" class="content-box">
             <div class="box-header">
                 <span style="font-size: 24px;">📝</span>
-                <h2 class="box-title">Selected Publications</h2>
+                <h2 class="box-title">Publications</h2>
             </div>
 
             <div class="paper-entry">
