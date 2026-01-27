@@ -701,7 +701,7 @@ redirect_from:
                     <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" class="exp-logo">
                     <div>
                         <div style="font-weight: 700; font-size: 15px;">South China University of Technology</div>
-                        <div style="font-size: 14px; color: #555;">Research Intern | 2024.07 - Present</div>
+                        <div style="font-size: 14px; color: #555;">Research Intern | 2024.07 - 2025.06</div>
                     </div>
                 </div>
                 <div class="exp-item">
