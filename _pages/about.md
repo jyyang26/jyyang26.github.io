@@ -628,7 +628,7 @@ redirect_from:
             <div class="box-header">
                 <span style="font-size: 24px;">📁</span>
                 <h2 class="box-title">Tech Reports & Projects</h2>
-                </div>
+            </div>
                 
               <div class="paper-entry">
                   <div class="paper-thumb">
@@ -651,7 +651,7 @@ redirect_from:
                   </div>
               </div>
               
-            </div>
+            
 
         </section>
         
