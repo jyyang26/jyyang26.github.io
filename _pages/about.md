@@ -444,7 +444,8 @@ redirect_from:
     <div class="nav-container">
         <a href="#about" class="nav-link"><span>👋</span> About Me</a>
         <a href="#news" class="nav-link"><span>🔥</span> News</a>
-        <a href="#publications" class="nav-link"><span>📝</span> Publications</a>
+        <a href="#publications" class="nav-link"><span>📝</span> Publications & Preprints</a>
+      <a href="#techreport" class="nav-link"><span>📁</span> Tech Reports & Projects</a>
         <a href="#education" class="nav-link"><span>🎓</span> Education</a>
         <a href="#experience" class="nav-link"><span>💻</span> Experience</a>
         <a href="#honors" class="nav-link"><span>🏆</span> Honors</a>
@@ -495,28 +496,29 @@ redirect_from:
                 <h2 class="box-title">News</h2>
             </div>
             <ul class="news-list">
+            <li><span class="news-tag">2026.01</span> 🚀 Please check our latest tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! It introduces a state-of-the-art diagnostic guardrail framework utilizing a three-dimensional taxonomy, featuring an Agentic XAI attribution module I contributed to for diagnosing the internal drivers of risky actions.</li>
             <li><span class="news-tag">2026.01</span> 🚀 Please check our latest paper: <strong><a href="https://arxiv.org/pdf/2601.15075">Agentic Attribution</a></strong>! A hierarchical framework utilize temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</li>
                 <li><span class="news-tag">2026.01</span> 🏄‍♂️ I will attend <strong>AAAI 2026 at Singapore during Jan 20-27, 2026</strong>. Let’s have fun!</li>
                 <li><span class="news-tag">2026.01</span> 🚀 Please check our latest paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! ReasonAny employs contrastive gradient identification to resolve destructive performance collapse, effectively merging reasoning capabilities into domain-specific models!</li>
                 <li><span class="news-tag">2025.11</span> 🎉 First-Author paper <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a> has been accepted to <strong>AAAI 2026 Main Track</strong>! See you in Singapore!</li>
                 <li><span class="news-tag">2025.08</span> 🎉 <a href="https://arxiv.org/abs/2502.18517">RewardDS</a> has been accepted to <strong>EMNLP 2025 Main</strong>!</li>
-                <li><span class="news-tag">2025.08</span> I joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
+                <li><span class="news-tag">2025.08</span> 🥳 I joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
                 <li><span class="news-tag">2025.08</span> 🚀 Check out my latest work: <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a>! This novel framework integrates long CoT capability into domain-specific LLMs without sacrificing their performance in the original domain!</li>
                 <li><span class="news-tag">2025.05</span> 🎉 Successfully passed my undergraduate thesis defense!</li>
                 <li><span class="news-tag">2025.05</span> 🎉 <strong>Co-First-Author paper</strong> <a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a> has been accepted to <strong>ACL 2025 Main</strong>! Deeply grateful to my mentor Ziqian and collaborator Jianwei! See you in Vienna!</li>
                 <li><span class="news-tag">2025.02</span> 🚀 Please check our newest papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>! Thanks to the help of other collaborators.</li>
-                <li><span class="news-tag">2024.07</span> I joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</li>
-                <li><span class="news-tag">2024.07</span> I spent a wonderful time at Tencent as a machine learning intern!</li>
-                <li><span class="news-tag">2024.07</span> <strong>Contextless CS</strong> is available now, which reaches <strong>20,000 DAU</strong>! Check my work <strong><a href="https://kf.qq.com/">here</a></strong>!</li>
-                <li><span class="news-tag">2024.04</span> I joined Tencent as a machine learning intern.</li>
-                <li><span class="news-tag">2024.03</span> I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!</li>
+                <li><span class="news-tag">2024.07</span> 🥳 I joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</li>
+                <li><span class="news-tag">2024.07</span> 🥳 I spent a wonderful time at Tencent as a machine learning intern!</li>
+                <li><span class="news-tag">2024.07</span> 🚀 <strong>Contextless CS</strong> is available now, which reaches <strong>20,000 DAU</strong>! Check my work <strong><a href="https://kf.qq.com/">here</a></strong>!</li>
+                <li><span class="news-tag">2024.04</span> 🥳 I joined Tencent as a machine learning intern.</li>
+                <li><span class="news-tag">2024.03</span> 🥳 I spent a wonderful time at ShenZhen Stock Exchange as a machine learning intern!</li>
             </ul>
         </section>
 
         <section id="publications" class="content-box">
             <div class="box-header">
                 <span style="font-size: 24px;">📝</span>
-                <h2 class="box-title">Publications</h2>
+                <h2 class="box-title">Publications & Preprints</h2>
             </div>
 
             <div class="paper-entry">
@@ -622,6 +624,35 @@ redirect_from:
             </div>
         </section>
 
+        <section id="techreport" class="content-box">
+            <div class="box-header">
+                <span style="font-size: 24px;">📁</span>
+                <h2 class="box-title">Tech Reports & Projects</h2>
+                
+              <div class="paper-entry">
+                  <div class="paper-thumb">
+                      <a href="https://arxiv.org/abs/2601.18491"><img src="images/agentdog.png" alt="Paper Image"></a>
+                  </div>
+                  <div class="paper-info">
+                      <span class="paper-venue">Tech Report</span>
+                      <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
+                      <div class="paper-auth">
+                          Shanghai Artificial Intelligence Laboratory (Contributor)
+                      </div>
+                      <div class="paper-tldr">
+                          <strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.
+                      </div>
+                      <div class="paper-links">
+                          <a href="https://arxiv.org/abs/2601.18491">Paper</a>
+                          <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
+                          <a href="=https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+                      </div>
+                  </div>
+              </div>
+              
+            </div>
+
+        </section>
         <section id="education" class="content-box">
             <div class="box-header">
                 <span style="font-size: 24px;">🎓</span>
