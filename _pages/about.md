@@ -648,7 +648,7 @@ redirect_from:
                       <div class="paper-links">
                           <a href="https://arxiv.org/abs/2601.18491">Paper</a>
                           <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-                          <a href="=https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+                          <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
                       </div>
                   </div>
               </div>
