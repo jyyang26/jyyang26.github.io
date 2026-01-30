@@ -649,6 +649,8 @@ redirect_from:
                           <a href="https://arxiv.org/abs/2601.18491">Paper</a>
                           <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
                           <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+                          <a href="https://huggingface.co/papers/date/2026-01-28">#1 🤗 Daily Best Paper</a>
+                          <a href="http://xhslink.com/o/5qySfXc7xCu">📕小红书</a>
                       </div>
                   </div>
               </div>
