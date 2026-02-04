@@ -670,6 +670,7 @@ redirect_from:
                       <div class="paper-links">
                           <a href="https://huggingface.co/papers/date/2026-01-28">🤗#1 Paper of the day</a>
                           <a href="http://xhslink.com/o/5qySfXc7xCu">📕小红书</a>
+                          <a href="https://x.com/dong_rui39501/status/2018980996528685464?s=46">Twitter</a>
                       </div>
                   </div>
               </div>
