@@ -350,12 +350,12 @@ redirect_from:
         border-bottom: 1px solid #f3f4f6;
     }
     
-    /* @media (min-width: 768px) {
+    @media (min-width: 768px) {
         .paper-entry { 
             flex-direction: row; 
             align-items: flex-start;
         }
-    } */
+    }
     .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
     .paper-thumb {
@@ -393,7 +393,7 @@ redirect_from:
     .paper-info { 
         flex: 1; 
         min-width: 0; 
-        display: flex;https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw
+        display: flex;
         flex-direction: column;
     }
 
@@ -669,7 +669,7 @@ redirect_from:
                       </div>
 <div class="paper-links">
     <a href="https://huggingface.co/papers/date/2026-01-28">🤗#1 Paper of the day</a>
-
+<a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
     <a href="http://xhslink.com/o/5qySfXc7xCu">📕小红书</a>
     <a href="https://x.com/dong_rui39501/status/2018980996528685464?s=46" style="display:inline-flex; align-items:center; gap:4px;">
         <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
