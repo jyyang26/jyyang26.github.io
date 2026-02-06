@@ -393,7 +393,7 @@ redirect_from:
     .paper-info { 
         flex: 1; 
         min-width: 0; 
-        display: flex;
+        display: flex;https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw
         flex-direction: column;
     }
 
@@ -674,6 +674,7 @@ redirect_from:
         <svg viewBox="0 0 24 24" aria-hidden="true" width="16" height="16"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>
         Twitter
     </a>
+  <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
 </div>
                   </div>
               </div>
