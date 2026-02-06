@@ -350,12 +350,12 @@ redirect_from:
         border-bottom: 1px solid #f3f4f6;
     }
     
-    @media (min-width: 768px) {
+    /* @media (min-width: 768px) {
         .paper-entry { 
             flex-direction: row; 
             align-items: flex-start;
         }
-    }
+    } */
     .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     
     .paper-thumb {
