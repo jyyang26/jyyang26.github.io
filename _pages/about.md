@@ -1034,7 +1034,7 @@ redirect_from:
 
             <ul class="news-list">
 
-            <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="blogs/reasoning_token.html">The Entropy-Gradient Inversion</a></strong>. We discover that reasoning models exhibit a unique "fingerprint" — a significant negative correlation between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT. This provides a new interpreable approach to the model's reasoning capability.</li>
+            <li><span class="news-tag">2026.02</span> ✍️ Blog post: <strong><a href="blogs/reasoning_token.html">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit a unique "fingerprint" — a significant negative correlation between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT. This provides a new interpreable approach to the model's reasoning capability.</li>
 
             <li><span class="news-tag">2026.01</span> 🚀 Please check our latest tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! It introduces a state-of-the-art diagnostic guardrail framework utilizing a three-dimensional taxonomy, featuring an Agentic XAI attribution module I contributed to for diagnosing the internal drivers of risky actions.</li>
 
