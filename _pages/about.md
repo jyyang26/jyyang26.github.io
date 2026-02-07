@@ -3,11 +3,10 @@ permalink: /
 title: "Junyao Yang(杨竣尧)"
 layout: single
 author_profile: false
-redirect_from: 
-  - /about/
-  - /about.html
+redirect_from:
+  - /about/
+  - /about.html
 ---
-
 <style>
     /* =========================================
        0. 字体定义与全局分配
