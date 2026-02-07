@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Entropy-Gradient Inversion</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <style>
+        @font-face {
+            font-family: 'Computer Modern Serif';
+            src: url('https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts/cmunrm.woff') format('woff');
+            font-weight: normal; font-style: normal;
+        }
+        @font-face {
+            font-family: 'Computer Modern Serif';
+            src: url('https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts/cmunbx.woff') format('woff');
+            font-weight: bold; font-style: normal;
+        }
+        @font-face {
+            font-family: 'Computer Modern Serif';
+            src: url('https://cdn.jsdelivr.net/gh/aaaakshat/cm-web-fonts@latest/fonts/cmunti.woff') format('woff');
+            font-weight: normal; font-style: italic;
+        }
+
+        :root {
+            --color-primary: #2563eb;
+            --color-secondary: #7c3aed;
+            --color-llama: #2563eb;
+            --color-qwen: #dc2626;
+            --color-sft: #059669;
+            --color-rl: #7c3aed;
+            --color-base: #64748b;
+        }
+
+        body {
+            font-family: 'Computer Modern Serif', 'Latin Modern Roman', 'SimSun', 'Songti SC', serif;
+            line-height: 1.8;
+            color: #333;
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            background-color: #fdfdfd;
+            transition: all 0.3s ease;
+        }
+
+        .lang-zh { display: none; }
+        body.zh-mode .lang-en { display: none; }
+        body.zh-mode .lang-zh { display: block; }
+
+        .lang-switch-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 8px 16px;
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Computer Modern Serif', serif;
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+        .lang-switch-btn:hover { background-color: #1d4ed8; }
+
+        h1, h2, h3 { font-weight: bold; margin-top: 1.8em; margin-bottom: 0.8em; color: #111; }
+        h1 { font-size: 2.4em; text-align: center; margin-bottom: 0.2em; line-height: 1.2; }
+        
+        .metadata {
+            text-align: center; font-style: italic; color: #555;
+            margin-bottom: 3em; border-bottom: 1px solid #ccc; padding-bottom: 1.5em;
+        }
+
+        code {
+            background-color: #f4f4f4; padding: 2px 4px; border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace; font-size: 0.9em; color: #c7254e;
+        }
+
+        .abstract {
+            background: #f8f9fa; padding: 25px; border-left: 5px solid var(--color-primary);
+            margin-bottom: 40px; font-style: italic; border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .highlight-box {
+            background-color: #fef3c7; border: 1px solid #fcd34d;
+            padding: 15px; border-radius: 5px; margin: 20px 0; color: #92400e;
+        }
+
+        .chart-container {
+            width: 100%; height: 550px; margin: 40px 0;
+            border: 1px solid #e0e0e0; box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background: white; border-radius: 8px;
+        }
+
+        .check-mark { color: var(--color-sft); font-weight: bold; }
+        .minus-mark { color: var(--color-qwen); font-weight: bold; }
+        
+        a { color: var(--color-primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .pipeline-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .pipeline-box {
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+            text-align: center;
+            min-width: 120px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .pipeline-box.base { background: #f1f5f9; border: 2px solid #64748b; color: #334155; }
+        .pipeline-box.sft { background: #dcfce7; border: 2px solid #059669; color: #065f46; }
+        .pipeline-box.rl { background: #ede9fe; border: 2px solid #7c3aed; color: #5b21b6; }
+        .pipeline-box.checkpoint { background: #dbeafe; border: 2px solid #2563eb; color: #1e40af; }
+        .pipeline-box.metric { background: #fef3c7; border: 2px solid #f59e0b; color: #92400e; }
+        .pipeline-arrow {
+            font-size: 1.5em;
+            color: #94a3b8;
+            margin: 0 5px;
+        }
+        .pipeline-label {
+            font-size: 0.75em;
+            color: #64748b;
+            display: block;
+            margin-top: 4px;
+            font-weight: normal;
+        }
+    </style>
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+
+    <button class="lang-switch-btn" onclick="toggleLanguage()">
+        <span class="lang-en">中文</span>
+        <span class="lang-zh">English</span>
+    </button>
+
+    <h1 class="lang-en">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</h1>
+    <h1 class="lang-zh">熵-梯度倒置：LLM推理能力的新视角</h1>
+
+    <div class="metadata">
+        <span class="lang-en"><strong>Author:</strong> Junyao Yang <br> <em>This is an ongoing project</em> <br> <strong>Date:</strong> February 2026</span>
+        <span class="lang-zh"><strong>作者：</strong> 杨竣尧 <br> <em>本项目仍在进行中</em> <br> <strong>日期：</strong> 2026年2月</span>
+    </div>
+
+    <div class="abstract">
+        <span class="lang-en">
+            <strong>Abstract:</strong> While Chain-of-Thought (CoT) and reasoning models (e.g., DeepSeek-R1, o1) have demonstrated remarkable capabilities, their internal mechanisms remain largely opaque. This study introduces a physics-inspired metric—the <strong>Nuclear Norm of Logit Gradients</strong>—to characterize long-chain reasoning. We discover that reasoning models exhibit a unique "fingerprint": a significant <strong>negative correlation between gradient strength and token entropy</strong>. This contradicts traditional base models. Furthermore, we find this capability emerges rapidly within the first 200 steps of SFT, whereas Reinforcement Learning (RL) exhibits early oscillation before convergence.
+        </span>
+        <span class="lang-zh">
+            <strong>摘要：</strong> 尽管 Chain-of-Thought (CoT) 和推理模型（如 DeepSeek-R1, o1）展现了惊人的能力，但其内部运作机制在很大程度上仍是一个"黑盒"。本研究提出了一种基于物理学启发的指标——<strong>Logit 梯度的核范数 (Nuclear Norm of Logit Gradients)</strong>，来表征模型的长思维链能力。研究发现，推理模型在生成过程中表现出一种独特的"指纹"：<strong>梯度强度与 Token 熵之间呈显著负相关</strong>。这种相关性与传统基座模型截然相反。进一步的实验揭示了这种能力在 SFT 阶段的前 200 步内迅速形成，而在纯 RL (Cold Start) 阶段则表现出早期的震荡与随后的收敛。
+        </span>
+    </div>
+
+    <h2 class="lang-en">1. Background: The Entropy of "Thinking" <i class="fas fa-brain"></i></h2>
+    <h2 class="lang-zh">1. 背景：思考的熵 (Entropy) <i class="fas fa-brain"></i></h2>
+    
+    <div class="lang-en">
+        <p>
+            Before diving into the gradient analysis, it is crucial to understand the behavior of "thinking tokens" in modern reasoning models. Recent research provides two key insights:
+        </p>
+        <ul>
+            <li><strong>Thinking Tokens are Information Peaks:</strong> According to <em>"Demystifying Reasoning Dynamics with Mutual Information"</em>, reasoning steps—such as "Let", "Suppose", or "However"—often manifest as high-entropy peaks. These tokens represent moments where the model branches out to explore complex logical paths, distinguishing them from the low-entropy "regular" tokens used in standard text generation.</li>
+            <li><strong>High-Entropy Minority Drives Learning:</strong> The study <em>"Beyond the 80/20 Rule"</em> highlights that while 80% of tokens are low-entropy, the "high-entropy minority" (the remaining 20%) are the critical drivers for effective Reinforcement Learning in reasoning tasks.</li>
+        </ul>
+        <p>
+            <strong>The Conflict:</strong> While high entropy is a hallmark of deep reasoning, this new study reveals a surprising twist: for reasoning models, these high-entropy tokens are associated with <strong>low gradient influence</strong> (negative correlation). This suggests that reasoning models have learned to be "structurally stable" even when facing high uncertainty.
+        </p>
+    </div>
+    <div class="lang-zh">
+        <p>
+            在深入分析梯度之前，理解现代推理模型中"思考Token"的行为至关重要。结合最新的两篇研究，我们可以得出两个关键见解：
+        </p>
+        <ul>
+            <li><strong>思考Token是信息峰值：</strong> 根据 <em>"Demystifying Reasoning Dynamics with Mutual Information"</em>，推理步骤——例如 "Let", "Suppose", 或 "However"——通常表现为高熵（High Entropy）的信息峰值。这些Token代表了模型在探索复杂逻辑路径时的分支点，与普通文本生成中的低熵Token形成鲜明对比。</li>
+            <li><strong>高熵少数派驱动学习：</strong> 研究 <em>"Beyond the 80/20 Rule"</em> 指出，虽然 80% 的Token是低熵的，但剩下的 20% "高熵少数派"才是驱动推理任务中有效强化学习的关键因素。</li>
+        </ul>
+        <p>
+            <strong>冲突与发现：</strong> 虽然高熵是深度推理的标志，但本研究揭示了一个惊人的反转：对于推理模型而言，这些高熵Token与<strong>低梯度影响</strong>（负相关）相关联。这表明推理模型已经学会了即使在面对高不确定性时，也能保持"结构上的稳定性"。
+        </p>
+    </div>
+
+    <h2 class="lang-en">2. Methodology <i class="fas fa-cogs"></i></h2>
+    <h2 class="lang-zh">2. 方法论 <i class="fas fa-cogs"></i></h2>
+
+    <h3 class="lang-en">2.1 Computing Token Gradient Influence</h3>
+    <h3 class="lang-zh">2.1 计算 Token 梯度影响力</h3>
+
+    <div class="lang-en">
+        <p>For each generated token $t_i$, we compute the gradient influence by backpropagating from the target logit. Given an input sequence, the model produces logits for the next token. We select the logit corresponding to the actual generated token and perform backpropagation:</p>
+    </div>
+    <div class="lang-zh">
+        <p>对于每个生成的 token $t_i$，我们通过从目标 logit 进行反向传播来计算梯度影响力。给定输入序列，模型产生下一个 token 的 logits。我们选择与实际生成 token 对应的 logit 并执行反向传播：</p>
+    </div>
+
+    $$\text{logit}_{t_i} = f_\theta(x_{1:i-1})[t_i]$$
+    $$\nabla_\theta \text{logit}_{t_i} \rightarrow G_l \quad \text{for each layer } l$$
+
+    <div class="lang-en">
+        <p>The <strong>gradient influence</strong> for each layer is computed as the L1 norm of the gradient:</p>
+    </div>
+    <div class="lang-zh">
+        <p>每层的<strong>梯度影响力</strong>通过梯度的 L1 范数计算：</p>
+    </div>
+
+    $$I_l = \sum_{p \in \theta_l} |G_p|$$
+
+    <div class="lang-en">
+        <p>The <strong>mean influence</strong> across all layers represents the overall gradient strength for that token:</p>
+    </div>
+    <div class="lang-zh">
+        <p>所有层的<strong>平均影响力</strong>代表该 token 的整体梯度强度：</p>
+    </div>
+
+    $$\bar{I}_{t_i} = \frac{1}{L} \sum_{l=1}^{L} I_l$$
+
+    <h3 class="lang-en">2.2 Computing Token Entropy</h3>
+    <h3 class="lang-zh">2.2 计算 Token 熵</h3>
+
+    <div class="lang-en">
+        <p>For each position $i$ in the sequence, we compute the entropy of the model's predictive distribution over the vocabulary. Given the context $x_{1:i-1}$, the model outputs logits which are converted to probabilities via softmax:</p>
+    </div>
+    <div class="lang-zh">
+        <p>对于序列中的每个位置 $i$，我们计算模型在词汇表上预测分布的熵。给定上下文 $x_{1:i-1}$，模型输出 logits，通过 softmax 转换为概率：</p>
+    </div>
+
+    $$P(v | x_{1:i-1}) = \text{softmax}(f_\theta(x_{1:i-1}))$$
+
+    <div class="lang-en">
+        <p>The <strong>entropy</strong> (in bits) is then computed as:</p>
+    </div>
+    <div class="lang-zh">
+        <p>然后计算<strong>熵</strong>（以比特为单位）：</p>
+    </div>
+
+    $$H_i = -\sum_{v \in V} P(v | x_{1:i-1}) \cdot \log_2 P(v | x_{1:i-1})$$
+
+    <div class="lang-en">
+        <p>Higher entropy indicates greater uncertainty in the model's prediction, often associated with reasoning or decision points.</p>
+    </div>
+    <div class="lang-zh">
+        <p>更高的熵表示模型预测的不确定性更大，通常与推理或决策点相关。</p>
+    </div>
+
+    <h3 class="lang-en">2.3 Computing Gradient-Entropy Correlation</h3>
+    <h3 class="lang-zh">2.3 计算梯度-熵相关性</h3>
+
+    <div class="lang-en">
+        <p>After collecting gradient influences $\{\bar{I}_{t}\}$ and entropies $\{H_t\}$ for each unique token $t$, we compute two correlation metrics:</p>
+    </div>
+    <div class="lang-zh">
+        <p>在收集每个唯一 token $t$ 的梯度影响力 $\{\bar{I}_{t}\}$ 和熵 $\{H_t\}$ 后，我们计算两种相关性指标：</p>
+    </div>
+
+    <div class="lang-en">
+        <p><strong>Pearson Correlation</strong> measures linear relationship:</p>
+    </div>
+    <div class="lang-zh">
+        <p><strong>皮尔逊相关系数</strong>衡量线性关系：</p>
+    </div>
+
+    $$r = \frac{\sum_{t}(\bar{I}_t - \mu_I)(H_t - \mu_H)}{\sqrt{\sum_{t}(\bar{I}_t - \mu_I)^2} \cdot \sqrt{\sum_{t}(H_t - \mu_H)^2}}$$
+
+    <div class="lang-en">
+        <p><strong>Spearman Correlation</strong> measures monotonic relationship based on ranks:</p>
+    </div>
+    <div class="lang-zh">
+        <p><strong>斯皮尔曼相关系数</strong>基于秩次衡量单调关系：</p>
+    </div>
+
+    $$\rho = 1 - \frac{6 \sum_{t} d_t^2}{n(n^2 - 1)}$$
+
+    <div class="lang-en">
+        <p>where $d_t = \text{rank}(\bar{I}_t) - \text{rank}(H_t)$ and $n$ is the number of unique tokens. A <strong>negative correlation</strong> ($\rho < 0$) indicates that high-entropy tokens have low gradient influence—the signature of reasoning models.</p>
+    </div>
+    <div class="lang-zh">
+        <p>其中 $d_t = \text{rank}(\bar{I}_t) - \text{rank}(H_t)$，$n$ 是唯一 token 的数量。<strong>负相关</strong>（$\rho < 0$）表示高熵 token 具有低梯度影响力——这是推理模型的特征标志。</p>
+    </div>
+
+    <h3 class="lang-en">2.4 Training Pipeline: SFT and GRPO</h3>
+    <h3 class="lang-zh">2.4 训练流程：SFT 与 GRPO</h3>
+
+    <div class="lang-en">
+        <p>To study how reasoning capabilities emerge during training, we use the R1 pipeline consisting of two stages: <strong>Supervised Fine-Tuning (SFT)</strong> followed by <strong>Group Relative Policy Optimization (GRPO)</strong>.</p>
+    </div>
+    <div class="lang-zh">
+        <p>为了研究推理能力在训练过程中如何产生，我们使用 R1 Pipeline，包含两个阶段：<strong>监督微调 (SFT)</strong> 和随后的 <strong>组相对策略优化 (GRPO)</strong>。</p>
+    </div>
+
+    <h4 class="lang-en">2.4.1 Supervised Fine-Tuning (SFT)</h4>
+    <h4 class="lang-zh">2.4.1 监督微调 (SFT)</h4>
+
+    <div class="lang-en">
+        <p>SFT trains the model to imitate high-quality reasoning trajectories. Given a dataset $\mathcal{D} = \{(x_i, y_i)\}$ of prompt-response pairs, the model minimizes the negative log-likelihood:</p>
+    </div>
+    <div class="lang-zh">
+        <p>SFT 训练模型模仿高质量的推理轨迹。给定提示-响应对数据集 $\mathcal{D} = \{(x_i, y_i)\}$，模型最小化负对数似然：</p>
+    </div>
+
+    $$\mathcal{L}_{\text{SFT}}(\theta) = -\mathbb{E}_{(x,y) \sim \mathcal{D}} \left[ \sum_{t=1}^{|y|} \log \pi_\theta(y_t \mid x, y_{&lt;t}) \right]$$
+
+    <div class="lang-en">
+        <p>We use <code>open-r1/Mixture-of-Thoughts</code> dataset for SFT training (8000 steps), saving checkpoints at regular intervals to track the evolution of gradient-entropy correlation.</p>
+    </div>
+    <div class="lang-zh">
+        <p>我们使用 <code>open-r1/Mixture-of-Thoughts</code> 数据集进行 SFT 训练（8000 步），定期保存检查点以追踪梯度-熵相关性的演化。</p>
+    </div>
+
+    <h4 class="lang-en">2.4.2 Group Relative Policy Optimization (GRPO)</h4>
+    <h4 class="lang-zh">2.4.2 组相对策略优化 (GRPO)</h4>
+
+    <div class="lang-en">
+        <p>GRPO is a reinforcement learning algorithm that eliminates the need for a separate critic model by using group-based advantage estimation. The algorithm proceeds as follows:</p>
+        <ol>
+            <li><strong>Group Sampling:</strong> For each prompt $q$, sample $G$ outputs $\{o_1, o_2, \ldots, o_G\}$ from the current policy $\pi_{\theta_{\text{old}}}$.</li>
+            <li><strong>Reward Computation:</strong> Evaluate each output using reward functions (accuracy, format).</li>
+            <li><strong>Advantage Estimation:</strong> Compute normalized advantages using group statistics.</li>
+            <li><strong>Policy Update:</strong> Update parameters using the clipped surrogate objective.</li>
+        </ol>
+    </div>
+    <div class="lang-zh">
+        <p>GRPO 是一种强化学习算法，通过使用基于组的优势估计来消除对单独 critic 模型的需求。算法流程如下：</p>
+        <ol>
+            <li><strong>组采样：</strong> 对于每个提示 $q$，从当前策略 $\pi_{\theta_{\text{old}}}$ 采样 $G$ 个输出 $\{o_1, o_2, \ldots, o_G\}$。</li>
+            <li><strong>奖励计算：</strong> 使用奖励函数（准确性、格式）评估每个输出。</li>
+            <li><strong>优势估计：</strong> 使用组统计量计算归一化优势。</li>
+            <li><strong>策略更新：</strong> 使用裁剪代理目标更新参数。</li>
+        </ol>
+    </div>
+
+    <div class="lang-en">
+        <p><strong>Advantage Estimation:</strong> Instead of using a value network, GRPO estimates the advantage by normalizing rewards within each group:</p>
+    </div>
+    <div class="lang-zh">
+        <p><strong>优势估计：</strong> GRPO 不使用价值网络，而是通过在每个组内归一化奖励来估计优势：</p>
+    </div>
+
+    $$\hat{A}_{i,t} = \frac{r_i - \text{mean}(\mathbf{r})}{\text{std}(\mathbf{r})}$$
+
+    <div class="lang-en">
+        <p><strong>GRPO Objective:</strong> The policy is optimized by maximizing the clipped surrogate objective with a KL divergence penalty. Let $\rho_{i,t}$ denote the probability ratio:</p>
+    </div>
+    <div class="lang-zh">
+        <p><strong>GRPO 目标函数：</strong> 通过最大化带有 KL 散度惩罚的裁剪代理目标来优化策略。令 $\rho_{i,t}$ 表示概率比：</p>
+    </div>
+
+    $$\rho_{i,t} = \frac{\pi_\theta(o_{i,t} \mid q, o_{i,&lt;t})}{\pi_{\theta_{\text{old}}}(o_{i,t} \mid q, o_{i,&lt;t})}$$
+
+    <div class="lang-en">
+        <p>The clipped surrogate loss for each token is:</p>
+    </div>
+    <div class="lang-zh">
+        <p>每个 token 的裁剪代理损失为：</p>
+    </div>
+
+    $$L_{i,t} = \min\left( \rho_{i,t} \cdot \hat{A}_{i,t}, \; \text{clip}(\rho_{i,t}, 1-\epsilon, 1+\epsilon) \cdot \hat{A}_{i,t} \right)$$
+
+    <div class="lang-en">
+        <p>The complete GRPO objective is:</p>
+    </div>
+    <div class="lang-zh">
+        <p>完整的 GRPO 目标函数为：</p>
+    </div>
+
+    $$\mathcal{L}_{\text{GRPO}}(\theta) = -\frac{1}{G} \sum_{i=1}^{G} \frac{1}{|o_i|} \sum_{t=1}^{|o_i|} \left[ L_{i,t} - \beta \, D_{\text{KL}}(\pi_\theta \| \pi_{\text{ref}}) \right]$$
+
+    <div class="lang-en">
+        <p>where $\epsilon$ is the clipping parameter and $\beta$ controls the KL penalty strength.</p>
+    </div>
+    <div class="lang-zh">
+        <p>其中 $\epsilon$ 是裁剪参数，$\beta$ 控制 KL 惩罚强度。</p>
+    </div>
+
+    <h4 class="lang-en">2.4.3 Reward Functions</h4>
+    <h4 class="lang-zh">2.4.3 奖励函数</h4>
+
+    <div class="lang-en">
+        <p>We use verifiable rewards combining multiple components:</p>
+        <ul>
+            <li><strong>Accuracy Reward:</strong> Checks if the model's final answer matches the ground truth using symbolic verification.</li>
+            <li><strong>Format Reward:</strong> Verifies that responses follow the expected structure (e.g., <code>&lt;think&gt;...&lt;/think&gt;&lt;answer&gt;...&lt;/answer&gt;</code>).</li>
+        </ul>
+    </div>
+    <div class="lang-zh">
+        <p>我们使用结合多个组件的可验证奖励：</p>
+        <ul>
+            <li><strong>准确性奖励：</strong> 使用符号验证检查模型的最终答案是否与标准答案匹配。</li>
+            <li><strong>格式奖励：</strong> 验证响应是否遵循预期结构（例如，<code>&lt;think&gt;...&lt;/think&gt;&lt;answer&gt;...&lt;/answer&gt;</code>）。</li>
+        </ul>
+    </div>
+
+    $$r_i = \alpha \cdot r_{\text{accuracy}} + \beta \cdot r_{\text{format}}$$
+
+    <div class="lang-en">
+        <p>We use <code>open-r1/OpenThoughts-114k-math</code> dataset for GRPO training (8000 steps), enabling us to track how RL shapes the gradient-entropy relationship.</p>
+    </div>
+    <div class="lang-zh">
+        <p>我们使用 <code>open-r1/OpenThoughts-114k-math</code> 数据集进行 GRPO 训练（8000 步），使我们能够追踪 RL 如何塑造梯度-熵关系。</p>
+    </div>
+
+    <h2 class="lang-en">3. Core Hypothesis: The Gradient-Entropy Inversion <i class="fas fa-microscope"></i></h2>
+    <h2 class="lang-zh">3. 核心假设：熵与梯度的倒置 <i class="fas fa-microscope"></i></h2>
+    
+    <div class="lang-en">
+        <p>
+            The authors analyze the projection layers (Q, K, V, O) and calculate the gradient matrix $G$ after backpropagation. To quantify the "strength" of the gradient, they introduce the <strong>Nuclear Norm</strong> $s_{X,i}$:
+        </p>
+    </div>
+    <div class="lang-zh">
+        <p>
+            研究团队关注模型输出层的投影矩阵 (Q, K, V, O)，并在反向传播后计算每一层的梯度矩阵 $G$。为了量化梯度的"强度"，论文引入了<strong>核范数 (Nuclear Norm)</strong> $s_{X,i}$：
+        </p>
+    </div>
+    
+    $$s_{X,i} = ||G_{X,i}||_{*} = \sum_{j} |\sigma_{j}|$$
+
+    <div class="lang-en">
+        <p>By analyzing the relationship between this gradient strength and token <strong>Entropy</strong>, the following patterns emerge:</p>
+        <ul>
+            <li><span class="minus-mark">&#8722;</span> <strong>Base/Safe Models:</strong> Exhibit a <strong>Positive Correlation</strong>. High entropy (uncertainty) triggers high gradient updates.</li>
+            <li><span class="check-mark">&#10004;</span> <strong>Reasoning Models:</strong> Exhibit a significant <strong>Negative Correlation</strong>. This "Inversion" is the signature of reasoning capabilities.</li>
+        </ul>
+    </div>
+    <div class="lang-zh">
+        <p>通过分析该梯度强度与模型生成 Token 时的<strong>熵 (Entropy)</strong>之间的关系，研究发现了以下规律：</p>
+        <ul>
+            <li><span class="minus-mark">&#8722;</span> <strong>Base/Safe Models：</strong> 呈现<strong>正相关</strong>。模型在不确定时（高熵），往往伴随着更大的梯度更新需求。</li>
+            <li><span class="check-mark">&#10004;</span> <strong>Reasoning Models：</strong> 呈现显著的<strong>负相关</strong>。这种"倒置"是推理能力的标志。</li>
+        </ul>
+    </div>
+
+    <h2 class="lang-en">4. The "Reasoning Fingerprint": Llama vs. Qwen <i class="fas fa-chart-bar"></i></h2>
+    <h2 class="lang-zh">4. 推理能力的"指纹"：Llama 与 Qwen 的对比实验 <i class="fas fa-chart-bar"></i></h2>
+
+    <div class="lang-en">
+        <p>Before presenting our experimental results, we first introduce the complete DeepSeek-R1 training pipeline that we follow to train reasoning models and track the evolution of gradient-entropy correlation.</p>
+    </div>
+    <div class="lang-zh">
+        <p>在展示实验结果之前，我们首先介绍我们遵循的完整 DeepSeek-R1 训练流程，用于训练推理模型并追踪梯度-熵相关性的演化。</p>
+    </div>
+
+    <figure>
+        <div class="pipeline-container" style="flex-direction: column; gap: 20px;">
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px;">
+                <div class="pipeline-box base">
+                    <span class="lang-en">Base Model</span>
+                    <span class="lang-zh">基座模型</span>
+                    <span class="pipeline-label">Llama/Qwen</span>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-box sft">
+                    <span class="lang-en">Cold Start SFT</span>
+                    <span class="lang-zh">冷启动 SFT</span>
+                    <span class="pipeline-label">Long CoT Data</span>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-box rl">
+                    <span class="lang-en">RL Stage 1</span>
+                    <span class="lang-zh">RL 阶段 1</span>
+                    <span class="pipeline-label">GRPO + Rule Reward</span>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-box sft">
+                    <span class="lang-en">Rejection Sampling</span>
+                    <span class="lang-zh">拒绝采样</span>
+                    <span class="pipeline-label">Filter + Refine</span>
+                </div>
+                <span class="pipeline-arrow">→</span>
+                <div class="pipeline-box rl">
+                    <span class="lang-en">RL Stage 2</span>
+                    <span class="lang-zh">RL 阶段 2</span>
+                    <span class="pipeline-label">Diverse Prompts</span>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; font-size: 0.85em; color: #64748b;">
+                <div><i class="fas fa-database"></i> <span class="lang-en">SFT Data: open-r1/Mixture-of-Thoughts</span><span class="lang-zh">SFT 数据: open-r1/Mixture-of-Thoughts</span></div>
+                <div><i class="fas fa-cogs"></i> <span class="lang-en">RL Data: open-r1/OpenThoughts-114k-math</span><span class="lang-zh">RL 数据: open-r1/OpenThoughts-114k-math</span></div>
+            </div>
+        </div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Pipeline Overview:</strong> The complete DeepSeek-R1 training pipeline. Starting from a base model, the pipeline alternates between SFT and RL stages. Our experiments track checkpoints at each stage to measure the gradient-entropy correlation evolution.</span>
+            <span class="lang-zh"><strong>流程概览：</strong> 完整的 DeepSeek-R1 训练流程。从基座模型开始，流程在 SFT 和 RL 阶段之间交替进行。我们的实验在每个阶段追踪检查点，以测量梯度-熵相关性的演化。</span>
+        </figcaption>
+    </figure>
+
+    <div class="lang-en">
+        <p>Tests across different datasets (Base, Safety, Reasoning samples) confirm that <strong>whenever a model possesses reasoning capabilities, the Logit Gradient negatively correlates with Entropy.</strong></p>
+        <div class="highlight-box">
+            <i class="fas fa-info-circle"></i> <strong>Key Data:</strong> 
+            For the Llama Reasoning model, the Spearman correlation reaches <strong>-0.649</strong>, whereas the Base model is merely <strong>0.036</strong>.
+        </div>
+    </div>
+    <div class="lang-zh">
+        <p>研究表明，<strong>无论在什么领域的数据上，只要模型具备 Reasoning 能力，其 Logit Gradient 与 Entropy 之间总是呈负相关</strong>。</p>
+        <div class="highlight-box">
+            <i class="fas fa-info-circle"></i> <strong>关键数据：</strong> 
+            对于 Llama Reasoning 模型，在推理样本上的 Spearman 相关系数高达 <strong>-0.649</strong>，而 Base 模型仅为 <strong>0.036</strong>。
+        </div>
+    </div>
+
+    <figure>
+        <div id="chart1" class="chart-container"></div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Figure 1:</strong> Spearman correlation between logit gradient nuclear norm and token entropy across different model types. Reasoning models exhibit strong negative correlation (-0.649), while Base and Safe models show weak or positive correlation.</span>
+            <span class="lang-zh"><strong>图 1：</strong> 不同模型类型的 logit 梯度核范数与 token 熵之间的 Spearman 相关系数。推理模型呈现强负相关（-0.649），而基座模型和安全模型呈现弱相关或正相关。</span>
+        </figcaption>
+    </figure>
+
+    <h2 class="lang-en">5. SFT Dynamics: The 200-Step Phase Transition <i class="fas fa-rocket"></i></h2>
+    <h2 class="lang-zh">5. SFT 训练动力学：200 步的相变 <i class="fas fa-rocket"></i></h2>
+
+    <figure>
+        <div class="pipeline-container">
+            <div class="pipeline-box base">
+                <span class="lang-en">Base Model</span>
+                <span class="lang-zh">基座模型</span>
+                <span class="pipeline-label">Llama/Qwen</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box sft">
+                <span class="lang-en">SFT Training</span>
+                <span class="lang-zh">SFT 训练</span>
+                <span class="pipeline-label">8000 steps</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box checkpoint">
+                <span class="lang-en">Checkpoints</span>
+                <span class="lang-zh">检查点</span>
+                <span class="pipeline-label">200, 400, ..., 2000</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box metric">
+                <span class="lang-en">Measure ρ(G, H)</span>
+                <span class="lang-zh">计算 ρ(G, H)</span>
+                <span class="pipeline-label">Gradient-Entropy</span>
+            </div>
+        </div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Pipeline 5.1:</strong> SFT experiment pipeline. We train base models with supervised fine-tuning on <code>open-r1/Mixture-of-Thoughts</code> and save checkpoints every 200 steps to track correlation changes.</span>
+            <span class="lang-zh"><strong>流程 5.1：</strong> SFT 实验流程。我们使用 <code>open-r1/Mixture-of-Thoughts</code> 对基座模型进行监督微调，每 200 步保存检查点以追踪相关性变化。</span>
+        </figcaption>
+    </figure>
+
+    <div class="lang-en">
+        <p>Using the <code>open-r1/Mixture-of-Thoughts</code> dataset, researchers tracked the correlation every 200 steps for 8000 steps total.</p>
+        <p><strong>Discovery:</strong> The "Phase Transition" happens incredibly fast. Within the first 200 steps of SFT, the Llama model's correlation drops from <strong>0.036</strong> to <strong>-0.468</strong>. This suggests the structural pattern of reasoning is learned early.</p>
+    </div>
+    <div class="lang-zh">
+        <p>为了探究这种推理能力是何时形成的，研究者使用 <code>open-r1/Mixture-of-Thoughts</code> 数据集进行了 8000 步的 SFT 训练。</p>
+        <p><strong>惊人的发现：</strong> 推理能力的"相变"发生得极快。在 SFT 的前 200 步，Llama 模型的相关系数从 Base 的 <strong>0.036</strong> 骤降至 <strong>-0.468</strong>。这表明模型在极早期就习得了推理的结构化模式。</p>
+    </div>
+
+    <figure>
+        <div id="chart2" class="chart-container"></div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Figure 2:</strong> Evolution of Spearman correlation during SFT training (first 2000 steps). The correlation drops sharply within the first 200 steps, indicating rapid acquisition of reasoning structure.</span>
+            <span class="lang-zh"><strong>图 2：</strong> SFT 训练过程中 Spearman 相关系数的演化（前 2000 步）。相关系数在前 200 步内急剧下降，表明模型快速习得了推理结构。</span>
+        </figcaption>
+    </figure>
+
+    <h2 class="lang-en">6. RL (Cold Start) Dynamics: Oscillation & Convergence <i class="fas fa-wave-square"></i></h2>
+    <h2 class="lang-zh">6. RL (Cold Start) 动力学：震荡与收敛 <i class="fas fa-wave-square"></i></h2>
+
+    <figure>
+        <div class="pipeline-container">
+            <div class="pipeline-box base">
+                <span class="lang-en">Base Model</span>
+                <span class="lang-zh">基座模型</span>
+                <span class="pipeline-label">Llama/Qwen</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box rl">
+                <span class="lang-en">RL-Zero (GRPO)</span>
+                <span class="lang-zh">RL-Zero (GRPO)</span>
+                <span class="pipeline-label">No SFT warmup</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box checkpoint">
+                <span class="lang-en">Checkpoints</span>
+                <span class="lang-zh">检查点</span>
+                <span class="pipeline-label">100, 200, ..., 1000</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box metric">
+                <span class="lang-en">Measure ρ(G, H)</span>
+                <span class="lang-zh">计算 ρ(G, H)</span>
+                <span class="pipeline-label">Gradient-Entropy</span>
+            </div>
+        </div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Pipeline 6.1:</strong> RL-Zero (Cold Start) experiment pipeline. Following DeepSeek-R1-Zero, we apply GRPO directly to base models without SFT warmup, using <code>open-r1/OpenThoughts-114k-math</code> with accuracy and format rewards.</span>
+            <span class="lang-zh"><strong>流程 6.1：</strong> RL-Zero（冷启动）实验流程。遵循 DeepSeek-R1-Zero，我们直接对基座模型应用 GRPO，无需 SFT 预热，使用 <code>open-r1/OpenThoughts-114k-math</code> 数据集，采用准确性和格式奖励。</span>
+        </figcaption>
+    </figure>
+
+    <div class="lang-en">
+        <p>Pure Reinforcement Learning (RL-Zero) with <code>open-r1/OpenThoughts-114k-math</code> for 8000 steps shows a different trajectory:</p>
+        <ul>
+            <li><strong>Early Oscillation:</strong> In the first 300 steps, models show instability. Llama's correlation rises to -0.318 at step 300 before dropping again.</li>
+            <li><strong>Convergence:</strong> Despite early volatility, RL eventually converges to the same strong negative correlation (Llama RL-8000 reaches <strong>-0.649</strong>).</li>
+        </ul>
+    </div>
+    <div class="lang-zh">
+        <p>使用 <code>open-r1/OpenThoughts-114k-math</code> 数据集进行 8000 步的纯强化学习（RL-Zero）表现出了不同的动力学特征：</p>
+        <ul>
+            <li><strong>初期震荡：</strong> 在前 300 步，模型表现出不稳定性。Llama 在 RL-300 时相关系数有所回升（-0.318），随后才再次下降。</li>
+            <li><strong>最终收敛：</strong> 尽管初期不稳定，RL 最终也收敛到了强负相关状态（Llama RL-8000 达到 <strong>-0.649</strong>）。</li>
+        </ul>
+    </div>
+
+    <figure>
+        <div id="chart3" class="chart-container"></div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Figure 3:</strong> Evolution of Spearman correlation during RL-Zero training (first 1000 steps). Both models show early oscillation before stabilizing, with Llama exhibiting notable fluctuation around step 300.</span>
+            <span class="lang-zh"><strong>图 3：</strong> RL-Zero 训练过程中 Spearman 相关系数的演化（前 1000 步）。两个模型在稳定前都表现出早期震荡，Llama 在第 300 步附近波动明显。</span>
+        </figcaption>
+    </figure>
+
+    <h2 class="lang-en">7. Full Training Trajectory: SFT + RL (8000 Steps Each) <i class="fas fa-chart-line"></i></h2>
+    <h2 class="lang-zh">7. 完整训练轨迹：SFT + RL 各 8000 步 <i class="fas fa-chart-line"></i></h2>
+
+    <figure>
+        <div class="pipeline-container">
+            <div class="pipeline-box base">
+                <span class="lang-en">Base Model</span>
+                <span class="lang-zh">基座模型</span>
+                <span class="pipeline-label">Llama/Qwen</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box sft">
+                <span class="lang-en">SFT Stage</span>
+                <span class="lang-zh">SFT 阶段</span>
+                <span class="pipeline-label">0 → 8000 steps</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box rl">
+                <span class="lang-en">RL Stage (GRPO)</span>
+                <span class="lang-zh">RL 阶段 (GRPO)</span>
+                <span class="pipeline-label">8000 → 16000 steps</span>
+            </div>
+            <span class="pipeline-arrow">→</span>
+            <div class="pipeline-box metric">
+                <span class="lang-en">Final: ρ = -0.649</span>
+                <span class="lang-zh">最终: ρ = -0.649</span>
+                <span class="pipeline-label">Strong negative</span>
+            </div>
+        </div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Pipeline 7.1:</strong> Complete R1 training pipeline combining SFT and RL stages. This follows the DeepSeek-R1 methodology: first SFT on reasoning data, then RL with GRPO to further enhance reasoning capabilities.</span>
+            <span class="lang-zh"><strong>流程 7.1：</strong> 结合 SFT 和 RL 阶段的完整 R1 训练流程。遵循 DeepSeek-R1 方法论：首先在推理数据上进行 SFT，然后使用 GRPO 进行 RL 以进一步增强推理能力。</span>
+        </figcaption>
+    </figure>
+
+    <div class="lang-en">
+        <p>The full R1 pipeline consists of SFT (8000 steps) followed by RL (8000 steps). Key observations:</p>
+        <ul>
+            <li><strong>SFT Phase:</strong> Llama reaches <strong>-0.606</strong> at checkpoint-8000, Qwen reaches <strong>-0.494</strong>.</li>
+            <li><strong>RL Phase:</strong> Both models continue to strengthen, reaching <strong>-0.649</strong> at RL-8000.</li>
+        </ul>
+    </div>
+    <div class="lang-zh">
+        <p>完整的 R1 Pipeline 包含 SFT（8000步）和随后的 RL（8000步）。关键观察：</p>
+        <ul>
+            <li><strong>SFT 阶段：</strong> Llama 在 checkpoint-8000 达到 <strong>-0.606</strong>，Qwen 达到 <strong>-0.494</strong>。</li>
+            <li><strong>RL 阶段：</strong> 两个模型继续增强，在 RL-8000 均达到 <strong>-0.649</strong>。</li>
+        </ul>
+    </div>
+
+    <figure>
+        <div id="chart4" class="chart-container"></div>
+        <figcaption style="text-align: center; font-size: 0.9em; color: #555; margin-top: 10px;">
+            <span class="lang-en"><strong>Figure 4:</strong> Complete training trajectory of the R1 pipeline: SFT (steps 0-8000) followed by RL (steps 8000-16000). Both Llama and Qwen converge to strong negative correlation (-0.649) by the end of training.</span>
+            <span class="lang-zh"><strong>图 4：</strong> R1 Pipeline 完整训练轨迹：SFT（0-8000 步）后接 RL（8000-16000 步）。Llama 和 Qwen 在训练结束时均收敛至强负相关（-0.649）。</span>
+        </figcaption>
+    </figure>
+
+    <hr>
+
+    <h2 class="lang-en">Acknowledgments <i class="fas fa-heart"></i></h2>
+    <h2 class="lang-zh">致谢 <i class="fas fa-heart"></i></h2>
+
+    <div style="font-size: 0.95em; line-height: 1.6;">
+        <p class="lang-en">This work was completed by Junyao Yang during his internship at <strong>Shanghai Artificial Intelligence Laboratory</strong>. We would like to express our sincere gratitude to <strong>Dongrui Liu</strong> and <strong>Chen Qian</strong>, who served as Junyao Yang's mentors at SHAILAB, for their invaluable guidance, insightful discussions, and continuous support throughout this project.</p>
+        <p class="lang-zh">本工作由杨竣尧在<strong>上海人工智能实验室</strong>实习期间完成。我们衷心感谢<strong>刘东瑞</strong>和<strong>钱辰</strong>作为杨竣尧在上海人工智能实验室的导师，在整个项目过程中提供的宝贵指导、深入讨论和持续支持。</p>
+    </div>
+
+    <hr>
+
+    <h2 class="lang-en">References <i class="fas fa-book"></i></h2>
+    <h2 class="lang-zh">参考文献 <i class="fas fa-book"></i></h2>
+
+    <div style="font-size: 0.9em; line-height: 1.6;">
+        <p>[1] Chen Qian, Dongrui Liu, Haochen Wen, Zhen Bai, Yong Liu, Jing Shao. <em>"Demystifying Reasoning Dynamics with Mutual Information: Thinking Tokens are Information Peaks in LLM Reasoning."</em> arXiv preprint arXiv:2506.02867, 2025. <a href="https://arxiv.org/abs/2506.02867" target="_blank">https://arxiv.org/abs/2506.02867</a></p>
+        
+        <p>[2] Shenzhi Wang, Le Yu, Chang Gao, et al. <em>"Beyond the 80/20 Rule: High-Entropy Minority Tokens Drive Effective Reinforcement Learning for LLM Reasoning."</em> arXiv preprint arXiv:2506.01939, 2025. <a href="https://arxiv.org/abs/2506.01939" target="_blank">https://arxiv.org/abs/2506.01939</a></p>
+        
+        <p>[3] Ming Li, Yanhong Li, Tianyi Zhou. <em>"What Happened in LLMs Layers when Trained for Fast vs. Slow Thinking: A Gradient Perspective."</em> arXiv preprint arXiv:2410.23743, 2025. <a href="https://arxiv.org/abs/2410.23743" target="_blank">https://arxiv.org/abs/2410.23743</a></p>
+
+        <p>[4] Zhihong Shao, Peiyi Wang, Qihao Zhu, et al. <em>"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models."</em> arXiv preprint arXiv:2402.03300, 2024. <a href="https://arxiv.org/abs/2402.03300" target="_blank">https://arxiv.org/abs/2402.03300</a></p>
+
+        <p>[5] Daya Guo, Dejian Yang, Haowei Zhang, et al. <em>"DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning."</em> Nature, 645(8081), 633–638, 2025. <a href="https://doi.org/10.1038/s41586-025-09422-z" target="_blank">https://doi.org/10.1038/s41586-025-09422-z</a></p>
+    </div>
+
+    <hr>
+    <p style="text-align: center; color: #888;">
+        <span class="lang-en"><i class="fas fa-database"></i> Source: Explainable Reasoning Capability in a Token Logit Gradient Perspective</span>
+        <span class="lang-zh"><i class="fas fa-database"></i> 数据来源：Explainable Reasoning Capability in a Token Logit Gradient Perspective</span>
+    </p>
+
+    <script>
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            const body = document.body;
+            if (currentLang === 'en') {
+                body.classList.add('zh-mode');
+                currentLang = 'zh';
+            } else {
+                body.classList.remove('zh-mode');
+                currentLang = 'en';
+            }
+            updateCharts();
+        }
+
+        const colors = {
+            llama: '#2563eb',
+            qwen: '#dc2626',
+            llamaLight: 'rgba(37, 99, 235, 0.7)',
+            qwenLight: 'rgba(220, 38, 38, 0.7)',
+            sft: '#059669',
+            rl: '#7c3aed',
+            base: '#64748b'
+        };
+
+        const chart1Data = {
+            llama: [-0.649, 0.036, 0.005],
+            qwen: [-0.649, -0.171, 0.148]
+        };
+
+        const sftDataFull = {
+            steps: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 4000, 6000, 8000],
+            llama: [0.036, -0.468, -0.497, -0.483, -0.500, -0.499, -0.533, -0.509, -0.502, -0.502, -0.511, -0.571, -0.584, -0.606],
+            qwen: [-0.171, -0.308, -0.334, -0.344, -0.370, -0.357, -0.365, -0.380, -0.377, -0.377, -0.379, -0.501, -0.517, -0.494]
+        };
+
+        const rlData = {
+            steps: [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+            llama: [0.036, -0.362, -0.362, -0.318, -0.234, -0.320, -0.371, -0.332, -0.338, -0.280, -0.314],
+            qwen: [-0.171, -0.053, -0.067, -0.085, -0.163, -0.207, -0.280, -0.281, -0.243, -0.318, -0.301]
+        };
+
+        const rlDataFull = {
+            steps: [0, 2000, 4000, 6000, 8000],
+            llama: [0.036, -0.637, -0.637, -0.600, -0.649],
+            qwen: [-0.171, -0.475, -0.492, -0.523, -0.649]
+        };
+
+        function updateCharts() {
+            const isZh = currentLang === 'zh';
+            const font = 'Computer Modern Serif, serif';
+            const layoutBase = {
+                font: { family: font, size: 12 },
+                paper_bgcolor: 'white',
+                plot_bgcolor: 'white',
+                margin: { t: 100, b: 60, l: 70, r: 40 }
+            };
+
+            // Chart 1 - Bar Chart
+            const traceLlama = {
+                x: isZh ? ['推理模型', '基座模型', '安全模型'] : ['Reasoning', 'Base', 'Safe'],
+                y: chart1Data.llama,
+                name: 'Llama-3.1-8B',
+                type: 'bar',
+                marker: { color: colors.llama }
+            };
+            const traceQwen = {
+                x: isZh ? ['推理模型', '基座模型', '安全模型'] : ['Reasoning', 'Base', 'Safe'],
+                y: chart1Data.qwen,
+                name: 'Qwen',
+                type: 'bar',
+                marker: { color: colors.qwen }
+            };
+            Plotly.newPlot('chart1', [traceLlama, traceQwen], {
+                ...layoutBase,
+                title: { text: isZh ? '推理能力"指纹" (Spearman 相关系数)' : 'Reasoning "Fingerprint" (Spearman Correlation)', font: { size: 16 }, y: 0.98 },
+                barmode: 'group',
+                xaxis: { title: isZh ? '模型类型' : 'Model Type', gridcolor: '#f0f0f0' },
+                yaxis: { title: isZh ? 'Spearman 相关系数' : 'Spearman Correlation', gridcolor: '#f0f0f0', zeroline: true, zerolinecolor: '#ccc' },
+                legend: { orientation: 'h', y: 1.12, x: 0.5, xanchor: 'center' }
+            });
+
+            // Chart 2 - SFT First 2000 Steps
+            const sftData2k = {
+                steps: sftDataFull.steps.slice(0, 11),
+                llama: sftDataFull.llama.slice(0, 11),
+                qwen: sftDataFull.qwen.slice(0, 11)
+            };
+            Plotly.newPlot('chart2', [
+                { x: sftData2k.steps, y: sftData2k.llama, mode: 'lines+markers', name: 'Llama SFT', line: { color: colors.llama, width: 3 }, marker: { size: 8 } },
+                { x: sftData2k.steps, y: sftData2k.qwen, mode: 'lines+markers', name: 'Qwen SFT', line: { color: colors.qwen, width: 3 }, marker: { size: 8 } }
+            ], {
+                ...layoutBase,
+                title: { text: isZh ? 'SFT 动力学：前 2000 步的相变' : 'SFT Dynamics: Phase Transition (First 2000 Steps)', font: { size: 16 }, y: 0.98 },
+                xaxis: { title: isZh ? '训练步数' : 'Training Steps', gridcolor: '#f0f0f0' },
+                yaxis: { title: isZh ? 'Spearman 相关系数' : 'Spearman Correlation', gridcolor: '#f0f0f0', zeroline: true, zerolinecolor: '#ccc' },
+                legend: { orientation: 'h', y: 1.12, x: 0.5, xanchor: 'center' },
+                shapes: [{
+                    type: 'rect', xref: 'x', yref: 'paper',
+                    x0: 0, y0: 0, x1: 250, y1: 1,
+                    fillcolor: colors.llama, opacity: 0.08, line: { width: 0 }
+                }],
+                annotations: [{
+                    x: 200, y: -0.468, text: isZh ? '急剧下降' : 'Sharp Drop',
+                    showarrow: true, arrowhead: 2, ax: 40, ay: -30,
+                    font: { color: colors.llama }
+                }]
+            });
+
+            // Chart 3 - RL First 1000 Steps
+            Plotly.newPlot('chart3', [
+                { x: rlData.steps, y: rlData.llama, mode: 'lines+markers', name: 'Llama RL-Zero', line: { color: colors.llama, width: 3 }, marker: { size: 8 } },
+                { x: rlData.steps, y: rlData.qwen, mode: 'lines+markers', name: 'Qwen RL-Zero', line: { color: colors.qwen, width: 3 }, marker: { size: 8 } }
+            ], {
+                ...layoutBase,
+                title: { text: isZh ? 'RL (Cold Start) 动力学：早期震荡' : 'RL (Cold Start) Dynamics: Early Oscillation', font: { size: 16 }, y: 0.98 },
+                xaxis: { title: isZh ? '训练步数' : 'Training Steps', gridcolor: '#f0f0f0' },
+                yaxis: { title: isZh ? 'Spearman 相关系数' : 'Spearman Correlation', gridcolor: '#f0f0f0', zeroline: true, zerolinecolor: '#ccc' },
+                legend: { orientation: 'h', y: 1.12, x: 0.5, xanchor: 'center' },
+                annotations: [{
+                    x: 300, y: -0.318, text: isZh ? 'Llama 震荡' : 'Llama Oscillation',
+                    showarrow: true, arrowhead: 2, ax: 0, ay: -35,
+                    font: { color: colors.llama }
+                }]
+            });
+
+            // Chart 4 - Full SFT + RL Trajectory
+            const fullSteps = [0, 2000, 4000, 6000, 8000, 10000, 12000, 14000, 16000];
+            const llamaFull = [0.036, -0.511, -0.571, -0.584, -0.606, -0.637, -0.637, -0.600, -0.649];
+            const qwenFull = [-0.171, -0.379, -0.501, -0.517, -0.494, -0.475, -0.492, -0.523, -0.649];
+
+            Plotly.newPlot('chart4', [
+                { x: fullSteps, y: llamaFull, mode: 'lines+markers', name: 'Llama', line: { color: colors.llama, width: 3 }, marker: { size: 8 } },
+                { x: fullSteps, y: qwenFull, mode: 'lines+markers', name: 'Qwen', line: { color: colors.qwen, width: 3 }, marker: { size: 8 } }
+            ], {
+                ...layoutBase,
+                title: { text: isZh ? '完整训练轨迹：SFT (0-8000) + RL (8000-16000)' : 'Full Training: SFT (0-8000) + RL (8000-16000)', font: { size: 16 }, y: 0.98 },
+                xaxis: { title: isZh ? '训练步数' : 'Training Steps', gridcolor: '#f0f0f0' },
+                yaxis: { title: isZh ? 'Spearman 相关系数' : 'Spearman Correlation', gridcolor: '#f0f0f0', zeroline: true, zerolinecolor: '#ccc' },
+                legend: { orientation: 'h', y: 1.12, x: 0.5, xanchor: 'center' },
+                shapes: [{
+                    type: 'line', xref: 'x', yref: 'paper',
+                    x0: 8000, y0: 0, x1: 8000, y1: 1,
+                    line: { color: '#94a3b8', width: 2, dash: 'dash' }
+                }],
+                annotations: [{
+                    x: 8000, y: 0.05, xref: 'x', yref: 'paper',
+                    text: isZh ? 'SFT → RL' : 'SFT → RL',
+                    showarrow: false, font: { color: '#64748b', size: 12 }
+                }]
+            });
+        }
+
+        updateCharts();
+    </script>
+</body>
+</html>
