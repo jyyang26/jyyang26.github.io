@@ -932,7 +932,7 @@ redirect_from:
 
         <a href="#techreport" class="nav-link"><span>📁</span> Tech Reports & Projects</a>
 
-        <a href="#blogs" class="nav-link"><span>📖</span> Blogs</a>
+        <a href="#blogs" class="nav-link"><span>✍️</span> Blogs</a>
 
         <a href="#education" class="nav-link"><span>🎓</span> Education</a>
 
@@ -1375,7 +1375,7 @@ redirect_from:
 
             <div class="box-header">
 
-                <span style="font-size: 24px;">📖</span>
+                <span style="font-size: 24px;">✍️</span>
 
                 <h2 class="box-title">Blogs</h2>
 
