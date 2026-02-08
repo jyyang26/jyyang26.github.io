@@ -161,12 +161,12 @@
         <span class="lang-zh">English</span>
     </button>
 
-    <h1 class="lang-en">The Entropy-Gradient Inversion: A New Perspective on Explainable LLM Reasoning Capabilities</h1>
-    <h1 class="lang-zh">熵-梯度倒置：LLM推理能力的可解释性新视角</h1>
+    <h1 class="lang-en">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</h1>
+    <h1 class="lang-zh">熵-梯度倒置：LLM推理能力的新视角</h1>
 
     <div class="metadata">
-        <span class="lang-en">Junyao Yang <br> <em>Ongoing project</em> <br> <strong>Date:</strong> February 7, 2026</span>
-        <span class="lang-zh">杨竣尧 <br> <em>项目仍在进行中</em> <br> <strong>日期：</strong> 2026年2月7日</span>
+        <span class="lang-en"><strong>Author:</strong> Junyao Yang <br> <em>This is an ongoing project</em> <br> <strong>Date:</strong> February 2026</span>
+        <span class="lang-zh"><strong>作者：</strong> 杨竣尧 <br> <em>本项目仍在进行中</em> <br> <strong>日期：</strong> 2026年2月</span>
     </div>
 
     <div class="abstract">
@@ -706,8 +706,8 @@
     <h2 class="lang-zh">致谢 <i class="fas fa-heart"></i></h2>
 
     <div style="font-size: 0.95em; line-height: 1.6;">
-        <p class="lang-en">This work was completed by Junyao Yang during his internship at <strong>Shanghai Artificial Intelligence Laboratory</strong>. We would like to express our sincere gratitude to <strong>Dongrui Liu</strong> and <strong>Chen Qian</strong>, who served as Junyao Yang's mentors, for their continuous support throughout this project.</p>
-        <p class="lang-zh">本工作由杨竣尧在<strong>上海人工智能实验室</strong>实习期间完成。衷心感谢<strong>刘东瑞</strong>和<strong>钱辰</strong>作为杨竣尧在上海人工智能实验室的导师，在整个项目过程中提供的宝贵指导。</p>
+        <p class="lang-en">This work was completed by Junyao Yang during his internship at <strong>Shanghai Artificial Intelligence Laboratory</strong>. We would like to express our sincere gratitude to <strong>Dongrui Liu</strong> and <strong>Chen Qian</strong>, who served as Junyao Yang's mentors at SHAILAB, for their invaluable guidance, insightful discussions, and continuous support throughout this project.</p>
+        <p class="lang-zh">本工作由杨竣尧在<strong>上海人工智能实验室</strong>实习期间完成。我们衷心感谢<strong>刘东瑞</strong>和<strong>钱辰</strong>作为杨竣尧在上海人工智能实验室的导师，在整个项目过程中提供的宝贵指导、深入讨论和持续支持。</p>
     </div>
 
     <hr>
@@ -887,6 +887,103 @@
         }
 
         updateCharts();
+    </script>
+
+    <hr style="margin-top: 40px;">
+    
+    <section style="margin-top: 30px; padding: 30px; background: #f8f9fa; border-radius: 12px;">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px; color: #1f2937;">
+            <span class="lang-en">💬 Comments</span>
+            <span class="lang-zh">💬 评论</span>
+        </h2>
+        
+        <div style="margin-bottom: 25px;">
+            <input type="text" id="commenter-name" placeholder="Your Name" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; margin-bottom: 10px; font-size: 14px; font-family: inherit; box-sizing: border-box;">
+            <textarea id="comment-text" placeholder="Leave a comment..." style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; min-height: 100px; font-size: 14px; font-family: inherit; resize: vertical; box-sizing: border-box;"></textarea>
+            <button id="post-btn" onclick="addComment()" style="margin-top: 10px; padding: 10px 20px; background: #2563eb; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;">Post Comment</button>
+        </div>
+        
+        <div id="comments-list"></div>
+    </section>
+
+    <script>
+        let blogComments = JSON.parse(localStorage.getItem('reasoning-token-comments') || '[]');
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function renderComments() {
+            const list = document.getElementById('comments-list');
+            const isZh = document.body.classList.contains('zh-mode');
+            
+            document.getElementById('commenter-name').placeholder = isZh ? '您的姓名' : 'Your Name';
+            document.getElementById('comment-text').placeholder = isZh ? '留下您的评论...' : 'Leave a comment...';
+            document.getElementById('post-btn').textContent = isZh ? '发表评论' : 'Post Comment';
+            
+            if (blogComments.length === 0) {
+                list.innerHTML = '<p style="color: #9ca3af; font-style: italic;">' + (isZh ? '暂无评论，成为第一个评论者！' : 'No comments yet. Be the first to comment!') + '</p>';
+                return;
+            }
+            
+            let html = '';
+            for (let i = 0; i < blogComments.length; i++) {
+                const c = blogComments[i];
+                let repliesHtml = '';
+                if (c.replies && c.replies.length > 0) {
+                    for (let j = 0; j < c.replies.length; j++) {
+                        const r = c.replies[j];
+                        repliesHtml += '<div style="margin-top: 15px; margin-left: 25px; padding: 15px; background: #f9fafb; border-radius: 8px; border-left: 3px solid #2563eb;">' +
+                            '<div style="display: flex; justify-content: space-between; margin-bottom: 8px;">' +
+                            '<strong style="font-size: 14px; color: #374151;">' + escapeHtml(r.name) + '</strong>' +
+                            '<span style="font-size: 11px; color: #9ca3af;">' + r.time + '</span></div>' +
+                            '<p style="margin: 0; font-size: 13px; color: #4b5563; line-height: 1.6;">' + escapeHtml(r.text) + '</p></div>';
+                    }
+                }
+            
+            }
+            list.innerHTML = html;
+        }
+        
+        function addComment() {
+            const name = document.getElementById('commenter-name').value.trim();
+            const text = document.getElementById('comment-text').value.trim();
+            const isZh = document.body.classList.contains('zh-mode');
+            if (!name) { alert(isZh ? '请输入您的姓名' : 'Please enter your name'); return; }
+            if (!text) { alert(isZh ? '请输入评论内容' : 'Please enter a comment'); return; }
+            blogComments.unshift({ name: name, text: text, time: new Date().toLocaleString(), likes: 0, replies: [] });
+            localStorage.setItem('reasoning-token-comments', JSON.stringify(blogComments));
+            document.getElementById('commenter-name').value = '';
+            document.getElementById('comment-text').value = '';
+            renderComments();
+        }
+        
+        function likeComment(i) {
+            blogComments[i].likes = (blogComments[i].likes || 0) + 1;
+            localStorage.setItem('reasoning-token-comments', JSON.stringify(blogComments));
+            renderComments();
+        }
+        
+        function toggleReply(i) {
+            const form = document.getElementById('reply-form-' + i);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function addReply(i) {
+            const name = document.getElementById('reply-name-' + i).value.trim();
+            const text = document.getElementById('reply-text-' + i).value.trim();
+            const isZh = document.body.classList.contains('zh-mode');
+            if (!name) { alert(isZh ? '请输入您的姓名' : 'Please enter your name'); return; }
+            if (!text) { alert(isZh ? '请输入回复内容' : 'Please enter a reply'); return; }
+            if (!blogComments[i].replies) blogComments[i].replies = [];
+            blogComments[i].replies.push({ name: name, text: text, time: new Date().toLocaleString() });
+            localStorage.setItem('reasoning-token-comments', JSON.stringify(blogComments));
+            renderComments();
+        }
+        
+        renderComments();
     </script>
 </body>
 </html>
