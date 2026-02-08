@@ -53,7 +53,9 @@
             top: 20px;
             right: 20px;
             z-index: 1000;
-            padding: 8px 16px;
+            width: 80px;
+            height: 32px;
+            padding: 0;
             background-color: var(--color-primary);
             color: #fff;
             border: none;
@@ -63,8 +65,35 @@
             font-size: 0.9em;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .lang-switch-btn:hover { background-color: #1d4ed8; }
+
+        .home-btn {
+            position: fixed;
+            top: 58px;
+            right: 20px;
+            z-index: 1000;
+            width: 80px;
+            height: 32px;
+            padding: 0;
+            background-color: #10b981;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Computer Modern Serif', serif;
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .home-btn:hover { background-color: #059669; text-decoration: none; }
 
         h1, h2, h3 { font-weight: bold; margin-top: 1.8em; margin-bottom: 0.8em; color: #111; }
         h1 { font-size: 2.4em; text-align: center; margin-bottom: 0.2em; line-height: 1.2; }
@@ -160,6 +189,10 @@
         <span class="lang-en">中文</span>
         <span class="lang-zh">English</span>
     </button>
+    <a href="https://jyyang26.github.io/" target="_blank" class="home-btn">
+        <span class="lang-en">home</span>
+        <span class="lang-zh">个人主页</span>
+    </a>
 
     <h1 class="lang-en">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</h1>
     <h1 class="lang-zh">熵-梯度倒置：LLM推理能力的新视角</h1>
