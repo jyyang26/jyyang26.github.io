@@ -224,6 +224,8 @@ redirect_from:
         list-style: none;
         padding: 0;
         margin: 0;
+        max-height: 320px;
+        overflow-y: auto;
     }
 
     .news-list li {
@@ -559,24 +561,6 @@ redirect_from:
                 <li><span class="news-tag">2025.08</span> <a href="https://arxiv.org/abs/2502.18517">RewardDS</a> accepted to <strong>EMNLP 2025 Main</strong>.</li>
 
                 <li><span class="news-tag">2025.08</span> Joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
-
-                <li><span class="news-tag">2025.08</span> New work: <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a>! Integrating long CoT capability into domain-specific LLMs.</li>
-
-                <li><span class="news-tag">2025.05</span> Passed undergraduate thesis defense.</li>
-
-                <li><span class="news-tag">2025.05</span> Co-First-Author paper <a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a> accepted to <strong>ACL 2025 Main</strong>.</li>
-
-                <li><span class="news-tag">2025.02</span> New papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>.</li>
-
-                <li><span class="news-tag">2024.07</span> Joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</li>
-
-                <li><span class="news-tag">2024.07</span> Completed internship at Tencent as a machine learning intern.</li>
-
-                <li><span class="news-tag">2024.07</span> <strong>Contextless CS</strong> reached <strong>20,000 DAU</strong>.</li>
-
-                <li><span class="news-tag">2024.04</span> Joined Tencent as a machine learning intern.</li>
-
-                <li><span class="news-tag">2024.03</span> Completed internship at ShenZhen Stock Exchange as a machine learning intern.</li>
 
             </ul>
 
