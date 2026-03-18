@@ -292,7 +292,8 @@ redirect_from:
     }
 
     .paper-venue {
-        font-size: 11px;
+        font-size: 15px;
+        font-family: var(--font-serif);
         color: var(--text-sub);
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -339,6 +340,10 @@ redirect_from:
     .paper-links a:hover {
         color: var(--accent);
         text-decoration: underline;
+    }
+    
+    a:active {
+        color: #87CEEB;
     }
 
     /* Education */
@@ -434,6 +439,10 @@ redirect_from:
         .paper-thumb {
             width: 100%;
             height: auto;
+        }
+        
+        .social-icons {
+            justify-content: center;
         }
     }
 
