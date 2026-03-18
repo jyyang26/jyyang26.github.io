@@ -429,8 +429,8 @@ redirect_from:
         }
         
         .paper-thumb {
-            width: 160px;
-            height: 160px;
+            width: 100%;
+            height: auto;
         }
     }
 
