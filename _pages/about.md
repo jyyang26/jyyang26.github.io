@@ -134,14 +134,15 @@ redirect_from:
 
     .avatar-area {
         flex-shrink: 0;
+        margin: 0;
+        padding: 0;
     }
 
     .avatar-img {
         width: 120px;
         height: 120px;
-        border-radius: 50%;
+        border-radius: 0;
         object-fit: cover;
-        border: 2px solid var(--border);
     }
 
     .name-title {
