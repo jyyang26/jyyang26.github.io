@@ -1047,10 +1047,8 @@ redirect_from:
                 <h2 class="box-title">Page Views</h2>
             </div>
 
-            <div class="map-widget-container">
-
-                  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=eff9f2&w=a&t=tt&d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc&co=98b1e0&cmo=535cff&ct=f7f7f7'></script>
-
+            <div class="map-widget-container" style="width: 33.33%; display: flex; justify-content: center;">
+                <script type='text/javascript' id='clstr_globe' src='//clustrmaps.com/globe.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc'></script>
             </div>
 
         </section>
