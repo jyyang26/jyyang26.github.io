@@ -267,8 +267,8 @@ redirect_from:
     }
 
     .paper-thumb {
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
         flex-shrink: 0;
         border: 1px solid var(--border);
         display: flex;
@@ -356,6 +356,8 @@ redirect_from:
         height: 40px;
         object-fit: contain;
         margin-bottom: 10px;
+        background: #ffffff;
+        padding: 4px;
     }
 
     .edu-deg {
@@ -394,7 +396,7 @@ redirect_from:
         object-fit: contain;
         border: 1px solid var(--border);
         padding: 2px;
-        background: var(--bg-card);
+        background: #ffffff;
     }
 
     /* Honors */
@@ -427,8 +429,8 @@ redirect_from:
         }
         
         .paper-thumb {
-            width: 80px;
-            height: 80px;
+            width: 160px;
+            height: 160px;
         }
     }
 
