@@ -21,16 +21,36 @@ redirect_from:
 <style>
 
     /* =========================================
-       Global Reset & Dark Theme
+       Font Definitions
        ========================================= */
     
     :root {
+        --font-serif: "Charter", "Bitstream Charter", "Sitka Text", "Cambria", "Georgia", serif;
+        --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --font-zh-serif: "SimSun", "STSong", "Songti SC", serif;
+        
         --bg-body: #0a0a0a;
         --bg-card: #141414;
         --text-main: #e5e5e5;
         --text-sub: #888888;
         --accent: #ffffff;
         --border: #2a2a2a;
+    }
+
+    /* Serif for body text */
+    body, p, div, li, .paper-auth, .paper-tldr, .affil-text, .role-text, .paper-info {
+        font-family: var(--font-serif);
+    }
+
+    /* Sans-serif for headers, nav, sidebar */
+    .custom-nav, .nav-link, .custom-sidebar, .name-title, .box-title, 
+    .paper-venue, .paper-title, .edu-deg, .edu-sch, .news-tag {
+        font-family: var(--font-sans) !important;
+    }
+
+    /* Chinese name uses serif */
+    .name-title span {
+        font-family: var(--font-zh-serif) !important;
     }
 
     * {
