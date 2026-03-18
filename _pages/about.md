@@ -294,7 +294,7 @@ redirect_from:
     .paper-venue {
         font-size: 15px;
         font-family: var(--font-serif);
-        color: var(--text-sub);
+        color: #87CEEB;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 4px;
