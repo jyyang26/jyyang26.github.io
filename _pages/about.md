@@ -1549,9 +1549,9 @@ redirect_from:
 
                 <li>Second-Class Award in CUMCM at Guangdong Province (2022.09)</li>
 
-                <li>Second-Prize of Olympic Mathematics Competition (2022.05)</li>
+                <li>Second-Prize of Olympic Mathematics Competition (2020.05)</li>
 
-                <li>Second-Prize of Olympic Physics Competition (2022.02)</li>
+                <li>Second-Prize of Olympic Physics Competition (2020.02)</li>
             </ul>
 
         </section>
