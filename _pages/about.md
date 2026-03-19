@@ -142,7 +142,7 @@ redirect_from:
         width: 120px;
         height: 120px;
         border-radius: 0;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .name-title {
@@ -620,7 +620,7 @@ redirect_from:
 
                     <div class="paper-auth">
 
-                        <strong>Junyao Yang</strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup>
+                        <strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup>
 
                     </div>
 
@@ -662,7 +662,7 @@ redirect_from:
 
                     <div class="paper-auth">
 
-                        Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong>Junyao Yang</strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu
+                        Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu
 
                     </div>
 
@@ -704,7 +704,7 @@ redirect_from:
 
                     <div class="paper-auth">
 
-                        <strong>Junyao Yang</strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup>
+                        <strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup>
 
                     </div>
 
@@ -784,7 +784,7 @@ redirect_from:
 
                     <div class="paper-auth">
 
-                         Jianwei Wang, Chengming Shi, <strong>Junyao Yang</strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup>
+                         Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup>
 
                     </div>
 
