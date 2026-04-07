@@ -490,6 +490,8 @@ redirect_from:
         background: var(--bg-card);
     }
 
+</style>
+
 <script>
     // Theme toggle functionality
     (function() {
