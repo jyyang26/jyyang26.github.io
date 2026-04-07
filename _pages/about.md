@@ -482,36 +482,6 @@ redirect_from:
 
 </style>
 
-<script>
-    // Theme toggle functionality
-    (function() {
-        const toggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeIcon.textContent = '🌙';
-        }
-        
-        toggleBtn.addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'dark');
-                themeIcon.textContent = '☀️';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                themeIcon.textContent = '🌙';
-            }
-        });
-    })();
-</script>
-
-
-
 <nav class="custom-nav">
 
     <div class="nav-container">
@@ -532,7 +502,7 @@ redirect_from:
 
         <a href="#honors" class="nav-link">Honors</a>
 
-        <button id="theme-toggle" class="nav-link" style="border: none; background: none; cursor: pointer; padding: 0;" title="Toggle Theme">
+        <button id="theme-toggle" style="border: none; background: none; cursor: pointer; padding: 0; font-size: 14px; color: var(--text-sub);" title="Toggle Theme">
             <span id="theme-icon">☀️</span>
         </button>
 
@@ -1143,3 +1113,31 @@ redirect_from:
     </main>
 
 </div>
+
+<script>
+    // Theme toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.textContent = '🌙';
+        }
+        
+        toggleBtn.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.textContent = '☀️';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.textContent = '🌙';
+            }
+        });
+    });
+</script>
