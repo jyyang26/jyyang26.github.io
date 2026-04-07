@@ -502,9 +502,6 @@ redirect_from:
 
         <a href="#honors" class="nav-link">Honors</a>
 
-        <button id="theme-toggle" style="border: none; background: none; cursor: pointer; padding: 0; font-size: 14px; color: var(--text-sub);" title="Toggle Theme">
-            <span id="theme-icon">☀️</span>
-        </button>
 
     </div>
 
