@@ -455,25 +455,15 @@ redirect_from:
         }
     }
 
-    /* Theme Toggle Button */
-    .theme-toggle {
-        position: fixed;
-        top: 15px;
-        right: 20px;
-        z-index: 10000;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        color: var(--text-main);
-        padding: 8px 12px;
-        border-radius: 4px;
+    /* Theme Toggle Button in Nav */
+    #theme-toggle {
         cursor: pointer;
-        font-size: 14px;
-        font-family: var(--font-sans);
-        transition: all 0.2s;
+        font-size: 16px;
+        transition: transform 0.2s;
     }
 
-    .theme-toggle:hover {
-        background: var(--border);
+    #theme-toggle:hover {
+        transform: scale(1.1);
     }
 
     [data-theme="light"] .avatar-img {
@@ -495,16 +485,14 @@ redirect_from:
 <script>
     // Theme toggle functionality
     (function() {
-        const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'theme-toggle';
-        toggleBtn.textContent = '☀️ Light';
-        document.body.appendChild(toggleBtn);
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
         
         // Check for saved theme preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             document.documentElement.setAttribute('data-theme', 'light');
-            toggleBtn.textContent = '🌙 Dark';
+            themeIcon.textContent = '🌙';
         }
         
         toggleBtn.addEventListener('click', function() {
@@ -512,11 +500,11 @@ redirect_from:
             if (currentTheme === 'light') {
                 document.documentElement.removeAttribute('data-theme');
                 localStorage.setItem('theme', 'dark');
-                toggleBtn.textContent = '☀️ Light';
+                themeIcon.textContent = '☀️';
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
-                toggleBtn.textContent = '🌙 Dark';
+                themeIcon.textContent = '🌙';
             }
         });
     })();
@@ -543,6 +531,10 @@ redirect_from:
         <a href="#experience" class="nav-link">Experience</a>
 
         <a href="#honors" class="nav-link">Honors</a>
+
+        <button id="theme-toggle" class="nav-link" style="border: none; background: none; cursor: pointer; padding: 0;" title="Toggle Theme">
+            <span id="theme-icon">☀️</span>
+        </button>
 
     </div>
 
@@ -1028,7 +1020,22 @@ redirect_from:
                 <h2 class="box-title">Experience</h2>
             </div>
 
+
              <div style="display: flex; flex-direction: column; gap: 10px;">
+
+                    <div class="exp-item">
+
+                    <img src="images/tencent_hunyuan.png" class="exp-logo">
+
+                    <div>
+
+                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Tencent Hunyuan</div>
+
+                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2026.04 - Present</div>
+
+                    </div>
+
+                </div>
 
                 <div class="exp-item">
 
@@ -1038,7 +1045,7 @@ redirect_from:
 
                         <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Shanghai AI Lab</div>
 
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2025.06 - Present</div>
+                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2025.06 - 2026.04</div>
 
                     </div>
 
@@ -1072,19 +1079,7 @@ redirect_from:
 
                 </div>
 
-                <div class="exp-item">
 
-                    <img src="images/tencent_hunyuan.png" class="exp-logo">
-
-                    <div>
-
-                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Tencent Hunyuan</div>
-
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2026.04 - Present</div>
-
-                    </div>
-
-                </div>
 
                 <div class="exp-item">
 
