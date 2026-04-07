@@ -37,6 +37,15 @@ redirect_from:
         --border: #2a2a2a;
     }
 
+    [data-theme="light"] {
+        --bg-body: #ffffff;
+        --bg-card: #f5f5f5;
+        --text-main: #1a1a1a;
+        --text-sub: #555555;
+        --accent: #000000;
+        --border: #e0e0e0;
+    }
+
     /* Serif for body text */
     body, p, div, li, .paper-auth, .paper-tldr, .affil-text, .role-text, .paper-info {
         font-family: var(--font-serif);
@@ -446,7 +455,70 @@ redirect_from:
         }
     }
 
-</style>
+    /* Theme Toggle Button */
+    .theme-toggle {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        z-index: 10000;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-main);
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: var(--font-sans);
+        transition: all 0.2s;
+    }
+
+    .theme-toggle:hover {
+        background: var(--border);
+    }
+
+    [data-theme="light"] .avatar-img {
+        background: #f0f0f0;
+        padding: 5px;
+    }
+
+    [data-theme="light"] .edu-logo, 
+    [data-theme="light"] .exp-logo {
+        background: #f0f0f0;
+    }
+
+    [data-theme="light"] .paper-thumb {
+        background: var(--bg-card);
+    }
+
+<script>
+    // Theme toggle functionality
+    (function() {
+        const toggleBtn = document.createElement('button');
+        toggleBtn.className = 'theme-toggle';
+        toggleBtn.textContent = '☀️ Light';
+        document.body.appendChild(toggleBtn);
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            toggleBtn.textContent = '🌙 Dark';
+        }
+        
+        toggleBtn.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = '☀️ Light';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = '🌙 Dark';
+            }
+        });
+    })();
+</script>
 
 
 
@@ -993,6 +1065,20 @@ redirect_from:
                         <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Tencent</div>
 
                         <div style="font-size: 14px; color: var(--text-sub);">Machine Learning Intern | 2024.04 - 2024.07</div>
+
+                    </div>
+
+                </div>
+
+                <div class="exp-item">
+
+                    <img src="images/tencent_hunyuan.png" class="exp-logo">
+
+                    <div>
+
+                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Tencent Hunyuan</div>
+
+                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2026.04 - Present</div>
 
                     </div>
 
