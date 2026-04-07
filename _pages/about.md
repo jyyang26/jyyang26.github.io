@@ -529,7 +529,7 @@ redirect_from:
 
             <div class="role-text">AI Graduate Student</div>
 
-            <div class="affil-text">National University of Singapore<br>Shanghai AI Lab</div>
+            <div class="affil-text">National University of Singapore</div>
 
 
 
