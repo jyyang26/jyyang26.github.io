@@ -569,7 +569,7 @@ redirect_from:
 
             <div style="font-size: 14px; line-height: 1.8; color: var(--text-sub);">
 
-                Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Representation Learning</strong>.
+                Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Representation Learning</strong>. 
 
                 <br><br>
 
