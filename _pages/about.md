@@ -527,11 +527,11 @@ redirect_from:
 
             <h1 class="name-title">Junyao Yang <span>(杨竣尧)</span></h1>
 
-            <div class="role-text">AI Graduate Student</div>
+            
 
             <div class="affil-text">National University of Singapore</div>
 
-
+            <div class="role-text">Tencent Hunyuan</div>
 
             <div class="social-icons">
 
