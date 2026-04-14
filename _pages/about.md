@@ -779,7 +779,7 @@ redirect_from:
 
                     <div class="paper-auth">
 
-                        Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong>Junyao Yang*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen
+                        Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen
 
                     </div>
 
