@@ -573,7 +573,7 @@ redirect_from:
 
                 <br><br>
 
-                My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>],  and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>].
+                My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2605.17770">Entropy-Gradient Inversion</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>],  and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>].
 
             </div>
 
@@ -589,6 +589,8 @@ redirect_from:
 
             <ul class="news-list">
 
+            <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
+            
             <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
             
             <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="blogs/reasoning_token.html">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit significant negative correlations between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT.</li>
