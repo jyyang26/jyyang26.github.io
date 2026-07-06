@@ -309,9 +309,9 @@ redirect_from:
   body.dark-mode .edu-deg { color: #c9d1d9; }
   body.dark-mode .edu-sch,
   body.dark-mode .edu-yr { color: #8b949e; }
-  body.dark-mode .edu-logo { background: #2d2d2d; }
+  body.dark-mode .edu-logo { background: #ffffff; }
   body.dark-mode .exp-item { border-bottom-color: #30363d; }
-  body.dark-mode .exp-logo { border-color: #30363d; background: #2d2d2d; }
+  body.dark-mode .exp-logo { border-color: #30363d; background: #ffffff; }
   body.dark-mode .exp-item > div > div { color: #8b949e !important; }
   body.dark-mode .exp-item > div > div:first-of-type { color: #c9d1d9 !important; }
   body.dark-mode ul.honors-list { color: #8b949e; }
@@ -370,7 +370,7 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao Yang. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <!-- <br><br>
