@@ -15,13 +15,16 @@ redirect_from:
 <meta name="description" content="Junyao Yang's personal homepage. Graduate student at NUS, researcher at Tencent Hunyuan. NLP, XAI, Representation Learning.">
 <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}">
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
     background-color: #ffffff;
     color: #333333;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 300;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
@@ -122,8 +125,8 @@ redirect_from:
 
   /* Papers */
   .paper-entry {
-    margin-bottom: 30px;
-    padding-bottom: 30px;
+    margin-bottom: 21px;
+    padding-bottom: 21px;
     border-bottom: 1px solid #e0e0e0;
   }
   .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
