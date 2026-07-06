@@ -293,7 +293,7 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
         <!-- <br><br>
         My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reinforcement Learning</strong> [<strong><a href="https://arxiv.org/abs/2605.17770">CorR-PO</a></strong>], <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]. -->
       </div>
@@ -303,6 +303,7 @@ redirect_from:
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
+        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hunyuan LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Terminal Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
         <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="{{ '/blogs/reasoning_token.html' | relative_url }}">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit significant negative correlations between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT.</li>
         <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
@@ -421,6 +422,18 @@ redirect_from:
             <div class="paper-links">
               <a href="https://arxiv.org/abs/2601.05560">Paper</a>
               <a href="https://github.com/jyyang26/ReasonAny">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">arXiv Preprint</span>
+            <a href="https://arxiv.org/pdf/2605.17770v1" class="paper-title">Entropy-Gradient Inversion: Moving Toward Internal Mechanism of Large Reasoning Models</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Identifying <em>Entropy-Gradient Inversion</em>&mdash;a robust negative correlation between token entropy and logit gradients&mdash;as a geometric fingerprint of LRM reasoning capability, and proposing <strong>CorR-PO</strong> that embeds this signature into RL reward regularization to stabilize reasoning optimization without costly external verifiers.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/pdf/2605.17770v1">Paper</a>
             </div>
           </div>
         </div>
