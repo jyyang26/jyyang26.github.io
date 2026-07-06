@@ -406,6 +406,7 @@ redirect_from:
 
         <a href="#honors" class="nav-link">Honors</a>
 
+
     </div>
 
 </nav>
@@ -470,7 +471,7 @@ redirect_from:
                 <h2 class="box-title">About Me</h2>
             </div>
 
-            <div style="font-size: 14px; line-height: 1.8; color: #666666;">
+            <div style="font-size: 14px; line-height: 1.8; color: var(--text-sub);">
 
                 Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Representation Learning</strong>. 
 
@@ -578,6 +579,8 @@ redirect_from:
 
 
 
+
+
             <div class="paper-entry">
 
                 <div class="paper-info">
@@ -609,6 +612,8 @@ redirect_from:
                 </div>
 
             </div>
+
+
 
 
 
@@ -762,6 +767,9 @@ redirect_from:
 
               </div>
 
+              
+
+              
             
 
         </section>
@@ -776,6 +784,8 @@ redirect_from:
             <div class="paper-entry">
 
                 <div class="paper-info">
+
+          
 
                     <a href="blogs/reasoning_token.html" class="paper-title">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</a>
 
@@ -801,8 +811,6 @@ redirect_from:
 
                 <div class="edu-card">
 
-                    <img src="images/NUS.jpg" alt="NUS" class="edu-logo">
-
                     <div class="edu-deg">M.S. in AI</div>
 
                     <div class="edu-sch">National University of Singapore</div>
@@ -813,8 +821,6 @@ redirect_from:
 
                 <div class="edu-card">
 
-                    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" alt="SCUT" class="edu-logo">
-
                     <div class="edu-deg">B.S. in CS (with honor)</div>
 
                     <div class="edu-sch">South China University of Technology</div>
@@ -824,8 +830,6 @@ redirect_from:
                 </div>
 
                 <div class="edu-card">
-
-                    <img src="images/SZSY_Logo.png" alt="SZSY" class="edu-logo">
 
                     <div class="edu-deg">High School</div>
 
@@ -852,8 +856,6 @@ redirect_from:
 
                     <div class="exp-item">
 
-                    <img src="images/tencent_hunyuan.png" class="exp-logo">
-
                     <div>
 
                         <div style="font-weight: 600; font-size: 15px; color: #333333;">Tencent Hunyuan</div>
@@ -865,8 +867,6 @@ redirect_from:
                 </div>
 
                 <div class="exp-item">
-
-                    <img src="images/ailab.png" class="exp-logo">
 
                     <div>
 
@@ -880,8 +880,6 @@ redirect_from:
 
                 <div class="exp-item">
 
-                    <img src="images/South_China_University_of_Technology_Logo_(Since_2022).svg.png" class="exp-logo">
-
                     <div>
 
                         <div style="font-weight: 600; font-size: 15px; color: #333333;">South China University of Technology</div>
@@ -893,8 +891,6 @@ redirect_from:
                 </div>
 
                 <div class="exp-item">
-
-                    <img src="images/Tencent.png" class="exp-logo">
 
                     <div>
 
@@ -910,8 +906,6 @@ redirect_from:
 
                 <div class="exp-item">
 
-                    <img src="images/SZSE.png" class="exp-logo">
-
                     <div>
 
                         <div style="font-weight: 600; font-size: 15px; color: #333333;">SZSE</div>
@@ -925,6 +919,7 @@ redirect_from:
             </div>
 
         </section>
+
         
 
         <section id="honors" class="content-box">
@@ -952,6 +947,22 @@ redirect_from:
 
 
 
+        <section id="visitor-map" class="content-box">
+
+            <div class="box-header">
+                <h2 class="box-title">Page Views</h2>
+            </div>
+
+            <div class="map-widget-container" style="width: 33.33%; display: flex; justify-content: center;">
+                <script type='text/javascript' id='clstr_globe' src='//clustrmaps.com/globe.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc'></script>
+            </div>
+
+        </section>
+
+
+
     </main>
 
 </div>
+
+
