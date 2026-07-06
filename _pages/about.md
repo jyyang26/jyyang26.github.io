@@ -1,8 +1,8 @@
 ---
 
-permalink: /
+permalink: /about/
 
-title: "Junyao Yang(杨竣尧)"
+title: "Junyao Yang(杨竣尧) - Simplified"
 
 layout: single
 
@@ -20,48 +20,6 @@ redirect_from:
 
 <style>
 
-    /* =========================================
-       Font Definitions
-       ========================================= */
-    
-    :root {
-        --font-serif: "Charter", "Bitstream Charter", "Sitka Text", "Cambria", "Georgia", serif;
-        --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        --font-zh-serif: "SimSun", "STSong", "Songti SC", serif;
-        
-        --bg-body: #0a0a0a;
-        --bg-card: #141414;
-        --text-main: #e5e5e5;
-        --text-sub: #888888;
-        --accent: #ffffff;
-        --border: #2a2a2a;
-    }
-
-    [data-theme="light"] {
-        --bg-body: #ffffff;
-        --bg-card: #f5f5f5;
-        --text-main: #1a1a1a;
-        --text-sub: #555555;
-        --accent: #000000;
-        --border: #e0e0e0;
-    }
-
-    /* Serif for body text */
-    body, p, div, li, .paper-auth, .paper-tldr, .affil-text, .role-text, .paper-info {
-        font-family: var(--font-serif);
-    }
-
-    /* Sans-serif for headers, nav, sidebar */
-    .custom-nav, .nav-link, .custom-sidebar, .name-title, .box-title, 
-    .paper-venue, .paper-title, .edu-deg, .edu-sch, .news-tag {
-        font-family: var(--font-sans) !important;
-    }
-
-    /* Chinese name uses serif */
-    .name-title span {
-        font-family: var(--font-zh-serif) !important;
-    }
-
     * {
         box-sizing: border-box;
     }
@@ -69,10 +27,17 @@ redirect_from:
     html, body {
         margin: 0;
         padding: 0;
-        background-color: var(--bg-body);
-        color: var(--text-main);
+        background-color: #ffffff;
+        color: #333333;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         line-height: 1.6;
+    }
+
+    /* Selection styling */
+    ::selection {
+        background-color: #007acc;
+        color: white;
+        text-decoration: underline;
     }
 
     /* Hide default theme elements */
@@ -94,8 +59,8 @@ redirect_from:
         position: sticky;
         top: 0;
         z-index: 9999;
-        background: var(--bg-body);
-        border-bottom: 1px solid var(--border);
+        background: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
         padding: 15px 0;
         margin-bottom: 40px;
     }
@@ -108,7 +73,7 @@ redirect_from:
     }
 
     .nav-link {
-        color: var(--text-sub);
+        color: #666666;
         text-decoration: none;
         font-size: 14px;
         font-weight: 500;
@@ -116,7 +81,8 @@ redirect_from:
     }
 
     .nav-link:hover {
-        color: var(--accent);
+        color: #007acc;
+        text-decoration: underline;
     }
 
     section { scroll-margin-top: 60px; }
@@ -138,7 +104,7 @@ redirect_from:
         gap: 30px;
         margin-bottom: 50px;
         padding-bottom: 40px;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid #e0e0e0;
     }
 
     .avatar-area {
@@ -152,28 +118,30 @@ redirect_from:
         height: 120px;
         border-radius: 0;
         object-fit: contain;
+        background: #f5f5f5;
+        padding: 5px;
     }
 
     .name-title {
         font-size: 28px;
         font-weight: 600;
-        color: var(--accent);
+        color: #000000;
         margin: 0 0 5px 0;
     }
 
     .name-title span {
         font-size: 20px;
-        color: var(--text-sub);
+        color: #666666;
     }
 
     .role-text {
-        color: var(--text-sub);
+        color: #666666;
         font-size: 14px;
         margin-bottom: 5px;
     }
 
     .affil-text {
-        color: var(--text-sub);
+        color: #666666;
         font-size: 14px;
     }
 
@@ -185,12 +153,12 @@ redirect_from:
     }
 
     .s-icon {
-        color: var(--text-sub);
+        color: #666666;
         transition: color 0.2s;
     }
 
     .s-icon:hover {
-        color: var(--accent);
+        color: #007acc;
     }
 
     .s-icon svg {
@@ -223,7 +191,7 @@ redirect_from:
     .box-title {
         font-size: 18px;
         font-weight: 600;
-        color: var(--accent);
+        color: #000000;
         margin: 0;
         border: none;
         padding: 0;
@@ -240,9 +208,9 @@ redirect_from:
 
     .news-list li {
         padding: 10px 0;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid #e0e0e0;
         font-size: 14px;
-        color: var(--text-sub);
+        color: #666666;
     }
 
     .news-list li:last-child {
@@ -250,26 +218,25 @@ redirect_from:
     }
 
     .news-list a {
-        color: var(--text-main);
+        color: #333333;
         text-decoration: none;
     }
 
     .news-list a:hover {
+        color: #007acc;
         text-decoration: underline;
     }
 
     .news-tag {
-        color: var(--text-sub);
+        color: #666666;
         font-size: 12px;
     }
 
-    /* Paper Entry */
+    /* Paper Entry - Simplified without images */
     .paper-entry {
-        display: flex;
-        gap: 20px;
         margin-bottom: 30px;
         padding-bottom: 30px;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid #e0e0e0;
     }
 
     .paper-entry:last-child {
@@ -278,32 +245,9 @@ redirect_from:
         padding-bottom: 0;
     }
 
-    .paper-thumb {
-        width: 200px;
-        height: 200px;
-        flex-shrink: 0;
-        border: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--bg-card);
-    }
-
-    .paper-thumb img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-    }
-
-    .paper-info {
-        flex: 1;
-        min-width: 0;
-    }
-
     .paper-venue {
         font-size: 15px;
-        font-family: var(--font-serif);
-        color: #87CEEB;
+        color: #007acc;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin-bottom: 4px;
@@ -312,25 +256,26 @@ redirect_from:
     .paper-title {
         font-size: 15px;
         font-weight: 600;
-        color: var(--text-main);
+        color: #333333;
         text-decoration: none;
         display: block;
         margin-bottom: 6px;
     }
 
     .paper-title:hover {
+        color: #007acc;
         text-decoration: underline;
     }
 
     .paper-auth {
         font-size: 13px;
-        color: var(--text-sub);
+        color: #666666;
         margin-bottom: 8px;
     }
 
     .paper-tldr {
         font-size: 13px;
-        color: var(--text-sub);
+        color: #666666;
         background: transparent;
         padding: 0;
     }
@@ -341,18 +286,18 @@ redirect_from:
     }
 
     .paper-links a {
-        color: var(--text-sub);
+        color: #666666;
         text-decoration: none;
         margin-right: 15px;
     }
 
     .paper-links a:hover {
-        color: var(--accent);
+        color: #007acc;
         text-decoration: underline;
     }
     
     a:active {
-        color: #87CEEB;
+        color: #007acc;
     }
 
     /* Education */
@@ -364,7 +309,7 @@ redirect_from:
 
     .edu-card {
         padding: 15px;
-        border: 1px solid var(--border);
+        border: 1px solid #e0e0e0;
         border-radius: 0;
     }
 
@@ -373,24 +318,24 @@ redirect_from:
         height: 40px;
         object-fit: contain;
         margin-bottom: 10px;
-        background: #ffffff;
+        background: #f5f5f5;
         padding: 4px;
     }
 
     .edu-deg {
         font-size: 14px;
         font-weight: 600;
-        color: var(--text-main);
+        color: #333333;
     }
 
     .edu-sch {
         font-size: 13px;
-        color: var(--text-sub);
+        color: #666666;
     }
 
     .edu-yr {
         font-size: 12px;
-        color: var(--text-sub);
+        color: #666666;
         margin-top: 8px;
     }
 
@@ -400,7 +345,7 @@ redirect_from:
         align-items: center;
         gap: 15px;
         padding: 12px 0;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid #e0e0e0;
     }
 
     .exp-item:last-child {
@@ -411,27 +356,20 @@ redirect_from:
         width: 36px;
         height: 36px;
         object-fit: contain;
-        border: 1px solid var(--border);
+        border: 1px solid #e0e0e0;
         padding: 2px;
-        background: #ffffff;
+        background: #f5f5f5;
     }
 
     /* Honors */
     ul.honors-list {
         font-size: 14px;
-        color: var(--text-sub);
+        color: #666666;
         padding-left: 20px;
     }
 
     ul.honors-list li {
         padding: 5px 0;
-    }
-
-    /* Map */
-    .map-widget-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
     }
 
     /* Mobile */
@@ -441,43 +379,9 @@ redirect_from:
             text-align: center;
         }
         
-        .paper-entry {
-            flex-direction: column;
-        }
-        
-        .paper-thumb {
-            width: 100%;
-            height: auto;
-        }
-        
         .social-icons {
             justify-content: center;
         }
-    }
-
-    /* Theme Toggle Button in Nav */
-    #theme-toggle {
-        cursor: pointer;
-        font-size: 16px;
-        transition: transform 0.2s;
-    }
-
-    #theme-toggle:hover {
-        transform: scale(1.1);
-    }
-
-    [data-theme="light"] .avatar-img {
-        background: #f0f0f0;
-        padding: 5px;
-    }
-
-    [data-theme="light"] .edu-logo, 
-    [data-theme="light"] .exp-logo {
-        background: #f0f0f0;
-    }
-
-    [data-theme="light"] .paper-thumb {
-        background: var(--bg-card);
     }
 
 </style>
@@ -501,7 +405,6 @@ redirect_from:
         <a href="#experience" class="nav-link">Experience</a>
 
         <a href="#honors" class="nav-link">Honors</a>
-
 
     </div>
 
@@ -567,7 +470,7 @@ redirect_from:
                 <h2 class="box-title">About Me</h2>
             </div>
 
-            <div style="font-size: 14px; line-height: 1.8; color: var(--text-sub);">
+            <div style="font-size: 14px; line-height: 1.8; color: #666666;">
 
                 Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Representation Learning</strong>. 
 
@@ -643,12 +546,6 @@ redirect_from:
 
             <div class="paper-entry">
 
-                <div class="paper-thumb">
-
-                    <a href="https://arxiv.org/abs/2601.05560"><img src="images/ReasonAny_main_fig.png" alt="Paper Image"></a>
-
-                </div>
-
                 <div class="paper-info">
 
                     <span class="paper-venue">ACL 2026 Main</span>
@@ -681,15 +578,7 @@ redirect_from:
 
 
 
-
-
             <div class="paper-entry">
-
-                <div class="paper-thumb">
-
-                    <a href="https://arxiv.org/pdf/2601.15075"><img src="images/agent_xai_main_fig_final_v2.png" alt="Paper Image"></a>
-
-                </div>
 
                 <div class="paper-info">
 
@@ -723,15 +612,7 @@ redirect_from:
 
 
 
-
-
             <div class="paper-entry">
-
-                <div class="paper-thumb">
-
-                    <a href="https://arxiv.org/abs/2508.03140"><img src="images/rcp.png" alt="Paper Image"></a>
-
-                </div>
 
                 <div class="paper-info">
 
@@ -767,12 +648,6 @@ redirect_from:
 
             <div class="paper-entry">
 
-                <div class="paper-thumb">
-
-                    <a href="https://arxiv.org/abs/2406.01394"><img src="images/restore.png" alt="Paper Image"></a>
-
-                </div>
-
                 <div class="paper-info">
 
                     <span class="paper-venue">ACL 2025 Main</span>
@@ -806,12 +681,6 @@ redirect_from:
 
 
             <div class="paper-entry">
-
-                <div class="paper-thumb">
-
-                    <a href="https://arxiv.org/abs/2502.18517"><img src="images/rewardds.png" alt="Paper Image"></a>
-
-                </div>
 
                 <div class="paper-info">
 
@@ -857,12 +726,6 @@ redirect_from:
 
               <div class="paper-entry">
 
-                  <div class="paper-thumb">
-
-                      <a href="https://arxiv.org/abs/2601.18491"><img src="images/agentdog.png" alt="Paper Image"></a>
-
-                  </div>
-
                   <div class="paper-info">
 
                       <span class="paper-venue">Tech Report</span>
@@ -899,9 +762,6 @@ redirect_from:
 
               </div>
 
-              
-
-              
             
 
         </section>
@@ -916,8 +776,6 @@ redirect_from:
             <div class="paper-entry">
 
                 <div class="paper-info">
-
-          
 
                     <a href="blogs/reasoning_token.html" class="paper-title">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</a>
 
@@ -998,9 +856,9 @@ redirect_from:
 
                     <div>
 
-                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Tencent Hunyuan</div>
+                        <div style="font-weight: 600; font-size: 15px; color: #333333;">Tencent Hunyuan</div>
 
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2026.04 - Present</div>
+                        <div style="font-size: 14px; color: #666666;">Research Intern | 2026.04 - Present</div>
 
                     </div>
 
@@ -1012,9 +870,9 @@ redirect_from:
 
                     <div>
 
-                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Shanghai AI Lab</div>
+                        <div style="font-weight: 600; font-size: 15px; color: #333333;">Shanghai AI Lab</div>
 
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2025.06 - 2026.04</div>
+                        <div style="font-size: 14px; color: #666666;">Research Intern | 2025.06 - 2026.04</div>
 
                     </div>
 
@@ -1026,9 +884,9 @@ redirect_from:
 
                     <div>
 
-                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">South China University of Technology</div>
+                        <div style="font-weight: 600; font-size: 15px; color: #333333;">South China University of Technology</div>
 
-                        <div style="font-size: 14px; color: var(--text-sub);">Research Intern | 2024.07 - 2025.06</div>
+                        <div style="font-size: 14px; color: #666666;">Research Intern | 2024.07 - 2025.06</div>
 
                     </div>
 
@@ -1040,9 +898,9 @@ redirect_from:
 
                     <div>
 
-                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">Tencent</div>
+                        <div style="font-weight: 600; font-size: 15px; color: #333333;">Tencent</div>
 
-                        <div style="font-size: 14px; color: var(--text-sub);">Machine Learning Intern | 2024.04 - 2024.07</div>
+                        <div style="font-size: 14px; color: #666666;">Machine Learning Intern | 2024.04 - 2024.07</div>
 
                     </div>
 
@@ -1056,9 +914,9 @@ redirect_from:
 
                     <div>
 
-                        <div style="font-weight: 600; font-size: 15px; color: var(--text-main);">SZSE</div>
+                        <div style="font-weight: 600; font-size: 15px; color: #333333;">SZSE</div>
 
-                        <div style="font-size: 13px; color: var(--text-sub);">Machine Learning Intern | 2024.01 - 2024.04</div>
+                        <div style="font-size: 13px; color: #666666;">Machine Learning Intern | 2024.01 - 2024.04</div>
 
                     </div>
 
@@ -1067,7 +925,6 @@ redirect_from:
             </div>
 
         </section>
-
         
 
         <section id="honors" class="content-box">
@@ -1095,48 +952,6 @@ redirect_from:
 
 
 
-        <section id="visitor-map" class="content-box">
-
-            <div class="box-header">
-                <h2 class="box-title">Page Views</h2>
-            </div>
-
-            <div class="map-widget-container" style="width: 33.33%; display: flex; justify-content: center;">
-                <script type='text/javascript' id='clstr_globe' src='//clustrmaps.com/globe.js?d=fHE-8Jdi8dG4h8kH9bKTC8OPRf52B9shV3EzW7J6MMc'></script>
-            </div>
-
-        </section>
-
-
-
     </main>
 
 </div>
-
-<script>
-    // Theme toggle functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleBtn = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'light');
-            themeIcon.textContent = '🌙';
-        }
-        
-        toggleBtn.addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'light') {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'dark');
-                themeIcon.textContent = '☀️';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                themeIcon.textContent = '🌙';
-            }
-        });
-    });
-</script>
