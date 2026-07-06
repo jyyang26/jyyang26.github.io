@@ -51,7 +51,7 @@ redirect_from:
   .theme-toggle .icon-sun { fill: #f5b400; }
   .theme-toggle .icon-moon { fill: #8b949e; display: none; }
   body.dark-mode .theme-toggle .icon-sun { display: none; }
-  body.dark-mode .theme-toggle .icon-moon { display: block; fill: #f5b400; }
+  body.dark-mode .theme-toggle .icon-moon { display: block; fill: #6c5ce7; }
 
   /* ---------- Navigation ---------- */
   .custom-nav {
@@ -148,6 +148,7 @@ redirect_from:
   }
   .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .paper-venue {
+    display: block;
     font-size: 14px;
     color: #007acc;
     font-weight: 600;
