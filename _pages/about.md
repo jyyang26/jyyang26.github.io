@@ -44,8 +44,8 @@ redirect_from:
     z-index: 9999;
     background: #ffffff;
     border-bottom: 1px solid #e0e0e0;
-    padding: 15px 0;
-    margin-bottom: 40px;
+    padding: 12px 0;
+    margin-bottom: 28px;
   }
   .nav-container {
     display: flex;
@@ -74,8 +74,8 @@ redirect_from:
     display: flex;
     align-items: center;
     gap: 30px;
-    margin-bottom: 50px;
-    padding-bottom: 40px;
+    margin-bottom: 35px;
+    padding-bottom: 28px;
     border-bottom: 1px solid #e0e0e0;
   }
   .name-title {
@@ -99,9 +99,9 @@ redirect_from:
   .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
   /* ---------- Content Sections ---------- */
-  .custom-content { display: flex; flex-direction: column; gap: 40px; }
+  .custom-content { display: flex; flex-direction: column; gap: 28px; }
   .content-box   { background: transparent; }
-  .box-header    { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .box-header    { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .box-title     { font-size: 18px; font-weight: 600; color: #000000; margin: 0; border: none; padding: 0; }
 
   /* News */
@@ -113,7 +113,7 @@ redirect_from:
     overflow-y: auto;
   }
   .news-list li {
-    padding: 10px 0;
+    padding: 7px 0;
     border-bottom: 1px solid #e0e0e0;
     font-size: 14px;
     color: #666666;
@@ -136,7 +136,7 @@ redirect_from:
     color: #007acc;
     font-weight: 600;
     letter-spacing: 0.3px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
 
   /* Publications section title (Selected Publications) - blue & bold */
@@ -230,7 +230,7 @@ redirect_from:
   /* Experience */
   .exp-item {
     display: flex; align-items: center; gap: 15px;
-    padding: 12px 0; border-bottom: 1px solid #e0e0e0;
+    padding: 8px 0; border-bottom: 1px solid #e0e0e0;
   }
   .exp-item:last-child { border-bottom: none; }
   .exp-logo {
@@ -297,7 +297,7 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        Hi there, this is Junyao Yang. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <!-- <br><br>
