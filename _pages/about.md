@@ -576,8 +576,8 @@ redirect_from:
         </div>
 
       </div>
+    </section>
 
-      <!-- Full Publications
     <section id="blogs" class="content-box">
       <div class="box-header"><h2 class="box-title">Blogs</h2></div>
       <div class="paper-entry">
