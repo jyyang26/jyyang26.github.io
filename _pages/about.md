@@ -355,6 +355,25 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
+            <span class="paper-venue">Tech Report</span>
+            <div class="paper-title-row">
+              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
+              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            </div>
+            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
+              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
+              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
+              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
             <span class="paper-venue">AAAI 2026</span>
             <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
@@ -392,27 +411,8 @@ redirect_from:
           </div>
         </div>
 
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue">Tech Report</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
-              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
-            </div>
-            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
-              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
-              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
-              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
-            </div>
-          </div>
-        </div>
-
       </div>
-
+    </section>
       <!-- Full Publications (all, incl. arXiv preprints & Tech Report) -->
       <div id="pub-full" class="pub-list">
 
@@ -469,6 +469,25 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
+            <span class="paper-venue">Tech Report</span>
+            <div class="paper-title-row">
+              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
+              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            </div>
+            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
+              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
+              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
+              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
             <span class="paper-venue">ACL 2025</span>
             <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
             <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
@@ -493,28 +512,9 @@ redirect_from:
           </div>
         </div>
 
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue">Tech Report</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
-              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
-            </div>
-            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
-              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
-              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
-              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </section>
 
+      <!-- Full Publications
     <section id="blogs" class="content-box">
       <div class="box-header"><h2 class="box-title">Blogs</h2></div>
       <div class="paper-entry">
