@@ -76,15 +76,6 @@ redirect_from:
     padding-bottom: 40px;
     border-bottom: 1px solid #e0e0e0;
   }
-  .avatar-area { flex-shrink: 0; margin: 0; padding: 0; }
-  .avatar-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 0;
-    object-fit: contain;
-    background: #f5f5f5;
-    padding: 5px;
-  }
   .name-title {
     font-size: 28px;
     font-weight: 600;
@@ -272,9 +263,6 @@ redirect_from:
 <div class="profile-wrapper">
 
   <aside class="custom-sidebar">
-    <div class="avatar-area">
-      <img src="{{ '/images/Junyao_dark_photo.jpg' | relative_url }}" alt="Junyao Yang" class="avatar-img">
-    </div>
     <div>
       <h1 class="name-title">Junyao Yang <span>(杨竣尧)</span></h1>
       <div class="affil-text">National University of Singapore</div>
