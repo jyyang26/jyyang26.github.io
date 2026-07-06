@@ -575,23 +575,9 @@ redirect_from:
           </div>
         </div>
 
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue">EMNLP 2025</span>
-            <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
-            <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2502.18517">Paper</a>
-              <a href="https://github.com/wjw136/RewardDS">Code</a>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-    </section>
-
+      <!-- Full Publications
     <section id="blogs" class="content-box">
       <div class="box-header"><h2 class="box-title">Blogs</h2></div>
       <div class="paper-entry">
