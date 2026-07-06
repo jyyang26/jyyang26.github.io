@@ -37,6 +37,22 @@ redirect_from:
   ::selection { background-color: #007acc; color: #ffffff; text-decoration: underline; }
   ::-moz-selection { background-color: #007acc; color: #ffffff; text-decoration: underline; }
 
+  /* Theme Toggle */
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+  }
+  .theme-toggle svg { width: 18px; height: 18px; transition: fill 0.2s; }
+  .theme-toggle .icon-sun { fill: #f5b400; }
+  .theme-toggle .icon-moon { fill: #8b949e; display: none; }
+  body.dark-mode .theme-toggle .icon-sun { display: none; }
+  body.dark-mode .theme-toggle .icon-moon { display: block; fill: #f5b400; }
+
   /* ---------- Navigation ---------- */
   .custom-nav {
     position: sticky;
@@ -259,6 +275,58 @@ redirect_from:
     .custom-sidebar { flex-direction: column; text-align: center; }
     .social-icons   { justify-content: center; }
   }
+
+  /* ---------- Dark Mode ---------- */
+  body.dark-mode {
+    background-color: #1a1a1a;
+    color: #c9d1d9;
+  }
+  body.dark-mode a { color: #c9d1d9; }
+  body.dark-mode a:hover { color: #007acc; text-decoration: underline; }
+  body.dark-mode .custom-nav { background: #1a1a1a; border-bottom-color: #30363d; }
+  body.dark-mode .nav-link { color: #8b949e; }
+  body.dark-mode .nav-link:hover { color: #007acc; }
+  body.dark-mode .name-title { color: #e6e6e6; }
+  body.dark-mode .name-title span { color: #8b949e; }
+  body.dark-mode .affil-text,
+  body.dark-mode .role-text { color: #8b949e; }
+  body.dark-mode .box-title { color: #e6e6e6; }
+  body.dark-mode .paper-venue { color: #007acc; }
+  body.dark-mode .paper-title { color: #c9d1d9; }
+  body.dark-mode .paper-title:hover { color: #007acc; }
+  body.dark-mode .paper-auth,
+  body.dark-mode .paper-tldr { color: #8b949e; }
+  body.dark-mode .paper-links a { color: #8b949e; }
+  body.dark-mode .paper-links a:hover { color: #007acc; }
+  body.dark-mode .paper-entry { border-bottom-color: #30363d; }
+  body.dark-mode .custom-sidebar { border-bottom-color: #30363d; }
+  body.dark-mode .news-list li { color: #8b949e; border-bottom-color: #30363d; }
+  body.dark-mode .news-list a { color: #c9d1d9; }
+  body.dark-mode .news-list a:hover { color: #007acc; }
+  body.dark-mode .news-tag { color: #8b949e; }
+  body.dark-mode .edu-card { border-color: #30363d; }
+  body.dark-mode .edu-deg { color: #c9d1d9; }
+  body.dark-mode .edu-sch,
+  body.dark-mode .edu-yr { color: #8b949e; }
+  body.dark-mode .edu-logo { background: #2d2d2d; }
+  body.dark-mode .exp-item { border-bottom-color: #30363d; }
+  body.dark-mode .exp-logo { border-color: #30363d; background: #2d2d2d; }
+  body.dark-mode .exp-item > div > div { color: #8b949e !important; }
+  body.dark-mode .exp-item > div > div:first-of-type { color: #c9d1d9 !important; }
+  body.dark-mode ul.honors-list { color: #8b949e; }
+  body.dark-mode .about-text { color: #8b949e; }
+  body.dark-mode .about-text strong { color: #c9d1d9; }
+  body.dark-mode .site-footer { border-top-color: #30363d; color: #6e7681; }
+  body.dark-mode .gh-star { background: #2d2d2d; border-color: #30363d; color: #c9d1d9; }
+  body.dark-mode .gh-star:hover { color: #007acc; border-color: #007acc; }
+  body.dark-mode .pub-tab { color: #8b949e; }
+  body.dark-mode .pub-tab.active { color: #007acc; border-bottom-color: #007acc; }
+  body.dark-mode .pub-tab:hover { color: #007acc; }
+  body.dark-mode .s-icon { color: #8b949e; }
+  body.dark-mode .s-icon:hover { color: #007acc; }
+  /* selection in dark mode – keep blue bg, dark text for contrast */
+  body.dark-mode ::selection { background-color: #007acc; color: #1a1a1a; }
+  body.dark-mode ::-moz-selection { background-color: #007acc; color: #1a1a1a; }
 </style>
 </head>
 <body>
@@ -272,6 +340,10 @@ redirect_from:
     <a href="#education" class="nav-link">Education</a>
     <a href="#experience" class="nav-link">Experience</a>
     <a href="#honors" class="nav-link">Honors</a>
+    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1H12z"/></svg>
+    </button>
   </div>
 </nav>
 
@@ -309,7 +381,7 @@ redirect_from:
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
-        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hunyuan LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Terminal Agent</strong>.</li>
+        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hunyuan LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
         <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="{{ '/blogs/reasoning_token.html' | relative_url }}">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit significant negative correlations between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT.</li>
         <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
@@ -666,6 +738,19 @@ redirect_from:
           }
         })
         .catch(function () { /* keep fallback */ });
+    });
+  })();
+
+  // Dark mode toggle
+  (function () {
+    var toggle = document.querySelector('.theme-toggle');
+    if (!toggle) return;
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+    toggle.addEventListener('click', function () {
+      var isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
   })();
 </script>
