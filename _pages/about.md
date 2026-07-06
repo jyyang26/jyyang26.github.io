@@ -140,10 +140,61 @@ redirect_from:
   .paper-venue {
     font-size: 15px;
     color: #007acc;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
     margin-bottom: 4px;
   }
+
+  /* Publications section title (Selected Publications) - blue & bold */
+  #publications .box-title {
+    color: #007acc;
+    font-weight: 700;
+  }
+
+  /* Publications tabs */
+  .pub-tabs {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+    align-items: center;
+  }
+  .pub-tab {
+    background: none;
+    border: none;
+    padding: 4px 0;
+    font-size: 14px;
+    color: #666666;
+    cursor: pointer;
+    font-family: inherit;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .pub-tab:hover { color: #007acc; }
+  .pub-tab.active {
+    color: #007acc;
+    border-bottom-color: #007acc;
+    font-weight: 600;
+  }
+  .pub-list { display: none; }
+  .pub-list.active { display: block; }
+
+  /* GitHub star badge */
+  .gh-star {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    margin-left: 8px;
+    font-size: 12px;
+    color: #333333;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+  .gh-star:hover { color: #007acc; border-color: #007acc; text-decoration: none; }
+  .gh-star svg { width: 12px; height: 12px; fill: #f5b400; }
   .paper-title {
     font-size: 15px;
     font-weight: 600;
@@ -211,7 +262,6 @@ redirect_from:
     <a href="#about" class="nav-link">About Me</a>
     <a href="#news" class="nav-link">News</a>
     <a href="#publications" class="nav-link">Publications</a>
-    <a href="#techreport" class="nav-link">Tech Reports</a>
     <a href="#blogs" class="nav-link">Blogs</a>
     <a href="#education" class="nav-link">Education</a>
     <a href="#experience" class="nav-link">Experience</a>
@@ -244,9 +294,9 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. My research interests lie in <strong>Natural Language Processing</strong>, <strong>Explainable Artificial Intelligence</strong> and <strong>Representation Learning</strong>.
-        <br><br>
-        My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2605.17770">Entropy-Gradient Inversion</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>].
+        Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, National University of Singapore (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        <!-- <br><br>
+        My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reinforcement Learning</strong> [<strong><a href="https://arxiv.org/abs/2605.17770">CorR-PO</a></strong>], <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]. -->
       </div>
     </section>
 
@@ -276,90 +326,171 @@ redirect_from:
     </section>
 
     <section id="publications" class="content-box">
-      <div class="box-header"><h2 class="box-title">Publications &amp; Preprints</h2></div>
-
-      <div class="paper-entry">
-        <div class="paper-info">
-          <span class="paper-venue">ACL 2026 Main</span>
-          <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
-          <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
-          <div class="paper-links">
-            <a href="https://arxiv.org/abs/2601.05560">Paper</a>
-            <a href="https://github.com/jyyang26/ReasonAny">Code</a>
-          </div>
+      <div class="box-header">
+        <h2 class="box-title" id="pub-heading">Selected Publications</h2>
+        <div class="pub-tabs" role="tablist">
+          <button type="button" class="pub-tab active" data-target="pub-selected" role="tab" aria-selected="true">Selected</button>
+          <button type="button" class="pub-tab" data-target="pub-full" role="tab" aria-selected="false">Full</button>
         </div>
       </div>
 
-      <div class="paper-entry">
-        <div class="paper-info">
-          <span class="paper-venue">arXiv Preprint</span>
-          <a href="https://arxiv.org/pdf/2601.15075" class="paper-title">The Why Behind the Action: Unveiling Internal Drivers via Agentic Attribution</a>
-          <div class="paper-auth">Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu</div>
-          <div class="paper-tldr"><strong>TL;DR:</strong> A hierarchical framework for agentic attribution, using temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</div>
-          <div class="paper-links">
-            <a href="https://arxiv.org/pdf/2601.15075">Paper</a>
-            <a href="https://arxiv.org/pdf/2601.15075">Code</a>
+      <!-- Selected Publications (accepted only, incl. Tech Report) -->
+      <div id="pub-selected" class="pub-list active">
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">ACL 2026</span>
+            <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.05560">Paper</a>
+              <a href="https://github.com/jyyang26/ReasonAny">Code</a>
+            </div>
           </div>
         </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">AAAI 2026</span>
+            <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2508.03140">Paper</a>
+              <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">ACL 2025</span>
+            <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
+            <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2406.01394">Paper</a>
+              <a href="https://github.com/ZeroNLP/PrivacyRestore">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">EMNLP 2025</span>
+            <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
+            <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2502.18517">Paper</a>
+              <a href="https://github.com/wjw136/RewardDS">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">Tech Report</span>
+<a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a><a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
+              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
+              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
+              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="paper-entry">
-        <div class="paper-info">
-          <span class="paper-venue">AAAI 2026 Main Track</span>
-          <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
-          <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
-          <div class="paper-links">
-            <a href="https://arxiv.org/abs/2508.03140">Paper</a>
-            <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
-          </div>
-        </div>
-      </div>
+      <!-- Full Publications (all, incl. arXiv preprints & Tech Report) -->
+      <div id="pub-full" class="pub-list">
 
-      <div class="paper-entry">
-        <div class="paper-info">
-          <span class="paper-venue">ACL 2025 Main</span>
-          <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
-          <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
-          <div class="paper-links">
-            <a href="https://arxiv.org/abs/2406.01394">Paper</a>
-            <a href="https://github.com/ZeroNLP/PrivacyRestore">Code</a>
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">ACL 2026</span>
+            <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.05560">Paper</a>
+              <a href="https://github.com/jyyang26/ReasonAny">Code</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="paper-entry">
-        <div class="paper-info">
-          <span class="paper-venue">EMNLP 2025 Main</span>
-          <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
-          <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
-          <div class="paper-links">
-            <a href="https://arxiv.org/abs/2502.18517">Paper</a>
-            <a href="https://github.com/wjw136/RewardDS">Code</a>
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">arXiv Preprint</span>
+            <a href="https://arxiv.org/pdf/2601.15075" class="paper-title">The Why Behind the Action: Unveiling Internal Drivers via Agentic Attribution</a>
+            <div class="paper-auth">Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A hierarchical framework for agentic attribution, using temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/pdf/2601.15075">Paper</a>
+              <a href="https://arxiv.org/pdf/2601.15075">Code</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="techreport" class="content-box">
-      <div class="box-header"><h2 class="box-title">Tech Reports &amp; Projects</h2></div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <span class="paper-venue">Tech Report</span>
-          <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
-          <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
-          <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
-          <div class="paper-links">
-            <a href="https://arxiv.org/abs/2601.18491">Paper</a>
-            <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-            <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
-            <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
-            <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">AAAI 2026</span>
+            <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2508.03140">Paper</a>
+              <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
+            </div>
           </div>
         </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">ACL 2025</span>
+            <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
+            <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2406.01394">Paper</a>
+              <a href="https://github.com/ZeroNLP/PrivacyRestore">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">EMNLP 2025</span>
+            <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
+            <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2502.18517">Paper</a>
+              <a href="https://github.com/wjw136/RewardDS">Code</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">Tech Report</span>
+<a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a><a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
+              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
+              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
+              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -458,7 +589,60 @@ redirect_from:
 </footer>
 
 <script>
+  // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Publication tabs (Selected / Full)
+  (function () {
+    var tabs = document.querySelectorAll('.pub-tab');
+    var lists = document.querySelectorAll('.pub-list');
+    var heading = document.getElementById('pub-heading');
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = btn.getAttribute('data-target');
+        tabs.forEach(function (b) {
+          var active = b === btn;
+          b.classList.toggle('active', active);
+          b.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        lists.forEach(function (l) {
+          l.classList.toggle('active', l.id === target);
+        });
+        if (heading) {
+          heading.textContent = target === 'pub-full' ? 'Full Publications' : 'Selected Publications';
+        }
+      });
+    });
+  })();
+
+  // Live GitHub star count (fallback to hard-coded number on failure)
+  (function () {
+    var badges = document.querySelectorAll('.gh-star[data-repo]');
+    if (!badges.length || !window.fetch) return;
+    var cache = {};
+    badges.forEach(function (badge) {
+      var repo = badge.getAttribute('data-repo');
+      if (!repo) return;
+      var countEl = badge.querySelector('.gh-star-count');
+      if (!countEl) return;
+      var render = function (n) {
+        if (typeof n !== 'number' || isNaN(n)) return;
+        countEl.textContent = n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
+      };
+      if (cache[repo] != null) { render(cache[repo]); return; }
+      fetch('https://api.github.com/repos/' + repo, {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (data && typeof data.stargazers_count === 'number') {
+            cache[repo] = data.stargazers_count;
+            render(data.stargazers_count);
+          }
+        })
+        .catch(function () { /* keep fallback */ });
+    });
+  })();
 </script>
 
 </body>
