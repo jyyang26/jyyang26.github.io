@@ -6,7 +6,6 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -195,6 +194,18 @@ redirect_from:
     margin-bottom: 6px;
   }
   .paper-title:hover { color: #007acc; text-decoration: underline; }
+  /* Row that keeps title and inline badges (e.g. GitHub star) on the same line */
+  .paper-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .paper-title-row .paper-title {
+    display: inline;
+    margin-bottom: 0;
+  }
   .paper-auth  { font-size: 13px; color: #666666; margin-bottom: 8px; }
   .paper-tldr  { font-size: 13px; color: #666666; background: transparent; padding: 0; }
   .paper-links { margin-top: 8px; font-size: 13px; }
@@ -380,7 +391,10 @@ redirect_from:
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue">Tech Report</span>
-<a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a><a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            <div class="paper-title-row">
+              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
+              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            </div>
             <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
             <div class="paper-links">
@@ -466,7 +480,10 @@ redirect_from:
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue">Tech Report</span>
-<a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a><a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            <div class="paper-title-row">
+              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
+              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            </div>
             <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
             <div class="paper-links">
