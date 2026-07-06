@@ -11,7 +11,7 @@ redirect_from:
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Junyao Yang (杨竣尧)</title>
+<title>Junyao Yang</title>
 <meta name="description" content="Junyao Yang's personal homepage. Graduate student at NUS, researcher at Tencent Hunyuan. NLP, XAI, Representation Learning.">
 <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}">
 <style>
@@ -125,13 +125,14 @@ redirect_from:
 
   /* Papers */
   .paper-entry {
-    margin-bottom: 21px;
-    padding-bottom: 21px;
+    line-height: 1.28;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
     border-bottom: 1px solid #e0e0e0;
   }
   .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .paper-venue {
-    font-size: 15px;
+    font-size: 14px;
     color: #007acc;
     font-weight: 600;
     letter-spacing: 0.3px;
@@ -189,7 +190,7 @@ redirect_from:
   .gh-star:hover { color: #007acc; border-color: #007acc; text-decoration: none; }
   .gh-star svg { width: 12px; height: 12px; fill: #f5b400; }
   .paper-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: #333333;
     text-decoration: none;
@@ -209,9 +210,9 @@ redirect_from:
     display: inline;
     margin-bottom: 0;
   }
-  .paper-auth  { font-size: 13px; color: #666666; margin-bottom: 8px; }
-  .paper-tldr  { font-size: 13px; color: #666666; background: transparent; padding: 0; }
-  .paper-links { margin-top: 8px; font-size: 13px; }
+  .paper-auth  { font-size: 14px; color: #666666; margin-bottom: 8px; }
+  .paper-tldr  { font-size: 14px; color: #666666; background: transparent; padding: 0; }
+  .paper-links { margin-top: 8px; font-size: 14px; }
   .paper-links a { color: #666666; text-decoration: none; margin-right: 15px; }
   .paper-links a:hover { color: #007acc; text-decoration: underline; }
 
@@ -278,7 +279,7 @@ redirect_from:
 
   <aside class="custom-sidebar">
     <div>
-      <h1 class="name-title">Junyao Yang <span>(杨竣尧)</span></h1>
+      <h1 class="name-title">Junyao Yang</h1>
       <div class="affil-text">National University of Singapore</div>
       <div class="role-text">Tencent Hunyuan</div>
       <div class="social-icons">
@@ -297,6 +298,8 @@ redirect_from:
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
         Hi there, this is Junyao Yang. I am a graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        <br>
+        My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <!-- <br><br>
         My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reinforcement Learning</strong> [<strong><a href="https://arxiv.org/abs/2605.17770">CorR-PO</a></strong>], <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]. -->
       </div>
@@ -355,25 +358,6 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">Tech Report</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
-              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
-            </div>
-            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
-              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
-              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
-              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
             <span class="paper-venue">AAAI 2026</span>
             <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
@@ -400,6 +384,25 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
+            <span class="paper-venue">Tech Report</span>
+            <div class="paper-title-row">
+              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
+              <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
+            </div>
+            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
+              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
+              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
+              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
+              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
             <span class="paper-venue">EMNLP 2025</span>
             <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
             <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
@@ -412,7 +415,7 @@ redirect_from:
         </div>
 
       </div>
-    </section>
+
       <!-- Full Publications (all, incl. arXiv preprints & Tech Report) -->
       <div id="pub-full" class="pub-list">
 
@@ -433,7 +436,7 @@ redirect_from:
           <div class="paper-info">
             <span class="paper-venue">arXiv Preprint</span>
             <a href="https://arxiv.org/pdf/2605.17770v1" class="paper-title">Entropy-Gradient Inversion: Moving Toward Internal Mechanism of Large Reasoning Models</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong></div>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Kun Wang, Linfeng Zhang, Quanshi Zhang, Yong Liu, Dongrui Liu<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Identifying <em>Entropy-Gradient Inversion</em>&mdash;a robust negative correlation between token entropy and logit gradients&mdash;as a geometric fingerprint of LRM reasoning capability, and proposing <strong>CorR-PO</strong> that embeds this signature into RL reward regularization to stabilize reasoning optimization without costly external verifiers.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/pdf/2605.17770v1">Paper</a>
@@ -449,20 +452,7 @@ redirect_from:
             <div class="paper-tldr"><strong>TL;DR:</strong> A hierarchical framework for agentic attribution, using temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/pdf/2601.15075">Paper</a>
-              <a href="https://arxiv.org/pdf/2601.15075">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue">AAAI 2026</span>
-            <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2508.03140">Paper</a>
-              <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
+            <a href="https://arxiv.org/pdf/2601.15075">Code</a>
             </div>
           </div>
         </div>
@@ -482,6 +472,19 @@ redirect_from:
               <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
               <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
               <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue">AAAI 2026</span>
+            <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2508.03140">Paper</a>
+              <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
             </div>
           </div>
         </div>
@@ -514,7 +517,8 @@ redirect_from:
 
       </div>
 
-      <!-- Full Publications
+    </section>
+
     <section id="blogs" class="content-box">
       <div class="box-header"><h2 class="box-title">Blogs</h2></div>
       <div class="paper-entry">
