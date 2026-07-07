@@ -15,27 +15,29 @@ redirect_from:
 <meta name="description" content="Junyao Yang's personal homepage. Graduate student at NUS, researcher at Tencent Hunyuan. NLP, XAI, Representation Learning.">
 <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
   * { box-sizing: border-box; }
   html, body {
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
-    color: #333333;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: 300;
-    line-height: 1.6;
+    background-color: #faf9f6;
+    color: #201d18;
+    font-family: 'Source Serif 4', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.72;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  a { color: #333333; text-decoration: none; }
-  a:hover { color: #007acc; text-decoration: underline; }
-  a:active { color: #007acc; }
+  a { color: #1c5cab; text-decoration: none; }
+  a:hover { color: #2a78d6; text-decoration: underline; }
+  a:active { color: #2a78d6; }
 
   /* Selection: blue background + white text + underline */
-  ::selection { background-color: #007acc; color: #ffffff; text-decoration: underline; }
-  ::-moz-selection { background-color: #007acc; color: #ffffff; text-decoration: underline; }
+  ::selection { background-color: #2a78d6; color: #ffffff; text-decoration: underline; }
+  ::-moz-selection { background-color: #2a78d6; color: #ffffff; text-decoration: underline; }
 
   /* Theme Toggle */
   .theme-toggle {
@@ -58,8 +60,8 @@ redirect_from:
     position: sticky;
     top: 0;
     z-index: 9999;
-    background: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+    background: #faf9f6;
+    border-bottom: 1px solid #e6e2d8;
     padding: 12px 0;
     margin-bottom: 28px;
   }
@@ -70,13 +72,14 @@ redirect_from:
     flex-wrap: wrap;
   }
   .nav-link {
-    color: #666666;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    color: #6f6a61;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-link:hover { color: #007acc; text-decoration: underline; }
+  .nav-link:hover { color: #2a78d6; text-decoration: underline; }
   section { scroll-margin-top: 60px; }
 
   /* ---------- Layout ---------- */
@@ -92,17 +95,17 @@ redirect_from:
     gap: 30px;
     margin-bottom: 35px;
     padding-bottom: 28px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e6e2d8;
   }
   .name-title {
     font-size: 28px;
     font-weight: 600;
-    color: #000000;
+    color: #201d18;
     margin: 0 0 5px 0;
   }
-  .name-title span { font-size: 20px; color: #666666; }
-  .role-text  { color: #666666; font-size: 14px; margin-bottom: 5px; }
-  .affil-text { color: #666666; font-size: 14px; }
+  .name-title span { font-size: 20px; color: #4a463f; }
+  .role-text  { color: #6f6a61; font-size: 14px; margin-bottom: 5px; }
+  .affil-text { color: #6f6a61; font-size: 14px; }
 
   .social-icons {
     display: flex;
@@ -110,15 +113,15 @@ redirect_from:
     margin-top: 15px;
     justify-content: flex-start;
   }
-  .s-icon { color: #666666; transition: color 0.2s; }
-  .s-icon:hover { color: #007acc; }
+  .s-icon { color: #6f6a61; transition: color 0.2s; }
+  .s-icon:hover { color: #2a78d6; }
   .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
 
   /* ---------- Content Sections ---------- */
   .custom-content { display: flex; flex-direction: column; gap: 28px; }
   .content-box   { background: transparent; }
   .box-header    { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .box-title     { font-size: 18px; font-weight: 600; color: #000000; margin: 0; border: none; padding: 0; }
+  .box-title     { font-size: 18px; font-weight: 600; color: #201d18; margin: 0; border: none; padding: 0; }
 
   /* News */
   .news-list {
@@ -130,27 +133,28 @@ redirect_from:
   }
   .news-list li {
     padding: 7px 0;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e6e2d8;
     font-size: 14px;
-    color: #666666;
+    color: #4a463f;
   }
   .news-list li:last-child { border-bottom: none; }
-  .news-list a { color: #333333; text-decoration: none; }
-  .news-list a:hover { color: #007acc; text-decoration: underline; }
-  .news-tag { color: #666666; font-size: 12px; }
+  .news-list a { color: #201d18; text-decoration: none; }
+  .news-list a:hover { color: #2a78d6; text-decoration: underline; }
+  .news-tag { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; color: #6f6a61; font-size: 12px; }
 
   /* Papers */
   .paper-entry {
     line-height: 1.28;
     margin-bottom: 15px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e6e2d8;
   }
   .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .paper-venue {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     display: block;
     font-size: 14px;
-    color: #007acc;
+    color: #2a78d6;
     font-weight: 600;
     letter-spacing: 0.3px;
     margin-bottom: 6px;
@@ -158,7 +162,7 @@ redirect_from:
 
   /* Publications section title (Selected Publications) - blue & bold */
   #publications .box-title {
-    color: #007acc;
+    color: #2a78d6;
     font-weight: 700;
   }
 
@@ -170,20 +174,20 @@ redirect_from:
     align-items: center;
   }
   .pub-tab {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     background: none;
     border: none;
     padding: 4px 0;
     font-size: 14px;
-    color: #666666;
+    color: #6f6a61;
     cursor: pointer;
-    font-family: inherit;
     border-bottom: 2px solid transparent;
     transition: color 0.2s, border-color 0.2s;
   }
-  .pub-tab:hover { color: #007acc; }
+  .pub-tab:hover { color: #2a78d6; }
   .pub-tab.active {
-    color: #007acc;
-    border-bottom-color: #007acc;
+    color: #2a78d6;
+    border-bottom-color: #2a78d6;
     font-weight: 600;
   }
   .pub-list { display: none; }
@@ -191,30 +195,31 @@ redirect_from:
 
   /* GitHub star badge */
   .gh-star {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     display: inline-flex;
     align-items: center;
     gap: 4px;
     padding: 2px 8px;
     margin-left: 8px;
     font-size: 12px;
-    color: #333333;
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
+    color: #201d18;
+    background: #f2f0e9;
+    border: 1px solid #e6e2d8;
     border-radius: 10px;
     text-decoration: none;
     vertical-align: middle;
   }
-  .gh-star:hover { color: #007acc; border-color: #007acc; text-decoration: none; }
+  .gh-star:hover { color: #2a78d6; border-color: #2a78d6; text-decoration: none; }
   .gh-star svg { width: 12px; height: 12px; fill: #f5b400; }
   .paper-title {
     font-size: 14px;
     font-weight: 600;
-    color: #333333;
+    color: #201d18;
     text-decoration: none;
     display: block;
     margin-bottom: 6px;
   }
-  .paper-title:hover { color: #007acc; text-decoration: underline; }
+  .paper-title:hover { color: #2a78d6; text-decoration: underline; }
   /* Row that keeps title and inline badges (e.g. GitHub star) on the same line */
   .paper-title-row {
     display: flex;
@@ -227,48 +232,49 @@ redirect_from:
     display: inline;
     margin-bottom: 0;
   }
-  .paper-auth  { font-size: 14px; color: #666666; margin-bottom: 8px; }
-  .paper-tldr  { font-size: 14px; color: #666666; background: transparent; padding: 0; }
+  .paper-auth  { font-size: 14px; color: #4a463f; margin-bottom: 8px; }
+  .paper-tldr  { font-size: 14px; color: #4a463f; background: transparent; padding: 0; }
   .paper-links { margin-top: 8px; font-size: 14px; }
-  .paper-links a { color: #666666; text-decoration: none; margin-right: 15px; }
-  .paper-links a:hover { color: #007acc; text-decoration: underline; }
+  .paper-links a { color: #6f6a61; text-decoration: none; margin-right: 15px; }
+  .paper-links a:hover { color: #2a78d6; text-decoration: underline; }
 
   /* Education */
   .edu-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-  .edu-card { padding: 15px; border: 1px solid #e0e0e0; border-radius: 0; }
+  .edu-card { padding: 15px; border: 1px solid #e6e2d8; border-radius: 0; }
   .edu-logo {
     width: 40px; height: 40px; object-fit: contain;
-    margin-bottom: 10px; background: #f5f5f5; padding: 4px;
+    margin-bottom: 10px; background: #f2f0e9; padding: 4px;
   }
-  .edu-deg { font-size: 14px; font-weight: 600; color: #333333; }
-  .edu-sch { font-size: 13px; color: #666666; }
-  .edu-yr  { font-size: 12px; color: #666666; margin-top: 8px; }
+  .edu-deg { font-size: 14px; font-weight: 600; color: #201d18; }
+  .edu-sch { font-size: 13px; color: #4a463f; }
+  .edu-yr  { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 12px; color: #6f6a61; margin-top: 8px; }
 
   /* Experience */
   .exp-item {
     display: flex; align-items: center; gap: 15px;
-    padding: 8px 0; border-bottom: 1px solid #e0e0e0;
+    padding: 8px 0; border-bottom: 1px solid #e6e2d8;
   }
   .exp-item:last-child { border-bottom: none; }
   .exp-logo {
     width: 36px; height: 36px; object-fit: contain;
-    border: 1px solid #e0e0e0; padding: 2px; background: #f5f5f5;
+    border: 1px solid #e6e2d8; padding: 2px; background: #f2f0e9;
   }
 
   /* Honors */
-  ul.honors-list { font-size: 14px; color: #666666; padding-left: 20px; }
+  ul.honors-list { font-size: 14px; color: #4a463f; padding-left: 20px; }
   ul.honors-list li { padding: 5px 0; }
 
   /* About text block */
-  .about-text { font-size: 14px; line-height: 1.8; color: #666666; }
+  .about-text { font-size: 17px; line-height: 1.72; color: #4a463f; }
 
   /* Footer */
   .site-footer {
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     text-align: center;
     padding: 30px 20px 40px;
     font-size: 12px;
-    color: #999999;
-    border-top: 1px solid #e0e0e0;
+    color: #8d887e;
+    border-top: 1px solid #e6e2d8;
   }
 
   /* Mobile */
@@ -279,55 +285,54 @@ redirect_from:
 
   /* ---------- Dark Mode ---------- */
   body.dark-mode {
-    background-color: #1a1a1a;
-    color: #c9d1d9;
+    background-color: #131311;
+    color: #eae8e1;
   }
-  body.dark-mode a { color: #c9d1d9; }
-  body.dark-mode a:hover { color: #007acc; text-decoration: underline; }
-  body.dark-mode .custom-nav { background: #1a1a1a; border-bottom-color: #30363d; }
-  body.dark-mode .nav-link { color: #8b949e; }
-  body.dark-mode .nav-link:hover { color: #007acc; }
-  body.dark-mode .name-title { color: #e6e6e6; }
-  body.dark-mode .name-title span { color: #8b949e; }
+  body.dark-mode a { color: #86b6ef; }
+  body.dark-mode a:hover { color: #4e92e6; text-decoration: underline; }
+  body.dark-mode .custom-nav { background: #131311; border-bottom-color: #2b2a26; }
+  body.dark-mode .nav-link { color: #9b968b; }
+  body.dark-mode .nav-link:hover { color: #4e92e6; }
+  body.dark-mode .name-title { color: #eae8e1; }
+  body.dark-mode .name-title span { color: #9b968b; }
   body.dark-mode .affil-text,
-  body.dark-mode .role-text { color: #8b949e; }
-  body.dark-mode .box-title { color: #e6e6e6; }
-  body.dark-mode .paper-venue { color: #007acc; }
-  body.dark-mode .paper-title { color: #c9d1d9; }
-  body.dark-mode .paper-title:hover { color: #007acc; }
+  body.dark-mode .role-text { color: #9b968b; }
+  body.dark-mode .box-title { color: #eae8e1; }
+  body.dark-mode .paper-venue { color: #4e92e6; }
+  body.dark-mode .paper-title { color: #eae8e1; }
+  body.dark-mode .paper-title:hover { color: #4e92e6; }
   body.dark-mode .paper-auth,
-  body.dark-mode .paper-tldr { color: #8b949e; }
-  body.dark-mode .paper-links a { color: #8b949e; }
-  body.dark-mode .paper-links a:hover { color: #007acc; }
-  body.dark-mode .paper-entry { border-bottom-color: #30363d; }
-  body.dark-mode .custom-sidebar { border-bottom-color: #30363d; }
-  body.dark-mode .news-list li { color: #8b949e; border-bottom-color: #30363d; }
-  body.dark-mode .news-list a { color: #c9d1d9; }
-  body.dark-mode .news-list a:hover { color: #007acc; }
-  body.dark-mode .news-tag { color: #8b949e; }
-  body.dark-mode .edu-card { border-color: #30363d; }
-  body.dark-mode .edu-deg { color: #c9d1d9; }
+  body.dark-mode .paper-tldr { color: #c3c0b6; }
+  body.dark-mode .paper-links a { color: #9b968b; }
+  body.dark-mode .paper-links a:hover { color: #4e92e6; }
+  body.dark-mode .paper-entry { border-bottom-color: #2b2a26; }
+  body.dark-mode .custom-sidebar { border-bottom-color: #2b2a26; }
+  body.dark-mode .news-list li { color: #c3c0b6; border-bottom-color: #2b2a26; }
+  body.dark-mode .news-list a { color: #eae8e1; }
+  body.dark-mode .news-list a:hover { color: #4e92e6; }
+  body.dark-mode .news-tag { color: #9b968b; }
+  body.dark-mode .edu-card { border-color: #2b2a26; }
+  body.dark-mode .edu-deg { color: #eae8e1; }
   body.dark-mode .edu-sch,
-  body.dark-mode .edu-yr { color: #8b949e; }
+  body.dark-mode .edu-yr { color: #c3c0b6; }
   body.dark-mode .edu-logo { background: #ffffff; }
-  body.dark-mode .exp-item { border-bottom-color: #30363d; }
-  body.dark-mode .exp-logo { border-color: #30363d; background: #ffffff; }
-  body.dark-mode .exp-item > div > div { color: #8b949e !important; }
-  body.dark-mode .exp-item > div > div:first-of-type { color: #c9d1d9 !important; }
-  body.dark-mode ul.honors-list { color: #8b949e; }
-  body.dark-mode .about-text { color: #8b949e; }
-  body.dark-mode .about-text strong { color: #c9d1d9; }
-  body.dark-mode .site-footer { border-top-color: #30363d; color: #6e7681; }
-  body.dark-mode .gh-star { background: #2d2d2d; border-color: #30363d; color: #c9d1d9; }
-  body.dark-mode .gh-star:hover { color: #007acc; border-color: #007acc; }
-  body.dark-mode .pub-tab { color: #8b949e; }
-  body.dark-mode .pub-tab.active { color: #007acc; border-bottom-color: #007acc; }
-  body.dark-mode .pub-tab:hover { color: #007acc; }
-  body.dark-mode .s-icon { color: #8b949e; }
-  body.dark-mode .s-icon:hover { color: #007acc; }
-  /* selection in dark mode – keep blue bg, dark text for contrast */
-  body.dark-mode ::selection { background-color: #007acc; color: #1a1a1a; }
-  body.dark-mode ::-moz-selection { background-color: #007acc; color: #1a1a1a; }
+  body.dark-mode .exp-item { border-bottom-color: #2b2a26; }
+  body.dark-mode .exp-logo { border-color: #2b2a26; background: #ffffff; }
+  body.dark-mode .exp-item > div > div { color: #c3c0b6 !important; }
+  body.dark-mode .exp-item > div > div:first-of-type { color: #eae8e1 !important; }
+  body.dark-mode ul.honors-list { color: #c3c0b6; }
+  body.dark-mode .about-text { color: #c3c0b6; }
+  body.dark-mode .about-text strong { color: #eae8e1; }
+  body.dark-mode .site-footer { border-top-color: #2b2a26; color: #7c786e; }
+  body.dark-mode .gh-star { background: #22211d; border-color: #2b2a26; color: #eae8e1; }
+  body.dark-mode .gh-star:hover { color: #4e92e6; border-color: #4e92e6; }
+  body.dark-mode .pub-tab { color: #9b968b; }
+  body.dark-mode .pub-tab.active { color: #4e92e6; border-bottom-color: #4e92e6; }
+  body.dark-mode .pub-tab:hover { color: #4e92e6; }
+  body.dark-mode .s-icon { color: #9b968b; }
+  body.dark-mode .s-icon:hover { color: #4e92e6; }
+  body.dark-mode ::selection { background-color: #4e92e6; color: #131311; }
+  body.dark-mode ::-moz-selection { background-color: #4e92e6; color: #131311; }
 </style>
 </head>
 <body>
@@ -618,36 +623,36 @@ redirect_from:
         <div class="exp-item">
           <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent Hunyuan">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #333333;">Tencent Hunyuan</div>
-            <div style="font-size: 14px; color: #666666;">Research Intern | 2026.04 - Present</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent Hunyuan</div>
+            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2026.04 - Present</div>
           </div>
         </div>
         <div class="exp-item">
           <img src="{{ '/images/ailab.png' | relative_url }}" class="exp-logo" alt="Shanghai AI Lab">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #333333;">Shanghai AI Lab</div>
-            <div style="font-size: 14px; color: #666666;">Research Intern | 2025.06 - 2026.04</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Shanghai AI Lab</div>
+            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2025.06 - 2026.04</div>
           </div>
         </div>
         <div class="exp-item">
           <img src="{{ '/images/South_China_University_of_Technology_Logo_(Since_2022).svg.png' | relative_url }}" class="exp-logo" alt="SCUT">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #333333;">South China University of Technology</div>
-            <div style="font-size: 14px; color: #666666;">Research Intern | 2024.07 - 2025.06</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">South China University of Technology</div>
+            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2024.07 - 2025.06</div>
           </div>
         </div>
         <div class="exp-item">
           <img src="{{ '/images/Tencent.png' | relative_url }}" class="exp-logo" alt="Tencent">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #333333;">Tencent</div>
-            <div style="font-size: 14px; color: #666666;">Machine Learning Intern | 2024.04 - 2024.07</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent</div>
+            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Machine Learning Intern | 2024.04 - 2024.07</div>
           </div>
         </div>
         <div class="exp-item">
           <img src="{{ '/images/SZSE.png' | relative_url }}" class="exp-logo" alt="SZSE">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #333333;">SZSE</div>
-            <div style="font-size: 13px; color: #666666;">Machine Learning Intern | 2024.01 - 2024.04</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">SZSE</div>
+            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 13px; color: #6f6a61;">Machine Learning Intern | 2024.01 - 2024.04</div>
           </div>
         </div>
       </div>
