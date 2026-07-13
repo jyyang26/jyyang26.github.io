@@ -12,7 +12,7 @@ redirect_from:
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Junyao Yang</title>
-<meta name="description" content="Junyao Yang's personal homepage. Graduate student at NUS, researcher at Tencent Hunyuan. NLP, XAI, Representation Learning.">
+<meta name="description" content="Junyao Yang's personal homepage. Graduate student at NUS, researcher at Tencent HY. NLP, XAI, Representation Learning.">
 <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
@@ -364,7 +364,7 @@ redirect_from:
     <div>
       <h1 class="name-title">Junyao Yang</h1>
       <div class="affil-text">National University of Singapore</div>
-      <div class="role-text">Tencent Hunyuan</div>
+      <div class="role-text">Tencent HY</div>
       <div class="social-icons">
         <a href="mailto:junyaoyang@u.nus.edu" class="s-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
         <a href="https://scholar.google.com/citations?hl=en&user=oY6uhJQAAAAJ" class="s-icon" title="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg></a>
@@ -380,7 +380,7 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hunyuan</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent HY</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <!-- <br><br>
@@ -395,7 +395,7 @@ redirect_from:
         <li><span class="news-tag">2026.07</span> Blog post: <strong><a href="https://ruhan-wang.github.io/Harness-Handbook/">Harness Handbook</a></strong>. A behavior-to-implementation map that makes agent harnesses understandable, auditable, and editable.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
-        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hunyuan LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
+        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent HY LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
         <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="{{ '/blogs/reasoning_token.html' | relative_url }}">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit significant negative correlations between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT.</li>
         <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
@@ -680,9 +680,9 @@ redirect_from:
       <div class="box-header"><h2 class="box-title">Experience</h2></div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <div class="exp-item">
-          <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent Hunyuan">
+          <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent HY">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent Hunyuan</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent HY</div>
             <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2026.04 - Present</div>
           </div>
         </div>
