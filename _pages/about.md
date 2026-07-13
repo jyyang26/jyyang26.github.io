@@ -151,7 +151,6 @@ redirect_from:
   }
   .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
   .paper-venue {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     display: block;
     font-size: 14px;
     color: #2a78d6;
@@ -159,6 +158,9 @@ redirect_from:
     letter-spacing: 0.3px;
     margin-bottom: 6px;
   }
+  .paper-venue.venue-conf { color: #B1642B; }
+  .paper-venue.venue-arxiv { color: #5A574F; }
+  .paper-venue.venue-tech { color: #755CC1; }
 
   /* Publications section title (Selected Publications) - blue & bold */
   #publications .box-title {
@@ -299,6 +301,9 @@ redirect_from:
   body.dark-mode .role-text { color: #9b968b; }
   body.dark-mode .box-title { color: #eae8e1; }
   body.dark-mode .paper-venue { color: #4e92e6; }
+  body.dark-mode .paper-venue.venue-conf { color: #D8894A; }
+  body.dark-mode .paper-venue.venue-arxiv { color: #A8A498; }
+  body.dark-mode .paper-venue.venue-tech { color: #9C86E0; }
   body.dark-mode .paper-title { color: #eae8e1; }
   body.dark-mode .paper-title:hover { color: #4e92e6; }
   body.dark-mode .paper-auth,
@@ -386,6 +391,9 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
+        <li><span class="news-tag">2026.07</span> Blog post: <strong><a href="https://zli12321.github.io/LHTB/index.html">Long-Horizon Terminal-Bench</a></strong>. Measuring the progress agents can sustain, not just what they can finish&mdash;18 frontier models, none passes a third of the tasks.</li>
+        <li><span class="news-tag">2026.07</span> Blog post: <strong><a href="https://ruhan-wang.github.io/Harness-Handbook/">Harness Handbook</a></strong>. A behavior-to-implementation map that makes agent harnesses understandable, auditable, and editable.</li>
+        <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
         <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hunyuan LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
@@ -423,7 +431,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">ACL 2026</span>
+            <span class="paper-venue venue-conf">ACL 2026</span>
             <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
@@ -436,7 +444,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">AAAI 2026</span>
+            <span class="paper-venue venue-conf">AAAI 2026</span>
             <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
@@ -449,7 +457,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">ACL 2025</span>
+            <span class="paper-venue venue-conf">ACL 2025</span>
             <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
             <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
@@ -462,7 +470,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">Tech Report</span>
+            <span class="paper-venue venue-tech">Tech Report</span>
             <div class="paper-title-row">
               <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
               <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
@@ -481,7 +489,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">arXiv Preprint</span>
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
             <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A long-horizon terminal benchmark of 46 tasks across 9 categories with dense subtask-level rewards, enabling partial-credit evaluation of frontier agents on multi-hour, multi-hundred-episode workflows (best model reaches only 15.2% pass@1 at 0.95 threshold).</div>
@@ -494,7 +502,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">EMNLP 2025</span>
+            <span class="paper-venue venue-conf">EMNLP 2025</span>
             <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
             <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
@@ -512,7 +520,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">ACL 2026</span>
+            <span class="paper-venue venue-conf">ACL 2026</span>
             <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
@@ -525,7 +533,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">arXiv Preprint</span>
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/pdf/2605.17770v1" class="paper-title">Entropy-Gradient Inversion: Moving Toward Internal Mechanism of Large Reasoning Models</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Kun Wang, Linfeng Zhang, Quanshi Zhang, Yong Liu, Dongrui Liu<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Identifying <em>Entropy-Gradient Inversion</em>&mdash;a robust negative correlation between token entropy and logit gradients&mdash;as a geometric fingerprint of LRM reasoning capability, and proposing <strong>CorR-PO</strong> that embeds this signature into RL reward regularization to stabilize reasoning optimization without costly external verifiers.</div>
@@ -537,7 +545,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">arXiv Preprint</span>
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/pdf/2601.15075" class="paper-title">The Why Behind the Action: Unveiling Internal Drivers via Agentic Attribution</a>
             <div class="paper-auth">Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A hierarchical framework for agentic attribution, using temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</div>
@@ -550,7 +558,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">Tech Report</span>
+            <span class="paper-venue venue-tech">Tech Report</span>
             <div class="paper-title-row">
               <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
               <a class="gh-star" href="https://github.com/AI45Lab/AgentDoG" data-repo="AI45Lab/AgentDoG" title="GitHub stars"><svg viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431 8.207 1.192-5.938 5.788 1.402 8.174L12 19.302l-7.339 3.87 1.402-8.174L.125 9.21l8.207-1.192L12 .587z"/></svg><span class="gh-star-count">652</span></a>
@@ -569,7 +577,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">AAAI 2026</span>
+            <span class="paper-venue venue-conf">AAAI 2026</span>
             <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
@@ -582,7 +590,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">ACL 2025</span>
+            <span class="paper-venue venue-conf">ACL 2025</span>
             <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
             <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
@@ -595,7 +603,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">arXiv Preprint</span>
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
             <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A long-horizon terminal benchmark of 46 tasks across 9 categories with dense subtask-level rewards, enabling partial-credit evaluation of frontier agents on multi-hour, multi-hundred-episode workflows (best model reaches only 15.2% pass@1 at 0.95 threshold).</div>
@@ -608,7 +616,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue">EMNLP 2025</span>
+            <span class="paper-venue venue-conf">EMNLP 2025</span>
             <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
             <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
@@ -628,6 +636,18 @@ redirect_from:
         <div class="paper-info">
           <a href="{{ '/blogs/reasoning_token.html' | relative_url }}" class="paper-title">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</a>
           <div class="paper-tldr"><strong>TL;DR:</strong> We discover that reasoning models exhibit a unique "fingerprint": a significant negative correlation between gradient strength and token entropy, which contradicts traditional base models. This capability emerges rapidly within the first 200 steps of SFT.</div>
+        </div>
+      </div>
+      <div class="paper-entry">
+        <div class="paper-info">
+          <a href="https://ruhan-wang.github.io/Harness-Handbook/" class="paper-title">Harness Handbook: Making Agent Harnesses Understandable, Auditable, and Editable</a>
+          <div class="paper-tldr"><strong>TL;DR:</strong> Coding-agent codebases hide behavior across thousands of files. Harness Handbook builds a behavior-to-implementation map that structures execution around system behavior and links every step to verifiable code evidence, keeping the harness understandable, reviewable, and human-in-the-loop as it evolves.</div>
+        </div>
+      </div>
+      <div class="paper-entry">
+        <div class="paper-info">
+          <a href="https://zli12321.github.io/LHTB/index.html" class="paper-title">Long-Horizon Terminal-Bench: Measuring the Progress Agents Can Sustain, Not Just What They Can Finish</a>
+          <div class="paper-tldr"><strong>TL;DR:</strong> Most agent benchmarks end in minutes—real terminal work does not. LHTB drops agents into Docker containers with goals requiring hundreds of dependent actions (build from scratch, migrate frameworks, play games move-by-move), graded by a hidden fake-proof verifier with continuous partial credit. Across 18 frontier models, none passes even a third of the tasks.</div>
         </div>
       </div>
     </section>
