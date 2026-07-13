@@ -395,7 +395,7 @@ redirect_from:
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <br>
-        Here are my resumes: <a href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link" class="resume-link">EN</a>, <a href="https://drive.google.com/file/d/1C2bD366Qj5I_hCi5HpAY-v_Ra-Lp110_/view?usp=drive_link" class="resume-link">中文</a>.
+        CVs: <a href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link" class="resume-link">EN</a>,&nbsp;<a href="https://drive.google.com/file/d/1C2bD366Qj5I_hCi5HpAY-v_Ra-Lp110_/view?usp=drive_link" class="resume-link">中文</a>
         <!-- <br><br>
         My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reinforcement Learning</strong> [<strong><a href="https://arxiv.org/abs/2605.17770">CorR-PO</a></strong>], <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]. -->
       </div>
