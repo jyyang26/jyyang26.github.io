@@ -582,6 +582,18 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
+            <span class="paper-venue">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
+            <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A long-horizon terminal benchmark of 46 tasks across 9 categories with dense subtask-level rewards, enabling partial-credit evaluation of frontier agents on multi-hour, multi-hundred-episode workflows (best model reaches only 15.2% pass@1 at 0.95 threshold).</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2607.08964">Paper</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
             <span class="paper-venue">EMNLP 2025</span>
             <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
             <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
