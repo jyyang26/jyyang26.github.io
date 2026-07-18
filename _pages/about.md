@@ -405,8 +405,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
-        <li><span class="news-tag">2026.07</span> Blog post: <strong><a href="https://zli12321.github.io/LHTB/index.html">Long-Horizon Terminal-Bench</a></strong>. Measuring the progress agents can sustain, not just what they can finish&mdash;18 frontier models, none passes a third of the tasks.</li>
-        <li><span class="news-tag">2026.07</span> Blog post: <strong><a href="https://ruhan-wang.github.io/Harness-Handbook/">Harness Handbook</a></strong>. A behavior-to-implementation map that makes agent harnesses understandable, auditable, and editable.</li>
+        <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
         <li><span class="news-tag">2026.04</span> Joined <strong>Tencent HY LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
