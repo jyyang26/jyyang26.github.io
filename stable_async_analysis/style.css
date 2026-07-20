@@ -44,13 +44,13 @@
 
   /* Chart entity colors (CVD-validated, light surface). One hue per method,
      used consistently across every bar chart, line chart and legend. */
-  --ch-r3:      #2a78d6;   /* R3 — blue        */
-  --ch-dppo:    #b7434b;   /* DPPO — crimson   */
-  --ch-satr:    #bd5f16;   /* SATR — sienna    */
-  --ch-satr-r3: #7a5bc7;   /* SATR + R3 — violet */
-  --ch-tis:     #6c8f2a;   /* TIS — moss green */
-  --ch-base:    #8a857b;   /* GRPO / GSPO baselines — neutral */
-  --collapse-red: #a11d1d; /* collapse annotations in static figures */
+  --ch-r3:      #3c85dd;   /* R3 — blue        */
+  --ch-dppo:    #cc6670;   /* DPPO — crimson   */
+  --ch-satr:    #c97a3a;   /* SATR — sienna    */
+  --ch-satr-r3: #9a7fd6;   /* SATR + R3 — violet */
+  --ch-tis:     #7d9a3e;   /* TIS — moss green */
+  --ch-base:    #8f8a80;   /* GRPO / GSPO baselines — neutral */
+  --collapse-red: #e06c6c; /* collapse annotations in static figures */
 
   --font-serif: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --font-sans:  "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -159,6 +159,44 @@ code {
 .u-b { color: var(--sienna-ink); font-weight: 600; }
 .u-h { color: var(--accent-ink); font-weight: 600; }
 .u-i { color: var(--graphite); font-weight: 600; }
+.async-summary__lead {
+  position: relative;
+  --note-gap: 42px;
+  max-width: var(--col);
+  margin: 0 auto 1.25em;
+}
+.async-summary__lead p:last-of-type { margin-bottom: 0; }
+.async-summary__trigger {
+  display: inline;
+  padding: 0 .14em .04em;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  background-image: linear-gradient(to top, color-mix(in srgb, #f4dc8a 58%, transparent) 0 42%, transparent 42% 100%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+.async-summary__trigger:hover,
+.async-summary__trigger:focus-visible {
+  text-decoration: none;
+}
+.async-summary__trigger[aria-pressed="true"] {
+  background-image: linear-gradient(to top, color-mix(in srgb, #f4dc8a 72%, transparent) 0 48%, transparent 48% 100%);
+}
+.async-summary__note {
+  top: 2px;
+}
+.async-summary__lead.note--fit:has(.async-summary__trigger:hover) .async-summary__note,
+.async-summary__lead.note--fit:has(.async-summary__trigger:focus-visible) .async-summary__note,
+.async-summary__lead.note--fit .async-summary__note:hover,
+.async-summary__lead.note--fit .async-summary__note:focus-within,
+.async-summary__lead.note--active .async-summary__note {
+  border-left-color: color-mix(in srgb, var(--accent-ink) 52%, var(--line));
+}
 
 /* ============================ 2. CHROME ================================= */
 .progress-bar {
@@ -250,7 +288,80 @@ html.dark .icon-moon { display: block; }
   font-size: clamp(18px, 2.1vw, 22px); line-height: 1.4; color: var(--ink-soft);
   font-style: italic; margin: 0 0 22px;
 }
+.hero__subtitle-wrap {
+  position: relative;
+  --note-gap: 28px;
+  margin: 0 0 26px;
+}
+.hero__subtitle-copy { min-width: 0; }
 .hero__subtitle { font-size: 18px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 26px; }
+.hero__subtitle:last-child { margin-bottom: 0; }
+.hero__note {
+  position: absolute;
+  top: 8px;
+  left: calc(100% + var(--note-gap));
+  width: 150px;
+  margin-top: 0;
+  padding: 10px 0 0 18px;
+  border-left: 1.5px solid color-mix(in srgb, var(--accent) 24%, var(--line));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(8px);
+  transition: opacity .18s ease, transform .18s ease, border-left-color .2s ease;
+}
+.hero__subtitle-wrap.note--fit.note--open .hero__note {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+.hero__subtitle-wrap.note--fit.note--open:has(.hero__formula-link:hover) .hero__note,
+.hero__subtitle-wrap.note--fit.note--open:has(.hero__formula-link:focus-visible) .hero__note,
+.hero__subtitle-wrap.note--fit.note--open .hero__note:hover,
+.hero__subtitle-wrap.note--fit.note--open .hero__note:focus-within {
+  border-left-color: color-mix(in srgb, var(--accent-ink) 52%, var(--line));
+}
+.hero__note-label {
+  margin: 0 0 8px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero__note-link {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.hero__note-link:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+.hero__formula-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.hero__formula-link:hover,
+.hero__formula-link:focus-visible {
+  text-decoration: none;
+}
+.hero__formula-link[aria-expanded="true"] .u-h-formula {
+  background-image: linear-gradient(to top, color-mix(in srgb, #f4dc8a 72%, transparent) 0 48%, transparent 48% 100%);
+}
+.u-h-formula {
+  display: inline;
+  padding: 0 .12em .04em;
+  border-radius: 6px;
+  background-image: linear-gradient(to top, color-mix(in srgb, #f4dc8a 58%, transparent) 0 42%, transparent 42% 100%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 
 /* --- Work-in-Progress banner (sits between subtitle and byline) --- */
 /* Hang the pulsing dot in the left margin so the "Work in Progress" text
@@ -449,6 +560,14 @@ figcaption b { color: var(--ink-soft); font-weight: 600; }
 }
 .aside .aside { margin-top: 18px; margin-bottom: 18px; }
 .aside .callout { margin-top: 20px; margin-bottom: 20px; }
+
+/* --- Setup aside: keep summary full-width, but constrain the opened body
+       to a callout-like reading measure instead of the wider article column. */
+.aside--setup-measure > .aside__body--callout-measure {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* ============================ 5. COMPONENTS ============================= */
 /* --- Symbol dictionary card --- */
@@ -713,6 +832,7 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   .method { padding: 18px 18px 14px; }
   .cmp-table { min-width: 520px; }
   .hero__logo { height: 34px; }
+  .hero__subtitle-wrap { margin-bottom: 26px; }
 }
 
 /* ================================================================
@@ -757,6 +877,112 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
   font-family: var(--font-sans); font-size: 12.5px; line-height: 1.55;
   color: var(--muted); margin: 10px 0 0;
 }
+.exp-cap__lead-wrap {
+  position: relative;
+  display: block;
+  --note-gap: 42px;
+}
+.exp-cap__lead-trigger {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+.exp-cap__lead-trigger:hover,
+.exp-cap__lead-trigger:focus-visible {
+  text-decoration: none;
+}
+.exp-cap__lead-trigger[aria-pressed="true"] .exp-cap__lead-highlight {
+  background-image: linear-gradient(to top, color-mix(in srgb, #f4dc8a 72%, transparent) 0 48%, transparent 48% 100%);
+}
+.exp-cap__lead-highlight {
+  display: inline;
+  padding: 0 .14em .04em;
+  border-radius: 6px;
+  background-image: linear-gradient(to top, color-mix(in srgb, #f4dc8a 58%, transparent) 0 42%, transparent 42% 100%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.exp-cap__note {
+  position: absolute;
+  top: -2px;
+  left: calc(100% + var(--note-gap));
+  width: 165px;
+  margin: 0;
+  padding: 6px 0 0 12px;
+  border-left: 1.5px solid color-mix(in srgb, var(--accent) 24%, var(--line));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(8px);
+  transition: opacity .18s ease, transform .18s ease, border-left-color .2s ease;
+}
+.exp-cap__lead-wrap.note--fit .exp-cap__note {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+.exp-cap__lead-wrap.note--fit:has(.exp-cap__lead-trigger:hover) .exp-cap__note,
+.exp-cap__lead-wrap.note--fit:has(.exp-cap__lead-trigger:focus-visible) .exp-cap__note,
+.exp-cap__lead-wrap.note--fit .exp-cap__note:hover,
+.exp-cap__lead-wrap.note--fit .exp-cap__note:focus-within,
+.exp-cap__lead-wrap.note--active .exp-cap__note {
+  border-left-color: color-mix(in srgb, var(--accent-ink) 52%, var(--line));
+}
+.exp-cap__note-label {
+  margin: 0 0 6px;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.exp-cap__note-link {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.exp-cap__note-link:hover {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.sat-proof-note-wrap {
+  --note-gap: 28px;
+}
+.sat-proof-note {
+  top: 212px;
+  width: 180px;
+}
+.sat-proof-note-wrap.note--fit .sat-proof-note {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(8px);
+}
+.sat-proof-note-wrap.note--fit > details[open] .sat-proof-note {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+}
+.sat-proof-note-wrap.note--fit:has(.sat-proof-note-trigger:hover) > details[open] .sat-proof-note,
+.sat-proof-note-wrap.note--fit:has(.sat-proof-note-trigger:focus-visible) > details[open] .sat-proof-note,
+.sat-proof-note-wrap.note--fit > details[open] .sat-proof-note:hover,
+.sat-proof-note-wrap.note--fit > details[open] .sat-proof-note:focus-within,
+.sat-proof-note-wrap.note--active > details[open] .sat-proof-note {
+  border-left-color: color-mix(in srgb, var(--accent-ink) 52%, var(--line));
+}
+
 .exp-figure__cap b { color: var(--ink-soft); font-weight: 600; }
 .exp-figure__cap code {
   background: var(--code-bg); border: 1px solid var(--line);
@@ -957,12 +1183,13 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
    chips and tooltip swatches can reuse them via currentColor. */
 .lc-path--satr       { color: var(--ch-satr); }
 .lc-path--satr-r3    { color: var(--ch-satr-r3); }
+.lc-path--satr-r3-deep { color: #7f63c9; }
 .lc-path--r3         { color: var(--ch-r3); }
 .lc-path--r3-gspo    { color: color-mix(in srgb, var(--ch-r3) 55%, var(--ink) 45%); }
 .lc-path--tis        { color: var(--ch-tis); }
 .lc-path--tis-gspo   { color: color-mix(in srgb, var(--ch-tis) 55%, var(--ink) 45%); }
 .lc-path--tis_r3     { color: color-mix(in srgb, var(--ch-tis) 55%, var(--ch-r3) 45%); }
-.lc-path--tis_r3-gspo{ color: color-mix(in srgb, var(--ch-tis) 40%, var(--ch-r3) 60%); }
+.lc-path--tis_r3-gspo{ color: #54808f; }
 .lc-path--dppo       { color: var(--ch-dppo); }
 .lc-path--baseline,
 .lc-path--slime      { color: var(--ch-base); }
@@ -970,7 +1197,8 @@ mjx-container { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
 
 .line-chart path.lc-path { stroke: currentColor; }
 .line-chart path.lc-path--satr    { stroke-width: 4.2; }
-.line-chart path.lc-path--satr-r3 { stroke-width: 4.4; }
+.line-chart path.lc-path--satr-r3,
+.line-chart path.lc-path--satr-r3-deep { stroke-width: 4.4; }
 .line-chart path.lc-path--baseline,
 .line-chart path.lc-path--slime   { stroke-width: 3.2; }
 

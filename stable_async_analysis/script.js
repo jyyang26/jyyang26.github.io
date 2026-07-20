@@ -114,6 +114,118 @@
     }).catch(() => {});
   });
 
+  /* ============ 4b. FIT-AWARE SIDE NOTES ============ */
+  const noteWraps = $$('[data-note-wrap]');
+  const heroTriggers = $$('[data-note-target]');
+  const noteActivateTriggers = $$('[data-note-activate-target]');
+
+  function setFitState(wrap) {
+    const noteId = wrap.getAttribute('data-note-wrap');
+    const note = noteId ? document.getElementById(noteId) : null;
+    if (!note) return false;
+
+    const mode = note.dataset.noteMode || 'auto';
+    const prevOpen = wrap.classList.contains('note--open');
+    const prevHidden = note.style.display;
+    note.style.display = 'block';
+
+    const gap = parseFloat(getComputedStyle(wrap).getPropertyValue('--note-gap')) || 0;
+    const fits = wrap.getBoundingClientRect().right + gap + note.offsetWidth <= window.innerWidth - 12;
+
+    note.style.display = prevHidden;
+    wrap.classList.toggle('note--fit', fits);
+
+    const relatedTriggers = heroTriggers.filter((trigger) => trigger.getAttribute('data-note-target') === noteId);
+    const relatedActivateTriggers = noteActivateTriggers.filter((trigger) => trigger.getAttribute('data-note-activate-target') === noteId);
+
+    if (!fits) {
+      wrap.classList.remove('note--open');
+      wrap.classList.remove('note--active');
+      relatedTriggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+      relatedActivateTriggers.forEach((trigger) => trigger.setAttribute('aria-pressed', 'false'));
+    } else if (mode === 'auto') {
+      wrap.classList.add('note--open');
+    } else if (prevOpen) {
+      wrap.classList.add('note--open');
+      relatedTriggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'true'));
+    } else {
+      wrap.classList.remove('note--open');
+      relatedTriggers.forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+    }
+
+    return fits;
+  }
+
+  function refreshNotes() {
+    noteWraps.forEach(setFitState);
+  }
+
+  heroTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      const noteId = trigger.getAttribute('data-note-target');
+      const wrap = noteId ? document.querySelector(`[data-note-wrap="${noteId}"]`) : null;
+      const note = noteId ? document.getElementById(noteId) : null;
+      if (!wrap || !note || note.dataset.noteMode !== 'toggle') return;
+      const fits = setFitState(wrap);
+      if (!fits) return;
+      event.preventDefault();
+      const willOpen = !wrap.classList.contains('note--open');
+      wrap.classList.toggle('note--open', willOpen);
+      trigger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+  });
+
+  noteActivateTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      const noteId = trigger.getAttribute('data-note-activate-target');
+      const wrap = noteId ? document.querySelector(`[data-note-wrap="${noteId}"]`) : null;
+      if (!wrap) return;
+      const fits = setFitState(wrap);
+      if (!fits) return;
+      event.preventDefault();
+      const relatedActivateTriggers = noteActivateTriggers.filter((item) => item.getAttribute('data-note-activate-target') === noteId);
+      const willActivate = !wrap.classList.contains('note--active');
+      wrap.classList.toggle('note--active', willActivate);
+      relatedActivateTriggers.forEach((item) => item.setAttribute('aria-pressed', willActivate ? 'true' : 'false'));
+    });
+    // The lead-trigger is a <span role="button">, which does not auto-map
+    // Enter/Space to click.  Forward those keys manually so the trigger
+    // stays keyboard-accessible.
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+        event.preventDefault();
+        trigger.click();
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    heroTriggers.forEach((trigger) => {
+      const noteId = trigger.getAttribute('data-note-target');
+      const wrap = noteId ? document.querySelector(`[data-note-wrap="${noteId}"]`) : null;
+      const note = noteId ? document.getElementById(noteId) : null;
+      if (!wrap || !note || note.dataset.noteMode !== 'toggle' || !wrap.classList.contains('note--open')) return;
+      if (wrap.contains(event.target) || trigger.contains(event.target)) return;
+      wrap.classList.remove('note--open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+
+    noteActivateTriggers.forEach((trigger) => {
+      const noteId = trigger.getAttribute('data-note-activate-target');
+      const wrap = noteId ? document.querySelector(`[data-note-wrap="${noteId}"]`) : null;
+      if (!wrap || !wrap.classList.contains('note--active')) return;
+      if (wrap.contains(event.target) || trigger.contains(event.target)) return;
+      wrap.classList.remove('note--active');
+      noteActivateTriggers
+        .filter((item) => item.getAttribute('data-note-activate-target') === noteId)
+        .forEach((item) => item.setAttribute('aria-pressed', 'false'));
+    });
+  });
+
+  window.addEventListener('resize', refreshNotes, { passive: true });
+  window.addEventListener('load', refreshNotes);
+  refreshNotes();
+
   /* ============ 5. INTERACTIVE LINE CHARTS ============
      Reads the JSON blob embedded as <script id="chart-data" type="application/json">
      and renders every <figure class="exp-figure" data-chart="line-training"> into
@@ -126,14 +238,19 @@
     try { CHART = JSON.parse(dataNode.textContent); } catch (e) { console.warn("chart-data parse failed", e); }
 
     // Colour class per (method, algo). Kept in sync with style.css .lc-path--* rules.
-    const methodClass = (m, algo) => {
-      const k = (m || "").toLowerCase();
+    const methodClass = (slug, m, algo) => {
+      const k = (m || "").toLowerCase().trim();
       const isGspo = (algo || "").toUpperCase() === "GSPO";
-      if (k === "satr")     return "lc-path--satr";
-      if (k === "satr+r3")  return "lc-path--satr-r3";
-      if (k === "r3")       return isGspo ? "lc-path--r3-gspo"    : "lc-path--r3";
-      if (k === "tis")      return isGspo ? "lc-path--tis-gspo"   : "lc-path--tis";
-      if (k === "tis+r3")   return isGspo ? "lc-path--tis_r3-gspo": "lc-path--tis_r3";
+      if (slug === "gspo__satr_r3__s8__yzyea572") return "lc-path--satr-r3-deep";
+      if (k === "sat" || k === "satr") return "lc-path--satr";
+      if (k === "sat+r3" || k === "satr+r3" || k === "sat w/ r3" || k === "satr w/ r3") {
+        return "lc-path--satr-r3";
+      }
+      if (k === "r3") return isGspo ? "lc-path--r3-gspo" : "lc-path--r3";
+      if (k === "tis") return isGspo ? "lc-path--tis-gspo" : "lc-path--tis";
+      if (k === "tis+r3" || k === "tis w/ r3") {
+        return isGspo ? "lc-path--tis_r3-gspo" : "lc-path--tis_r3";
+      }
       if (k === "dppo")     return "lc-path--dppo";
       if (k === "slime")    return isGspo ? "lc-path--slime-gspo" : "lc-path--slime";
       if (k === "baseline") return "lc-path--baseline";
@@ -144,16 +261,17 @@
     const shortLabelFor = (slug, s) => {
       const map = {
         "grpo_slime__s1_gbs2048"     : "GRPO",
-        "grpo__dppo__s1__u4jyssm8"   : "GRPO + DPPO",
+        "grpo__dppo__s1__u4jyssm8"   : "DPPO-TV",
         "grpo__r3__s1__c8j5hem6"     : "GRPO + R3",
-        "gspo__satr__s1__mvb19ayy"   : "GSPO + SATR",
-        "gspo__satr_r3__s1__eenokv3e": "GSPO + SATR + R3",
+        "gspo__satr__s1__mvb19ayy"   : "SAT-GSPO",
+        "gspo__satr_r3__s1__eenokv3e": "SAT-GSPO + R3",
+        "gspo__satr_r3__s8__yzyea572": "SAT-GSPO + R3",
         "grpo_slime__s8"             : "GRPO",
         "gspo_slime__s8"             : "GSPO",
-        "grpo__dppo__s8__yzh8bw0y"   : "GRPO + DPPO",
+        "grpo__dppo__s8__yzh8bw0y"   : "DPPO-TV",
         "grpo__r3__s8__async_r3"     : "GRPO + R3",
-        "gspo__satr__s8__ddxzokvw"   : "GSPO + SATR",
-        "grpo__satr_r3__s8__s8et8i00": "GRPO + SATR + R3",
+        "gspo__satr__s8__ddxzokvw"   : "SAT-GSPO",
+        "grpo__satr_r3__s8__s8et8i00": "SAT-GRPO + R3",
         "gspo__r3__s1_new"           : "GSPO + R3",
         "gspo__tis__s1_new"          : "GSPO + TIS",
         "gspo__tis_r3__s1_new"       : "GSPO + TIS + R3",
@@ -267,7 +385,7 @@
       entries.forEach(([slug, s]) => {
         const rawPts = s.points;
         if (!rawPts || rawPts.length < 2) return;
-        const cls = methodClass(s.method, s.algo);
+        const cls = methodClass(slug, s.method, s.algo);
 
         // Helper: build a path "d" string + return (lastX, lastY, lastRaw).
         const buildPath = (pts) => {
@@ -305,7 +423,7 @@
       // never hidden behind other lines. Re-appending an existing SVG node
       // moves it to the end of its parent (== rendered on top).
       drawn.forEach((d) => {
-        if (d.cls === "lc-path--satr" || d.cls === "lc-path--satr-r3") {
+        if (d.cls === "lc-path--satr" || d.cls === "lc-path--satr-r3" || d.cls === "lc-path--satr-r3-deep") {
           svg.appendChild(d.pathRaw);
         }
       });
