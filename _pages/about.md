@@ -375,7 +375,7 @@ redirect_from:
     <div>
       <h1 class="name-title">Junyao Yang</h1>
       <div class="affil-text">National University of Singapore</div>
-      <div class="role-text">Tencent HY</div>
+      <div class="role-text">Tencent Hy</div>
       <div class="social-icons">
         <a href="mailto:junyaoyang@u.nus.edu" class="s-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
         <a href="https://scholar.google.com/citations?hl=en&user=oY6uhJQAAAAJ" class="s-icon" title="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg></a>
@@ -392,7 +392,7 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent HY</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hy</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <br>
@@ -408,7 +408,7 @@ redirect_from:
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
-        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent HY LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
+        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hy LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
         <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="{{ '/blogs/reasoning_token.html' | relative_url }}">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit significant negative correlations between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT.</li>
         <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
@@ -505,7 +505,7 @@ redirect_from:
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
             <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A long-horizon terminal benchmark of 46 tasks across 9 categories with dense subtask-level rewards, enabling partial-credit evaluation of frontier agents on multi-hour, multi-hundred-episode workflows (best model reaches only 15.2% pass@1 at 0.95 threshold).</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A dense-reward terminal benchmark for measuring how far agents can progress on long, complex terminal workflows.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/abs/2607.08964">Paper</a>
               <a href="https://github.com/zli12321/LHTB">Code</a>
@@ -518,7 +518,7 @@ redirect_from:
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.13285" class="paper-title">Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable</a>
             <div class="paper-auth">Ruhan Wang, Yucheng Shi, Zongxia Li, Zhongzhi Li, Yue Yu, <strong><u>Junyao Yang</u></strong>, Kishan Panaganti, Haitao Mi, Dongruo Zhou, Leoweiliang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Harness Handbook builds a behavior-centric representation that maps evolving agent harness behaviors to implementation sites, and introduces BGPD to guide agents from high-level behaviors to verifiable code locations, improving behavior localization and edit-plan quality for harness evolution.</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A behavior-centric map and BGPD framework that help agents find code and plan harness edits.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/abs/2607.13285">Paper</a>
               <a href="https://ruhan-wang.github.io/Harness-Handbook/">Project</a>
@@ -632,7 +632,7 @@ redirect_from:
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
             <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A long-horizon terminal benchmark of 46 tasks across 9 categories with dense subtask-level rewards, enabling partial-credit evaluation of frontier agents on multi-hour, multi-hundred-episode workflows (best model reaches only 15.2% pass@1 at 0.95 threshold).</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A dense-reward terminal benchmark for measuring how far agents can progress on long, complex terminal workflows.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/abs/2607.08964">Paper</a>
               <a href="https://github.com/zli12321/LHTB">Code</a>
@@ -645,7 +645,7 @@ redirect_from:
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.13285" class="paper-title">Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable</a>
             <div class="paper-auth">Ruhan Wang, Yucheng Shi, Zongxia Li, Zhongzhi Li, Yue Yu, <strong><u>Junyao Yang</u></strong>, Kishan Panaganti, Haitao Mi, Dongruo Zhou, Leoweiliang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Harness Handbook builds a behavior-centric representation that maps evolving agent harness behaviors to implementation sites, and introduces BGPD to guide agents from high-level behaviors to verifiable code locations, improving behavior localization and edit-plan quality for harness evolution.</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A behavior-centric map and BGPD framework that help agents find code and plan harness edits.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/abs/2607.13285">Paper</a>
               <a href="https://ruhan-wang.github.io/Harness-Handbook/">Project</a>
@@ -674,13 +674,13 @@ redirect_from:
       <div class="paper-entry">
         <div class="paper-info">
           <a href="https://zli12321.github.io/LHTB/index.html" class="paper-title">Long-Horizon Terminal-Bench: Measuring the Progress Agents Can Sustain, Not Just What They Can Finish</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Most agent benchmarks end in minutes—real terminal work does not. LHTB drops agents into Docker containers with goals requiring hundreds of dependent actions (build from scratch, migrate frameworks, play games move-by-move), graded by a hidden fake-proof verifier with continuous partial credit. Across 18 frontier models, none passes even a third of the tasks.</div>
+          <div class="paper-tldr"><strong>TL;DR:</strong> LHTB evaluates agent progress on long terminal tasks in Docker with hidden dense-reward grading, not just final completion.</div>
         </div>
       </div>
       <div class="paper-entry">
         <div class="paper-info">
           <a href="https://ruhan-wang.github.io/Harness-Handbook/" class="paper-title">Harness Handbook: Making Agent Harnesses Understandable, Auditable, and Editable</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Coding-agent codebases hide behavior across thousands of files. Harness Handbook builds a behavior-to-implementation map that structures execution around system behavior and links every step to verifiable code evidence, keeping the harness understandable, reviewable, and human-in-the-loop as it evolves.</div>
+          <div class="paper-tldr"><strong>TL;DR:</strong> Harness Handbook maps behavior to implementation, making agent harnesses easier to inspect, navigate, and edit.</div>
         </div>
       </div>
       <div class="paper-entry">
@@ -721,7 +721,7 @@ redirect_from:
         <div class="exp-item">
           <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent HY">
           <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent HY</div>
+            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent Hy</div>
             <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2026.04 - Present</div>
           </div>
         </div>
