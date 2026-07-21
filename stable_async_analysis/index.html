@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SAT: Staleness-Adaptive Trust Regions for Asynchronous Reinforcement Learning — Tencent HY</title>
+<title>Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</title>
   <meta name="description" content="A mathematical field guide to training–inference mismatch and staleness control in large-scale asynchronous RL for LLMs. From async pipeline preliminaries to a Staleness-Adaptive Trust Region (SAT)." />
 
   <!-- Fonts: Source Serif 4 (display + body), Inter (UI, captions, figures), IBM Plex Mono (code) -->
@@ -77,8 +77,8 @@
         <span><span lang="en">Async&nbsp;RL&nbsp;Stability</span><span lang="zh">异步 RL 稳定性</span></span>
       </a>
       <nav class="topbar__nav">
-        <a href="https://jyyang26.github.io/stable_async_analysis/sat.pdf" class="topbar__link topbar__link--cta" target="_blank" rel="noopener noreferrer"><span lang="en">Paper</span><span lang="zh">论文</span></a>
         <a href="#satr" class="topbar__link">SAT</a>
+        <a href="https://jyyang26.github.io/stable_async_analysis/sat.pdf" class="topbar__link topbar__link--cta" target="_blank" rel="noopener noreferrer"><span lang="en">Paper</span><span lang="zh">论文</span></a>
         <a href="#cite" class="topbar__link topbar__link--cta"><span lang="en">Cite</span><span lang="zh">引用</span></a>
         <button id="lang-toggle" class="icon-btn icon-btn--lang" aria-label="Switch language / 切换语言" title="English / 中文"><span lang="en">中文</span><span lang="zh">EN</span></button>
         <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode" title="Toggle theme">
@@ -116,7 +116,7 @@
 <p class="hero__kicker" lang="en">Research &nbsp;·&nbsp; Tencent HY LLM &nbsp;·&nbsp; July 2026</p><p class="hero__kicker" lang="zh">研究 &nbsp;·&nbsp; 腾讯 HY 大模型 &nbsp;·&nbsp; 2026 年 7 月</p>
 
         <div class="hero__title-row">
-          <h1 class="hero__title" lang="en">SAT: Staleness-Adaptive Trust Regions for Asynchronous Reinforcement Learning</h1><h1 class="hero__title" lang="zh">SAT：异步强化学习的陈旧度自适应信任域</h1>
+<h1 class="hero__title" lang="en">Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</h1><h1 class="hero__title" lang="zh">陈旧而稳定：用于稳定异步强化学习的陈旧度自适应信任域</h1>
         </div>
         <p class="hero__dek" lang="en">Staleness analysis in asynchronous reinforcement learning: principled origins, diagnostics, and mitigations.</p><p class="hero__dek" lang="zh">异步强化学习中的陈旧度问题：来源剖析、诊断与缓解方案。</p>
 
@@ -124,21 +124,21 @@
           <div class="hero__subtitle-copy">
             <p class="hero__subtitle" lang="en">
               Decoupling rollout from training buys throughput, but the policy that generated a token can then differ from the policy
-              that trains on it. This blog is a field guide to that mismatch: where it comes from, why trust-region theory says it is
-              risky, and what current stabilizers — plus one new one — do about it. The theory in one line: the policy-improvement
+              that trains on it. This blog is a field guide to that mismatch: where it comes from, why it's risky under LLM's reinforcement learning setting
+              , and what current stabilizers and our proposed method do about it. The theory in one line: the policy-improvement
               approximation degrades as the divergence between inference policy $\mu$ and training policy $\pi$ grows. At state $s$,
               the divergence can be defined as <a class="hero__formula-link" href="#sat-derivation-proof" data-note-target="hero-policy-note" aria-controls="hero-policy-note" aria-expanded="false"><span class="u-h-formula">$D_{\mathrm{TV}}(\mu,\pi)[s]\;=\;\tfrac12\,\mathbb E_{a\sim\mu(\cdot\mid s)}\big|r(a)-1\big|$</span></a> — so a hard ratio bound on <i>every</i>
               action would bound the divergence — but PPO clipping is only a sampled-objective guardrail, not that hard constraint.
               Our proposal <b>lets this guardrail listen to the data</b>: <span class="u-b">Staleness-Adaptive Trust Region (SAT)</span>
-              gives tokens with high observed staleness a tighter <span class="u-h">directional clip radius</span>, stopping outward gradients
-              earlier while preserving the pull-back branch. The intended effect is to suppress future distribution drift.
-            </p><p class="hero__subtitle" lang="zh">将 rollout（采样）与训练解耦可以换来吞吐，但代价是：生成 token 的策略可能已不同于消费它的训练策略。本文是关于这种失配的一份"实战指南"：它从哪里来、信任域理论为何说它有风险、现有稳定方法（以及我们提出的新方法）各自如何应对。理论一句话概括：inference policy $\mu$ 与 training policy $\pi$ 之间的 divergence 越大，策略改进近似越不可靠。对状态 $s$，这一 divergence 可以定义为 <a class="hero__formula-link" href="#sat-derivation-proof" data-note-target="hero-policy-note" aria-controls="hero-policy-note" aria-expanded="false"><span class="u-h-formula">$D_{\mathrm{TV}}(\mu,\pi)[s]\;=\;\tfrac12\,\mathbb E_{a\sim\mu(\cdot\mid s)}\big|r(a)-1\big|$</span></a> —— 因此若能对<i>每个</i>动作施加硬比率界，就能约束这一 divergence；但 PPO 裁剪只是采样目标上的软护栏，并不是该硬约束。我们的方案是<b>让这道护栏倾听数据</b>：<span class="u-b">陈旧度自适应信任域（Staleness-Adaptive Trust Region, SAT）</span>给观测陈旧度较高的 token 更小的<span class="u-h">方向性裁剪半径</span>，更早停止向外偏离的梯度，同时保留回拉分支。其设计意图是抑制未来的分布漂移。</p>
+              gives tokens with high observed staleness a tighter <span class="u-h">directional clip radius</span>, 
+              suppressing future distribution drift via <b>Staleness-based kernel function scaling</b> and  <b>Effective contraction factors</b>.
+            </p><p class="hero__subtitle" lang="zh">将采样与训练解耦可以换来吞吐，但代价是生成 token 的策略可能已不同于消费它的训练策略。本文是关于这种失配的一份“实战指南”：它从哪里来、在 LLM 强化学习设定下为何具有风险，以及现有稳定方法与我们提出的方法如何应对。从理论层面一句话概括：inference policy $\mu$ 与 training policy $\pi$ 之间的 divergence 越大，策略改进近似越不可靠。对状态 $s$，这一 divergence 可以定义为 <a class="hero__formula-link" href="#sat-derivation-proof" data-note-target="hero-policy-note" aria-controls="hero-policy-note" aria-expanded="false"><span class="u-h-formula">$D_{\mathrm{TV}}(\mu,\pi)[s]\;=\;\tfrac12\,\mathbb E_{a\sim\mu(\cdot\mid s)}\big|r(a)-1\big|$</span></a> —— 因此若能对<i>每个</i>动作施加硬比率界，就能约束这一 divergence；但 PPO 裁剪只是采样目标上的一道护栏，并不是那个硬约束。我们的方案是<b>让这道护栏倾听数据</b>：<span class="u-b">陈旧度自适应信任域（Staleness-Adaptive Trust Region, SAT）</span>给观测陈旧度较高的 token 更紧的<span class="u-h">方向性裁剪半径</span>，并通过<b>基于陈旧度的核函数缩放</b>与<b>有效收缩因子</b>来抑制未来的分布漂移。</p>
           </div>
           <aside class="hero__note" id="hero-policy-note" data-note-mode="auto">
             <p class="hero__note-label"><span lang="en">Note</span><span lang="zh">注</span></p>
             <a class="hero__note-link" href="#sat-derivation-proof">
-              <span lang="en">For finite-horizon LLMs, Policy Improvement derivation is in Section 3.2, with proof in Appendix D in paper.</span>
-              <span lang="zh">对 finite-horizon LLMs，Policy Improvement 推导见 Section 3.2，证明见论文 Appendix D in paper。</span>
+              <span lang="en">For finite-horizon LLMs, Policy Improvement derivation is in Section 3.2.</span>
+              <span lang="zh">对 finite-horizon LLMs，Policy Improvement 推导见 Section 3.2。</span>
             </a>
           </aside>
         </div>
@@ -150,8 +150,8 @@
 
         <div class="hero__byline">
           <p class="authors">Junyao Yang<sup>1,2,*</sup> · Yucheng Shi<sup>1,&#8224;</sup> · Zongxia Li<sup>1,3</sup> · Zhongzhi Li<sup>1,4</sup> · Ruhan Wang<sup>1,5</sup> · Xiangxin Zhou<sup>1</sup> · Kishan Panaganti<sup>1</sup> · Haitao Mi<sup>1</sup> · Leowei Liang<sup>1</sup></p>
-          <p class="affils"><sup>1</sup>Tencent HY &nbsp;·&nbsp; <sup>2</sup>National University of Singapore &nbsp;·&nbsp; <sup>3</sup>University of Maryland, College Park &nbsp;·&nbsp; <sup>4</sup>University of Georgia &nbsp;·&nbsp; <sup>5</sup>Indiana University</p>
-          <p class="affils"><sup>&#8224;</sup>Project Lead &nbsp;·&nbsp; <sup>*</sup>Corresponding Author: <a href="mailto:junyaoyang@u.nus.edu">junyaoyang@u.nus.edu</a> &nbsp;·&nbsp; First published July, 2026 &nbsp;·&nbsp; On-going project </p>
+          <p class="affils"><sup>1</sup>Tencent Hy &nbsp;·&nbsp; <sup>2</sup>National University of Singapore &nbsp;·&nbsp; <sup>3</sup>University of Maryland, College Park &nbsp;·&nbsp; <sup>4</sup>University of Georgia &nbsp;·&nbsp; <sup>5</sup>Indiana University</p>
+          <p class="affils"><sup>&#8224;</sup>Project Lead &nbsp;·&nbsp; <sup>*</sup>Corresponding Author: <a href="mailto:junyaoyang@u.nus.edu">junyaoyang@u.nus.edu</a> &nbsp;·&nbsp; First published July, 2026 &nbsp;</p>
         </div>
       </section>
 
@@ -988,12 +988,12 @@ Empirically, in single-seed runs on Qwen3-30B-A3B-Base, <b>SAT-GSPO w/ R3</b> re
         <p lang="en">Comparing with vanilla PPO clipping, SAT provides a token-level clipping mechanism behind suppressing future staleness growth.</p>
         <ul lang="en">
           <li><b>Token-level staleness signal.</b> Larger $|d_{b,t}|$ indicates higher training staleness and correlates with instability. SAT therefore narrows the sign-selected nominal endpoint on the high-staleness tail of the current training batch. What it uses here is an observable relative-staleness signal: actions with larger token-level ratios are often the ones that trigger training collapse.</li>
-          <li><b>Staleness-based contraction factors.</b> By imposing a tighter trust region with Staleness-based contraction factors $c_{\pm,b,t}$, SAT suppresses divergent gradient updates and uses $|d_{b,t}|$ as a practical proxy for staleness. On the additionally truncated portion, SAT further ensures that the next-step sampling-ratio deviation stays no larger than under PPO clipping, providing the most direct local mechanism for curbing future growth of training staleness.</li>
+          <li><b>Staleness-based effective contraction factors</b> By imposing a tighter trust region with Staleness-based effective contraction factors $c_{\pm,b,t}$, SAT suppresses divergent gradient updates and uses $|d_{b,t}|$ as a practical proxy for staleness. On the additionally truncated portion, SAT further ensures that the next-step sampling-ratio deviation stays no larger than under PPO clipping, providing the most direct local mechanism for curbing future growth of training staleness.</li>
         </ul>
         <p lang="zh">与 vanilla PPO clipping 相比，SAT 提供了一种 token-level 的裁剪机制，其背后对应着抑制未来训练陈旧度增长的局部机制。</p>
         <ul lang="zh">
           <li><b>Token-level 陈旧度信号。</b>较大的 $|d_{b,t}|$ 往往意味着更高的训练陈旧度，并且与训练不稳定性相关。因此，SAT 会在当前训练批次中陈旧度较高的长尾 token 上收窄由符号选中的名义端点。这里使用的是一种可观测的相对陈旧度信号：那些具有较大 token-level ratio 的动作，往往更容易诱发训练崩溃。</li>
-          <li><b>基于陈旧度的收缩因子。</b>SAT 通过引入基于陈旧度的收缩因子 $c_{\pm,b,t}$ 来施加更紧的 trust region，抑制发散的梯度更新，并将 $|d_{b,t}|$ 作为一种实用的陈旧度代理。对于新增截断的那部分 token，SAT 进一步保证下一步的采样比率偏离不超过 PPO 裁剪，从而给出抑制未来训练陈旧度增长的最直接局部机制。</li>
+          <li><b>基于陈旧度的有效收缩因子。</b>SAT 通过引入基于陈旧度的收缩因子 $c_{\pm,b,t}$ 来施加更紧的 trust region，抑制发散的梯度更新，并将 $|d_{b,t}|$ 作为一种实用的陈旧度代理。对于新增截断的那部分 token，SAT 进一步保证下一步的采样比率偏离不超过 PPO 裁剪，从而给出抑制未来训练陈旧度增长的最直接局部机制。</li>
         </ul>
         <!-- 3.2 Full pipeline -->
         <h3 class="subhead" lang="en">3.2 &nbsp; SAT pipeline</h3><h3 class="subhead" lang="zh">3.2 &nbsp; SAT 工作流程</h3>
@@ -1035,7 +1035,7 @@ q = \operatorname{sg}\!\left[\inf\{x\ge0:\widehat F_{|d|}(x)\ge0.90\}\right].
           <!-- <div class="step">
             <div class="step__head"><span class="step__n">4</span><h4 lang="en">Staleness-based contraction factors</h4><h4 lang="zh">基于陈旧度的收缩因子</h4><span class="step__ref">Eq. (3.4)</span></div> -->
           <div class="step">
-            <div class="step__head"><span class="step__n">4</span><h4 lang="en">Staleness-based contraction factors</h4><h4 lang="zh">基于陈旧度的收缩因子</h4><span class="step__ref">Eq. (3.4)</span></div>
+            <div class="step__head"><span class="step__n">4</span><h4 lang="en">Staleness-based effective contraction factors</h4><h4 lang="zh">基于陈旧度的有效收缩因子</h4><span class="step__ref">Eq. (3.4)</span></div>
             <p lang="en">This gate applies contraction only where mismatch is unusually large for the current batch.</p><p lang="zh">这一步只在失配对当前批次而言异常偏大的位置施加收缩。</p>
             <div class="callout">
               $$c_{\pm,b,t}=\begin{cases}\psi(u_{\pm,b,t};q),&q>0\ \text{and}\ |d_{b,t}^{\mathrm{sg}}|>q,\\[2pt]1,&\text{otherwise}.\end{cases}\tag{3.4}$$
@@ -1113,8 +1113,8 @@ q = \operatorname{sg}\!\left[\inf\{x\ge0:\widehat F_{|d|}(x)\ge0.90\}\right].
             <aside class="exp-cap__note sat-proof-note" id="sat-proof-note" data-note-mode="auto">
               <p class="exp-cap__note-label"><span lang="en">Note</span><span lang="zh">注</span></p>
               <a class="exp-cap__note-link" href="#sat-derivation-proof">
-                <span lang="en">Appendix D and §3.2 give the full derivation behind this SAT argument.</span>
-                <span lang="zh">Appendix D 与正文 3.2 给出了这一推导的完整证明。</span>
+                <span lang="en">Appendix D in paper give the full derivation behind this SAT argument.</span>
+                <span lang="zh">论文中的 Appendix D 给出了这一推导的完整证明。</span>
               </a>
             </aside>
 
@@ -2580,20 +2580,30 @@ q = \operatorname{sg}\!\left[\inf\{x\ge0:\widehat F_{|d|}(x)\ge0.90\}\right].
           html.dark #references .refs-list li .ref-num{
             color: #7d7869;
           }
-          html.dark #methods .method,
-          html.dark #methods .method p,
-          html.dark #methods .method li,
-          html.dark #methods .method summary,
-          html.dark #methods .method .method__title,
-          html.dark #methods .method .method__tag,
-          html.dark #methods .method .method__target,
-          html.dark #methods .method .callout__label,
-          html.dark #methods .method .aside__tag,
-          html.dark #methods .method b,
-          html.dark #methods .method strong{
-            color:#f5f4ef;
-          }
-          /* Reference superscript style */
+      html.dark #methods .method,
+      html.dark #methods .method p,
+      html.dark #methods .method li,
+      html.dark #methods .method summary,
+      html.dark #methods .method .method__title,
+      html.dark #methods .method .method__tag,
+      html.dark #methods .method .method__target,
+      html.dark #methods .method .callout__label,
+      html.dark #methods .method .aside__tag,
+      html.dark #methods .method b,
+      html.dark #methods .method strong{
+        color:#f5f4ef;
+      }
+      html.dark .method-tab,
+      html.dark .method-tab .method-tab__title{
+        color:#f5f4ef;
+      }
+      html.dark .method-tab .method-tab__num{
+        color:#c9c4b7;
+      }
+      html.dark .method-tab[aria-selected="true"] .method-tab__num{
+        color:var(--accent, #b7434b);
+      }
+      /* Reference superscript style */
           sup.ref-cite{
             font-size: 0.72em;
             font-weight: 500;
@@ -2642,12 +2652,12 @@ q = \operatorname{sg}\!\left[\inf\{x\ge0:\widehat F_{|d|}(x)\ge0.90\}\right].
         <div class="bibtex">
           <button class="bibtex__copy" id="copy-bib" title="Copy BibTeX">Copy</button>
           <pre id="bibtex-block">@misc{yang2026sat,
-  title  = {SAT: Staleness-Adaptive Trust Regions for Asynchronous Reinforcement Learning},
+  title  = {Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning},
   author = {Yang, Junyao and Shi, Yucheng and Li, Zongxia
             and Li, Zhongzhi and Wang, Ruhan and Zhou, Xiangxin
             and Panaganti, Kishan and Mi, Haitao and Liang, Leowei},
   year   = {2026},
-  note   = {Tencent HY LLM. SAT: Staleness-Adaptive Trust Regions for Asynchronous Reinforcement Learning.}
+  note   = {Tencent HY LLM. Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning.}
 }</pre>
         </div>
       </footer>
