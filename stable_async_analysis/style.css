@@ -227,6 +227,11 @@ code {
   padding: 5px 13px; border-radius: 999px;
 }
 .topbar__link--cta:hover { background: var(--accent-wash); }
+.topbar__link--github {
+  color: #1f6feb;
+  border-color: color-mix(in srgb, #1f6feb 45%, var(--line));
+}
+.topbar__link--github:hover { background: color-mix(in srgb, #1f6feb 12%, transparent); }
 
 .icon-btn {
   display: grid; place-items: center; width: 34px; height: 34px;
