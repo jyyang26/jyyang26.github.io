@@ -654,11 +654,11 @@ redirect_from:
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/pdf/2605.17770v1" class="paper-title">Entropy-Gradient Inversion: Moving Toward Internal Mechanism of Large Reasoning Models</a>
+            <a href="https://arxiv.org/pdf/2605.17770v4" class="paper-title">Entropy-Gradient Inversion: Moving Toward Internal Mechanism of Large Reasoning Models</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Kun Wang, Linfeng Zhang, Quanshi Zhang, Yong Liu, Dongrui Liu<sup>&dagger;</sup></div>
             <div class="paper-tldr"><strong>TL;DR:</strong> Identifying <em>Entropy-Gradient Inversion</em>&mdash;a robust negative correlation between token entropy and logit gradients&mdash;as a geometric fingerprint of LRM reasoning capability, and proposing <strong>CorR-PO</strong> that embeds this signature into RL reward regularization to stabilize reasoning optimization without costly external verifiers.</div>
             <div class="paper-links">
-              <a href="https://arxiv.org/pdf/2605.17770v1">Paper</a>
+              <a href="https://arxiv.org/pdf/2605.17770v4">Paper</a>
             </div>
           </div>
         </div>
