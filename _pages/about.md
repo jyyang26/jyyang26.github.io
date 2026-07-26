@@ -113,9 +113,20 @@ redirect_from:
     margin-top: 15px;
     justify-content: flex-start;
   }
-  .s-icon { color: #6f6a61; transition: color 0.2s; }
+  .s-icon {
+    color: #6f6a61;
+    transition: color 0.2s;
+  }
   .s-icon:hover { color: #2a78d6; }
   .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
+  .wechat-copy-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
 
   /* ---------- Content Sections ---------- */
   .custom-content { display: flex; flex-direction: column; gap: 28px; }
@@ -280,6 +291,31 @@ redirect_from:
   /* About text block */
   .about-text { font-size: 17px; line-height: 1.72; color: #4a463f; }
 
+  /* Copy toast */
+  .copy-toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    padding: 10px 14px;
+    border: 1px solid #e6e2d8;
+    background: #f2e8d8;
+    color: #5a4937;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(32, 29, 24, 0.12);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10000;
+  }
+  .copy-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* Footer */
   .site-footer {
     font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -347,6 +383,11 @@ redirect_from:
   body.dark-mode .pub-tab:hover { color: #4e92e6; }
   body.dark-mode .s-icon { color: #9b968b; }
   body.dark-mode .s-icon:hover { color: #4e92e6; }
+  body.dark-mode .copy-toast {
+    background: #e9d8b7;
+    border-color: #c9b791;
+    color: #4f3c29;
+  }
   body.dark-mode ::selection { background-color: #4e92e6; color: #131311; }
   body.dark-mode ::-moz-selection { background-color: #4e92e6; color: #131311; }
 </style>
@@ -383,6 +424,9 @@ redirect_from:
         <a href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link" class="s-icon" title="Curriculum Vitae"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></a>
         <a href="https://www.linkedin.com/in/junyao-yang-371282301/" class="s-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
         <a href="https://x.com/TonyworldLove" class="s-icon" title="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <button type="button" class="s-icon wechat-copy-btn" title="WeChat" aria-label="Copy WeChat ID" data-wechat-id="FrWorld_LuvAndPeaze">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.42 5C4.87 5 2 7.49 2 10.56c0 1.78.96 3.37 2.46 4.4L3.6 18l3.08-1.69c.56.1 1.14.15 1.74.15.25 0 .5-.01.74-.04a6.25 6.25 0 0 1-.75-2.93c0-3.07 2.87-5.56 6.42-5.56.13 0 .25 0 .38.01C14.61 6.2 11.76 5 8.42 5zm-2.34 4.32a.86.86 0 1 1 0 1.72.86.86 0 0 1 0-1.72zm4.68 0a.86.86 0 1 1 0 1.72.86.86 0 0 1 0-1.72zM15.9 9.5c-3.37 0-6.1 2.28-6.1 5.09 0 1.53.82 2.9 2.12 3.83l-.73 2.58 2.63-1.45c.66.16 1.36.24 2.08.24 3.37 0 6.1-2.28 6.1-5.09s-2.73-5.2-6.1-5.2zm-2.23 4.18a.78.78 0 1 1 0 1.56.78.78 0 0 1 0-1.56zm4.46 0a.78.78 0 1 1 0 1.56.78.78 0 0 1 0-1.56z"/></svg>
+        </button>
       </div>
     </div>
   </aside>
@@ -798,6 +842,8 @@ redirect_from:
   &copy; <span id="year"></span> Junyao Yang. All rights reserved.
 </footer>
 
+<div id="copy-toast" class="copy-toast" role="status" aria-live="polite">微信号已复制至剪贴板</div>
+
 <script>
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -851,6 +897,52 @@ redirect_from:
           }
         })
         .catch(function () { /* keep fallback */ });
+    });
+  })();
+
+  // WeChat copy button
+  (function () {
+    var button = document.querySelector('.wechat-copy-btn');
+    var toast = document.getElementById('copy-toast');
+    var toastTimer = null;
+    if (!button || !toast) return;
+
+    var showToast = function () {
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () {
+        toast.classList.remove('show');
+      }, 2200);
+    };
+
+    var fallbackCopy = function (text) {
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.value = text;
+      input.setAttribute('readonly', 'readonly');
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.focus();
+      input.select();
+      try {
+        document.execCommand('copy');
+        showToast();
+      } catch (e) {}
+      document.body.removeChild(input);
+    };
+
+    button.addEventListener('click', function () {
+      var wechatId = button.getAttribute('data-wechat-id') || 'FrWorld_LuvAndPeaze';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(wechatId)
+          .then(showToast)
+          .catch(function () {
+            fallbackCopy(wechatId);
+          });
+      } else {
+        fallbackCopy(wechatId);
+      }
     });
   })();
 
