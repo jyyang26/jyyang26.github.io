@@ -449,26 +449,25 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
-        <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
+        <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
-        <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li>
+        <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li> -->
         <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hy LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
-        <li><span class="news-tag">2026.02</span> Blog post: <strong><a href="{{ '/blogs/reasoning_token.html' | relative_url }}">The Entropy-Gradient Inversion</a></strong>. R1/o1-like reasoning models exhibit significant negative correlations between gradient strength and token entropy, emerging rapidly within the first 200 steps of SFT.</li>
         <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
-        <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/pdf/2601.15075">Agentic Attribution</a></strong>! A hierarchical framework to unveil internal factors driving LLM-based agent actions.</li>
+        <!-- <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/pdf/2601.15075">Agentic Attribution</a></strong>! A hierarchical framework to unveil internal factors driving LLM-based agent actions.</li>
         <li><span class="news-tag">2026.01</span> Attending <strong>AAAI 2026 at Singapore during Jan 20-27, 2026</strong>.</li>
-        <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! Contrastive gradient identification to resolve destructive performance collapse in model merging.</li>
+        <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! Contrastive gradient identification to resolve destructive performance collapse in model merging.</li> -->
         <li><span class="news-tag">2025.11</span> First-Author paper <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a> accepted to <strong>AAAI 2026 Main Track</strong>.</li>
         <li><span class="news-tag">2025.08</span> <a href="https://arxiv.org/abs/2502.18517">RewardDS</a> accepted to <strong>EMNLP 2025 Main</strong>.</li>
-        <li><span class="news-tag">2025.08</span> Joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, advised by <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
-        <li><span class="news-tag">2025.08</span> New work: <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a>! Integrating long CoT capability into domain-specific LLMs.</li>
-        <li><span class="news-tag">2025.05</span> Passed undergraduate thesis defense.</li>
+        <li><span class="news-tag">2025.08</span> Joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, working with <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
+        <!-- <li><span class="news-tag">2025.08</span> New work: <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a>! Integrating long CoT capability into domain-specific LLMs.</li> -->
+        <!-- <li><span class="news-tag">2025.05</span> Passed undergraduate thesis defense.</li> -->
         <li><span class="news-tag">2025.05</span> Co-First-Author paper <a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a> accepted to <strong>ACL 2025 Main</strong>.</li>
-        <li><span class="news-tag">2025.02</span> New papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>.</li>
+        <!-- <li><span class="news-tag">2025.02</span> New papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>.</li> -->
         <li><span class="news-tag">2024.07</span> Joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</li>
-        <li><span class="news-tag">2024.07</span> Completed internship at Tencent as a machine learning intern.</li>
+        <!-- <li><span class="news-tag">2024.07</span> Completed internship at Tencent as a machine learning intern.</li> -->
         <li><span class="news-tag">2024.07</span> <strong>Contextless CS</strong> reached <strong>20,000 DAU</strong>.</li>
         <li><span class="news-tag">2024.04</span> Joined Tencent as a machine learning intern.</li>
         <li><span class="news-tag">2024.03</span> Completed internship at ShenZhen Stock Exchange as a machine learning intern.</li>
@@ -513,7 +512,7 @@ redirect_from:
           </div>
         </div>
 
-        <div class="paper-entry">
+        <!-- <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.18722" class="paper-title">Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</a>
@@ -523,7 +522,7 @@ redirect_from:
               <a href="https://arxiv.org/abs/2607.18722">Paper</a>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="paper-entry">
           <div class="paper-info">
