@@ -401,7 +401,7 @@ redirect_from:
     <a href="#publications" class="nav-link">Publications</a>
     <a href="#blogs" class="nav-link">Blogs</a>
     <a href="#education" class="nav-link">Education</a>
-    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#experience" class="nav-link">Internship</a>
     <a href="#honors" class="nav-link">Honors</a>
     <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
       <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
@@ -449,6 +449,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
+       <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
         <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
@@ -762,7 +763,7 @@ redirect_from:
       <div class="edu-row">
         <div class="edu-card">
           <img src="{{ '/images/NUS.jpg' | relative_url }}" alt="NUS" class="edu-logo">
-          <div class="edu-deg">M.S. in AI</div>
+          <div class="edu-deg">MComp in AI</div>
           <div class="edu-sch">National University of Singapore</div>
           <span class="edu-yr">2025 - 2027 (Expected)</span>
         </div>
@@ -772,17 +773,17 @@ redirect_from:
           <div class="edu-sch">South China University of Technology</div>
           <span class="edu-yr">2021 - 2025</span>
         </div>
-        <div class="edu-card">
+        <!-- <div class="edu-card">
           <img src="{{ '/images/SZSY_Logo.png' | relative_url }}" alt="SZSY" class="edu-logo">
           <div class="edu-deg">High School</div>
           <div class="edu-sch">Shenzhen Experimental School</div>
           <span class="edu-yr">2018 - 2021</span>
-        </div>
+        </div> -->
       </div>
     </section>
 
     <section id="experience" class="content-box">
-      <div class="box-header"><h2 class="box-title">Experience</h2></div>
+      <div class="box-header"><h2 class="box-title">Internship and Experience</h2></div>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <div class="exp-item">
           <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent HY">
