@@ -436,7 +436,7 @@ redirect_from:
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
       <div class="about-text">
-        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently at <strong>Tencent Hy</strong>, working on <strong>RL Stability</strong> and <strong>Long-Horizon Terminus Agent</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
+        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently working as a Research Intern at <strong>Tencent Hy Frontier Lab</strong>, working on <strong>Agentic RL</strong>, <strong>Long-Horizon Terminus Agent</strong> and <strong>RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong> and <strong>Explainable Artificial Intelligence</strong>.
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <br>
