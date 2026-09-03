@@ -801,7 +801,7 @@ redirect_from:
           <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent HY">
           <div>
             <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent Hy</div>
-            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2026.04 - Present</div>
+            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">青云计划 - Research Intern | 2026.04 - Present</div>
           </div>
         </div>
         <div class="exp-item">
