@@ -1,1 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T1：面向长程任务的终端 Agent 强化学习</title>
+<meta name="description" content="T1 技术报告解读：122B-A10B MoE 模型通过 PPO 强化学习操作真实 Linux 终端，在 Terminal-Bench 2.1 上从 49.4% 提升至 64.0%。">
+<style>
+:root{
+  --brand:#0052D9;
+  --brand-dark:#003a9b;
+  --brand-soft:#e8f0fe;
+  --brand-softer:#f4f8ff;
+  --ink:#1C2B33;
+  --ink-2:#43535e;
+  --ink-3:#75838c;
+  --line:#e3e8ee;
+  --bg:#ffffff;
+  --bg-alt:#f7f9fc;
+  --warn:#b45309;
+  --warn-soft:#fef6e7;
+  --radius:14px;
+  --maxw:860px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",'Helvetica Neue',Arial,sans-serif;
+  font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased;
+}
+code,.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace}
 
+/* ---------- language switch ---------- */
+html[data-lang="zh"] [data-l="en"]{display:none !important}
+html[data-lang="en"] [data-l="zh"]{display:none !important}
+html[data-lang="en"] body{font-size:16.5px;line-height:1.78}
+
+.langsw{margin-left:auto;display:flex;border:1px solid #cfe0fb;border-radius:999px;overflow:hidden;background:#fff;flex:none}
+.langsw button{
+  border:0;background:#fff;color:var(--ink-3);font-size:13px;font-weight:600;
+  padding:5px 13px;cursor:pointer;font-family:inherit;letter-spacing:.02em;
+}
+.langsw button+button{border-left:1px solid #e6eefb}
+.langsw button[aria-pressed="true"]{background:var(--brand);color:#fff}
+
+/* ---------- top bar ---------- */
+.topbar{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);
+  backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line);
+}
+.topbar .inner{max-width:var(--maxw);margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:14px}
+.brandmark{font-weight:800;letter-spacing:.5px;color:var(--brand);font-style:italic;font-size:19px;flex:none}
+.topbar nav{display:flex;gap:17px;font-size:13.5px;overflow:hidden}
+.topbar nav a{color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.topbar nav a:hover{color:var(--brand)}
+@media(max-width:900px){.topbar nav{display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  background:linear-gradient(170deg,#f4f8ff 0%,#eaf1fe 48%,#ffffff 100%);
+  border-bottom:1px solid var(--line);padding:60px 24px 50px;
+}
+.hero .wrap{max-width:var(--maxw);margin:0 auto}
+.eyebrow{
+  display:inline-block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brand);background:#fff;border:1px solid #cfe0fb;
+  padding:5px 12px;border-radius:999px;font-weight:700;margin-bottom:22px;
+}
+h1.title{font-size:clamp(29px,4.9vw,44px);line-height:1.24;margin:0 0 18px;letter-spacing:-.5px;font-weight:800}
+h1.title .t1{color:var(--brand);font-style:italic}
+.lede{font-size:19px;color:var(--ink-2);margin:0 0 26px;max-width:46em}
+.byline{font-size:14.5px;color:var(--ink-3);line-height:1.7;border-top:1px solid #d8e3f5;padding-top:18px}
+.byline b{color:var(--ink-2);font-weight:600}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:30px 0 0}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;text-align:center}
+.kpi .n{font-size:26px;font-weight:800;color:var(--brand);letter-spacing:-.5px;line-height:1.2}
+.kpi .l{font-size:12.5px;color:var(--ink-3);margin-top:5px;line-height:1.5}
+@media(max-width:700px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- layout ---------- */
+main{max-width:var(--maxw);margin:0 auto;padding:8px 24px 90px}
+section{padding-top:52px;scroll-margin-top:62px}
+h2{font-size:27px;font-weight:800;letter-spacing:-.3px;margin:0 0 6px;padding-bottom:12px;border-bottom:2px solid var(--brand);display:inline-block}
+h2 .num{color:var(--brand);font-size:15px;font-weight:700;vertical-align:super;margin-right:8px;letter-spacing:.05em}
+h3{font-size:19.5px;font-weight:700;margin:34px 0 10px;color:var(--ink)}
+h4{font-size:16.5px;font-weight:700;margin:26px 0 6px;color:var(--brand-dark)}
+p{margin:0 0 17px}
+a{color:var(--brand)}
+ul,ol{margin:0 0 17px;padding-left:1.35em}
+li{margin-bottom:9px}
+li::marker{color:var(--brand)}
+code{background:var(--brand-softer);border:1px solid #dde8f8;border-radius:5px;padding:1px 5px;font-size:.87em;color:var(--brand-dark)}
+.small{font-size:14.5px;color:var(--ink-3)}
+
+/* ---------- figures ---------- */
+figure{margin:30px 0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+figure img{display:block;width:100%;height:auto;background:#fff}
+figcaption{font-size:13.8px;line-height:1.72;color:var(--ink-2);padding:14px 18px;background:var(--bg-alt);border-top:1px solid var(--line)}
+figcaption b{color:var(--brand-dark)}
+figure.tight img{padding:10px 12px}
+
+/* ---------- callouts ---------- */
+.callout{background:var(--brand-softer);border:1px solid #d8e6fb;border-left:4px solid var(--brand);border-radius:10px;padding:16px 20px;margin:24px 0}
+.callout .h{font-weight:700;color:var(--brand-dark);margin-bottom:6px;font-size:15.5px}
+.callout p:last-child{margin-bottom:0}
+.callout.warn{background:var(--warn-soft);border-color:#f5e0b8;border-left-color:var(--warn)}
+.callout.warn .h{color:var(--warn)}
+
+/* ---------- the single formula ---------- */
+.formula{margin:26px 0;padding:26px 20px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);text-align:center}
+.formula .eq{font-family:"Times New Roman",Georgia,serif;font-size:27px;color:var(--ink);display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center}
+.formula .eq i{font-style:italic}
+.frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px}
+.frac .top{padding:0 10px 3px;border-bottom:1.6px solid var(--ink);font-size:19px;white-space:nowrap}
+.frac .bot{padding:3px 10px 0;font-size:22px}
+.formula .note{font-size:13.5px;color:var(--ink-3);margin-top:14px;font-family:inherit;line-height:1.7}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;margin:24px 0;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:14.8px}
+caption{caption-side:bottom;text-align:left;font-size:13.5px;color:var(--ink-3);padding:12px 16px;background:var(--bg-alt);border-top:1px solid var(--line);line-height:1.7}
+th,td{padding:9px 16px;text-align:left;border-bottom:1px solid #eef2f7}
+thead th{background:var(--brand);color:#fff;font-weight:600;font-size:13.5px;letter-spacing:.02em;border-bottom:none}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.ours{background:var(--brand-soft)}
+tr.ours td{font-weight:700;color:var(--brand-dark)}
+tr.grp td{background:var(--bg-alt);font-weight:700;font-size:13px;color:var(--ink-3);letter-spacing:.04em;text-transform:uppercase}
+tbody tr.dim td{color:var(--ink-3)}
+
+/* two-column cards */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:#fff}
+.card .t{font-weight:700;color:var(--brand-dark);margin-bottom:7px;font-size:16px}
+.card p{font-size:15px;color:var(--ink-2);margin:0}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+
+hr.soft{border:none;border-top:1px solid var(--line);margin:44px 0 0}
+footer{max-width:var(--maxw);margin:0 auto;padding:34px 24px 70px;font-size:14px;color:var(--ink-3);line-height:1.8}
+footer .t{font-weight:700;color:var(--ink-2);margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <span class="brandmark">T1</span>
+    <nav>
+      <a href="#why"><span data-l="zh">问题</span><span data-l="en">Problem</span></a>
+      <a href="#setup"><span data-l="zh">设置</span><span data-l="en">Setup</span></a>
+      <a href="#pipeline"><span data-l="zh">系统</span><span data-l="en">System</span></a>
+      <a href="#ppo">PPO</a>
+      <a href="#stability"><span data-l="zh">稳定性</span><span data-l="en">Stability</span></a>
+      <a href="#reward"><span data-l="zh">奖励</span><span data-l="en">Reward</span></a>
+      <a href="#results"><span data-l="zh">结果</span><span data-l="en">Results</span></a>
+      <a href="#infra"><span data-l="zh">基建</span><span data-l="en">Infra</span></a>
+      <a href="#lessons"><span data-l="zh">教训</span><span data-l="en">Lessons</span></a>
+    </nav>
+    <div class="langsw">
+      <button type="button" id="btn-zh" aria-pressed="true">中文</button>
+      <button type="button" id="btn-en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Technical Report · Systems</span>
+    <h1 class="title">
+      <span data-l="zh"><span class="t1">T1</span>：面向长程任务的<br>终端 Agent 强化学习</span>
+      <span data-l="en"><span class="t1">T1</span>: Terminal Agent Reinforcement<br>Learning for Long-horizon Tasks</span>
+    </h1>
+    <p class="lede" data-l="zh">
+      我们用强化学习把一个 122B-A10B 的 MoE 模型训练成能在云端沙箱里真正操作 Linux
+      终端的 Agent：单个任务最多 300+ 次工具调用，奖励直接来自任务自带测试套件的执行结果。
+      在 89 个留出任务的 Terminal-Bench 2.1 上，模型从 SFT 的 49.4% 提升到 <b>64.0%</b>，
+      在同一 harness 下超过 GPT-5.4 与 DeepSeek-V4-Flash，逼近 Claude Opus 4.7。
+    </p>
+    <p class="lede" data-l="en">
+      We post-train a 122B-A10B Mixture-of-Experts model with reinforcement learning to
+      operate a real Linux shell inside a cloud sandbox &mdash; up to 300+ tool-call turns per
+      task, rewarded by executing each task's own test suite. On Terminal-Bench 2.1 with 89
+      held-out tasks, RL raises our SFT model from 49.4% to <b>64.0% resolved</b>, above GPT-5.4
+      and DeepSeek-V4-Flash and approaching Claude Opus 4.7 under the same harness.
+    </p>
+    <div class="byline">
+      <b>Junyao Yang</b><sup>*†</sup>, <b>Yucheng Shi</b><sup>*</sup>, Ruhan Wang, Zhongzhi Li, Zongxia Li, Haitao Mi, Leowei Liang<br>
+      Tencent Hy LLM Frontier · National University of Singapore · Indiana University · University of Georgia · University of Maryland
+      <br>
+      <span style="font-size:13.5px" data-l="zh">工作草稿 · 2026 年 8 月 · <sup>*</sup>共同一作，<sup>†</sup>通讯作者</span>
+      <span style="font-size:13.5px" data-l="en">Working draft · August 2026 · <sup>*</sup>Equal contribution, <sup>†</sup>Corresponding author</span>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="n">64.0%</div>
+        <div class="l"><span data-l="zh">Terminal-Bench 2.1<br>（SFT 为 49.4%）</span><span data-l="en">Terminal-Bench 2.1<br>(SFT: 49.4%)</span></div>
+      </div>
+      <div class="kpi">
+        <div class="n">122B<span style="font-size:16px">-A10B</span></div>
+        <div class="l"><span data-l="zh">MoE 总参 / 激活参数</span><span data-l="en">MoE total / active params</span></div>
+      </div>
+      <div class="kpi">
+        <div class="n">+14.6<span style="font-size:16px">pp</span></div>
+        <div class="l"><span data-l="zh">RL 相对 SFT 的净增益</span><span data-l="en">net gain of RL over SFT</span></div>
+      </div>
+      <div class="kpi">
+        <div class="n">97.4%</div>
+        <div class="l"><span data-l="zh">token 逐位对齐<br>损失区零漂移</span><span data-l="en">tokens exactly aligned<br>zero drift in loss region</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ 1 ============ -->
+<section id="why">
+  <h2><span class="num">01</span><span data-l="zh">为什么终端任务这么难</span><span data-l="en">Why terminal tasks are hard</span></h2>
+
+  <div data-l="zh">
+    <p>
+      Agent 的使用场景正在从简单的文件操作和对话问答，转向编程、科学发现这类长程任务，而
+      <strong>长程终端任务</strong>是其中格外重要的一类。我们的做法很直接：Agent 收到一段自然语言任务描述，
+      然后在一个隔离的云沙箱里反复"发命令 → 读输出"，最多 60 个 assistant 轮次、单条轨迹数万 token；
+      最后由任务自带的 pytest 验证器在同一个沙箱里执行，给出奖励。
+    </p>
+    <p>
+      训练系统把 Megatron（训练）和 SGLang（推理）通过 slime v0.3 的 RL 框架连起来，
+      Agent harness 用的是 Harbor / Terminus-2。所有 Agent 相关逻辑都放在插件层，而不是 fork 框架。
+      相比 RLHF 式或短答案式 RL，这个设定有三个本质困难：
+    </p>
+  </div>
+  <div data-l="en">
+    <p>
+      Agent usage has shifted from simple file manipulation and conversational QA toward
+      long-horizon tasks such as coding and scientific discovery, among which
+      <strong>long-horizon terminal tasks</strong> stand out as a particularly important focus.
+      Our setup is direct: the agent receives a natural-language task, then alternates between
+      emitting shell commands and reading their output inside an isolated cloud sandbox, for up
+      to 60 assistant turns and tens of thousands of tokens per trajectory. A trajectory is
+      scored by executing the task's own pytest verifier inside the same sandbox.
+    </p>
+    <p>
+      The training system connects Megatron (training) and SGLang (inference) through the slime
+      v0.3 RL framework, with the agent harness provided by Harbor / Terminus-2. All
+      agent-specific logic lives in a plugin layer rather than a framework fork. Three
+      properties make this setting substantially harder than RLHF-style or short-answer RL:
+    </p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="t"><span data-l="zh">长程、工具交错的轨迹</span><span data-l="en">Long-horizon, tool-interleaved trajectories</span></div>
+      <p data-l="zh">训练序列会打到 64k–84k token 的墙，由多达 60 段模型/工具片段拼成，而只有模型生成的 token 才允许携带损失。每个轮次边界都是 harness 做「解码 → 解析 → 重新套模板 → 重新编码」往返的机会，一不小心训练器条件化的 token 序列就变了。</p>
+      <p data-l="en">Training sequences reach the 64k–84k-token wall, are assembled from up to 60 alternating model/tool segments, and only model-generated tokens may carry loss. Every turn boundary is an opportunity for the harness's decode → parse → re-template → re-encode round trip to change the token sequence the trainer conditions on.</p>
+    </div>
+    <div class="card">
+      <div class="t"><span data-l="zh">MoE 特有的训推不一致</span><span data-l="en">MoE-specific train–inference mismatch</span></div>
+      <p data-l="zh">专家权重占了总参数的 95.5%（116.0B / 121.4B），每个 token 在每层从 256 个专家里离散地选 8 个。推理栈和训练栈之间极小的数值差异就足以翻转这个离散选择——于是训练侧的前向可能把梯度送进了<em>另一批参数</em>。</p>
+      <p data-l="en">Expert weights are 116.0B of the 121.4B total parameters (95.5%), and each token engages 8 of 256 experts per layer via a discrete top-<i>k</i> router. Small numeric differences between the inference and training stacks can flip these discrete choices, so the training-side forward may route gradient through <em>different parameters</em>.</p>
+    </div>
+    <div class="card">
+      <div class="t"><span data-l="zh">稀疏且昂贵的奖励</span><span data-l="en">Sparse, expensive reward</span></div>
+      <p data-l="zh">一个 rollout batch 要烧掉数百沙箱小时，而二值的「任务是否解决」只提供 1 bit 信息。我们第一次 122B RL（TMax 池 + 二值奖励）始终没能超过 SFT 基线。</p>
+      <p data-l="en">A full rollout batch costs hundreds of sandbox-hours, while a binary task-solved reward provides one bit per trajectory. Our first 122B RL campaign (TMax pool, binary rewards) never exceeded the SFT baseline.</p>
+    </div>
+    <div class="card">
+      <div class="t"><span data-l="zh">两条正交的修复轴</span><span data-l="en">Two orthogonal axes</span></div>
+      <p data-l="zh">token 漂移在<em>序列层面</em>破坏 PPO 的重要性比率，路由漂移在<em>参数层面</em>破坏它。我们把二者当成正交问题分别解决：TITO 管 token，R³ 路由回放管专家。</p>
+      <p data-l="en">Token drift breaks PPO's importance ratio at the <em>sequence</em> level; routing divergence breaks it at the <em>parameter</em> level. We treat these as orthogonal and fix them separately: TITO for tokens, R³ routing replay for experts.</p>
+    </div>
+  </div>
+
+  <figure>
+    <img src="figures/size_benchmark_3.png" alt="Model size versus Terminal-Bench 2.1 resolved rate">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 1｜同一 harness 下的规模—性能定位。</b>横轴为模型规模，纵轴为 Terminal-Bench 2.1 解决率。
+        在 122B 这一档，T1 高于 GPT-5.4（54.8）、DeepSeek-V4-Flash（56.9），也高于 Claude Opus 4.6（63.8），
+        并逼近生产级的 Claude Opus 4.7（66.1），是同规模区间里最好的模型。
+      </div>
+      <div data-l="en">
+        <b>Figure 1 | Performance against frontier models under the Harbor / Terminus-2 harness.</b>
+        Model size on the horizontal axis, Terminal-Bench 2.1 resolved rate on the vertical axis.
+        At the 122B scale, T1 sits above GPT-5.4 (54.8), DeepSeek-V4-Flash (56.9) and even Claude
+        Opus 4.6 (63.8), approaches the production-grade Claude Opus 4.7 (66.1), and is the best
+        model in its size band.
+      </div>
+    </figcaption>
+  </figure>
+
+  <div class="callout">
+    <div class="h"><span data-l="zh">这份报告是什么</span><span data-l="en">What this report is</span></div>
+    <p data-l="zh">
+      它是一份<strong>系统报告</strong>，不是算法论文。四个贡献：(1) 超大 MoE Agent RL 的稳定化栈的代码级记录
+      （TITO、R³、critic 调度及周边容错机制）；(2) 稠密过程奖励的设计与实测行为，包括两个失败的奖励变体及原因；
+      (3) 在 95 GiB 显存的 GPU 上把一对 122B 的 PPO actor–critic 养活数天所需的基础设施；
+      (4) 一份坦诚的失败记录——我们觉得它至少和成功一样有教益。
+    </p>
+    <p data-l="en">
+      This is a <strong>systems report</strong>, not an algorithms paper. Its contributions are
+      (1) a code-level account of the stabilization stack for very large MoE agent RL (TITO, R³,
+      critic schedule, and the surrounding failure-handling machinery); (2) the design and
+      measured behavior of the dense process reward, including two reward variants that failed
+      and why; (3) the infrastructure required to fit and keep alive a PPO actor–critic pair of
+      122B models on 95 GiB GPUs for days; and (4) a candid record of the failures encountered,
+      which we found at least as instructive as the successes.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="setup">
+  <h2><span class="num">02</span><span data-l="zh">模型、任务与数据</span><span data-l="en">Model, task and data</span></h2>
+
+  <h3><span data-l="zh">模型</span><span data-l="en">Model</span></h3>
+  <div data-l="zh">
+    <p>
+      底座是一个 48 层的混合注意力 MoE decoder：hidden size 3072，32 个注意力头配 2 个 KV group（GQA），
+      gated attention output、RMSNorm、部分 RoPE，词表 248,320。注意力按 <strong>3:1</strong> 的模式交替
+      ——三层 GatedDeltaNet 线性注意力接一层全注意力。每一层都带 MoE FFN：256 个专家，
+      fp32 下 softmax top-8 路由，外加一个门控共享专家。总参数 121.4B，其中 116.0B 是专家权重，
+      每 token 激活约 10B。<strong>RL 阶段关闭 MoE 的辅助负载均衡损失。</strong>
+    </p>
+    <p>
+      起点有两个 checkpoint：base 模型（Terminal-Bench 2.1 上 43.8%）和一个称为 RST 的 SFT checkpoint（49.4%）。
+      本报告的主力实验都从 RST 出发。
+    </p>
+  </div>
+  <div data-l="en">
+    <p>
+      The backbone is a 48-layer hybrid-attention MoE decoder: hidden size 3072, 32 attention
+      heads with 2 KV groups (GQA), gated attention output, RMSNorm, partial RoPE, vocabulary
+      248,320. Attention alternates in a <strong>3:1</strong> pattern &mdash; three GatedDeltaNet
+      linear-attention layers, then one full-attention layer. Every layer carries an MoE FFN:
+      256 experts, softmax top-8 routing in fp32, plus a gated shared expert. Total parameters
+      121.4B, of which 116.0B are expert weights; active parameters per token are ~10B.
+      <strong>During RL the MoE auxiliary load-balancing loss is disabled.</strong>
+    </p>
+    <p>
+      Two starting checkpoints appear: the base model (43.8% on Terminal-Bench 2.1) and an SFT
+      checkpoint referred to as RST (49.4%). The main campaigns of this report all start from RST.
+    </p>
+  </div>
+
+  <h3><span data-l="zh">任务与 Agent harness</span><span data-l="en">Task and agent harness</span></h3>
+  <div data-l="zh">
+    <p>
+      Agent 是 Terminus-2（经由 Harbor）：一个 JSON 工具调用循环，assistant 每轮发 shell 命令，tool 每轮返回终端输出。
+      生产配置的单次试验上限为：最多 60 轮、Agent 墙钟 3600 秒、验证器墙钟 900 秒、chat template 里关闭 thinking，
+      以及主动上下文压缩（Agent 自己总结历史）。沙箱是 Daytona 云容器（10 GiB 磁盘），每次试验创建后销毁。
+    </p>
+    <p>
+      一个任务就是一个自包含目录：<code>task.toml</code> 固定元数据与限额，<code>instruction.md</code> 描述一个长程终端任务
+      （比如：在两百个 commit 里做 bisect、修掉缺陷、重新构建到指定路径、并证明它成立），
+      <code>environment/</code> 放基础镜像和资源上限，<code>tests/</code> 放验证器，<code>solution/</code> 放 Agent 永远看不到的参考解。
+      <strong>验证器是承重结构</strong>：它跑 <code>pytest --ctrf</code> 并吐出逐测试的通过/失败记录，
+      于是奖励是<em>被执行出来的</em>而不是被建模出来的，且分辨率细到单条断言而非每轨迹 1 bit。
+    </p>
+  </div>
+  <div data-l="en">
+    <p>
+      The agent is Terminus-2 (via Harbor): a JSON-tool-call loop in which each assistant turn
+      issues shell commands and each tool turn returns terminal output. Per-trial limits in the
+      production configuration: at most 60 turns, agent wall-clock 3600 s, verifier wall-clock
+      900 s, thinking disabled in the chat template, and proactive context compaction (the agent
+      summarizes its own history). Sandboxes are Daytona cloud containers (10 GiB disk), created
+      and destroyed per trial.
+    </p>
+    <p>
+      A task is a self-contained directory: <code>task.toml</code> fixes metadata and per-trial
+      limits, <code>instruction.md</code> states a long-horizon terminal mission (bisect two
+      hundred commits, repair the defect, rebuild to a named path, and prove it),
+      <code>environment/</code> carries the base image and resource caps, <code>tests/</code>
+      holds the verifier, and <code>solution/</code> a reference solution the agent never sees.
+      <strong>The verifier is the load-bearing part</strong>: it runs <code>pytest --ctrf</code>
+      and emits a per-test pass/fail record, so the reward is <em>executed</em> rather than
+      modelled, and its resolution is per assertion rather than one bit per trajectory.
+    </p>
+  </div>
+
+  <h3><span data-l="zh">训练数据池</span><span data-l="en">Training data pools</span></h3>
+  <ul data-l="zh">
+    <li><strong>TMax-15k</strong>：14,601 个任务，从公开的 <code>allenai/tmax</code> 语料转成 terminal-bench 布局。它的验证器只给二值奖励，没有逐测试记录，所以这里只能做二值 RL。</li>
+    <li><strong>RST-38k</strong>：37,484 个合成任务（"递归任务合成"，未过滤）。</li>
+    <li><strong>Strategy-15k</strong>：从多轮合成里由 LLM 审计挑出的 15,000 个任务，八个维度的加权质量分，对隐藏需求、测试泄漏、解法投机、验证器过弱这四类问题<strong>硬性拒绝</strong>。任务跑 <code>pytest --ctrf</code>，逐测试结果被记录；启动前的预检在抽样任务中确认 93%（56/60）带 CTRF。这个池承载了所有稠密奖励实验。</li>
+  </ul>
+  <ul data-l="en">
+    <li><strong>TMax-15k</strong>: 14,601 tasks converted from the public <code>allenai/tmax</code> corpus into terminal-bench layout. Its verifiers emit only a binary reward &mdash; no per-test record &mdash; so only binary rewards are possible here.</li>
+    <li><strong>RST-38k</strong>: 37,484 synthesized tasks ("Recursive Task Synthesis", unfiltered).</li>
+    <li><strong>Strategy-15k</strong>: 15,000 tasks selected from the synthesis rounds by an LLM audit: a weighted quality score over eight dimensions with <strong>hard rejection</strong> for hidden requirements, test leakage, solution shortcuts, or verifiers too weak to validate the goal. Tasks run <code>pytest --ctrf</code>, so per-test pass/fail is recorded; a launch pre-flight verified CTRF presence in 93% of sampled tasks (56/60). This pool carries all dense-reward campaigns.</li>
+  </ul>
+
+  <figure class="tight">
+    <img src="figures/category_pie_blue_2.png" alt="Category composition of Strategy-15k">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 2｜Strategy-15k 的类别构成。</b>15,000 个任务归并到 17 个类别（原始 47 个标签）。
+        角度精确编码占比，半径是基于排名的幂次刻度（为了让小切片仍可见，因此<em>不</em>与占比成正比）。
+        数据池明显集中在命令行工程：脚本与自动化 17.9%、软件开发 16.5%、系统管理 13.8%、
+        环境与包配置 10.4%、版本控制 9.3%，前五类占了 67.9%；
+        而数据科学（3.7%）、调试（1.3%）、性能优化（1.0%）很薄——这个偏斜正好预示了残余失败会落在哪里。
+      </div>
+      <div data-l="en">
+        <b>Figure 2 | Category composition of Strategy-15k.</b> All 15,000 tasks are counted once
+        across 17 merged categories (from 47 raw labels); angle encodes share exactly, while radius
+        is a rank-based power scale chosen to keep small slices visible and is therefore
+        <em>not</em> proportional to share. The pool is concentrated in command-line engineering
+        work: scripting and automation (17.9%), software development (16.5%), system administration
+        (13.8%), environment and package setup (10.4%) and version control (9.3%) make up
+        two-thirds of the pool, while data science (3.7%), debugging (1.3%) and performance work
+        (1.0%) are thin &mdash; a skew predicting where residual failures land.
+      </div>
+    </figcaption>
+  </figure>
+
+  <figure class="tight">
+    <img src="figures/scoring_weights_en_3pdf.png" alt="The eight audit dimensions and their weights">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 3｜数据审计的八个维度及其权重（合计 1.00）。</b>
+        按面归并：指令 40%、验证器 25%、解法 25%、任务价值 10%。
+        其中「指令 / 验证器一致性」单项权重最高（20%），因为公开指令与 <code>tests/</code> 实际强制内容不一致
+        ——即隐藏需求——会让一个任务作为 RL 信号彻底失效：Agent 因为一条它从未被告知的判据而受罚。
+        筛选分五个阶段、跨 15 轮改写完成，包含<em>可执行</em>校验（参考解必须真的在容器里通过自己的验证器）、
+        语义审查（5,902 通过 / 3,251 边界 / 5,847 拒绝）、只改指令不动测试的修复（6,875 个任务）以及一次对抗式复审。
+      </div>
+      <div data-l="en">
+        <b>Figure 3 | The eight audit dimensions and their weights, summing to 1.00.</b>
+        Rolled up by facet: instruction 40%, verifier 25%, solution 25%, task value 10%.
+        Instruction / verifier alignment carries the largest single weight (20%) because a mismatch
+        between the public instruction and what <code>tests/</code> enforces &mdash; a hidden
+        requirement &mdash; makes a task unusable as an RL signal: the agent is punished for
+        failing a criterion it was never shown. Selection ran in five stages over 15 rewrite
+        rounds, including <em>executable</em> validation (the reference solution genuinely passes
+        its verifier in-container), a semantic pass (5,902 accept / 3,251 borderline / 5,847
+        reject), instruction-only repair (6,875 tasks, leaving <code>tests/</code> untouched), and
+        an adversarial re-audit.
+      </div>
+    </figcaption>
+  </figure>
+
+  <h3><span data-l="zh">评测协议与算力</span><span data-l="en">Evaluation protocol and compute</span></h3>
+  <div data-l="zh">
+    <p>
+      留出评测是 Terminal-Bench 2.1 的 89 个终端任务，指标为解决比例，走与训练完全相同的 harness 和沙箱后端，
+      每任务 3 次尝试，温度 1.0、top-<i>p</i> 0.95、top-<i>k</i> 20。
+      评测总超时很关键：早期 3600 秒的墙会静默取消约 14 个慢任务，把 base 模型的测量分从约 0.43 拖到 0.371；
+      生产配置把它抬到 10,800 秒，并加了一道验收门——attempt 覆盖率不等于 1.0 就拒绝开始训练。
+    </p>
+    <p>
+      生产稠密奖励实验用 128 张 GPU：64 张训练（TP2 × PP4 × CP4 ⇒ DP2，EP16，每流水段 12 层）
+      + 64 张推理（8 个独立 SGLang 引擎，各 TP8），每步 512 条轨迹，约 57 分钟一步。
+      早期二值奖励实验用 88 张卡，batch 256 时约 33 分钟一步。
+    </p>
+  </div>
+  <div data-l="en">
+    <p>
+      Held-out evaluation is Terminal-Bench 2.1: 89 terminal tasks, scored as the fraction
+      resolved, run through the same harness and sandbox backend as training, with 3 attempts per
+      task at temperature 1.0, top-<i>p</i> 0.95, top-<i>k</i> 20. The evaluation-total timeout
+      matters: an early 3600 s wall silently cancelled ~14 slow tasks and dragged the base model's
+      measured score from ~0.43 to 0.371; production configs raise it to 10,800 s. A baseline-eval
+      acceptance gate refuses to start training unless attempt coverage is exactly 1.0.
+    </p>
+    <p>
+      The production dense-reward run uses 128 GPUs: 64 training GPUs (TP2 × PP4 × CP4 ⇒ DP2,
+      EP16, 12 layers per pipeline stage) and 64 inference GPUs (8 independent SGLang engines at
+      TP8), batch 512 trajectories per step, ~57 min/step. Earlier binary-reward runs used 88
+      GPUs, measured at ~33 min/step at batch 256.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="pipeline">
+  <h2><span class="num">03</span><span data-l="zh">训练系统</span><span data-l="en">Training system</span></h2>
+
+  <p data-l="zh">
+    我们构建在 slime v0.3.0 之上，它把 Megatron 训练后端和 SGLang 推理引擎放进同一个 Ray 应用。
+    <strong>学习和 rollout 占用互不重叠的 GPU，并且流水线深度为一步</strong>：第 <i>t</i> 步在训练时，
+    第 <i>t</i>+1 步的 batch 已经在生成了。上游提供了 PPO critic 脚手架、路由记录/回放核心、
+    token 级动态批处理和按角色的优化器配置；我们的终端 Agent 集成是增量式的，通过公开扩展点挂载而非 fork
+    ——核心改动约 1k 行，插件约 7.8k 行。
+  </p>
+  <p data-l="en">
+    We build on slime v0.3.0, which places a Megatron training backend and SGLang inference
+    engines under one Ray application. <strong>Learning and rollout occupy disjoint GPUs and are
+    pipelined one step deep</strong>: while step <i>t</i> trains, the batch for step <i>t</i>+1 is
+    already generating. Upstream supplies the PPO critic scaffolding, the routing record/replay
+    core, token-level dynamic batching, and per-role optimizer configuration; our terminal-agent
+    integration is additive, attached through public extension points rather than a fork &mdash;
+    ~1k lines of core delta, ~7.8k of plugin.
+  </p>
+
+  <figure>
+    <img src="figures/pipeline.png" alt="The T1 training pipeline">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 4｜T1 训练流水线。</b>
+        <b>左：</b>每个任务是一个自包含目录——元数据、长程指令、带资源限制的环境镜像、留出验证器、参考解，
+        其测试吐出逐测试 CTRF 记录，让奖励可执行而非被建模。
+        <b>中：</b>SGLang 在过采样下服务行为策略；轨迹装配器把交互日志规范化成 TITO 拼接的训练样本，
+        连带路由行和 CTRF 稠密奖励；Megatron 先更新 critic 再更新 actor，然后把权重同步回去。
+        <b>右：</b>Daytona 沙箱被创建、加载、逐轮驱动、验证、回收。rollout 与训练在不重叠的 GPU 上并发。
+      </div>
+      <div data-l="en">
+        <b>Figure 4 | The T1 training pipeline.</b>
+        <b>Left:</b> each task is a self-contained directory &mdash; metadata, a long-horizon
+        instruction, an environment image with resource limits, a held-out verifier, and a
+        reference solution &mdash; whose tests emit a per-test CTRF record, making the reward
+        executable rather than modelled. <b>Middle:</b> SGLang serves the behaviour policy under
+        oversampling; the trajectory assembler normalizes interaction logs into TITO-stitched
+        training samples with routing rows and the CTRF dense reward; Megatron updates critic then
+        actor and synchronizes weights back. <b>Right:</b> Daytona sandboxes are created, loaded,
+        driven turn by turn, verified, and reclaimed. Rollout and training run concurrently on
+        disjoint GPUs.
+      </div>
+    </figcaption>
+  </figure>
+
+  <h3><span data-l="zh">Rollout 与轨迹装配</span><span data-l="en">Rollout and trajectory assembly</span></h3>
+  <div data-l="zh">
+    <p>
+      从 SFT checkpoint 出发，SGLang 向大量并发试验提供行为策略。调度器会<strong>过采样</strong>：
+      启动比 batch 所需更多的试验，接受最先完成的 <i>B</i> 个，取消长尾——这是在一个完成时间重尾的环境里
+      约束单步时长的关键手段。Agent 与引擎交换的是 <strong>token id 而不是文本</strong>，
+      并拿回采样到的 id、逐 token 的对数概率和逐 token 的专家路由。
+    </p>
+    <p>
+      完成的试验进入<strong>轨迹装配器</strong>：被采样的 assistant token 保留其 id、对数概率和单位损失掩码；
+      工具观测和模板胶水以掩码形式进入。路由行与 token 流严格同步推进，每个试验的 CTRF 记录成为它的稠密奖励。
+      最终发出的训练 batch 把 token id、损失掩码、推理侧对数概率和被路由的专家<strong>放在一起</strong>携带
+      ——任何触碰逐 token 数据的环节都必须用相同的偏移量变换这四者，这是整条流水线的中心不变式。
+    </p>
+  </div>
+  <div data-l="en">
+    <p>
+      Starting from the SFT checkpoint, SGLang serves the behaviour policy to many concurrent
+      trials. The scheduler <strong>oversamples</strong>: it launches more trials than the batch
+      requires, accepts the first <i>B</i> to complete, and cancels the straggler tail, which is
+      what bounds step time against an environment whose completion times are heavy-tailed. The
+      agent exchanges <strong>token ids rather than text</strong> with the engines and receives
+      sampled ids, per-token log-probabilities, and per-token expert routing.
+    </p>
+    <p>
+      Completed trials enter the <strong>trajectory assembler</strong>: sampled assistant tokens
+      keep their ids, log-probabilities and a unit loss mask; tool observations and template glue
+      enter masked. Routing rows advance in lock-step with the token stream, and each trial's CTRF
+      record becomes its dense reward. The emitted train batch carries token ids, loss masks,
+      inference log-probabilities and routed experts <strong>together</strong> &mdash; every stage
+      that touches per-token data transforms all four by the same offsets, which is the pipeline's
+      central invariant.
+    </p>
+  </div>
+
+  <h3><span data-l="zh">Critic 与 actor 的更新次序</span><span data-l="en">Critic and actor updates</span></h3>
+  <p data-l="zh">
+    Megatron 消费这个 batch。任何策略移动之前先有一段简短的 <strong>critic 预热</strong>；
+    之后每一步都先跑 critic：它的<em>更新前</em>价值同时喂给优势估计器和它自己的裁剪价值损失，
+    并以 actor 的 <strong>30 倍学习率</strong>训练，因为它的目标是一个监督回归。
+    随后 actor 在行为快照下重算旧的对数概率，走一步裁剪代理目标。
+    奖励落在最后一个响应 token 上，由 GAE 在整个长程上做信用分配；由于每任务只采 1 条样本，
+    没有组基线，<strong>critic 是唯一的基线</strong>。又因为 actor 和 critic 同样大小、靠强制 offload 共享 GPU，
+    这个次序也是显存唯一允许的次序。
+  </p>
+  <p data-l="en">
+    Megatron consumes the batch. A brief <strong>critic warm-up</strong> precedes any policy
+    movement, after which each step runs the critic first: its <em>pre-update</em> values feed both
+    the advantage estimator and its own clipped value loss, and it trains at
+    <strong>30× the actor's learning rate</strong> because its target is a supervised regression.
+    The actor then recomputes old log-probabilities under the behaviour snapshot and takes one
+    clipped-surrogate step. The reward lands on the final response token and GAE performs credit
+    assignment across the horizon; with one sample per task there is no group baseline, so
+    <strong>the critic is the only baseline</strong>. Because actor and critic are the same size
+    and share GPUs by forced offload, this ordering is also the only one memory permits.
+  </p>
+
+  <h3><span data-l="zh">权重同步</span><span data-l="en">Weight synchronization</span></h3>
+  <p data-l="zh">
+    更新后的权重每步向所有引擎发布一次，发布前先让生成静默，保证没有请求跨越两个策略版本。
+    行为快照在同一个 barrier 内轮换，于是重要性比率的分母始终是真正采样了这个 batch 的那个策略：
+    流水线带来的一步滞后是<strong>恰好一步的普通 off-policy</strong>，而不是未建模的偏差。
+    这样 rollout 就藏在训练之下，单步时长是 max(rollout, training) 而不是二者之和。
+  </p>
+  <p data-l="en">
+    Updated weights are published to every engine once per step, with generation quiesced first so
+    no request spans two policy versions. The behaviour snapshot rotates inside the same barrier,
+    so the importance ratio's denominator remains the policy that actually sampled the batch: the
+    one-step lag introduced by pipelining is <strong>ordinary off-policyness of exactly one
+    step</strong> rather than unmodeled bias. Rollout thus hides under training, making step time
+    max(rollout, training) instead of their sum.
+  </p>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="ppo">
+  <h2><span class="num">04</span>PPO</h2>
+
+  <p data-l="zh">
+    PPO 核心刻意做得很朴素。裁剪比率 <strong>ε = 0.2</strong>（对称），KL 惩罚与 KL 损失关闭，
+    熵奖励关闭（仍以无梯度方式记录），MoE 辅助负载均衡损失关闭。
+    优势估计器为 <code>ppo</code>（critic + GAE），<strong>γ = 1、λ = 1</strong>，价值裁剪 <strong>0.2</strong>，
+    锚定 critic 的更新前价值。每个 prompt 采 <strong>1 条</strong>样本（因此无组归一化、无组基线），
+    batch <strong>512 条轨迹</strong>，token 预算墙 84k（二值奖励实验为 64k）。
+    优化器 <strong>Adam(0.9, 0.98)</strong>、weight decay 0.1、恒定学习率，
+    <strong>actor 1.0 × 10⁻⁶、critic 1.5 × 10⁻⁵</strong>（30× 差距），critic 热加载后再做 2 步 critic-only 重校准。
+    精度为 bf16 权重 + fp32 梯度累积，路由打分 fp32 softmax，不使用 fp8。
+    PPO 比率的分母是训练侧重算的旧对数概率，TIS 修正只记录、不施加到损失。
+    3 个 epoch × 15,000 任务 ÷ batch 512 = 90 步。
+  </p>
+  <p data-l="en">
+    The PPO core is deliberately spare. Clip ratio <strong>ε = 0.2</strong> (symmetric); KL penalty
+    and KL loss off; entropy bonus off (still logged no-grad); MoE auxiliary load-balancing loss off.
+    The advantage estimator is <code>ppo</code> (critic + GAE) with <strong>γ = 1, λ = 1</strong>, and
+    a value clip of <strong>0.2</strong> anchored to the critic's pre-update values. Each prompt is
+    sampled <strong>once</strong> (hence no group normalization and no group baseline), the batch is
+    <strong>512 trajectories</strong>, and the token-budget wall is 84k (64k for the binary-reward
+    runs). The optimizer is <strong>Adam(0.9, 0.98)</strong> with weight decay 0.1 and a constant
+    learning rate, at <strong>1.0 × 10⁻⁶ for the actor and 1.5 × 10⁻⁵ for the critic</strong> (a 30×
+    gap), with the critic warm-loaded and given 2 critic-only re-calibration steps. Precision is bf16
+    weights with fp32 gradient accumulation, router scores in fp32 softmax, no fp8. The denominator of
+    the PPO ratio is the training-side recomputed old log-probabilities, and TIS correction is
+    recorded but not applied to the loss. Three epochs over 15,000 tasks at batch 512 is 90 steps.
+  </p>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="stability">
+  <h2><span class="num">05</span><span data-l="zh">让 MoE 的 RL 训练稳下来</span><span data-l="en">Stabilizing MoE RL training</span></h2>
+
+  <p data-l="zh">
+    PPO 的重要性比率隐含一个前提：<strong>训练器评估的，必须等于采样器在同一版本上真正实现的</strong>。
+    在这个设定下它以两种方式失效，而且这两种失效相互独立——修好一个不会碰到另一个。
+  </p>
+  <p data-l="en">
+    PPO's importance ratio rests on one requirement: <strong>what the trainer evaluates must equal
+    what the sampler realized at the same policy version</strong>. In this setting it fails in two
+    ways, and the two are independent &mdash; enforcing one leaves the other's failure mode
+    untouched.
+  </p>
+
+  <ul data-l="zh">
+    <li><strong>token 保真失效</strong>：harness 把每条 assistant 消息以解析后的<em>文本</em>持久化，
+      每轮又把历史通过 chat template 重新渲染一遍。于是某一轮的输出被重建为「先解码再编码」的结果，
+      而只要解析做了规范化、或模板胶水在边界处重新分词，这个往返就不是恒等映射。</li>
+    <li><strong>路由保真失效</strong>：SGLang 和 Megatron 是两套不同的数值实现，路由打分必然有微小差异。
+      而 top-<i>k</i> 是不连续算子，只要第 <i>k</i> 与第 <i>k</i>+1 名的间隔小到与这个数值差异同量级，
+      被选中的专家集合就会翻转；一次翻转就换掉了产生该样本的那个子网络中的一个专家，
+      重要性比率于是在静默中比较着两个不同的策略。</li>
+  </ul>
+  <ul data-l="en">
+    <li><strong>Token fidelity fails</strong> because the harness persists each assistant message
+      as parsed <em>text</em> and re-renders history through the chat template every turn, so a
+      turn's output is reconstructed as encode-of-decode &mdash; and that round trip is not the
+      identity whenever parsing normalizes the message or template glue re-tokenizes at the
+      boundary.</li>
+    <li><strong>Routing fidelity fails</strong> because SGLang and Megatron are distinct numerical
+      implementations, so their router scores differ slightly. As top-<i>k</i> is a discontinuous
+      operator, an arbitrarily small difference flips the selected set whenever the margin between
+      rank <i>k</i> and rank <i>k</i>+1 is comparable to it; one flip swaps an expert of the
+      sub-network that produced the sample, and the importance ratio silently compares two
+      different policies.</li>
+  </ul>
+
+  <p data-l="zh">
+    稠密模型根本不会犯第二种错，短程任务会稀释第一种错。但一个发出 20–60 轮轨迹的 122B MoE 会在约 10⁴ 个 token 上
+    同时犯这两种错，而误差是<strong>乘性累积</strong>的：缓解前逐 token 的平均对数概率偏差 0.021，
+    在约 3 × 10⁴ 个 token 上会产生一个 PPO 裁剪无法与真实策略移动区分开的比率误差。
+  </p>
+  <p data-l="en">
+    Dense models cannot violate the second identity at all, and short horizons attenuate the first.
+    But a 122B MoE emitting 20–60-turn trajectories violates both across ~10⁴ tokens, and the error
+    compounds <strong>multiplicatively</strong>: a mean per-token log-probability discrepancy of
+    0.021 before mitigation, over ~3 × 10⁴ tokens, produces a ratio error the PPO clip cannot
+    separate from genuine policy movement.
+  </p>
+
+  <h3><span data-l="zh">TITO：token 进，token 出</span><span data-l="en">TITO: token-in, token-out</span></h3>
+  <p data-l="zh">
+    TITO 用构造的方式强制 token 保真：<strong>训练器消费的正是引擎发出的那些 id，反之亦然</strong>。
+    在我们控制两端的地方，「解码再编码」被直接消除；在 harness 强制它发生的地方，则被<strong>检测并修复</strong>。
+    Harbor 后端双向传输 token id，因此编码每轮只做一次，而不是每次重放历史都做一次。
+    轮次之间，装配器依次尝试四种越来越弱的前缀关系：<strong>strict</strong>（严格前缀，这就是精确的 TITO）、
+    <strong>normalized</strong>（在一个 97 × 17 的有限网格上做<em>有界</em>修复，因此是可审计的而非启发式的）、
+    <strong>retokenized</strong>（token 层面全面失配时退化到<em>文本</em>空间的相等性，靠生成时的偏移映射定位区间）、
+    以及 <strong>split</strong>（都不成立就切成共享 group id 的新 chunk）。
+    关键是：harness 重新分词后的那份拷贝<strong>永远不会进入训练流</strong>，进入的始终是被采样的原始 id。
+  </p>
+  <p data-l="en">
+    TITO enforces token fidelity constructively: <strong>the trainer consumes exactly the ids the
+    engine emitted, and vice versa</strong>. Where we control both endpoints, encode-of-decode is
+    eliminated; where the harness forces it, it is <strong>detected and repaired</strong>. The
+    Harbor backend transmits token ids in both directions, so encoding happens once per turn rather
+    than once per history replay. Between turns the assembler tests four progressively weaker
+    prefix relations: <strong>strict</strong> (exact prefix &mdash; this is exact TITO),
+    <strong>normalized</strong> (a <em>bounded</em> repair over a finite 97 × 17 grid, which makes
+    it auditable rather than heuristic), <strong>retokenized</strong> (when token matching fails
+    everywhere, fall back to equality in <em>text</em> space and locate the span by a
+    generation-time offset map), and <strong>split</strong> (neither holds &rarr; a new chunk
+    sharing the same group id). The key property: the harness's re-tokenized copy
+    <strong>never enters the training stream</strong>; the sampled ids do.
+  </p>
+
+  <figure>
+    <img src="figures/tito_flow.png" alt="TITO stitching">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 5｜TITO 拼接，画的是四种情况里最难的 retokenized。</b>
+        harness 重新分词的拷贝不进入训练流，被采样的 id 才进入，因此每一个承载损失的位置都严格满足 token 保真。
+        观测和模板胶水以掩码上下文的形式进入（掩码 0、对数概率 0）。在 strict 情况下，中间那条泳道与顶部逐 token 相同。
+      </div>
+      <div data-l="en">
+        <b>Figure 5 | TITO stitching, drawn for the retokenized case &mdash; the hardest of the
+        four.</b> The harness's re-tokenized copy never enters the training stream; the sampled ids
+        do, so every loss-bearing position satisfies token fidelity exactly. Observations and
+        template glue enter as masked context (mask 0, log-prob 0). Under strict, the middle lane is
+        token-identical to the top one.
+      </div>
+    </figcaption>
+  </figure>
+
+  <p data-l="zh">
+    这里的保证是<strong>单边但锐利</strong>的：掩码为 1（即承载损失）的位置，其 token 必然与采样时逐位相同；
+    可能有偏差的只是后续轮次的<em>条件化上下文</em>。一次离线审计（1,402 个样本、2725 万条路由行）给出了实测数字：
+    <strong>97.39%</strong> 的位置逐位对齐，2.61% 属于重新分词或占位集合，
+    而落在损失区内的漂移比例是 <strong>0.0000%</strong>——漂移集合与损失区完全不相交。
+    值得一提的是，轨迹级的标志位是所有轮次「均为 strict」的合取，因此在约 99.9% 的轨迹上都读作 False；
+    只有逐 token 的统计才看得出真正要紧的那部分漂移其实是零。
+  </p>
+  <p data-l="en">
+    The guarantee is <strong>one-sided but sharp</strong>: at every position whose mask is 1 (i.e.
+    loss-bearing), the token is bit-identical to what was sampled; what can deviate is only the
+    <em>conditioning context</em> of later turns. An offline audit (1,402 samples, 27.25M routing
+    rows) gives the measured numbers: <strong>97.39%</strong> of positions exactly aligned, 2.61%
+    in the re-tokenized or placeholder sets, and <strong>0.0000%</strong> drift inside the loss
+    region &mdash; the drift set is disjoint from the loss region. Note that the trajectory-level
+    flag is a conjunction over all turns being strict, and so reads False on ~99.9% of
+    trajectories; only per-token accounting reveals that the drift that matters is zero.
+  </p>
+
+  <h3><span data-l="zh">R³：rollout 路由回放</span><span data-l="en">R³: rollout routing replay</span></h3>
+  <p data-l="zh">
+    R³ 同样用构造的方式强制路由保真：<strong>记录推理选择了哪些专家，再约束训练前向复用它们</strong>。
+    打过补丁的 SGLang 逐 MoE 层记录 top-<i>k</i> 索引，以 base64 的 int32 张量返回；
+    所有 48 层全部保存，不压缩、不抽样、不做门控，代价是每 token 1536 字节
+    ——一条 33k token 的轨迹约 48 MiB。路由行与 token 走完全相同的拼接逻辑，
+    保证第 <i>j</i> 行索引的就是第 <i>j</i> 个 token。在被修复过的边界上，某一行可能不属于任何一轮的记录，
+    此时构造器只在<strong>不可能影响任何梯度</strong>的位置替换为邻居行，否则直接报错。
+    路由缺失是硬错误，rollout 会中止而不是丢样本——丢样本等于把 batch 条件化在「记录成功」这个事件上，会引入偏差。
+  </p>
+  <p data-l="en">
+    R³ enforces routing fidelity by construction: <strong>record the expert sets inference
+    selected, and constrain the training forward to reuse them</strong>. A patched SGLang records
+    top-<i>k</i> indices per MoE layer and returns a base64 int32 tensor; all 48 layers are stored
+    with no compression, subsampling or gating, at a cost of 1536 bytes per token &mdash; about
+    48 MiB for a 33k-token trajectory. Routing rows ride exactly the same stitching as tokens, so
+    row <i>j</i> indexes token <i>j</i>. At repaired boundaries a row may exist in no turn's
+    capture; the builder then substitutes a neighbour row only where <strong>no gradient can be
+    affected</strong>, and otherwise raises. Absent routing is a hard error and the rollout aborts
+    rather than dropping the sample &mdash; dropping would condition the batch on the event
+    "capture succeeded" and bias it.
+  </p>
+  <p data-l="zh">
+    注入这一侧，我们包装而非 fork Megatron 的 router：<strong>替换的是「选择」算子，「门控」仍走实时打分</strong>。
+    专家索引来自记录（无梯度），门控权重从当前参数的实时打分里 gather（梯度照常流动）。
+    用查表替代 top-<i>k</i> 消除了那个让微小数值差异变得要紧的不连续性，
+    而从实时打分读门控又让 router 保持可训练。每次前向之前，路由张量都会被施加与 token 流<em>完全相同</em>的
+    序列并行、padding、上下文并行 zig-zag 切分等变换——任何别的组合顺序都会错位并静默回放错误的专家，
+    所以每个样本都断言了行数与 token 数的关系。critic 从不回放：它的回归目标不需要对采样器的行为保真。
+  </p>
+  <p data-l="en">
+    On the injection side we wrap rather than fork Megatron's router: <strong>the selection operator
+    is substituted while gating stays on live scores</strong>. Expert indices come from the record
+    (no gradient); gating weights are gathered from the live scores of the current parameters
+    (gradient flows). Replacing top-<i>k</i> by a table lookup removes the discontinuity that made
+    tiny numeric differences consequential, while reading gating from live scores keeps the router
+    trainable. Before each pass, the routing tensor is put through <em>exactly</em> the token
+    pipeline's transformations &mdash; sequence parallelism, padding, the context-parallel zig-zag
+    slice &mdash; because any other composition would misalign rows and silently replay wrong
+    experts, which is why the row-count relation is asserted per sample. The critic never replays:
+    its regression target needs no behavioural fidelity to the sampler.
+  </p>
+
+  <h3><span data-l="zh">Critic 侧的稳定性</span><span data-l="en">Critic-side stability</span></h3>
+  <p data-l="zh">
+    这里的 PPO 用一个<strong>独立、全尺寸</strong>的 critic：第二个 122B 模型，把 LM head 换成最后一个流水段上的标量价值头。
+    它与 actor 共享同一个 placement group（不额外占卡），slime 强制训练侧 offload，让两个 122B 模型分时复用同一批 GPU
+    ——每一个单独都必须塞进 95 GiB，这个约束直接驱动了后面的显存工程。
+  </p>
+  <p data-l="en">
+    PPO here uses a <strong>separate, full-size</strong> critic: a second 122B model whose LM head
+    is a scalar value head on the last pipeline stage. It shares the actor's placement group &mdash;
+    no extra GPUs &mdash; and slime forces training-side offload so the two 122B models
+    time-multiplex the same GPUs. Each alone must fit in 95 GiB, which is the constraint that drives
+    the memory engineering below.
+  </p>
+  <p data-l="zh">
+    <strong>解释方差（EV）</strong>是这里最重要的健康指标：它是价值函数所解释的回报方差比例。
+    EV = 0 意味着 critic 不比预测 batch 均值更好；关键在于这个量<strong>下无界</strong>，
+    EV &lt; 0 意味着减去价值函数是在给优势<em>增加</em>方差而不是减少方差。
+    冷启动时 EV 从 <strong>−33.6</strong> 开始——新初始化的价值头的残差携带了约 34 倍于回报的方差
+    ——那次实验大约用前一半时间在偿还这个赤字。<strong>热加载直接消除了它</strong>：
+    稠密奖励实验从 0 附近开始，最终稳定在 0.71–0.86。这也解释了为什么 2 步 critic-only 就够，
+    而冷启动需要几十步：优势从第一次更新起就是方差被降低过的，而不是在前三分之一训练里被放大的。
+  </p>
+  <p data-l="en">
+    <strong>Explained variance (EV)</strong> is the health metric that matters here: the fraction of
+    return variance the value function accounts for. EV = 0 means the critic is no better than
+    predicting the batch mean; crucially the quantity is <strong>unbounded below</strong>, and
+    EV &lt; 0 means subtracting the value function <em>adds</em> variance to the advantage instead of
+    removing it. Cold-started, EV begins at <strong>−33.6</strong> &mdash; the fresh value head's
+    residuals carry ~34× the variance of the returns &mdash; and roughly the first half of that
+    campaign pays down the deficit. <strong>Warm-loading removes it outright</strong>: the
+    dense-reward run starts near 0 and settles at 0.71–0.86. This is why 2 critic-only steps suffice
+    where a cold start needs tens: advantages are variance-reduced from the first update rather than
+    variance-inflated for the first third of training.
+  </p>
+
+  <figure>
+    <img src="figures/critic_ev_warmstart.png" alt="Critic explained variance, warm versus cold start">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 6｜Critic 解释方差，热启动对比冷启动。</b>
+        <b>蓝色（T1）</b>：生产稠密奖励实验（Strategy-15k）的热启动 critic。
+        <b>酒红</b>：TMax 实验的冷启动 critic，也正是蓝色实验所加载的那个 checkpoint。
+        浅线为逐步值，粗线为 EMA（α = 0.25），虚线标出 EV = 0。
+        冷启动从 EV = −33.6 开始（超出坐标范围），在 58 个记录步里有 30 步为负；
+        热启动实验从未转负，并稳定在 0.71–0.86。
+      </div>
+      <div data-l="en">
+        <b>Figure 6 | Critic explained variance, warm versus cold start.</b>
+        <b>Blue (T1)</b>: the warm-started critic of the production dense-reward run (Strategy-15k).
+        <b>Wine red</b>: the cold-started critic of the TMax campaign, whose checkpoint the blue run
+        loads. Faint lines are per-step values, bold lines an EMA (α = 0.25); the dashed rule marks
+        EV = 0. The cold start opens at EV = −33.6 (off scale) and is negative for 30 of 58 logged
+        steps; the warm-started run never goes negative and plateaus at 0.71–0.86.
+      </div>
+    </figcaption>
+  </figure>
+
+  <h3><span data-l="zh">实测效果</span><span data-l="en">Measured effect</span></h3>
+  <p data-l="zh">
+    两个机制合起来把训推对数概率差距从 <strong>0.021 降到 0.013</strong>，
+    并且在整个 112 步里稳定保持在 0.0110–0.0144 这个很窄的带内。
+    残余的 0.013 非零是<strong>符合预期</strong>的：R³ 对齐的是专家<em>选择</em>而非 kernel 数值，
+    而且 reference 和 critic 的前向按设计自由路由。
+    同样值得说明的是，这个指标缓慢上飘<strong>不是</strong>回退：它度量的是训练策略与生成该 batch 的权重之间的距离，
+    策略正当地进步时它本来就会变大。
+  </p>
+  <p data-l="en">
+    Together the two mechanisms reduce the train–inference log-probability gap from
+    <strong>0.021 to 0.013</strong>, holding a narrow 0.0110–0.0144 band for all 112 steps.
+    That the residual 0.013 is nonzero is <strong>expected</strong>: R³ aligns expert
+    <em>selection</em> but not kernel numerics, and the reference and critic paths route freely by
+    design. Equally worth stating: this metric drifting slowly upward is <strong>not</strong> a
+    regression &mdash; it measures the distance between the training policy and the weights that
+    generated the batch, which grows as the policy legitimately improves.
+  </p>
+
+  <figure>
+    <img src="figures/logprob_diff.png" alt="Train-inference log-probability gap">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 7｜训推对数概率差距。</b><em>左</em>：生产稠密奖励实验的逐步序列，来自一个只做记录的失配钩子；
+        浅线为逐步值，粗线为 EMA（α = 0.25）。<em>右</em>：同一个 122B 栈上，开启与关闭这两个机制时的平均差距
+        （0.013 对 0.021）。顺带一个坑：内置指标按 micro-batch 数而非掩码和归一化，
+        在 micro batch size 为 1 时会把它放大约 1000 倍，我们的钩子重新推导了正确的归约方式。
+      </div>
+      <div data-l="en">
+        <b>Figure 7 | Train–inference log-probability gap.</b> <em>Left</em>: per-step series over
+        the production dense-reward run, from a record-only mismatch hook; faint line is the
+        per-step value, bold line an EMA (α = 0.25). <em>Right</em>: mean gap on the same 122B stack
+        with and without the two mechanisms (0.013 vs 0.021). One trap worth noting: the built-in
+        metric normalizes by micro-batch count rather than by the mask sum, inflating it ~1000× at
+        micro-batch size 1; our hook re-derives the correct reduction.
+      </div>
+    </figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="h"><span data-l="zh">三个反直觉的系统结论</span><span data-l="en">Three counter-intuitive systems findings</span></div>
+    <div data-l="zh">
+      <p>
+        <strong>① RL 期间不加任何 router 辅助损失。</strong>负载均衡的压力会和 R³ 打架
+        （我们要求 router 复现 rollout 的选择，而不是重新均衡），并且引入一个与奖励无关的梯度。
+      </p>
+      <p>
+        <strong>② 超长样本无法用 token 预算限制住。</strong>slime 的 first-fit 打包会把超长样本
+        <em>单独</em>放进它自己的 bin 且保持全长，所以一条 40k token 的轨迹会自成一个 micro-batch，
+        与「每 GPU 最大 token 数」这个旋钮无关。所有想用那个旋钮修长序列 OOM 的尝试都是<strong>构造上注定失败</strong>的；
+        真正的杠杆是序列墙和上下文并行。
+      </p>
+      <p>
+        <strong>③ Triton 冷编译风暴看起来完全像 NCCL 挂死。</strong>变长轨迹 × 动态批处理每步会产生几十种 padding 形状，
+        每种都要 JIT 编译 GatedDeltaNet kernel 若干分钟。某次一个 rank 卡在 30 分钟以上的编译里，
+        它的 15 个专家并行同伴在 MoE all-to-all 上等待，最后 watchdog 杀掉的是<em>那些同伴</em>。
+        解法是更粗的 padding 粒度、节点本地的持久 Triton 缓存、120 分钟的 NCCL 组超时和超时即 dump 的 flight recorder。
+      </p>
+    </div>
+    <div data-l="en">
+      <p>
+        <strong>① No auxiliary router losses during RL.</strong> Load-balancing pressure fights R³
+        (the router is asked to reproduce rollout choices, not re-balance) and adds a non-reward
+        gradient.
+      </p>
+      <p>
+        <strong>② Oversized samples cannot be capped by token budgets.</strong> slime's first-fit
+        packer places an oversized sample <em>alone</em> in its own bin at full length, so a
+        40k-token trajectory forms its own micro-batch regardless of the max-tokens-per-GPU knob.
+        Every attempt to fix long-sequence OOMs with that knob failed <strong>by
+        construction</strong>; the real levers are the sequence walls and context parallelism.
+      </p>
+      <p>
+        <strong>③ Triton cold-compile storms look exactly like NCCL hangs.</strong> Variable-length
+        trajectories × dynamic batching produce dozens of padded shapes per step, each JIT-compiling
+        GatedDeltaNet kernels for minutes. In one incident a single rank sat in a &gt;30-min compile
+        while its 15 expert-parallel peers waited in the MoE all-to-all; the watchdog killed
+        <em>the peers</em>. Mitigations: coarser padding granularity, a persistent node-local Triton
+        cache, 120-min NCCL group timeouts, and flight-recorder dumps on timeout.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="reward">
+  <h2><span class="num">06</span><span data-l="zh">稠密奖励：CTRF 测试计数</span><span data-l="en">Dense reward: the CTRF test count</span></h2>
+
+  <p data-l="zh">
+    第一次 122B 实验在 TMax 上用朴素的二值「任务是否解决」奖励。它在 40 步内把 <em>base</em> 模型从 43.8% 推到 47.2%，
+    但<strong>始终没有超过 SFT 的 49.4%</strong>。两个结构性读解：数据池相对 RST 太容易（没有可学的头部空间），
+    而对那些验证器里本来就含有许多可独立检查的断言的任务来说，
+    「每条耗费数千沙箱秒的轨迹只给 1 bit」是一个极低的信号率。那次实验最终只留下一个用途
+    ——在便宜且稳定的数据上把 critic 预热好。
+  </p>
+  <p data-l="en">
+    The first 122B campaign trained on TMax with the plain binary task-solved reward. It moved the
+    <em>base</em> model from 43.8% to 47.2% within 40 steps, but <strong>never exceeded the SFT
+    checkpoint's 49.4%</strong>. Two structural readings: the pool is too easy relative to RST
+    (little headroom to learn), and one bit per multi-thousand-sandbox-second trajectory is a very
+    low signal rate for tasks whose verifiers actually contain many individually checkable
+    assertions. The campaign was retained for exactly one purpose &mdash; warming up the critic on
+    cheap, stable data.
+  </p>
+  <p data-l="zh">
+    转折点是让奖励<strong>可执行且有分辨率</strong>。每个任务的 <code>tests/test.sh</code> 在沙箱里跑
+    <code>pytest --ctrf</code>，验证器因此吐出一份标准的 CTRF JSON，里面有逐测试的汇总。
+    rollout 之后，奖励钩子读回每个试验的 <code>verifier/ctrf.json</code>，计算：
+  </p>
+  <p data-l="en">
+    The turning point was making the reward <strong>executable and resolved</strong>. Each task's
+    <code>tests/test.sh</code> runs <code>pytest --ctrf</code> inside the sandbox, so the verifier
+    emits a standard CTRF JSON with a per-test summary. After rollout, the reward hook reads each
+    trial's <code>verifier/ctrf.json</code> back and computes:
+  </p>
+
+  <div class="formula">
+    <div class="eq">
+      <i>r</i> <span>=</span>
+      <span class="frac">
+        <span class="top">#&hairsp;passed tests</span>
+        <span class="bot"><i>S</i></span>
+      </span>
+      <span>,</span>
+      <span style="margin-left:8px"><i>S</i> = 20</span>
+    </div>
+    <div class="note" data-l="zh">通过测试的<strong>绝对数量</strong>，除以一个固定的全局尺度——明确<em>不是</em>通过率。</div>
+    <div class="note" data-l="en">the <strong>absolute</strong> passed-test count on a fixed global scale &mdash; explicitly <em>not</em> the pass ratio.</div>
+  </div>
+
+  <p data-l="zh">两个设计决定值得展开：</p>
+  <p data-l="en">Two design decisions are worth spelling out:</p>
+
+  <ul data-l="zh">
+    <li>
+      <strong>用绝对计数，不用比率。</strong>比率会把每个任务都封顶在 1.0，抹平多测试难任务的信号。
+      用绝对计数，一个 40 测试的任务最高能拿到 2.0（在 RST-38k 上实测到过 2.75），
+      于是更难的任务按比例携带更多学习信号。这个尺度由 PPO 的 critic + GAE 去吸收。
+    </li>
+    <li>
+      <strong>固定的全局尺度。</strong><i>S</i> = 20 大约位于数据池测试数分布的 p90（中位数 4，p90 约 19，最大约 35）。
+      如果改用每个 batch 的最大值，奖励尺度就会一步一步漂移，给 critic 一个前后不一致的回归目标；
+      <strong>跨步一致性正是价值函数可学的前提</strong>。
+    </li>
+    <li>
+      <strong>兜底。</strong>CTRF 缺失或无法解析时，该试验回退到二值终局奖励，
+      所以一个真正被解决的任务绝不会得零分；解析失败按来源打标签以便观测。
+    </li>
+  </ul>
+  <ul data-l="en">
+    <li>
+      <strong>Absolute count, not ratio.</strong> A ratio caps every task at 1.0, flattening the
+      signal for hard many-test tasks; with the absolute count a 40-test task can earn up to 2.0
+      (up to 2.75 observed on RST-38k), so harder tasks carry proportionally more learning signal.
+      PPO's critic + GAE absorbs the scale.
+    </li>
+    <li>
+      <strong>Fixed global scale.</strong> <i>S</i> = 20 sits near the p90 of the pools' test-count
+      distribution (median 4, p90 ~19, max ~35). A per-batch maximum would make the reward scale
+      drift step to step and hand the critic an inconsistent regression target;
+      <strong>cross-step consistency is what makes the value function learnable</strong>.
+    </li>
+    <li>
+      <strong>Fallbacks.</strong> If CTRF is missing or unparsable the trial falls back to the
+      binary terminal reward, so a genuinely solved task never scores zero; parse failures are
+      tagged by source for observability.
+    </li>
+  </ul>
+
+  <p data-l="zh">
+    这里的「稠密」指的是奖励的<strong>取值分辨率</strong>（0、1/20、2/20 …），<em>不是</em>它的放置位置：
+    标量仍然只加在每个轨迹 chunk 的最后一个响应 token 上，由 critic + GAE 在 60 轮的长程上做时序信用分配。
+    没有势函数式 shaping，也没有逐轮奖励。PPO 下奖励<strong>原样</strong>流入 critic：不做组归一化，
+    也没有开启优势归一化。由于每任务只有 1 条样本，也没有组基线——critic 是唯一的基线，
+    所以它的校准处在关键路径上。
+  </p>
+  <p data-l="en">
+    "Dense" here refers to the reward's <strong>value resolution</strong> (0, 1/20, 2/20, …),
+    <em>not</em> its placement: the scalar still enters at the last response token of each trajectory
+    chunk, and the critic + GAE performs temporal credit assignment across the 60-turn horizon.
+    There is no potential-based shaping and no per-turn reward. Under PPO the rewards flow into the
+    critic <strong>raw</strong>: no group normalization, and advantage normalization is not enabled.
+    With one sample per task there is also no group baseline &mdash; the critic is the only baseline,
+    which is why its calibration is on the critical path.
+  </p>
+
+  <figure>
+    <img src="figures/reward_curve.png" alt="CTRF dense reward curve">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 8｜生产稠密奖励实验中的平均 rollout 奖励</b>（原始值，未经任何归一化）。
+        浅线为逐步均值，粗线为 EMA（α = 0.25）。奖励在前 30 步从 0.250 升到约 0.345，
+        随后 80 步维持在 0.34–0.36 的带内，第 58 步附近峰值 0.365。
+        对照设计意图来读：<i>S</i> = 20 时均值约 0.35 对应每条轨迹约 7 个通过测试，
+        舒服地落在信号分辨率之内而不是被顶在任何一端——这恰恰是比率形式会通过封顶而摧毁的东西。
+        平台期不是停滞：留出基准在这段时间里仍在提升，说明模型是在<em>重新分配</em>它通过哪些测试，
+        而不是简单地多过几个。可见的高频振荡是 batch 512、每任务 1 样本下洗牌带来的批构成特征，不是不稳定
+        ——它的幅度（约 0.02）在整个实验里保持恒定。
+      </div>
+      <div data-l="en">
+        <b>Figure 8 | Mean rollout reward under the CTRF test-count reward</b> over the production
+        dense-reward run (raw values, before any normalization). Faint line: per-step mean; bold
+        line: EMA (α = 0.25). Reward rises from 0.250 to ~0.345 in the first 30 steps and then holds
+        a 0.34–0.36 band for the remaining 80, peaking at 0.365 near step 58. Read against the
+        design choices: a mean of ~0.35 at <i>S</i> = 20 corresponds to roughly 7 passing tests per
+        trajectory, comfortably inside the resolution of the signal rather than pinned at either end
+        &mdash; precisely what the ratio formulation would have destroyed by capping every task at
+        1.0. The plateau is not stagnation: the held-out benchmark keeps improving through it, so the
+        run is <em>redistributing</em> which tests it passes rather than simply passing more of them.
+        The visible high-frequency oscillation is the batch-composition signature of shuffling at
+        batch 512 with one sample per task, not an instability &mdash; its amplitude (~0.02) stays
+        constant over the run.
+      </div>
+    </figcaption>
+  </figure>
+
+  <h3><span data-l="zh">两次失败的长度整形，和一个修好的版本</span><span data-l="en">Length shaping: two failures and a fix</span></h3>
+  <p data-l="zh">
+    我们实现过三个针对轨迹膨胀的长度整形变体，生产主实验<strong>一个都没用</strong>，但它们的历史很有教育意义：
+  </p>
+  <p data-l="en">
+    Three optional variants shape the test-count reward against trajectory bloat; the production run
+    uses <strong>none</strong> of them, but their histories are instructive:
+  </p>
+
+  <ul data-l="zh">
+    <li>
+      <strong>效率奖励（无效）。</strong>给完全解决的轨迹按同测试数分桶内的排名加一个小奖励。
+      结果是这个奖励只被本来就最短的解法拿到，于是它在强化既有行为，而不是塑造新行为。
+    </li>
+    <li>
+      <strong>加性长度惩罚（灾难性失败）。</strong>为了让「正确性」在字典序上保持支配地位，
+      惩罚项被刻意设计得小于一个测试的价值。结果平均轮数从 22 涨到 50+。
+      事后归因很清楚：惩罚被按设计压成了次要项，正确性的<em>梯度</em>就直接从它上面开过去了
+      ——多几轮就能多蹭到几个测试，靠瞎逛刷测试的收益高于惩罚的成本。
+    </li>
+    <li>
+      <strong>乘性折扣（正确的解法）。</strong>让长度去<strong>侵蚀正确性本身</strong>，
+      这样它就不可能被正确性的梯度盖过：一个 5 测试的解法被拖到 50 轮之后，其得分严格低于一个 4 测试的正常长度解法。
+      同时设一个「免费区」（不超过 25 轮，高于约 22 轮的健康均值）来保护本来就该长的任务，
+      并给零通过的情形一个小负值，抹掉纯乘法会在恰好 0 处留下的刷分地板。
+    </li>
+  </ul>
+  <ul data-l="en">
+    <li>
+      <strong>Efficiency bonus (ineffective).</strong> A small bonus on fully-solved trajectories,
+      ranked within same-test-count buckets. It only ever reached the already-shortest solutions, so
+      it reinforced existing behavior rather than shaping new behavior.
+    </li>
+    <li>
+      <strong>Additive length penalty (catastrophic failure).</strong> To keep correctness
+      lexicographically dominant, the penalty was deliberately made smaller than one test's worth.
+      Average turns rose from 22 to 50+. The post-mortem is clear: with the penalty kept sub-dominant
+      by design, the correctness <em>gradient</em> carried right past it &mdash; more turns brush
+      more tests, so farming tests by rambling paid more than the penalty cost.
+    </li>
+    <li>
+      <strong>Multiplicative discount (the fix).</strong> Make length <strong>erode correctness
+      itself</strong> so it cannot be out-gradiented: a 5-test solve farmed to 50 turns scores
+      strictly below a 4-test healthy-length solve. A free zone (up to 25 turns, above the ~22-turn
+      healthy average) protects legitimately long tasks, and a small negative branch for zero passes
+      removes the farming floor that pure multiplication would leave at exactly 0.
+    </li>
+  </ul>
+
+  <div class="callout">
+    <div class="h"><span data-l="zh">洗牌是奖励设计的一部分</span><span data-l="en">Shuffling is part of the reward design</span></div>
+    <p data-l="zh">
+      Strategy-15k 是按<strong>质量排名顺序</strong>物化在磁盘上的（第一个任务就是最好的那个）。
+      不洗牌的话，顺序游标会从最好扫到最差，每个 512 任务的 batch 都来自一个很窄的质量带
+      ——critic 看到的奖励分布会在一个 epoch 内单调漂移。因此我们对整池施加「种子 + epoch」的置换，
+      让每 batch 的奖励统计保持平稳。15,000 个任务、batch 512、3 个 epoch，正好是 90 步。
+    </p>
+    <p data-l="en">
+      Strategy-15k is materialized in <strong>quality-rank order</strong> (the first task is the best
+      one). Without shuffling, a sequential cursor would sweep best-to-worst and every 512-task batch
+      would come from one narrow quality band &mdash; the reward distribution the critic sees would
+      drift monotonically over the epoch. We therefore apply a seed+epoch permutation over the pool,
+      keeping per-batch reward statistics stationary. Three epochs over 15,000 tasks at batch 512 is
+      exactly 90 steps.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="results">
+  <h2><span class="num">07</span><span data-l="zh">结果</span><span data-l="en">Results</span></h2>
+
+  <p data-l="zh">
+    三个实验构成了完整的故事线：TMax 上的二值奖励（从 base 出发）早期能改进 base 模型
+    （43.8% → 第 29 步的 47.2%），但从未追上 SFT 的 49.4%，它留下的资产是那个训练好的 critic；
+    RST-38k 上的稠密奖励（未过滤，从 RST 出发）立刻越过 SFT（第 9 步 0.584），
+    在 0.52–0.60 的带内振荡，峰值 0.599；而 Strategy-15k 上的稠密奖励（已过滤、从 RST 出发、critic 热加载）
+    是本报告的生产实验：前两个 epoch 稳在 0.55–0.57，第三个 epoch 向上突破
+    ——<strong>第 69 步 0.618</strong>，第 109 步的重复评测给出 <strong>0.596–0.635</strong>（最好 0.635 = 57/89）。
+    我们把第 69 步那次干净的单次评测作为主报数，并把第 109 步的分散度当作 <i>n</i> = 3、89 个任务下评测方差的诚实写照。
+  </p>
+  <p data-l="en">
+    Three campaigns structure the story. Binary reward on TMax (from base) improves the base model
+    early (43.8% → 47.2% at iteration 29) but never reaches the SFT checkpoint's 49.4%; its lasting
+    contribution is the trained critic. Dense reward on RST-38k (unfiltered, from RST) jumps
+    immediately above SFT (0.584 at iteration 9) and oscillates in the 0.52–0.60 band, peaking at
+    0.599. Dense reward on Strategy-15k (filtered, from RST, warm critic) is the production run of
+    this report: it holds 0.55–0.57 for the first two epochs, then breaks upward in the third &mdash;
+    <strong>0.618 at iteration 69</strong>, and at iteration 109 repeated evaluations give
+    <strong>0.596–0.635</strong> (best 0.635 = 57/89). We quote iteration 69's single clean
+    evaluation as the headline and treat the iteration-109 spread as an honest picture of evaluation
+    variance at <i>n</i> = 3 on 89 tasks.
+  </p>
+
+  <div class="tablewrap">
+    <table>
+      <caption>
+        <span data-l="zh">
+          表 1｜Terminal-Bench 2.1 对比。上半部分是与我们<strong>同一 Harbor / Terminus-2 harness</strong> 下评测的行；
+          下半部分是其他 harness 的公开榜单行，仅供参考——harness 选择会显著改变分数
+          （例如 Claude Opus 4.6 在 Claude Code 下 70.1，在 Terminus-2 下 63.8）。「/」= 未记录。
+        </span>
+        <span data-l="en">
+          Table 1 | Terminal-Bench 2.1 comparison. Upper block: rows evaluated under the
+          <strong>same Harbor / Terminus-2 harness</strong> as ours; lower block: selected public
+          leaderboard rows under other harnesses, shown for context only &mdash; harness choice
+          materially changes scores (e.g. Claude Opus 4.6 scores 70.1 under Claude Code vs 63.8 under
+          Terminus-2). "/" = not recorded.
+        </span>
+      </caption>
+      <thead>
+        <tr>
+          <th><span data-l="zh">模型</span><span data-l="en">Model</span></th>
+          <th><span data-l="zh">规模（总参-激活）</span><span data-l="en">Size (total-active)</span></th>
+          <th class="num">TB 2.1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="grp"><td colspan="3"><span data-l="zh">同一 harness（Harbor / Terminus-2）</span><span data-l="en">Same harness (Harbor / Terminus-2)</span></td></tr>
+        <tr class="ours"><td>T1 (ours, iter109 best)</td><td>122B-A10B</td><td class="num">64.0</td></tr>
+        <tr><td>Claude Opus 4.6</td><td>/</td><td class="num">63.8</td></tr>
+        <tr class="ours"><td>T1 (ours, iter69)</td><td>122B-A10B</td><td class="num">61.8</td></tr>
+        <tr><td>Hy3-Preview</td><td>295B-A21B</td><td class="num">58.0</td></tr>
+        <tr><td>DeepSeek V4 Flash (high)</td><td>295B-A21B</td><td class="num">56.9</td></tr>
+        <tr><td>Kimi-K2.5</td><td>1040B-A32B</td><td class="num">56.4</td></tr>
+        <tr><td>Minimax M2.7</td><td>229B-A10B</td><td class="num">55.4</td></tr>
+        <tr><td>GPT-5.4</td><td>/</td><td class="num">54.8</td></tr>
+        <tr><td>Gemini 3 Flash</td><td>/</td><td class="num">54.2</td></tr>
+        <tr><td>Claude Sonnet 4.6</td><td>/</td><td class="num">51.5</td></tr>
+        <tr class="dim"><td><span data-l="zh">我们的 SFT / RST 起点</span><span data-l="en">our SFT / RST checkpoint</span></td><td>122B-A10B</td><td class="num">49.4</td></tr>
+        <tr class="dim"><td><span data-l="zh">我们的 base 模型</span><span data-l="en">our base model</span></td><td>122B-A10B</td><td class="num">43.8</td></tr>
+        <tr class="grp"><td colspan="3"><span data-l="zh">其他 harness（公开榜单，仅作背景）</span><span data-l="en">Other harnesses (public leaderboards, context only)</span></td></tr>
+        <tr class="dim"><td>GPT-5.3-Codex (Codex CLI)</td><td>/</td><td class="num">79.1</td></tr>
+        <tr class="dim"><td>GPT-5.4 (Codex CLI)</td><td>/</td><td class="num">77.3</td></tr>
+        <tr class="dim"><td>Gemini 3.1 Pro (Terminus-2)</td><td>/</td><td class="num">70.7</td></tr>
+        <tr class="dim"><td>Claude Opus 4.6 (Claude Code)</td><td>/</td><td class="num">70.1</td></tr>
+        <tr class="dim"><td>GLM-5.1 (Claude Code)</td><td>750B-A40B</td><td class="num">58.7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure class="tight">
+    <img src="figures/performance_raise.png" alt="T1 against frontier models">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 9｜T1 在 Terminal-Bench 2.1 上的站位。</b>蓝色柱是我们自己的流水线：
+        base 模型（43.8）、我们初始化所用的 SFT checkpoint（49.4）、RL 之后的 T1（64.0）；
+        虚线箭头标出两个阶段——SFT 贡献 +5.6 pp，RL 再贡献 +14.6 pp。灰色柱是对比模型。
+        步长对比才是实质性的论点：<strong>从 base 到最终大约四分之三的距离是靠终端任务上的强化学习赚来的，
+        而不是靠对示范的模仿</strong>。只做 SFT 会让它在图里倒数第二，低于每一个对比项；
+        同一份权重经过 RL 后总体排到第四，并超过 Claude Opus 4.6——而它只有 10B 激活参数。
+      </div>
+      <div data-l="en">
+        <b>Figure 9 | Terminal-Bench 2.1 standing of T1.</b> Blue bars trace our own pipeline: the
+        base model (43.8), the SFT checkpoint we initialize from (49.4), and T1 after RL (64.0); the
+        dashed arrows mark the two stages &mdash; +5.6 pp from SFT and a further +14.6 pp from RL.
+        Grey bars are the comparison models. The contrast in step sizes is the substantive claim:
+        <strong>roughly three-quarters of the total distance from base to final is earned by
+        reinforcement learning on terminal tasks rather than by imitation of demonstrations</strong>.
+        Supervised fine-tuning alone leaves it second from last, below every comparison entry, while
+        the same weights after RL land fourth overall and above Claude Opus 4.6 &mdash; with 10B
+        active parameters.
+      </div>
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img src="figures/eval_dynamics.png" alt="Held-out benchmark over training steps">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 10｜留出 Terminal-Bench 2.1 解决率随训练步的变化。</b>
+        实心标记是被评测的 checkpoint（每 10 个 rollout 步一次），星标是峰值；两条虚线是固定锚点
+        ——base（43.8%）和初始化所用的 SFT（49.4%）。三个特征值得点名：
+        增益是<em>立刻</em>发生的（第 9 步已达 56.2%，到前沿带的大部分距离在前十分之一的训练里就走完了）；
+        中段是<em>平台而非下滑</em>（第 19–59 步落在 55.1–57.3% 的带内，跨度约相当于 89 个任务中的 3 个，
+        在评测噪声之内，而这个带的下沿仍高出 SFT 5.7 pp）；
+        两次阶跃出现得很晚，在第 69 步（61.8%）和第 109 步（64.0%）
+        ——而这也正是解释方差最高的时候：<strong>只有当 critic 成为一个校准良好的基线，actor 才能做出它最大的可用跳跃</strong>。
+      </div>
+      <div data-l="en">
+        <b>Figure 10 | Held-out Terminal-Bench 2.1 resolved rate over the production run.</b>
+        Filled markers are the evaluated checkpoints (every 10 rollout steps), the starred point is
+        the peak; the dashed rules are the two fixed anchors, the base model (43.8%) and the SFT
+        checkpoint the run is initialized from (49.4%). Three features are worth naming. The gain is
+        <em>immediate</em>: step 9 is already at 56.2%, so most of the distance to the frontier band
+        is covered in the first tenth of the run. The middle is a <em>plateau, not a decline</em>:
+        steps 19–59 sit in a 55.1–57.3% band whose spread is about three tasks out of 89 &mdash;
+        within evaluation noise &mdash; and the floor of that band still stands 5.7 pp above SFT. The
+        two step-changes arrive late, at step 69 (61.8%) and step 109 (64.0%), which is also where
+        explained variance is highest: <strong>the actor makes its largest usable jumps only once the
+        critic has become a well-calibrated baseline</strong>.
+      </div>
+    </figcaption>
+  </figure>
+
+  <figure class="tight">
+    <img src="figures/dynamics_turns_length.png" alt="Behavioral dynamics: turns and sequence length">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 11｜行为动态。</b><em>左</em>：每条轨迹的平均工具调用轮数。<em>右</em>：每条轨迹的总序列长度。
+        两者在训练中大致翻倍（轮数 10.4 → 20.9，长度 11.5k → 17.8k token），随后<strong>趋平</strong>而非无界增长。
+        我们把它读作测试计数奖励的预期效果而非长度作弊，理由有三：增长是<em>有界</em>的
+        （两条曲线在约第 60 步后走平，最后三分之一训练几乎没有增加），
+        而那个失败的加性长度惩罚产生的是完全相反的特征——从 22 无界涨到 50+；
+        平台落在约 21 轮，仍远在 60 轮的 harness 预算之内；
+        并且增长与奖励、基准增益是<em>同时</em>发生而非与之脱钩的
+        ——在验证器含有许多可独立检查断言的任务上，多几轮换来的确实是多几个通过的测试。
+      </div>
+      <div data-l="en">
+        <b>Figure 11 | Behavioral dynamics.</b> <em>Left</em>: average tool-call turns per
+        trajectory. <em>Right</em>: total sequence length per trajectory. Both roughly double over
+        training (turns 10.4 → 20.9, length 11.5k → 17.8k tokens) and then <strong>flatten</strong>
+        rather than growing without bound. We read this as the intended effect of the test-count
+        reward rather than length hacking, for three reasons: the growth is <em>bounded</em> (both
+        curves flatten after roughly step 60 and the last third of training adds essentially
+        nothing), whereas the failed additive length penalty produced exactly the opposite signature
+        &mdash; unbounded growth from 22 to 50+ turns; the plateau lands at ~21 turns, still well
+        inside the 60-turn harness budget; and the growth is <em>concurrent with</em> the reward and
+        benchmark gains rather than decoupled from them &mdash; on tasks whose verifiers contain many
+        independently checkable assertions, more turns here buy more passing tests.
+      </div>
+    </figcaption>
+  </figure>
+
+  <h3><span data-l="zh">残余失败长什么样</span><span data-l="en">How the remaining failures look</span></h3>
+  <p data-l="zh">
+    针对 GPT-5.6 的失败分析被<strong>难任务上的 Agent 超时</strong>所主导：
+    在六个代表性的未解决任务上，我们的 Agent 花了 164–473 轮，而 GPT-5.6 只花 6–40 轮；
+    另有三个因沙箱错误失败。评测约束本身也是不对称的
+    ——我们最大输入 56k 而对方 120k、最大输出 8,192 而对方 32,768、thinking 关闭而对方中等推理强度
+    ——所以差距的一部分是预算而非能力。所有失败中只有 4 个撞到 500 轮的评测天花板，11 个有部分子测试通过；
+    分析表的结论是：大多数失败是「方向错了」，而不是「差一点就成」。
+  </p>
+  <p data-l="en">
+    The failure analysis against GPT-5.6 is dominated by <strong>agent timeouts on hard
+    tasks</strong>: on six representative unsolved tasks our agent spent 164–473 turns where GPT-5.6
+    spent 6–40, and three more failed on sandbox errors. The evaluation constraints were also
+    asymmetric &mdash; ours ran with max input 56k vs their 120k tokens, max output 8,192 vs 32,768,
+    thinking off vs medium reasoning effort &mdash; so part of the gap is budget, not capability. Of
+    all failures, only 4 hit the 500-turn evaluation ceiling and 11 had partial sub-test passes; the
+    analysis' own conclusion is that most failures are "wrong direction", not "almost done".
+  </p>
+
+  <figure>
+    <img src="figures/analysis_1.png" alt="Stage-wise gains and per-domain comparison">
+    <figcaption>
+      <div data-l="zh">
+        <b>图 12｜<em>左</em>：总增益按阶段分解。</b>SFT 把 base 从 43.8% 抬到 49.8%（相对提升 13.7%），
+        RL 再把 SFT 抬到 64.0%（相对提升 <strong>28.5%</strong>）——即强化学习阶段贡献了约两倍于监督阶段的相对增益。
+        <b><em>右</em>：分领域对比。</b>对 GPT-5.6 Sol，我们在调试子集上是 <strong>100.0 对 80.0</strong>，
+        在系统管理上是 <strong>88.9 对 55.6</strong>，在这两个领域上直接超过一个更强的通用专家模型。
+        而这两类恰好是最依赖「读失败的测试 → 形成假设 → 跑命令 → 修正」这种长链多步推理与工具使用交错的任务族，
+        也正是终端 Agent RL 循环所优化的能力。补集同样有信息量：
+        失败集中在 Strategy-15k 覆盖很薄的 ML / 数据科学 / 科学计算任务上，
+        说明剩余头部空间很大程度上是<strong>训练池覆盖度</strong>问题，而不是 Agent 推理循环的问题。
+      </div>
+      <div data-l="en">
+        <b>Figure 12 | <em>Left</em>: the total gain decomposed by stage.</b> SFT lifts the base
+        model from 43.8% to 49.8%, a 13.7% relative improvement, and RL then lifts SFT to 64.0%, a
+        further <strong>28.5% relative</strong> improvement &mdash; the reinforcement-learning stage
+        contributes roughly twice the relative gain of the supervised stage.
+        <b><em>Right</em>: per-domain comparison.</b> Against GPT-5.6 Sol we reach
+        <strong>100.0 versus 80.0</strong> on the debugging subset and <strong>88.9 versus
+        55.6</strong> on system administration, surpassing a stronger general-purpose expert model
+        outright on these two domains. Both are precisely the task families that depend on long
+        chains of multi-step reasoning interleaved with tool use &mdash; read a failing test, form a
+        hypothesis, run a command, revise &mdash; which is exactly the competence the terminal-agent
+        RL loop optimizes. The complement is equally informative: failures concentrate in
+        ML / data-science / scientific-computing tasks that Strategy-15k covers only thinly,
+        indicating that the remaining headroom is largely a matter of <strong>training-pool
+        coverage</strong> rather than of the agent's reasoning loop.
+      </div>
+    </figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="h"><span data-l="zh">对有效性的威胁（我们自己先说）</span><span data-l="en">Threats to validity (stated up front)</span></div>
+    <p data-l="zh">
+      表 1 里「二值 vs 稠密」的对比是<strong>实验级</strong>对比，不是单轴消融：在 TMax 与 Strategy-15k
+      两次实验之间，奖励、数据池、初始化（base vs RST）、critic 温度（冷 vs 热）、
+      上下文墙（64k vs 84k）和 R³（关 vs 开）这五六个轴是<em>同时</em>变化的。
+      稠密奖励的读解是被支持的——同一份稠密配方在两个不同数据池上从 RST 出发都有效，
+      而二值配方在 SFT 之下就平台了——但一次同池、同初始化、R³ 对齐的受控消融<strong>尚未</strong>做过。
+      评测方差在第 109 步的重复中可见（0.596–0.635）：单次评测中小于约 3 个点（约 3 个任务）的差异不应被过度解读。
+    </p>
+    <p data-l="en">
+      The binary-versus-dense comparison in Table 1 is a <strong>campaign</strong> comparison, not a
+      single-axis ablation: between the TMax and Strategy-15k runs the reward, the data pool, the
+      initialization (base vs RST), the critic temperature (cold vs warm), the context walls
+      (64k vs 84k) and R³ (off vs on) all change together. The dense-reward reading is supported
+      &mdash; the same dense recipe works from RST on two different pools while the binary recipe
+      plateaued below SFT &mdash; but a controlled, same-pool, same-init, R³-matched ablation
+      <strong>has not</strong> been run. Evaluation variance is visible in the iteration-109 repeats
+      (0.596–0.635): single-eval differences under ~3 points (about 3 tasks) should not be
+      over-interpreted.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="infra">
+  <h2><span class="num">08</span><span data-l="zh">基础设施：把两个 122B 塞进同一批卡</span><span data-l="en">Infrastructure: two 122B models per GPU set</span></h2>
+
+  <p data-l="zh">
+    带独立 critic 的 PPO 意味着每一张「actor 卡」实际上要托管<strong>两个</strong> 122B 模型
+    （靠强制 offload 分时复用），每一个单独都必须装进 95 GiB。最初的 56 卡拓扑活过了 critic-only 阶段，
+    却在第一个 actor + critic 联合步上崩了：在 critic 的 GatedDeltaNet 前向里，
+    已用 90.56 GiB 的情况下再申请 632 MiB。
+  </p>
+  <p data-l="en">
+    PPO with a separate critic means every "actor GPU" hosts <strong>two</strong> 122B models
+    (time-multiplexed by forced offload); each alone must fit in 95 GiB. The initial 56-GPU topology
+    survived critic-only steps and crashed at the first joint actor+critic step, in the critic's
+    GatedDeltaNet forward: a 632 MiB allocation with 90.56 GiB already in use.
+  </p>
+  <p data-l="zh">
+    我们的做法是建立一个<strong>按显存标定的模型</strong>，直接对着真实崩溃点校准，并和拓扑预设一起放在启动脚本里。
+    它预测的崩溃点与实测相差 0.1 GB 以内。三个结构性事实从中掉出来，并且每一个都被验证过：
+  </p>
+  <p data-l="en">
+    We built a <strong>per-GPU memory model</strong>, calibrated against the real crash and kept in
+    the launch script alongside the topology presets. It predicted the observed crash to within
+    0.1 GB. Three structural facts fall out, each of which was verified:
+  </p>
+
+  <ul data-l="zh">
+    <li>
+      <strong>专家的优化器显存只取决于训练卡总数。</strong>每 rank 的专家参数随专家并行度反比缩小，
+      但分布式优化器的分片因子以完全相同的方式缩放，两者<strong>精确抵消</strong>。
+      于是调专家并行度<em>不可能</em>降低优化器显存；反过来<em>降低</em>它还会让权重和梯度的字节数翻倍而毫无优化器收益。
+      所以专家并行度固定取最大值 16。这也是脚本名里「scalable」的含义：只有加训练卡才能缩小这一项，
+      于是这个配方是横向扩展而不是重新调并行度。
+    </li>
+    <li>
+      <strong>张量并行度超过 2 毫无收益。</strong>GatedDeltaNet 块是普通的线性层（没有张量并行切分），
+      并且包装器在进入它们之前会把序列 all-gather 回全长；于是超过 2 之后那 2.94B 参数只是在每个 rank 上复制，
+      激活峰值也不会变小。加上只有 2 个 KV group，再高还会进入 KV 复制分支。所以固定为 2。
+    </li>
+    <li>
+      <strong>流水线并行和上下文并行才是真正的杠杆。</strong>前者切分每段的层数，后者切分单样本的序列长度。
+      长上下文下真正卡住的是<em>最后一个</em>流水段上的 fp32 logits（词表 248,320）：
+      在 84k 的墙下，上下文并行度 2 会留下 29.8 GB 的 logits 缓冲（峰值 100.3 GB，OOM），
+      而 4 只留 14.9 GB（峰值 81.8 GB）。
+    </li>
+  </ul>
+  <ul data-l="en">
+    <li>
+      <strong>Expert optimizer memory depends only on the total train-GPU count.</strong> Per-rank
+      expert parameters shrink inversely with expert parallelism, but the distributed-optimizer shard
+      factor scales the same way &mdash; the two <strong>cancel exactly</strong>. So tuning expert
+      parallelism <em>cannot</em> reduce optimizer memory; <em>lowering</em> it actively doubles
+      weight+grad bytes for zero optimizer benefit. Expert parallelism therefore stays maximal at 16.
+      This is what "scalable" in the script name refers to: only adding train GPUs shrinks this term,
+      so the recipe scales out rather than re-tuning parallelism.
+    </li>
+    <li>
+      <strong>Tensor parallelism beyond 2 buys nothing.</strong> The GatedDeltaNet blocks are plain
+      linear layers (no tensor-parallel sharding), and the wrapper all-gathers the sequence to full
+      length before them; so beyond 2 those 2.94B parameters merely replicate on every rank and the
+      activation peak does not shrink. With only 2 KV groups, going higher also enters the
+      KV-replication branch. Pinned at 2.
+    </li>
+    <li>
+      <strong>Pipeline and context parallelism are the real levers.</strong> The former divides
+      per-stage layers, the latter divides the per-sample sequence. The binding long-context term is
+      the fp32 logits on the <em>last</em> pipeline stage (vocabulary 248,320): at an 84k wall,
+      context parallelism 2 leaves a 29.8 GB logits buffer (peak 100.3 GB, OOM) while 4 leaves
+      14.9 GB (peak 81.8 GB).
+    </li>
+  </ul>
+
+  <p data-l="zh">
+    为此我们给 GatedDeltaNet 补上了<strong>原生上下文并行</strong>：它的递归扫描在通用路径里不是 CP-safe 的，
+    历史上因此被钉在 1，让最差单条轨迹的激活成了 OOM 的墙（实测约 330 KiB/token，是最初估计的 4 倍
+    ——这也是早期显存预测系统性偏低的原因）。改造后每个 rank 只算一部分 token 并传递递归状态，
+    并显式处理了「slime 按 zig-zag 排布分片、而底层算子期望连续分片」这个错位。
+    GPU 测试验证了前向<strong>逐位一致</strong>、梯度最大差 1.2 × 10⁻⁷，激活峰值从 10.57 GB 降到
+    CP4 下的 2.70 GB（3.92 倍）。这正是 84k 训练墙可行的前提。
+  </p>
+  <p data-l="en">
+    We therefore added <strong>native context parallelism</strong> for GatedDeltaNet: its recurrent
+    scan is not CP-safe in the generic path, so CP was historically pinned to 1, making the worst
+    single trajectory's activation the OOM wall (measured at ~330 KiB/token, 4× the original estimate
+    &mdash; the reason early memory projections were systematically low). After the change each rank
+    computes a slice of tokens and passes recurrent state, with an explicit relayout for the mismatch
+    between slime's zig-zag shard layout and the contiguous shards the underlying kernels expect. GPU
+    tests verify forward <strong>bit-exactness</strong> against the single-rank reference and gradient
+    max-diff 1.2 × 10⁻⁷; activation peaks drop from 10.57 GB to 2.70 GB at CP4 (3.92×). This is what
+    makes the 84k training wall feasible.
+  </p>
+  <p data-l="zh">
+    在 128 卡、每步约一小时的规模上，「罕见」故障是每次实验的必然事件。我们针对四类故障做了加固：
+    死掉的推理引擎（健康探针 + 在下次权重同步时重建）、无界的控制面 HTTP（有界超时，但批量权重传输故意保持无界）、
+    watchdog 把慢 rank 误判成死锁（重建的 NCCL 组默认 30 分钟、CP &gt; 1 的配方 120 分钟，
+    Gloo 控制组 60 分钟）、以及文件描述符耗尽（320 个并发沙箱试验把协调进程顶过 1024 的软限制，
+    rollout 于是永远停在「收集到 0 个」而没有任何报错）。
+    检查点是有意不对称的：只存权重、每 10 步一次——更小更快，
+    代价是崩溃意味着重启而不是续跑，这个代价被明确记录并接受。
+  </p>
+  <p data-l="en">
+    At 128 GPUs and ~1 hour per step, "rare" failures are per-run certainties. We hardened four
+    classes: dead inference engines (health pings + recreation at the next weight sync), unbounded
+    control-plane HTTP (bounded timeouts, while bulk weight transfers deliberately stay unbounded),
+    watchdog-versus-straggler misclassification (recreated NCCL groups default to 30 min, 120 min in
+    CP &gt; 1 recipes, and the Gloo control group to 60 min), and file-descriptor exhaustion (320
+    concurrent sandbox trials pushed the coordinator past the 1024 soft limit, after which rollout
+    collection sat forever at "collected 0" with no error). Checkpointing is asymmetric by choice:
+    weights-only, every 10 steps &mdash; smaller and faster, at the documented cost that a crash
+    means restart rather than resume.
+  </p>
+  <p data-l="zh">
+    沙箱层在 512 路并发下也有自己的工程：试验由绑定在 rollout 节点上的 Ray 辅助 worker 托管，
+    让试验流量不经过协调进程；沙箱创建被一个异步令牌桶限速到 6/s 以匹配云厂商的配额；
+    <strong>skim 过采样</strong>每步启动 560 个试验、接受最先完成的 512 组、取消尾部——
+    这既是吞吐的来源，也是我们认为<strong>最重要的待解权衡</strong>：
+    被取消的尾部恰好集中了最难的任务族，这是一个公开承认的选择偏差风险。
+  </p>
+  <p data-l="en">
+    The sandbox layer at 512-way concurrency has its own engineering: trials are hosted by per-node
+    Ray auxiliary workers pinned to rollout nodes, keeping trial traffic off the coordinator; sandbox
+    creation is paced by an async token bucket at 6/s against the provider's quota; and
+    <strong>skim-oversampling</strong> launches 560 trials per step, accepts the first 512 completed
+    groups and cancels the tail. This is both the source of throughput and what we consider
+    <strong>the most important open trade-off</strong>: the cancelled tail concentrates precisely the
+    hardest task families, an openly acknowledged selection-bias risk.
+  </p>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="lessons">
+  <h2><span class="num">09</span><span data-l="zh">踩过的坑</span><span data-l="en">Lessons learned</span></h2>
+
+  <p data-l="zh">我们把失败记录得足够细，以便复用。每一条都给出症状、当初错误的第一假设，以及真正的机制。</p>
+  <p data-l="en">We record the failures in enough detail to be reusable. Each item names the symptom, the wrong first hypothesis where we had one, and the actual mechanism.</p>
+
+  <h4><span data-l="zh">伪装成别的故障的故障</span><span data-l="en">Failures that impersonated other failures</span></h4>
+  <ul data-l="zh">
+    <li><strong>一个 JIT 编译器伪装成死锁。</strong>那次「挂死」（15 个 NCCL watchdog 超时 + 1 个静默 rank）实际上是一个 rank 冷编译 kernel 超过 30 分钟，而它的专家并行同伴都在 all-to-all 上等。逐 micro-batch 时间从 489 秒衰减到 22 秒，那是预热曲线的指纹，不是挂死的指纹。</li>
+    <li><strong>一个 30 分钟的 Gloo 默认值伪装成崩溃。</strong>一次实验死于某个 actor rank 在权重更新 barrier 上停留超过 Gloo 内建的 30 分钟发送超时；修法是显式、可配置的组超时。</li>
+    <li><strong>fd 耗尽伪装成调度器空转。</strong>「收集到 0/16，完成 0」永远不动、也没有异常：协调进程的 raylet 在 320 个并发试验下撞上了 1024 的软 nofile 墙，静默丢掉了结果投递。</li>
+    <li><strong>「每 GPU 最大 token 数」伪装成显存约束。</strong>把动态打包的上限从 8192 降到 4096 无法阻止 40k token 样本的 OOM：超长样本不可切分，会独占一个 bin 且保持全长。它唯一的效果是把 micro-batch 数翻倍、把这一步变慢。</li>
+    <li><strong>DP = 1 与这个模型在算术上不兼容。</strong>要求 DP = 1 会把所有训练卡塞进张量并行 × 流水线并行，专家并行的恒等式于是把专家并行度钉在 2——<em>无论多少张卡</em>，即每卡 128 个专家，就算全量重算、micro-batch 1、全 offload 也必然 CUDA OOM。这不是靠加规模能修的。</li>
+    <li><strong>训练进程是被操作系统杀掉的，不是被 CUDA。</strong>GPU 只用了 38–44 / 95 GB，训练 actor 却在 rollout → train 交接处死于系统错误：优化器 CPU offload 把<em>两个</em> 122B 模型的 fp32 Adam 状态搬进了主机内存，叠加 260 个并发沙箱 worker，把 2265 GB 的主机可用内存压到 259 GB，召来了 OOM killer。日志里没有任何「CUDA out of memory」，线索在 <code>dmesg</code> 里。</li>
+  </ul>
+  <ul data-l="en">
+    <li><strong>A JIT compiler impersonating a deadlock.</strong> The "hang" (15 NCCL watchdog timeouts + one silent rank) was one rank cold-compiling kernels for &gt;30 minutes while its expert-parallel peers waited in the all-to-all. The decayed per-microbatch times (489 s → 22 s) were the fingerprint of a warm-up curve, not a hang.</li>
+    <li><strong>A 30-minute Gloo default impersonating a crash.</strong> One run died when an actor rank stalled at the weight-update barrier longer than Gloo's built-in 30-minute send timeout; the fix is an explicit, configurable group timeout.</li>
+    <li><strong>fd exhaustion impersonating an idle scheduler.</strong> "Collected 0/16, completed=0" forever, with no exceptions: the coordinator's raylet had hit the 1024 soft-nofile wall under 320 concurrent trials and silently dropped result deliveries.</li>
+    <li><strong>Max-tokens-per-GPU impersonating a memory bound.</strong> Lowering the dynamic packer's cap from 8192 to 4096 could not prevent the 40k-token-sample OOM: oversized samples are indivisible and land alone in their own bin at full length. It only doubled the micro-batch count and slowed the step.</li>
+    <li><strong>DP = 1 is arithmetically incompatible with this model.</strong> Requesting DP = 1 forces all training GPUs into tensor × pipeline parallelism; the expert-parallel identity then pins expert parallelism to 2 <em>regardless of GPU count</em>, i.e. 128 experts per GPU &mdash; guaranteed CUDA OOM even with full recompute, micro-batch 1 and full offload. Not fixable by scale.</li>
+    <li><strong>The trainer was killed by the OS, not by CUDA.</strong> The GPUs sat at 38–44 / 95 GB, yet the train actor died with a system error at the rollout → train handoff: optimizer CPU offload had moved the fp32 Adam state of <em>two</em> 122B models into host RAM, which &mdash; stacked with 260 concurrent sandbox workers &mdash; drove host free memory to 259 GB of 2265 GB and summoned the OOM killer. No "CUDA out of memory" anywhere in the logs; the tell was <code>dmesg</code>.</li>
+  </ul>
+
+  <h4><span data-l="zh">静默损坏陷阱</span><span data-l="en">Silent-corruption traps</span></h4>
+  <ul data-l="zh">
+    <li><strong>critic 覆盖了 actor 的 checkpoint。</strong>critic 的参数是 actor 参数的深拷贝，两个角色共享同一个保存目录，而 Megatron 的 checkpoint writer 与角色无关、critic 最后写。一次跑了好几天的实验的 actor 权重就此丢失——保存下来的那个 iteration 里只有一个价值头。修法是结构性的：critic 的保存目录加后缀，初始化前断言两个目录不同，热加载走对应的兄弟目录解析。</li>
+    <li><strong>确定性的试验名 + 复用的试验目录 = 拿到别的模型的奖励。</strong>试验目录是输出，但它们的名字不带 run 标签；把新实验的试验目录指向旧实验的树，会让一个没能写出自己 CTRF 的试验读到<em>上一个模型</em>的 <code>ctrf.json</code> 当作自己的奖励，且不报任何错。在被检查的历史目录里只有 47/400 个试验有该文件，读到脏数据的概率相当高。</li>
+    <li><strong>一把单事件循环的锁静默丢掉了 82/89 个评测任务。</strong>沙箱创建的令牌桶持有一把绑定在训练循环上的 asyncio 锁，于是每个评测循环的试验都以「绑定到了不同的事件循环」崩掉，评测就这么悄悄缩水了。现在锁按运行中的循环分键。</li>
+    <li><strong>一个指标归约器把失配指标放大了约 1000 倍。</strong>内置的训推对数概率差在 micro-batch size 为 1 下用了 group-sum 分母，报出 163–269，而真值约 0.02；在用正确的归约方式重新推导之前，它让失配看起来是灾难性的。</li>
+    <li><strong>一个 off-by-717 毁掉了整个实验的轨迹质量。</strong>总结调用预留了 4,000 个自由 token，却请求了 8,192 的最大新增 token；在实测的中位 prompt 长度 78,541 下，78,541 + 8,192 = 86,733 &gt; 86,016，于是 1,321 次完整总结尝试里有 98.3% 失败，退化成 1,000 字符的粗略摘要。Agent 丢掉了历史、重做了已完成的工作，轮数从 22 涨到 30，试验撞上 3600 秒的墙。同一次事故里还有一个全局超时覆盖，把任务自己声明的预算悄悄砍半。</li>
+  </ul>
+  <ul data-l="en">
+    <li><strong>The critic overwrote the actor's checkpoint.</strong> Critic args are a deepcopy of actor args, so both roles shared one save directory, and Megatron's checkpoint writer is role-agnostic with the critic saving last. A multi-day run's actor weights were lost &mdash; the saved iteration held only a value head. Fixed structurally: the critic's save dir is suffixed, an assertion refuses identical dirs before init, and warm loads resolve through the sibling directory.</li>
+    <li><strong>Deterministic trial names + reused trial dirs = another model's rewards.</strong> Trial directories are outputs, but their names carry no run tag; pointing a new run's trial dir at an old run's tree lets a trial that failed to emit CTRF read the <em>previous model's</em> <code>ctrf.json</code> as its own reward, with no error. In the inspected legacy directory only 47/400 trials had one, making stale reads likely.</li>
+    <li><strong>A single-event-loop lock silently dropped 82/89 eval tasks.</strong> The sandbox-creation token bucket held one asyncio lock bound to the training loop; every eval-loop trial crashed with "bound to a different event loop" and the eval quietly shrank. Locks are now keyed by running loop.</li>
+    <li><strong>A metrics reducer inflated a mismatch metric ~1000×.</strong> The built-in train–rollout log-prob diff was aggregated with a group-sum denominator under micro-batch size 1, reporting 163–269 where the true value was ~0.02; until re-derived with the correct reducer it made mismatch look catastrophic.</li>
+    <li><strong>An off-by-717 degraded a whole campaign's trajectories.</strong> The summarization call reserved 4,000 free tokens but requested max_new_tokens 8,192; at the observed median prompt of 78,541 tokens, 78,541 + 8,192 = 86,733 &gt; 86,016, so 98.3% of 1,321 full-summary attempts failed and fell back to a 1,000-character pane summary. Agents lost their history, redid finished work, turns rose from 22 to 30, and trials ran into the 3600 s wall. The same incident also had a global timeout override silently halving task-declared budgets.</li>
+  </ul>
+
+  <h4><span data-l="zh">我们刻意<em>不</em>做的事</span><span data-l="en">Things we chose not to do</span></h4>
+  <p data-l="zh">
+    KL 正则和熵奖励关闭（裁剪本身已足够约束更新；而在 R³ 下 actor 与 reference 的 KL 按设计非零，用它会正则错方向）；
+    TIS 修正只测量不施加到损失；RL 期间关闭 MoE 辅助负载均衡损失；
+    <code>expandable_segments</code> 保持关闭（与 PPO 所需的 offload 内存节省器不兼容）；
+    稠密奖励实验的 checkpoint 只存权重——崩溃意味着重启，这是为了在 122B 规模上换取保存速度而接受的代价。
+  </p>
+  <p data-l="en">
+    KL regularization and entropy bonuses are off (the clip alone constrains updates; and under R³
+    the actor/reference KL is nonzero by design and would mis-regularize); TIS correction is measured
+    but not applied to the loss; the MoE auxiliary load-balancing loss is off during RL;
+    <code>expandable_segments</code> stays off because it is incompatible with the memory-saver
+    offload PPO requires; and the dense-reward run's checkpoints are weights-only &mdash; a crash
+    means restart, an accepted trade for save speed at 122B scale.
+  </p>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="future">
+  <h2><span class="num">10</span><span data-l="zh">局限与后续</span><span data-l="en">Limitations and future work</span></h2>
+
+  <ul data-l="zh">
+    <li><strong>条件化只在「未被重新分词的历史」上是精确的。</strong>TITO 保证损失区精确，但在 retokenized 情形下，后续轮次训练时条件化的是采样 id，而推理时条件化的是 harness 重新分词的 id——在被审计的实验里占 2.6% 的 token。要彻底消除，需要 harness 把 token id 当作历史的唯一真相来源，这一步我们没有尝试。</li>
+    <li><strong>还没有单轴的奖励消融。</strong>二值 vs 稠密的证据目前是实验级的。一次同池、同初始化、R³ 对齐的二值实验（配置已存在）才能真正隔离奖励的贡献。</li>
+    <li><strong>验证器完整性是「筛出来的」，不是「强制的」。</strong>验证器在 Agent 可控的沙箱里执行，没有运行时的篡改检测；目前的防线完全依赖审计过的任务池。只读挂载测试目录、带校验和的验证器都是直接可做的下一步。</li>
+    <li><strong>长尾被付了两次钱。</strong>skim 过采样把最难的试验从训练里丢掉，而案例分析显示剩余的评测失败恰好集中在这类任务上（几百轮、超时）。部分 rollout 续跑、尊重每任务预算、更大的评测预算（128k 上下文、更大输出上限）和难度感知调度都在推进中。</li>
+    <li><strong>数据分布。</strong>失败集中在 Strategy-15k 覆盖不足的 ML / 数据科学 / 科学计算类别；既定计划是转向完整的 RST-38k 分布，它的早期实验已经到过 0.599。</li>
+    <li><strong>滞后与异步。</strong>生产循环是一步异步；完全异步的路径在插件里存在但未用于 122B 实验。内部研究显示基线方法在滞后 8 时会崩溃，并识别出了能存活的组合，把它移植到终端 Agent 设定是既定计划。会议记录里还讨论了在离线轨迹上做 critic 价值预训练、以及分类式价值损失来改善第 0 步的解释方差，这两者目前都还没实现。</li>
+    <li><strong>范围。</strong>这里的一切都是一个模型族、一个 Agent harness、一个基准。可迁移的主张是<strong>机制及其失效模式</strong>——token 保真的轨迹构造、路由回放、critic 调度和那些运维护栏——而不是具体数字。</li>
+  </ul>
+  <ul data-l="en">
+    <li><strong>Conditioning is exact only up to re-tokenized history.</strong> TITO guarantees loss-region exactness, but in the retokenized case later turns are trained conditioned on sampled ids where inference conditioned on the harness's re-tokenized ids &mdash; 2.6% of tokens in the audited run. Eliminating the residual would require the harness to carry token ids as the source of truth for history, which we did not attempt.</li>
+    <li><strong>No single-axis reward ablation yet.</strong> The binary-versus-dense evidence is campaign-level. A same-pool, same-init, R³-matched binary run (the config exists) would isolate the reward's contribution.</li>
+    <li><strong>Verifier integrity is filtered, not enforced.</strong> The verifier executes in the agent-controlled sandbox with no runtime tamper detection; defense currently rests on the audited task pool. In-sandbox integrity checks (read-only test mounts, checksummed verifiers) are straightforward next steps.</li>
+    <li><strong>The long tail is being paid for twice.</strong> Skim-oversampling drops the hardest trials from training, and the case study shows remaining evaluation failures concentrate on exactly such tasks (hundreds of turns, timeouts). Partial-rollout continuation, per-task budget respect, larger evaluation budgets (128k context, larger output limits), and difficulty-aware scheduling are all in flight.</li>
+    <li><strong>Data distribution.</strong> Failures concentrate in ML / data-science / scientific-computing categories that Strategy-15k under-covers; the stated plan is to move to the full RST-38k distribution, whose early campaign already reached 0.599.</li>
+    <li><strong>Staleness and asynchrony.</strong> The production loop is one-step asynchronous; the fully-asynchronous path exists in the plugin but was not used for the 122B campaigns. Internal studies show baseline methods collapsing under staleness 8 and identify combinations that survive; porting the winning combination to the terminal-agent setting is planned. Critic value pretraining on offline trajectories and classification-based value losses for step-0 explained variance are discussed but not yet implemented.</li>
+    <li><strong>Scope.</strong> Everything here is one model family, one agent harness, one benchmark. The transferable claims are <strong>the mechanisms and their failure modes</strong> &mdash; token-faithful trajectory construction, routing replay, critic scheduling, and the operational guardrails &mdash; not the specific numbers.</li>
+  </ul>
+
+  <hr class="soft">
+</section>
+
+</main>
+
+<footer>
+  <div class="t">T1 · Terminal Agent Reinforcement Learning for Long-horizon Tasks</div>
+  <p style="margin:0" data-l="zh">
+    本文是对同名技术报告的通俗化解读，所有数值均取自该报告及项目评测记录。
+    报告是一份系统报告：可迁移的是机制与失效模式，而非具体分数。<br>
+    项目页面：<a href="https://jyyang26.github.io/t1">https://jyyang26.github.io/t1</a>　·　
+    联系：junyaoyang@u.nus.edu，yuchengshi@global.tencent.com
+  </p>
+  <p style="margin:0" data-l="en">
+    This post is an accessible walkthrough of the technical report of the same name; all figures and
+    numbers are taken from that report and the project's evaluation records. It is a systems report:
+    what transfers are the mechanisms and their failure modes, not the specific scores.<br>
+    Project page: <a href="https://jyyang26.github.io/t1">https://jyyang26.github.io/t1</a> ·
+    Contact: junyaoyang@u.nus.edu, yuchengshi@global.tencent.com
+  </p>
+</footer>
+
+<script>
+(function(){
+  var TITLES = {
+    zh: 'T1：面向长程任务的终端 Agent 强化学习',
+    en: 'T1: Terminal Agent Reinforcement Learning for Long-horizon Tasks'
+  };
+  var root = document.documentElement;
+  var bz = document.getElementById('btn-zh');
+  var be = document.getElementById('btn-en');
+
+  function apply(lang, persist){
+    if (lang !== 'en') lang = 'zh';
+    root.setAttribute('data-lang', lang);
+    root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+    document.title = TITLES[lang];
+    bz.setAttribute('aria-pressed', String(lang === 'zh'));
+    be.setAttribute('aria-pressed', String(lang === 'en'));
+    if (persist) { try { localStorage.setItem('t1-lang', lang); } catch (e) {} }
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('t1-lang'); } catch (e) {}
+  apply(saved || 'zh', false);
+
+  bz.addEventListener('click', function(){ apply('zh', true); });
+  be.addEventListener('click', function(){ apply('en', true); });
+})();
+</script>
+
+</body>
+</html>
