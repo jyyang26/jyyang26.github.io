@@ -572,6 +572,18 @@ redirect_from:
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/pdf/2608.05466" class="paper-title">RST: Recursive Synthesis for Long-Horizon Terminal Tasks</a>
+            <div class="paper-auth">Zhongzhi Li, Yucheng Shi, Zongxia Li, Ruhan Wang, Anhao Li, Zixun Huang, <strong><u>Junyao Yang</u></strong>, Lei Ke, Ninghao Liu, Haitao Mi, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A recursive verified synthesis framework that scales long-horizon terminal-agent tasks, yielding 37,484 tasks at ~$0.05 each and lifting Qwen3.5 by up to 10 points across terminal benchmarks.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/pdf/2608.05466">Paper</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.13285" class="paper-title">Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable</a>
             <div class="paper-auth">Ruhan Wang, Yucheng Shi, Zongxia Li, Zhongzhi Li, Yue Yu, <strong><u>Junyao Yang</u></strong>, Kishan Panaganti, Haitao Mi, Dongruo Zhou, Leoweiliang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A behavior-centric map and BGPD framework that help agents find code and plan harness edits.</div>
@@ -667,11 +679,11 @@ redirect_from:
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2608.05466" class="paper-title">Recursive Synthesis for Long-Horizon Terminal Tasks</a>
+            <a href="https://arxiv.org/pdf/2608.05466" class="paper-title">RST: Recursive Synthesis for Long-Horizon Terminal Tasks</a>
             <div class="paper-auth">Zhongzhi Li, Yucheng Shi, Zongxia Li, Ruhan Wang, Anhao Li, Zixun Huang, <strong><u>Junyao Yang</u></strong>, Lei Ke, Ninghao Liu, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> RST recursively synthesizes long-horizon terminal tasks, yielding 37,484 tasks at ~$0.05 each and lifting Qwen3.5 by up to 10 points.</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A recursive verified synthesis framework that scales long-horizon terminal-agent tasks, yielding 37,484 tasks at ~$0.05 each and lifting Qwen3.5 by up to 10 points across terminal benchmarks.</div>
             <div class="paper-links">
-              <a href="https://arxiv.org/abs/2608.05466">Paper</a>
+              <a href="https://arxiv.org/pdf/2608.05466">Paper</a>
             </div>
           </div>
         </div>
