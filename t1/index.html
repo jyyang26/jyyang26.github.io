@@ -88,7 +88,6 @@ h1.title{font-size:clamp(29px,4.9vw,44px);line-height:1.24;margin:0;letter-spaci
 h1.title .t1{color:var(--brand);font-style:italic}
 @media(max-width:700px){.titlerow{gap:14px}.titlelogo{height:62px}}
 .tagline{font-size:20px;line-height:1.6;color:var(--ink-2);margin:0 0 26px;max-width:44em}
-.tagline b{color:var(--ink);font-weight:700}
 .byline{border-top:1px solid #d8e3f5;padding-top:18px;font-size:14.5px;line-height:1.7}
 .byline .authors{color:var(--ink);font-weight:500}
 .byline .affil{color:var(--ink-3);display:block;margin-top:2px}
@@ -298,8 +297,8 @@ table.mini{font-size:14px}
       </h1>
     </div>
     <p class="tagline">
-      A 122B MoE terminal agent trained by reinforcement learning on <b>Long-Horizon</b> execution &mdash;
-      rewarded by how many assertions its own verifier passes, across hundreds of tool-call turns.
+      A 122B MoE terminal agent trained by reinforcement learning &mdash; with stable MoE RL training framework
+      and dense verification reward design aiming for Long-Horizon terminal tasks.
     </p>
     <div class="byline">
       <span class="authors">Junyao Yang<sup>*†</sup>, Yucheng Shi<sup>*</sup>, Ruhan Wang, Zhongzhi Li, Zongxia Li, Haitao Mi, Leowei Liang</span>
