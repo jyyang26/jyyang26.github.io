@@ -449,6 +449,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
+      <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://jyyang26.github.io/t1/t1.pdf">T1</a></strong>! Terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
        <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
         <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
@@ -486,6 +487,22 @@ redirect_from:
 
       <!-- Selected Publications (accepted only, incl. Tech Report) -->
       <div id="pub-selected" class="pub-list active">
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-tech">Tech Report</span>
+            <div class="paper-title-row">
+              <a href="https://jyyang26.github.io/t1/t1.pdf" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
+            </div>
+            <div class="paper-auth">Junyao Yang*<sup>&dagger;</sup>, Yucheng Shi*, Ruhan Wang, Zhongzhi Li, Zongxia Li, Haitao Mi, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
+            <div class="paper-links">
+              <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
+              <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
+            </div>
+          </div>
+        </div>
+
 
         <div class="paper-entry">
           <div class="paper-info">
@@ -612,6 +629,21 @@ redirect_from:
       <!-- Full Publications (all, incl. arXiv preprints & Tech Report) -->
       <div id="pub-full" class="pub-list">
 
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-tech">Tech Report</span>
+            <div class="paper-title-row">
+              <a href="https://jyyang26.github.io/t1/t1.pdf" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
+            </div>
+            <div class="paper-auth">Junyao Yang*<sup>&dagger;</sup>, Yucheng Shi*, Ruhan Wang, Zhongzhi Li, Zongxia Li, Haitao Mi, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
+            <div class="paper-links">
+              <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
+              <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
+            </div>
+          </div>
+        </div>
+        
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue venue-conf">ACL 2026</span>
@@ -762,6 +794,30 @@ redirect_from:
 
     <section id="blogs" class="content-box">
       <div class="box-header"><h2 class="box-title">Blogs</h2></div>
+      <div class="paper-entry">
+        <div class="paper-info">
+          <a href="https://jyyang26.github.io/t1/" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
+          <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
+        </div>
+      </div>
+      <div class="paper-entry">
+        <div class="paper-info">
+          <a href="https://jyyang26.github.io/stable_async_analysis/" class="paper-title">Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</a>
+          <div class="paper-tldr"><strong>TL;DR:</strong> Staleness analysis in asynchronous reinforcement learning: principled origins, diagnostics, and mitigations.</div>
+        </div>
+      </div>
+      <div class="paper-entry">
+        <div class="paper-info">
+          <a href="https://zhongzhi660.github.io/recursive-verified-synthesis-site/?case=jobs-diff-01-3341b098" class="paper-title">Synthesizing Long-Horizon Terminal Tasks At Low Costs</a>
+          <div class="paper-tldr"><strong>TL;DR:</strong> Long-horizon agents need executable experience, not just answers. With Ever-Evolving Tasks, a task that keeps GPT-5.6-Sol working for more than 100 agent steps costs just $0.05 to generate.</div>
+        </div>
+      </div>
+      <div class="paper-entry">
+        <div class="paper-info">
+          <a href="https://zli12321.github.io/LHTB/index.html" class="paper-title">Long-Horizon Terminal-Bench: Measuring the Progress Agents Can Sustain, Not Just What They Can Finish</a>
+          <div class="paper-tldr"><strong>TL;DR:</strong> LHTB evaluates agent progress on long terminal tasks in Docker with hidden dense-reward grading, not just final completion.</div>
+        </div>
+      </div>
       <div class="paper-entry">
         <div class="paper-info">
           <a href="https://zli12321.github.io/LHTB/index.html" class="paper-title">Long-Horizon Terminal-Bench: Measuring the Progress Agents Can Sustain, Not Just What They Can Finish</a>
