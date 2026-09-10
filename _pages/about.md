@@ -635,7 +635,7 @@ redirect_from:
             <div class="paper-title-row">
               <a href="https://jyyang26.github.io/t1/t1.pdf" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
             </div>
-            <div class="paper-auth">Junyao Yang*<sup>&dagger;</sup>, Yucheng Shi*, Ruhan Wang, Zhongzhi Li, Zongxia Li, Haitao Mi, Leowei Liang</div>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Ruhan Wang, Zhongzhi Li, Zongxia Li, Haitao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
             <div class="paper-links">
               <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
