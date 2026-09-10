@@ -449,7 +449,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
-      <li><span class="news-tag">2026.09</span><strong><a href="https://jyyang26.github.io/t1/t1.pdf">T1</a></strong> is here! Terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
+      <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://jyyang26.github.io/t1/t1.pdf">T1</a></strong>: A terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
        <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
         <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
@@ -457,7 +457,7 @@ redirect_from:
         <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li> -->
         <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hy LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Self-Evolving Long-Horizon Terminus Agent</strong>.</li>
         <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
-        <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>! State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
+        <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>: State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
         <!-- <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/pdf/2601.15075">Agentic Attribution</a></strong>! A hierarchical framework to unveil internal factors driving LLM-based agent actions.</li>
         <li><span class="news-tag">2026.01</span> Attending <strong>AAAI 2026 at Singapore during Jan 20-27, 2026</strong>.</li>
         <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! Contrastive gradient identification to resolve destructive performance collapse in model merging.</li> -->
