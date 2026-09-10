@@ -498,8 +498,9 @@ redirect_from:
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
             <div class="paper-links">
               <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
-              <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
               <a href="https://jyyang26.github.io/t1/">Project Page</a>
+              <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
+              
             </div>
           </div>
         </div>
@@ -640,7 +641,9 @@ redirect_from:
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
             <div class="paper-links">
               <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
+              <a href="https://jyyang26.github.io/t1/">Project Page</a>
               <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
+              
             </div>
           </div>
         </div>
