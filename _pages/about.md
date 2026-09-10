@@ -631,7 +631,7 @@ redirect_from:
 
         <div class="paper-entry">
           <div class="paper-info">
-            <span class="paper-venue venue-tech">Tech Report</span>
+            <span class="paper-venue venue-tech">Tech Report (Core Contributor)</span>
             <div class="paper-title-row">
               <a href="https://jyyang26.github.io/t1/t1.pdf" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
             </div>
