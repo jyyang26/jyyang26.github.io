@@ -499,6 +499,7 @@ redirect_from:
             <div class="paper-links">
               <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
               <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
+              <a href="https://jyyang26.github.io/t1/">Project Page</a>
             </div>
           </div>
         </div>
