@@ -806,30 +806,7 @@ redirect_from:
           <div class="paper-tldr"><strong>TL;DR:</strong> Staleness analysis in asynchronous reinforcement learning: principled origins, diagnostics, and mitigations.</div>
         </div>
       </div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="https://zhongzhi660.github.io/recursive-verified-synthesis-site/?case=jobs-diff-01-3341b098" class="paper-title">Synthesizing Long-Horizon Terminal Tasks At Low Costs</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Long-horizon agents need executable experience, not just answers. With Ever-Evolving Tasks, a task that keeps GPT-5.6-Sol working for more than 100 agent steps costs just $0.05 to generate.</div>
-        </div>
-      </div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="https://zli12321.github.io/LHTB/index.html" class="paper-title">Long-Horizon Terminal-Bench: Measuring the Progress Agents Can Sustain, Not Just What They Can Finish</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> LHTB evaluates agent progress on long terminal tasks in Docker with hidden dense-reward grading, not just final completion.</div>
-        </div>
-      </div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="https://zli12321.github.io/LHTB/index.html" class="paper-title">Long-Horizon Terminal-Bench: Measuring the Progress Agents Can Sustain, Not Just What They Can Finish</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> LHTB evaluates agent progress on long terminal tasks in Docker with hidden dense-reward grading, not just final completion.</div>
-        </div>
-      </div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="https://ruhan-wang.github.io/Harness-Handbook/" class="paper-title">Harness Handbook: Making Agent Harnesses Understandable, Auditable, and Editable</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Harness Handbook maps behavior to implementation, making agent harnesses easier to inspect, navigate, and edit.</div>
-        </div>
-      </div>
+    
       <div class="paper-entry">
         <div class="paper-info">
           <a href="{{ '/blogs/reasoning_token.html' | relative_url }}" class="paper-title">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</a>
