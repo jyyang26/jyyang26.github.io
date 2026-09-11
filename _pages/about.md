@@ -497,7 +497,7 @@ redirect_from:
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Zongxia Li, Haitao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
             <div class="paper-links">
-              <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
+              <a href="https://arxiv.org/abs/2609.11042">Paper</a>
               <a href="https://jyyang26.github.io/t1/">Project Page</a>
               <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
               
@@ -640,7 +640,7 @@ redirect_from:
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Zongxia Li, Haitao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
             <div class="paper-links">
-              <a href="https://jyyang26.github.io/t1/t1.pdf">Paper</a>
+              <a href="https://arxiv.org/abs/2609.11042">Paper</a>
               <a href="https://jyyang26.github.io/t1/">Project Page</a>
               <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
               
