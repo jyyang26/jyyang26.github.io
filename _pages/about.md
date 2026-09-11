@@ -449,7 +449,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
-      <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://jyyang26.github.io/t1/t1.pdf">T1</a></strong>. A terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
+      <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://arxiv.org/abs/2609.11042">T1</a></strong>. A terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
        <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
         <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
         <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
@@ -492,7 +492,7 @@ redirect_from:
           <div class="paper-info">
             <span class="paper-venue venue-tech">Tech Report (Core Contributor)</span>
             <div class="paper-title-row">
-              <a href="https://jyyang26.github.io/t1/t1.pdf" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
+              <a href="https://arxiv.org/abs/2609.11042" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
             </div>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Zongxia Li, Haitao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
@@ -635,7 +635,7 @@ redirect_from:
           <div class="paper-info">
             <span class="paper-venue venue-tech">Tech Report (Core Contributor)</span>
             <div class="paper-title-row">
-              <a href="https://jyyang26.github.io/t1/t1.pdf" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
+              <a href="https://arxiv.org/abs/2609.11042" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
             </div>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Zongxia Li, Haitao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
