@@ -435,8 +435,32 @@ redirect_from:
 
     <section id="about" class="content-box">
       <div class="box-header"><h2 class="box-title">About Me</h2></div>
-      <div class="about-text">
-        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently working as a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>, working on <strong>Agentic RL</strong>, <strong>Recursive Self-Improving</strong>, <strong>Long-Horizon Terminus Agent</strong> and <strong>RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong>, <strong>Recursive Self-Improving</strong> and <strong>Explainable Artificial Intelligence</strong>.
+      <!-- <div class="about-text">
+        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently working as a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>, working on <strong>Agentic RL</strong>, <strong>Recursive Self-Improving</strong>, <strong>Long-Horizon Terminus Agent</strong> and <strong>RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong>, <strong>Recursive Self-Improving</strong> and <strong>Explainable Artificial Intelligence</strong>. -->
+        <div class="about-text">
+    <p>Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), specializing in Artificial Intelligence, and currently a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>.</p>
+    
+    <p>My current research interests and active projects focus on:</p>
+    <ul>
+        <li>
+            <strong>Agentic AI</strong>
+            <ul>
+                <li><strong>Agentic RL</strong></li>
+                <li><strong>Recursive Self-Improving</strong></li>
+                <li><strong>Long-Horizon Terminus Agent</strong></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Reinforcement Learning</strong>
+            <ul>
+                <li><strong>RL Stability</strong></li>
+            </ul>
+        </li>
+        <li>
+            <strong>Trustworthy Artificial Intelligence</strong>
+        </li>
+    </ul>
+</div>
         <br>
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <br>
