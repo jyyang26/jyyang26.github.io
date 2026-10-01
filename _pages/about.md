@@ -438,15 +438,14 @@ redirect_from:
       <!-- <div class="about-text">
         Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently working as a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>, working on <strong>Agentic RL</strong>, <strong>Recursive Self-Improving</strong>, <strong>Long-Horizon Terminus Agent</strong> and <strong>RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong>, <strong>Recursive Self-Improving</strong> and <strong>Explainable Artificial Intelligence</strong>. -->
         <div class="about-text">
-    <p>Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), specializing in Artificial Intelligence, and currently a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>. <p>My current research interests focus on <strong>Agentic AI</strong> (Agentic RL, Recursive Self-Improving, Long-Horizon Terminus Agent), <strong>Reinforcement Learning</strong> (RL Stability), and <strong>Trustworthy Artificial Intelligence</strong>.</p>
+    <p>Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), specializing in Artificial Intelligence, and currently a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>. My current research interests focus on <strong>Agentic AI</strong> (Agentic RL, Recursive Self-Improving, Long-Horizon Terminus Agent), <strong>Reinforcement Learning</strong> (RL Stability), and <strong>Trustworthy Artificial Intelligence</strong>.
         <!-- <br> -->
         My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
         <br>
         CVs: <a href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link" class="resume-link">EN</a>,&nbsp;<a href="https://drive.google.com/file/d/1C2bD366Qj5I_hCi5HpAY-v_Ra-Lp110_/view?usp=drive_link" class="resume-link">中文</a>
         <!-- <br><br>
         My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reinforcement Learning</strong> [<strong><a href="https://arxiv.org/abs/2605.17770">CorR-PO</a></strong>], <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]. -->
-      </div>
-    </section>
+      <br>  
 
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
