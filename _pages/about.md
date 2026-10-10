@@ -579,6 +579,31 @@ redirect_from:
         <div class="paper-entry">
           <div class="paper-info">
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2610.02826" class="paper-title">RSR: Scaling Trajectories for Complex Tasks through Recursive Self-Rewrite</a>
+            <div class="paper-auth">Zongxia Li<sup>&dagger;</sup>, Yucheng Shi<sup>&dagger;</sup>, Zhongzhi Li<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Chengsong Huang, Fuxiao Liu, Haitao Mi, Jordan Boyd-Graber, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Recursively rewriting successful trajectories discovered under diverse harnesses into reusable capabilities under a general harness, expanding 2,001 to 11,094 high-quality trajectories and lifting Qwen-3.8-27B pass@3 from 57.0% to 74.2% on Terminal-Bench 2.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2610.02826">Paper</a>
+              <a href="https://huggingface.co/IntelligenceLab/RSR-27B">Model</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2610.02710" class="paper-title">SWR: Self-Supervised Scaling of Terminal Environments for Scientific Domains</a>
+            <div class="paper-auth">Zhongzhi Li*, Yucheng Shi*, Zongxia Li*, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Yu Wang, Jingyuan Huang, Jichao Yu, Ninghao Liu<sup>&dagger;</sup>, Haitao Mi, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Software-in-the-loop reconstruction derives reference behavior and verifiers from existing scientific software workflows, scaling to 500 workflows across 46 software families and six domains and improving Qwen3.8-27B on Terminal-Bench 2 from 47.94% to 53.56%.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2610.02710">Paper</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
             <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
             <div class="paper-tldr"><strong>TL;DR:</strong> A dense-reward terminal benchmark for measuring how far agents can progress on long, complex terminal workflows.</div>
@@ -752,6 +777,31 @@ redirect_from:
               <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
               <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
               <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2610.02826" class="paper-title">RSR: Scaling Trajectories for Complex Tasks through Recursive Self-Rewrite</a>
+            <div class="paper-auth">Zongxia Li<sup>&dagger;</sup>, Yucheng Shi<sup>&dagger;</sup>, Zhongzhi Li<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Chengsong Huang, Fuxiao Liu, Haitao Mi, Jordan Boyd-Graber, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Recursively rewriting successful trajectories discovered under diverse harnesses into reusable capabilities under a general harness, expanding 2,001 to 11,094 high-quality trajectories and lifting Qwen-3.8-27B pass@3 from 57.0% to 74.2% on Terminal-Bench 2.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2610.02826">Paper</a>
+              <a href="https://huggingface.co/IntelligenceLab/RSR-27B">Model</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2610.02710" class="paper-title">SWR: Self-Supervised Scaling of Terminal Environments for Scientific Domains</a>
+            <div class="paper-auth">Zhongzhi Li*, Yucheng Shi*, Zongxia Li*, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Yu Wang, Jingyuan Huang, Jichao Yu, Ninghao Liu<sup>&dagger;</sup>, Haitao Mi, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Software-in-the-loop reconstruction derives reference behavior and verifiers from existing scientific software workflows, scaling to 500 workflows across 46 software families and six domains and improving Qwen3.8-27B on Terminal-Bench 2 from 47.94% to 53.56%.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2610.02710">Paper</a>
             </div>
           </div>
         </div>
