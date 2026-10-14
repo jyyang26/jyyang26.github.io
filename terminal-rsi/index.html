@@ -13,7 +13,6 @@
       content="Terminal-RSI — A better agent. A better starting point."
     />
     <meta
-    
       property="og:description"
       content="27B parameters. Terminal-Bench 4.0: 19.84%. Terminal-Bench 2.1: 86.52%. Recursive Self-Rewrite and Policy-Refine."
     />
@@ -40,7 +39,7 @@
       >
       <nav aria-label="Main navigation" id="main-nav">
         <a href="#overview" aria-current="location">Overview</a
-        ><a href="#method">The recursion</a><a href="#results">Results</a
+        ><a href="#method">Approach</a><a href="#results">Results</a
         ><a href="#cases">Case Study</a><a href="#citation">Cite</a>
       </nav>
       <a
@@ -63,7 +62,7 @@
     <nav class="page-rail" aria-label="Section navigation">
       <a href="#overview" aria-label="01 Overview" aria-current="location"
         ><span>01</span></a
-      ><a href="#method" aria-label="02 The recursion"><span>02</span></a
+      ><a href="#method" aria-label="02 Approach"><span>02</span></a
       ><a href="#results" aria-label="03 Results"><span>03</span></a
       ><a href="#cases" aria-label="04 Case studies"><span>04</span></a
       ><a href="#citation" aria-label="05 Citation"><span>05</span></a>
@@ -81,8 +80,7 @@
               </div>
               <h1 id="paper-title" class="hero-enter">
                 <span class="hero-wordmark"
-                  >Terminal-RSI<span class="sr-only">:</span
-                  ><span class="title-cursor" aria-hidden="true">_</span></span
+                  >Terminal-RSI<span class="sr-only">:</span></span
                 ><span class="paper-subtitle"
                   >Recursive Self-Improving Terminal Agents<br
                     class="desktop-break"
@@ -197,7 +195,7 @@
               Liang<sup>1</sup>
             </p>
             <div class="affiliation-row">
-              <strong>Tencent Hunyuan</strong
+              <strong>Tencent Hy Foundation Model Frontier</strong
               ><span class="affiliation-slash">/</span><strong>NUS</strong
               ><span class="affiliation-slash">/</span><strong>UMD</strong
               ><span class="affiliation-slash">/</span><strong>UGA</strong
@@ -222,7 +220,7 @@
               <p>51.70% → 86.52%</p>
             </div>
             <a class="explore-link" href="#method"
-              ><span>Follow the recursion</span
+              ><span>Explore the approach</span
               ><span class="scroll-arrow" aria-hidden="true">↓</span></a
             >
           </div>
@@ -237,7 +235,7 @@
           <div class="section-heading reveal">
             <div>
               <div class="eyebrow">
-                <span class="section-number">01</span> THE RECURSION
+                <span class="section-number">01</span> Approach
               </div>
               <h2 id="method-title">
                 Better trajectories.<br /><span class="blue"
@@ -252,40 +250,316 @@
             </p>
           </div>
           <div class="method-workbench panorama-workbench reveal">
-            <div class="workbench-top">
-              <div>
-                <span class="mini-eyebrow">TRAINING PANORAMA</span>
-                <p>Explore. Retain. Recurse.</p>
-              </div>
-              <div class="panorama-actions">
-                <span id="panorama-status" role="status"
-                  >7-second walkthrough</span
-                ><button
-                  id="panorama-replay"
-                  class="copy-button"
-                  aria-label="Replay seven-second panorama"
+            <div class="workbench-top method-tabbar">
+              <div
+                class="tabs"
+                id="method-tabs"
+                role="tablist"
+                aria-label="Explore the approach"
+              >
+                <button
+                  id="tab-trajectory"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-trajectory"
+                  data-method-tab="trajectory"
                 >
-                  ↺ Replay
+                  01 <span>Training panorama</span>
                 </button>
+                <button
+                  id="tab-loop"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-loop"
+                  data-method-tab="loop"
+                  tabindex="-1"
+                >
+                  02 <span>Inside the loop</span>
+                </button>
+                <button
+                  id="tab-credit"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-credit"
+                  data-method-tab="credit"
+                  tabindex="-1"
+                >
+                  03 <span>Credit &amp; reward</span>
+                </button>
+              </div>
+              <span class="workbench-label">INTERACTIVE EXPLAINER</span>
+            </div>
+            <div
+              id="panel-trajectory"
+              role="tabpanel"
+              aria-labelledby="tab-trajectory"
+            >
+              <div class="workbench-top">
+                <div>
+                  <span class="mini-eyebrow">TRAINING PANORAMA</span>
+                  <p>Explore. Retain. Recurse.</p>
+                </div>
+                <div class="panorama-actions">
+                  <span id="panorama-status" role="status"
+                    >7-second walkthrough</span
+                  ><button
+                    id="panorama-replay"
+                    class="copy-button"
+                    aria-label="Replay seven-second panorama"
+                  >
+                    ↺ Replay
+                  </button>
+                </div>
+              </div>
+              <div
+                class="trajectory-scroll"
+                tabindex="0"
+                aria-label="Six-benchmark panorama. Scroll horizontally on small screens to inspect all panels."
+              >
+                <iframe
+                  id="trajectory-frame"
+                  src="trajectory.html?embed=1&amp;panorama=1"
+                  title="Seven-second training panorama across six independent benchmarks"
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="player-note">
+                <span
+                  >Blue = retained · Gray = discarded · Stage spacing ≠
+                  compute</span
+                ><span>Final model: RPR-2 SPR · step 18</span>
               </div>
             </div>
             <div
-              class="trajectory-scroll"
-              tabindex="0"
-              aria-label="Six-benchmark panorama. Scroll horizontally on small screens to inspect all panels."
+              id="panel-loop"
+              role="tabpanel"
+              aria-labelledby="tab-loop"
+              hidden
             >
-              <iframe
-                id="trajectory-frame"
-                src="trajectory.html?embed=1&amp;panorama=1"
-                title="Seven-second training panorama across six independent benchmarks"
-                loading="lazy"
-              ></iframe>
+              <div class="loop-layout">
+                <div class="loop-diagram">
+                  <div class="mini-eyebrow">
+                    ACTOR EVOLVES. CRITIC CARRIES FORWARD.
+                  </div>
+                  <div class="loop-path">
+                    <button
+                      class="loop-node active"
+                      data-loop-step="0"
+                      aria-current="step"
+                    >
+                      <span class="node-index">01</span
+                      ><span
+                        ><strong>Discover &amp; verify</strong
+                        ><small>Successful terminal trajectories</small></span
+                      ><span class="node-icon" aria-hidden="true">✓</span>
+                    </button>
+                    <span class="flow-arrow" aria-hidden="true">↓</span>
+                    <button class="loop-node" data-loop-step="1">
+                      <span class="node-index">02</span
+                      ><span
+                        ><strong>Recursive Self-Rewrite</strong
+                        ><small
+                          >Runbook → review → fresh execution → actor SFT</small
+                        ></span
+                      ><span class="node-badge">ACTOR</span>
+                    </button>
+                    <span class="flow-arrow" aria-hidden="true"
+                      >↓ <em>critic weights preserved</em></span
+                    >
+                    <button class="loop-node" data-loop-step="2">
+                      <span class="node-index">03</span
+                      ><span
+                        ><strong>Recalibrate the critic</strong
+                        ><small
+                          >4 critic-only updates · actor frozen</small
+                        ></span
+                      ><span class="node-badge outline">CRITIC</span>
+                    </button>
+                    <span class="flow-arrow" aria-hidden="true">↓</span>
+                    <button class="loop-node" data-loop-step="3">
+                      <span class="node-index">04</span
+                      ><span
+                        ><strong>Recursive Policy-Refine</strong
+                        ><small>Joint actor–critic PPO · FDR → SPR</small></span
+                      ><span class="node-badge">BOTH</span>
+                    </button>
+                    <span class="flow-arrow" aria-hidden="true">↓</span>
+                    <button class="loop-node" data-loop-step="4">
+                      <span class="node-index">05</span
+                      ><span
+                        ><strong>Retain. Recurse.</strong
+                        ><small
+                          >The selected checkpoint begins the next cycle</small
+                        ></span
+                      ><span class="node-icon" aria-hidden="true">↻</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="loop-inspector">
+                  <div class="mini-eyebrow">
+                    PARAMETER HANDOFF <span id="loop-counter">01 / 05</span>
+                  </div>
+                  <div class="parameter-cards">
+                    <div id="actor-state">
+                      <span>ACTOR · θ</span
+                      ><strong id="actor-status">Roll out</strong>
+                      <div class="parameter-bars" aria-hidden="true">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                      </div>
+                    </div>
+                    <div id="critic-state">
+                      <span>CRITIC · φ</span
+                      ><strong id="critic-status">Seed warm-up</strong>
+                      <div class="parameter-bars" aria-hidden="true">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="calibration-count"
+                    class="calibration-count"
+                    aria-label="Four critic-only calibration updates"
+                  >
+                    <span>1</span><span>2</span><span>3</span><span>4</span>
+                  </div>
+                  <h3 id="loop-title">Start with reproducible success.</h3>
+                  <p id="loop-description">
+                    Discover successful terminal trajectories across
+                    complementary harnesses. Only verifier successes become
+                    candidates for rewriting.
+                  </p>
+                  <div class="loop-controls">
+                    <button
+                      id="loop-play"
+                      class="button primary"
+                      aria-pressed="false"
+                    >
+                      Play walkthrough</button
+                    ><button id="loop-next" class="button">Next step →</button
+                    ><button
+                      id="loop-reset"
+                      class="icon-button"
+                      aria-label="Reset method walkthrough"
+                    >
+                      ↺
+                    </button>
+                  </div>
+                  <p class="evidence-note">
+                    Mechanism schematic, not a live training run. Initial critic
+                    preparation uses one SWR epoch. Four-update calibration
+                    occurs at the beginning of each RPR phase, not at every
+                    minibatch.
+                  </p>
+                  <a
+                    class="inline-link"
+                    href="assets/figures/architecture.png"
+                    target="_blank"
+                    rel="noopener"
+                    >View the original architecture figure ↗</a
+                  >
+                </div>
+              </div>
             </div>
-            <div class="player-note">
-              <span
-                >Blue = retained · Gray = discarded · Stage spacing ≠
-                compute</span
-              ><span>Final model: RPR-2 SPR · step 18</span>
+            <div
+              id="panel-credit"
+              role="tabpanel"
+              aria-labelledby="tab-credit"
+              hidden
+            >
+              <div class="credit-layout">
+                <div class="credit-card">
+                  <span class="pill">TB-GAE · METHOD DESIGN</span>
+                  <h3>Count decisions.<br />Not observation tokens.</h3>
+                  <p>
+                    Keep observations in context, but skip them in the advantage
+                    recursion. Credit decays only at turn boundaries.
+                  </p>
+                  <div class="token-timeline" id="token-timeline">
+                    <div class="token-turn">
+                      <span>TURN 01</span>
+                      <div class="tokens"><b>a₁</b><b>a₂</b><b>a₃</b></div>
+                      <small>Generated tokens</small>
+                    </div>
+                    <div class="observation-block">
+                      <span>Environment observation</span>
+                      <div aria-hidden="true">···· ······· ····· ········</div>
+                      <strong>CONTEXT ONLY · SKIPPED</strong>
+                    </div>
+                    <div class="token-turn">
+                      <span>TURN 02</span>
+                      <div class="tokens"><b>a₄</b><b>a₅</b></div>
+                      <small>Generated tokens</small>
+                    </div>
+                  </div>
+                  <div class="credit-route">
+                    <span>same turn: no decay</span
+                    ><strong>↶ γ<sub>turn</sub> λ<sub>turn</sub></strong
+                    ><span>one boundary, one decay</span>
+                  </div>
+                  <div class="credit-controls">
+                    <button id="credit-play" class="button">
+                      Replay credit flow ↶</button
+                    ><label
+                      >Observation length
+                      <input
+                        id="observation-length"
+                        type="range"
+                        min="1"
+                        max="3"
+                        value="2"
+                        aria-label="Illustrative observation length"
+                      /><output id="observation-output">medium</output></label
+                    >
+                  </div>
+                  <p class="evidence-note">
+                    Each generated token keeps its own value baseline. Pass both
+                    successor value and advantage between chunks. TB-GAE
+                    deployment in the reported checkpoints remains unverified;
+                    the documented first phase uses standard GAE with γ = λ = 1.
+                  </p>
+                </div>
+                <div class="reward-card">
+                  <span class="pill">FDR → SPR</span>
+                  <h3>Progress matters.<br />Completion matters more.</h3>
+                  <p>
+                    Early: normalize semantic checks by task family.<br />Later:
+                    prioritize strict success over partial progress.
+                  </p>
+                  <div class="reward-formulas">
+                    <div>
+                      <span>FDR</span><code>P / D<sub>f</sub></code
+                      ><small>Family-normalized progress</small>
+                    </div>
+                    <div>
+                      <span>SPR</span><code>S + P / (P + D′<sub>f</sub>)</code
+                      ><small>Strict success + saturating progress</small>
+                    </div>
+                  </div>
+                  <div class="reward-comparison">
+                    <span>REWARD MASS ALLOCATED TO FAILED TRAJECTORIES</span>
+                    <div>
+                      <label>FDR</label>
+                      <div class="reward-track">
+                        <i style="--bar: 50.09%; background: #c0c4cc"></i>
+                      </div>
+                      <strong>50.09%</strong>
+                    </div>
+                    <div>
+                      <label>SPR</label>
+                      <div class="reward-track">
+                        <i style="--bar: 28.72%"></i>
+                      </div>
+                      <strong>28.72%</strong>
+                    </div>
+                  </div>
+                  <p class="evidence-note">
+                    Offline rescoring of 4,352 fixed trajectories, not an online
+                    causal ablation. P = passed semantic checks; S = strict
+                    success (0/1). Invalid semantic reports fall back to S. Both
+                    rewards are computed at rollout end.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           <div class="takeaway-row reveal">
@@ -309,7 +583,8 @@
           <div class="section-heading reveal">
             <div>
               <div class="eyebrow">
-                <span class="section-number">02</span> Recursively-Improving Terminal Performance
+                <span class="section-number">02</span> Recursively-Improving
+                Terminal Performance
               </div>
               <h2 id="results-title">
                 Recursively Self-Improving Performance.<br /><span class="blue"
@@ -445,10 +720,11 @@
           </div>
           <div class="results-footnote reveal">
             <p>
-              <strong>Reading these results.</strong> Each Results chart uses
-              its own zero-based linear axis. Labels show success rates; gains
-              are percentage points. Frontier scores are author-supplied Figure
-              4 references, not controlled same-harness reevaluations. No
+              <strong>Reading these results.</strong> All axes are linear. The
+              TB2.1 frontier comparison spans 20%–100%; the other Results axes
+              start at zero. Labels show success rates; gains are percentage
+              points. Frontier scores are author-supplied Figure 4 references,
+              not controlled same-harness reevaluations. No
               statistical-significance claim is implied.
             </p>
             <div>
@@ -525,10 +801,21 @@
               <h2 id="cases-title">Case Study</h2>
             </div>
             <p>
-              Follow five distinct training stages from partial repairs to
-              complete checker closure. Recorded excerpts and the final-stage
-              update are identified separately.
+              Follow independent executions across all five stages. Selected
+              command, implementation and verifier excerpts replay in
+              three-second chapters: Case A first, then Case B.
             </p>
+          </div>
+          <div class="case-playback-toolbar reveal">
+            <span id="case-playback-status" role="status"
+              >Case A → Case B · 3 seconds per stage</span
+            ><button
+              id="case-replay"
+              class="button"
+              aria-label="Replay both cases from Case A, Base"
+            >
+              ↺ Replay
+            </button>
           </div>
           <div
             class="case-tabs reveal"
@@ -543,7 +830,14 @@
               data-case="drift"
             >
               <span>CASE A</span><strong>Embedding-drift closure</strong
-              ><small>81.82% → 100%</small></button
+              ><small>81.82% → 100%</small
+              ><span
+                class="case-segment-tracker"
+                data-case-tracker="drift"
+                aria-hidden="true"
+                ><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i
+                ><i><b></b></i
+              ></span></button
             ><button
               role="tab"
               id="case-tab-ffi"
@@ -553,7 +847,14 @@
               tabindex="-1"
             >
               <span>CASE B</span><strong>Rust–C FFI equivalence</strong
-              ><small>50% → 100%</small>
+              ><small>50% → 100%</small
+              ><span
+                class="case-segment-tracker"
+                data-case-tracker="ffi"
+                aria-hidden="true"
+                ><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i
+                ><i><b></b></i
+              ></span>
             </button>
           </div>
           <div
@@ -721,10 +1022,7 @@
             >
             <p>Recursive learning. Verifiable progress.</p>
             <nav aria-label="Footer navigation">
-              <a
-                href="Terminal-RSI_1014.pdf"
-                target="_blank"
-                rel="noopener"
+              <a href="Terminal-RSI_1014.pdf" target="_blank" rel="noopener"
                 >Paper ↗</a
               ><a
                 href="https://huggingface.co/Teriminal-RSI"

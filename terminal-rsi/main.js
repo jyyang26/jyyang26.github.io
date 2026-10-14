@@ -93,6 +93,7 @@
   });
   updateNavigation();
 
+  let activeMethod = "trajectory";
   const iframe = $("#trajectory-frame");
   const playerChannel = "terminal-rsi-player-v1";
   const playerURL = new URL(iframe.src, location.href);
@@ -131,7 +132,8 @@
   }
   function syncFrame() {
     if (!frameReady) return;
-    const visible = frameVisible && !document.hidden;
+    const visible =
+      activeMethod === "trajectory" && frameVisible && !document.hidden;
     if (visible !== lastFrameVisibility) {
       lastFrameVisibility = visible;
       sendPlayerCommand("visible", visible);
@@ -188,6 +190,187 @@
     frameStarted = true;
     sendPlayerCommand("replay");
   });
+
+  const loopSteps = [
+    {
+      title: "Start with reproducible success.",
+      text: "Discover successful terminal trajectories across complementary harnesses. Only terminal-verifier successes become candidates for rewriting.",
+      actor: "Roll out",
+      critic: "Seed warm-up",
+      actorOn: false,
+      criticOn: false,
+    },
+    {
+      title: "Rewrite the experience, not the critic.",
+      text: "Plan a runbook, review its validity and leakage, then execute again in a fresh target environment. Remove private guidance and train only the actor on verified public trajectories. The learned value critic is preserved.",
+      actor: "Supervised update",
+      critic: "Weights retained",
+      actorOn: true,
+      criticOn: false,
+    },
+    {
+      title: "New actor. Recalibrated critic.",
+      text: "RPR-1 loads the prepared critic seed. Later RPR phases inherit the preceding critic across the actor-only rewrite. Freeze the new actor for four critic-only calibration updates before joint learning.",
+      actor: "Frozen",
+      critic: "4-update warm-up",
+      actorOn: false,
+      criticOn: true,
+    },
+    {
+      title: "Refine choices toward completion.",
+      text: "Update actor and critic jointly with PPO. RPR-1 uses Family Dense Reward; the retained RPR-2 Long-Reward branch uses Success-Prioritized Reward. Switch to Credit & reward to inspect that design.",
+      actor: "PPO update",
+      critic: "Value update",
+      actorOn: true,
+      criticOn: true,
+    },
+    {
+      title: "A better checkpoint becomes the next start.",
+      text: "Keep the selected checkpoint rather than a discarded branch endpoint. RPR-1 step 20 seeds RSR-2. RPR-2 SPR step 18 is the final Terminal-RSI-27B model.",
+      actor: "Checkpoint kept",
+      critic: "Carried forward",
+      actorOn: false,
+      criticOn: false,
+    },
+  ];
+  let loopStep = 0,
+    loopPlaying = false,
+    loopVisible = false,
+    loopTimer = null;
+  let creditTimer = null;
+  function renderLoop() {
+    const state = loopSteps[loopStep];
+    $("#loop-counter").textContent =
+      `${String(loopStep + 1).padStart(2, "0")} / 05`;
+    $("#loop-title").textContent = state.title;
+    $("#loop-description").textContent = state.text;
+    $("#actor-status").textContent = state.actor;
+    $("#critic-status").textContent = state.critic;
+    $("#actor-state").classList.toggle("updating", state.actorOn);
+    $("#critic-state").classList.toggle("updating", state.criticOn);
+    $("#calibration-count").classList.toggle("active", loopStep === 2);
+    $$("[data-loop-step]").forEach((button) => {
+      const active = Number(button.dataset.loopStep) === loopStep;
+      button.classList.toggle("active", active);
+      if (active) button.setAttribute("aria-current", "step");
+      else button.removeAttribute("aria-current");
+    });
+    $("#loop-play").textContent = loopPlaying
+      ? "Pause walkthrough"
+      : "Play walkthrough";
+    $("#loop-play").setAttribute("aria-pressed", String(loopPlaying));
+  }
+  function stopCredit() {
+    clearTimeout(creditTimer);
+    creditTimer = null;
+    $("#token-timeline").classList.remove("credit-flow");
+  }
+  function syncMethodPlayback() {
+    clearTimeout(loopTimer);
+    loopTimer = null;
+    const running =
+      loopPlaying && loopVisible && activeMethod === "loop" && !document.hidden;
+    $(".loop-layout").classList.toggle("motion-paused", !running);
+    if (running)
+      loopTimer = setTimeout(() => {
+        if (loopStep === loopSteps.length - 1) loopPlaying = false;
+        else loopStep++;
+        renderLoop();
+        syncMethodPlayback();
+      }, 3600);
+    if (activeMethod !== "credit" || document.hidden) stopCredit();
+  }
+  function setLoopStep(index) {
+    loopPlaying = false;
+    loopStep = index;
+    renderLoop();
+    syncMethodPlayback();
+    announce(`Method step ${index + 1}. ${loopSteps[index].title}`);
+  }
+  $("#loop-play").addEventListener("click", () => {
+    loopPlaying = !loopPlaying;
+    if (loopPlaying && loopStep === loopSteps.length - 1) loopStep = 0;
+    renderLoop();
+    syncMethodPlayback();
+  });
+  $("#loop-next").addEventListener("click", () =>
+    setLoopStep((loopStep + 1) % loopSteps.length),
+  );
+  $("#loop-reset").addEventListener("click", () => setLoopStep(0));
+  $$("[data-loop-step]").forEach((button) =>
+    button.addEventListener("click", () =>
+      setLoopStep(Number(button.dataset.loopStep)),
+    ),
+  );
+  new IntersectionObserver((entries) => {
+    loopVisible = entries[0].isIntersecting;
+    syncMethodPlayback();
+  }).observe($(".loop-layout"));
+  new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting) stopCredit();
+  }).observe($("#token-timeline"));
+  function replayCredit() {
+    stopCredit();
+    if (motion.matches) {
+      announce(
+        "Observations remain in context. Credit skips them and decays once across the turn boundary.",
+      );
+      return;
+    }
+    if (activeMethod !== "credit" || document.hidden) return;
+    void $("#token-timeline").offsetWidth;
+    $("#token-timeline").classList.add("credit-flow");
+    creditTimer = setTimeout(stopCredit, 2400);
+  }
+  $("#credit-play").addEventListener("click", replayCredit);
+  $("#observation-length").addEventListener("input", (event) => {
+    const length = Number(event.target.value);
+    $("#observation-output").textContent = ["short", "medium", "long"][
+      length - 1
+    ];
+    $(".observation-block div").textContent = "···· ······· ".repeat(
+      length + 1,
+    );
+    $(".observation-block div").style.height = `${15 + length * 12}px`;
+    replayCredit();
+  });
+  const methodTabs = $$("#method-tabs [role=tab]");
+  function activateMethod(key) {
+    if (activeMethod === key) return;
+    activeMethod = key;
+    methodTabs.forEach((tab) => {
+      const selected = tab.dataset.methodTab === key;
+      tab.setAttribute("aria-selected", String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      $(`#${tab.getAttribute("aria-controls")}`).hidden = !selected;
+    });
+    frameVisible = false;
+    syncFrame();
+    syncMethodPlayback();
+    if (key === "trajectory") {
+      resizeFrame();
+      frameObserver.unobserve($(".trajectory-scroll"));
+      frameObserver.observe($(".trajectory-scroll"));
+    }
+    if (key === "credit") replayCredit();
+  }
+  methodTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateMethod(tab.dataset.methodTab));
+    tab.addEventListener("keydown", (event) => {
+      let next;
+      if (event.key === "ArrowRight") next = (index + 1) % methodTabs.length;
+      else if (event.key === "ArrowLeft")
+        next = (index + methodTabs.length - 1) % methodTabs.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = methodTabs.length - 1;
+      else return;
+      event.preventDefault();
+      methodTabs[next].focus();
+      activateMethod(methodTabs[next].dataset.methodTab);
+    });
+  });
+  renderLoop();
+  syncMethodPlayback();
 
   function sourceTitle(key) {
     return key === "TBH"
@@ -365,8 +548,9 @@
       },
       xAxis: {
         type: "value",
-        min: 0,
+        min: key === "TB2.1" ? 20 : 0,
         max: key === "TB4" ? 60 : 100,
+        interval: key === "TB2.1" ? (compact ? 40 : 20) : undefined,
         splitNumber: compact ? 2 : 5,
         name: "Performance (%)",
         nameLocation: "middle",
@@ -509,11 +693,24 @@
       : "Hide chart data ↑";
   });
 
+  const CASE_STAGE_MS = 3000;
+  const CASE_TEXT_MS = 2400;
+  const caseOrder = ["drift", "ffi"];
   let caseKey = "drift",
     caseStep = 0,
     casePlaying = false,
-    casesVisible = false,
-    caseTimer = null;
+    casesVisible = false;
+  let caseStarted = false,
+    caseFinished = false,
+    caseElapsed = CASE_STAGE_MS;
+  let caseFrame = null,
+    caseStamp = null,
+    caseEpoch = 0,
+    caseSwap = null;
+  let caseLines = [],
+    caseCharacters = 0,
+    ladderLengths = [0],
+    ladderPath = null;
   const lastCaseStep = () => research.cases[caseKey].stages.length - 1;
   function ladderElement(tag, attributes, parent, text) {
     const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
@@ -600,9 +797,26 @@
           index ? `${d}H${point[0]}V${point[1]}` : `M${point[0]},${point[1]}`,
         "",
       );
-      ladderElement(
+      ladderLengths = [0];
+      points
+        .slice(1)
+        .forEach((point, index) =>
+          ladderLengths.push(
+            ladderLengths[index] +
+              point[0] -
+              points[index][0] +
+              Math.abs(point[1] - points[index][1]),
+          ),
+        );
+      ladderElement("path", { d: path, class: "ladder-track" }, backdrop);
+      ladderPath = ladderElement(
         "path",
-        { d: path, class: "ladder-curve", "data-step-path": "true" },
+        {
+          d: path,
+          class: "ladder-curve",
+          "data-step-path": "true",
+          "stroke-dasharray": ladderLengths.at(-1),
+        },
         backdrop,
       );
       c.stages.forEach((stage, index) => {
@@ -700,8 +914,25 @@
   }
   function renderCase() {
     const c = research.cases[caseKey],
-      stage = c.stages[caseStep],
-      supplied = stage.evidenceKind === "author-update";
+      stage = c.stages[caseStep];
+    syncCaseTabs();
+    const content = $("#case-content");
+    if (
+      content.dataset.case &&
+      content.dataset.case !== caseKey &&
+      !motion.matches
+    ) {
+      caseSwap?.cancel();
+      caseSwap = content.animate(
+        [
+          { opacity: 0.5, transform: "translateY(5px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        { duration: 260, easing: "ease-out" },
+      );
+    }
+    content.dataset.case = caseKey;
+    $("#case-content").dataset.stage = String(caseStep);
     $("#case-tag").textContent = c.tag;
     $("#case-title").replaceChildren(
       ...c.title
@@ -719,12 +950,9 @@
     );
     renderCaseLadder();
     $("#case-stage-note").textContent = `${stage.name} · ${stage.note}`;
-    $("#terminal-file").textContent = supplied
-      ? `${stage.model} / stage summary`
-      : c.file;
-    $("#terminal-evidence-kind").textContent = supplied
-      ? "FINAL-STAGE SUMMARY"
-      : "RECORDED EXCERPTS";
+    $("#terminal-file").textContent = c.file;
+    $("#terminal-file").title = stage.trial;
+    $("#terminal-evidence-kind").textContent = "RECORDED EXCERPTS";
     $("#terminal-stage").textContent = stage.model
       ? `${stage.name} · ${stage.model}`
       : stage.name.toUpperCase();
@@ -733,23 +961,22 @@
     $("#terminal-insight").textContent = stage.insight;
     $("#terminal-output").setAttribute(
       "aria-label",
-      supplied
-        ? "Author-supplied final-stage summary, not a raw transcript"
-        : `${stage.name} recorded evidence. ${stage.trial}`,
+      `${stage.name} recorded evidence. ${stage.trial}`,
     );
-    $("#terminal-output").classList.toggle("stage-summary", supplied);
-    const lines = supplied
-      ? stage.summary.map((text) => ["highlight", text])
-      : stage.logs;
+    caseCharacters = 0;
+    caseLines = stage.logs.map(([kind, raw]) => {
+      const text = kind === "command" ? `$ ${raw}` : raw || " ";
+      const node = document.createElement("span");
+      node.className = kind ? `log-${kind}` : "";
+      const start = caseCharacters;
+      caseCharacters += text.length;
+      return { node, text, start };
+    });
     $("#terminal-output").replaceChildren(
-      ...lines.map(([kind, text]) => {
-        const line = document.createElement("span");
-        line.className = kind ? `log-${kind}` : "";
-        line.textContent = text || " ";
-        return line;
-      }),
+      ...caseLines.map((line) => line.node),
     );
-    $("#case-source").hidden = supplied;
+    $("#terminal-output").scrollTop = 0;
+    $("#case-source").hidden = false;
     $("#case-source").href = c.figure;
     $("#case-source").textContent =
       `View original Figure ${caseKey === "drift" ? "14" : "15"} ↗`;
@@ -779,45 +1006,142 @@
     });
     $("#case-prev").disabled = caseStep === 0;
     $("#case-next").disabled = caseStep === lastCaseStep();
-    $("#case-play").textContent = casePlaying
-      ? "Ⅱ Pause evolution"
-      : caseStep === lastCaseStep()
-        ? "↺ Replay evolution"
-        : "▶ Replay evolution";
+    paintCaseFrame();
+    updateCaseControls();
+  }
+  function paintCaseTrackers(progress) {
+    $$("[data-case-tracker]").forEach((tracker) => {
+      const order = caseOrder.indexOf(tracker.dataset.caseTracker);
+      const current = caseOrder.indexOf(caseKey);
+      $$("b", tracker).forEach((bar, i) => {
+        const amount =
+          order < current
+            ? 1
+            : order > current
+              ? 0
+              : i < caseStep
+                ? 1
+                : i === caseStep
+                  ? progress
+                  : 0;
+        bar.style.transform = `scaleX(${amount})`;
+      });
+    });
+  }
+  function paintCaseProgress(progress) {
+    const start = ladderLengths[Math.max(0, caseStep - 1)];
+    const end = ladderLengths[caseStep];
+    const fraction = motion.matches ? 1 : Math.min(1, caseElapsed / 950);
+    ladderPath.setAttribute(
+      "stroke-dashoffset",
+      String(ladderLengths.at(-1) - start - (end - start) * fraction),
+    );
+    $$("#case-ladder [data-case-step]").forEach((node, index) =>
+      node.classList.toggle("is-future", index > caseStep),
+    );
+    $("#case-content").dataset.elapsed = String(Math.round(caseElapsed));
+    paintCaseTrackers(progress);
+  }
+  function paintCaseFrame() {
+    const progress = Math.min(1, caseElapsed / CASE_STAGE_MS);
+    const count = motion.matches
+      ? caseCharacters
+      : Math.floor(caseCharacters * Math.min(1, caseElapsed / CASE_TEXT_MS));
+    caseLines.forEach((line) => {
+      const shown = Math.max(0, Math.min(line.text.length, count - line.start));
+      const text = line.text.slice(0, shown);
+      if (line.node.textContent !== text) line.node.textContent = text;
+      line.node.hidden = shown === 0;
+      line.node.classList.toggle(
+        "typing-line",
+        shown > 0 && shown < line.text.length && casePlaying,
+      );
+    });
+    paintCaseProgress(progress);
+    if (casePlaying)
+      $("#terminal-output").scrollTop = $("#terminal-output").scrollHeight;
+  }
+  function advanceCase() {
+    if (caseStep === lastCaseStep() && caseKey === "ffi") {
+      caseElapsed = CASE_STAGE_MS;
+      casePlaying = false;
+      caseFinished = true;
+      updateCaseControls();
+      return;
+    }
+    caseElapsed -= CASE_STAGE_MS;
+    if (caseStep < lastCaseStep()) caseStep++;
+    else {
+      caseKey = "ffi";
+      caseStep = 0;
+    }
+    renderCase();
+  }
+  function tickCase(stamp, epoch) {
+    if (epoch !== caseEpoch) return;
+    caseFrame = null;
+    if (!casePlaying || !casesVisible || document.hidden) {
+      caseStamp = null;
+      return;
+    }
+    caseElapsed += Math.max(0, stamp - caseStamp);
+    caseStamp = stamp;
+    while (caseElapsed >= CASE_STAGE_MS && casePlaying) advanceCase();
+    paintCaseFrame();
+    scheduleCase();
+  }
+  function updateCaseControls() {
+    $("#case-play").textContent = casePlaying ? "Ⅱ Pause" : "▶ Play";
     $("#case-play").setAttribute("aria-pressed", String(casePlaying));
+    $("#case-content").dataset.playing = String(casePlaying);
+    $("#case-playback-status").textContent = caseFinished
+      ? "Case A + Case B · complete"
+      : `${caseKey === "drift" ? "Case A" : "Case B"} · ${caseStep + 1}/5 · ${casePlaying ? "playing" : "paused"}`;
+  }
+  function stopCaseFrame() {
+    caseSwap?.cancel();
+    caseSwap = null;
+    caseEpoch++;
+    if (caseFrame !== null) cancelAnimationFrame(caseFrame);
+    caseFrame = null;
+    caseStamp = null;
   }
   function scheduleCase() {
-    clearTimeout(caseTimer);
-    caseTimer = null;
-    if (casePlaying && casesVisible && !document.hidden)
-      caseTimer = setTimeout(() => {
-        if (caseStep === lastCaseStep()) casePlaying = false;
-        else caseStep++;
-        renderCase();
-        scheduleCase();
-      }, 4400);
+    if (!casePlaying || !casesVisible || document.hidden) {
+      stopCaseFrame();
+      updateCaseControls();
+      return;
+    }
+    if (caseFrame !== null) return;
+    const epoch = caseEpoch;
+    if (caseStamp === null) caseStamp = performance.now();
+    caseFrame = requestAnimationFrame((stamp) => tickCase(stamp, epoch));
   }
   function setCaseStep(index) {
+    stopCaseFrame();
     caseStep = Math.max(0, Math.min(lastCaseStep(), index));
     casePlaying = false;
+    caseStarted = true;
+    caseFinished = false;
+    caseElapsed = CASE_STAGE_MS;
     renderCase();
     scheduleCase();
     announce(
       `${research.cases[caseKey].stages[caseStep].name}. ${research.cases[caseKey].stages[caseStep].insight}`,
     );
   }
-  function activateCase(key) {
-    caseKey = key;
-    caseStep = 0;
-    casePlaying = false;
+  function syncCaseTabs() {
     $$(".case-tabs [role=tab]").forEach((button) => {
-      const selected = button.dataset.case === key;
+      const selected = button.dataset.case === caseKey;
       button.setAttribute("aria-selected", String(selected));
       button.tabIndex = selected ? 0 : -1;
     });
-    $("#case-content").setAttribute("aria-labelledby", `case-tab-${key}`);
-    renderCase();
-    scheduleCase();
+    $("#case-content").setAttribute("aria-labelledby", `case-tab-${caseKey}`);
+  }
+  function activateCase(key) {
+    if (!caseOrder.includes(key)) return;
+    caseKey = key;
+    setCaseStep(0);
   }
   const caseTabs = $$(".case-tabs [role=tab]");
   caseTabs.forEach((button, index) => {
@@ -836,19 +1160,43 @@
       activateCase(caseTabs[next].dataset.case);
     });
   });
-  $("#case-play").addEventListener("click", () => {
-    casePlaying = !casePlaying;
-    if (casePlaying && caseStep === lastCaseStep()) caseStep = 0;
+  function replayCases() {
+    stopCaseFrame();
+    caseKey = "drift";
+    caseStep = 0;
+    caseElapsed = 0;
+    caseStarted = true;
+    caseFinished = false;
+    casePlaying = true;
     renderCase();
+    scheduleCase();
+  }
+  $("#case-replay").addEventListener("click", replayCases);
+  $("#case-play").addEventListener("click", () => {
+    if (caseFinished) {
+      replayCases();
+      return;
+    }
+    stopCaseFrame();
+    caseStarted = true;
+    casePlaying = !casePlaying;
+    if (casePlaying && caseElapsed >= CASE_STAGE_MS) caseElapsed = 0;
+    paintCaseFrame();
+    updateCaseControls();
     scheduleCase();
   });
   $("#case-next").addEventListener("click", () => setCaseStep(caseStep + 1));
   $("#case-prev").addEventListener("click", () => setCaseStep(caseStep - 1));
   renderCase();
-  new IntersectionObserver((entries) => {
-    casesVisible = entries[0].isIntersecting;
-    scheduleCase();
-  }).observe($("#case-content"));
+  new IntersectionObserver(
+    (entries) => {
+      casesVisible =
+        entries[0].isIntersecting && entries[0].intersectionRatio >= 0.25;
+      if (casesVisible && !caseStarted && !motion.matches) replayCases();
+      else scheduleCase();
+    },
+    { threshold: [0, 0.25], rootMargin: "-76px 0px -20px 0px" },
+  ).observe($(".terminal-player"));
 
   document.addEventListener("visibilitychange", () => {
     $$(".screen").forEach((section) => {
@@ -859,15 +1207,22 @@
       );
     });
     syncFrame();
+    syncMethodPlayback();
     scheduleCase();
   });
   motion.addEventListener("change", () => {
     if (motion.matches) {
+      stopCaseFrame();
       casePlaying = false;
+      caseElapsed = CASE_STAGE_MS;
+      loopPlaying = false;
+      stopCredit();
       sendPlayerCommand("finish");
     }
     renderCase();
+    renderLoop();
     syncFrame();
+    syncMethodPlayback();
     scheduleCase();
     charts.forEach((chart) => chart.setOption({ animation: !motion.matches }));
   });
@@ -978,14 +1333,17 @@
   });
   addEventListener("resize", updateNavigation, { passive: true });
   addEventListener("pagehide", () => {
-    clearTimeout(caseTimer);
+    stopCaseFrame();
     clearTimeout(copyTimer);
+    clearTimeout(loopTimer);
+    stopCredit();
     lastFrameVisibility = null;
     sendPlayerCommand("visible", false);
   });
   addEventListener("pageshow", () => {
     updateNavigation();
     syncFrame();
+    syncMethodPlayback();
     scheduleCase();
   });
 })();

@@ -159,7 +159,8 @@ test("frontier charts are separately rendered, descending and include both Base 
       values = opt.series[0].data.map((d) => d.value);
     expect(names.length).toBe(11);
     expect(values).toEqual([...values].sort((a, b) => b - a));
-    expect(opt.xAxis[0].min).toBe(0);
+    expect(opt.xAxis[0].min).toBe(key === "TB2.1" ? 20 : 0);
+    expect(opt.xAxis[0].max).toBe(key === "TB2.1" ? 100 : 60);
     expect(opt.yAxis[0].inverse).toBe(true);
     const base = names.indexOf("Qwen3.8-27B (Base)"),
       ours = names.indexOf("Terminal-RSI-27B");
@@ -196,9 +197,10 @@ test("Panorama plays automatically once in seven seconds, holds its final frame 
     .poll(() => child.evaluate(() => RSI_PLAYER.getState().playing))
     .toBe(true);
   await expect(frame.locator(".control-deck")).toBeHidden();
-  await expect(
-    page.locator("#method [role=tab], #panel-loop, #panel-credit"),
-  ).toHaveCount(0);
+  await expect(page.locator("#method-tabs [role=tab]")).toHaveCount(3);
+  await expect(page.locator("#panel-trajectory")).toBeVisible();
+  await expect(page.locator("#panel-loop")).toBeHidden();
+  await expect(page.locator("#panel-credit")).toBeHidden();
   await expect(frame.locator("#visualization")).toHaveAttribute(
     "data-time",
     "7000",
@@ -298,16 +300,22 @@ test("both cases provide five reachable stages with correct scores and evidence 
       "RPR-2 · Terminal-RSI-27B",
     );
     await expect(page.locator("#terminal-evidence-kind")).toHaveText(
-      "FINAL-STAGE SUMMARY",
+      "RECORDED EXCERPTS",
     );
-    await expect(page.locator("#terminal-output")).toHaveClass(/stage-summary/);
+    await expect(page.locator("#terminal-output")).not.toHaveClass(
+      /stage-summary/,
+    );
     await expect(page.locator("#case-next")).toBeDisabled();
-    await expect(page.locator("#case-source")).toBeHidden();
+    await expect(page.locator("#case-source")).toBeVisible();
     await page.locator("#case-prev").click();
     await expect(page.locator("#terminal-stage")).toHaveText("RSR-2");
     await expect(page.locator("#case-next")).toBeEnabled();
     await page.locator("#case-next").click();
-    await page.locator("#case-play").click();
+    await page.locator("#case-replay").click();
+    await expect(page.locator("#case-content")).toHaveAttribute(
+      "data-case",
+      "drift",
+    );
     await expect(page.locator("#terminal-position")).toHaveText("01 / 05");
     await page.locator("#case-play").click();
   }
@@ -586,7 +594,7 @@ test("titles are updated and every terminal stage uses identical code typography
 }) => {
   await open(page);
   await expect(page.locator("#results .eyebrow")).toContainText(
-    "优秀的Terminal性能",
+    "Recursively-Improving Terminal Performance",
   );
   await expect(page.locator('#main-nav a[href="#cases"]')).toHaveText(
     "Case Study",
@@ -603,6 +611,187 @@ test("titles are updated and every terminal stage uses identical code typography
     expect(base[0]).toMatch(/mono/i);
     await page.locator("#case-milestones button").nth(4).click();
     expect(await typography()).toEqual(base);
+  }
+});
+
+test("method tabs restore both explainers with keyboard navigation and persistent state", async ({
+  page,
+}) => {
+  await open(page);
+  const tabs = page.locator("#method-tabs [role=tab]");
+  await expect(tabs).toHaveCount(3);
+  await expect(page.locator("#method [role=tabpanel]")).toHaveCount(3);
+  await page.locator("#tab-trajectory").focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(page.locator("#tab-loop")).toBeFocused();
+  await expect(page.locator("#panel-loop")).toBeVisible();
+  await expect(page.locator("#panel-trajectory")).toBeHidden();
+  await page.locator('[data-loop-step="1"]').click();
+  await expect(page.locator("#actor-status")).toHaveText("Supervised update");
+  await expect(page.locator("#critic-status")).toHaveText("Weights retained");
+  await page.locator("#loop-next").click();
+  await expect(page.locator("#actor-status")).toHaveText("Frozen");
+  await expect(page.locator("#critic-status")).toHaveText("4-update warm-up");
+  await expect(page.locator("#calibration-count")).toHaveClass(/active/);
+  await page.locator("#tab-loop").focus();
+  await page.keyboard.press("End");
+  await expect(page.locator("#tab-credit")).toBeFocused();
+  await expect(page.locator("#panel-credit")).toBeVisible();
+  await expect(page.locator('#method-tabs [aria-selected="true"]')).toHaveCount(
+    1,
+  );
+  await page.locator("#tab-loop").click();
+  await expect(page.locator("#loop-counter")).toHaveText("03 / 05");
+  await page.locator("#loop-next").click();
+  await expect(page.locator("#actor-status")).toHaveText("PPO update");
+  await expect(page.locator("#critic-status")).toHaveText("Value update");
+  await page.locator("#loop-reset").click();
+  await expect(page.locator("#loop-counter")).toHaveText("01 / 05");
+  await page.locator("#tab-loop").focus();
+  await page.keyboard.press("Home");
+  await expect(page.locator("#tab-trajectory")).toBeFocused();
+  await expect(page.locator("#panel-trajectory")).toBeVisible();
+});
+
+test("method walkthrough plays and pauses when its tab is hidden", async ({
+  page,
+}) => {
+  await open(page, false);
+  await page.locator("#tab-loop").click();
+  await page.locator("#loop-play").click();
+  await expect(page.locator("#loop-counter")).toHaveText("02 / 05", {
+    timeout: 6000,
+  });
+  await page.locator("#loop-play").click();
+  await expect(page.locator("#loop-play")).toHaveAttribute(
+    "aria-pressed",
+    "false",
+  );
+  await expect(page.locator(".loop-layout")).toHaveClass(/motion-paused/);
+  await page.locator("#loop-play").click();
+  await page.locator("#tab-credit").click();
+  await page.waitForTimeout(3900);
+  await expect(page.locator("#loop-counter")).toHaveText("02 / 05");
+  await page.locator("#tab-loop").click();
+  await page.locator("#loop-play").scrollIntoViewIfNeeded();
+  await expect(page.locator("#loop-counter")).toHaveText("03 / 05", {
+    timeout: 6000,
+  });
+  await page.locator("#loop-reset").click();
+  await expect(page.locator("#loop-counter")).toHaveText("01 / 05");
+});
+
+test("credit explainer replays and observation length does not add credit boundaries", async ({
+  page,
+}) => {
+  await open(page, false);
+  await page.locator("#tab-credit").click();
+  await page.locator("#credit-play").click();
+  await expect(page.locator("#token-timeline")).toHaveClass(/credit-flow/);
+  await page.locator("#observation-length").fill("3");
+  await expect(page.locator("#observation-output")).toHaveText("long");
+  await expect(page.locator(".observation-block div")).toHaveCSS(
+    "height",
+    "51px",
+  );
+  await expect(page.locator(".credit-route")).toContainText(
+    "one boundary, one decay",
+  );
+  await expect(page.locator("#panel-credit")).toContainText(
+    "deployment in the reported checkpoints remains unverified",
+  );
+  await expect(page.locator(".reward-comparison")).toContainText("50.09%");
+  await expect(page.locator(".reward-comparison")).toContainText("28.72%");
+  await page.locator("#tab-loop").click();
+  await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.locator("#tab-credit").click();
+  await page.locator("#credit-play").click();
+  await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
+});
+
+test("Panorama pauses while another method tab is active and retains its final frame", async ({
+  page,
+}) => {
+  await open(page, false);
+  await page.locator(".trajectory-scroll").scrollIntoViewIfNeeded();
+  const child = page
+    .frames()
+    .find((frame) => frame.url().includes("trajectory.html"));
+  await expect
+    .poll(() => child.evaluate(() => RSI_PLAYER.getState().time))
+    .toBeGreaterThan(250);
+  await child.evaluate(() => {
+    window.tabPersistenceMarker = "same-player";
+  });
+  await page.locator("#tab-loop").click();
+  await expect
+    .poll(() => child.evaluate(() => RSI_PLAYER.getState().visible))
+    .toBe(false);
+  const paused = await child.evaluate(() => RSI_PLAYER.getState().time);
+  await page.waitForTimeout(400);
+  expect(await child.evaluate(() => RSI_PLAYER.getState().time)).toBe(paused);
+  await page.locator("#tab-trajectory").click();
+  await page.locator(".trajectory-scroll").scrollIntoViewIfNeeded();
+  expect(await child.evaluate(() => window.tabPersistenceMarker)).toBe(
+    "same-player",
+  );
+  await expect
+    .poll(() => child.evaluate(() => RSI_PLAYER.getState().time))
+    .toBeGreaterThan(paused);
+  await expect
+    .poll(() => child.evaluate(() => RSI_PLAYER.getState().time), {
+      timeout: 10000,
+    })
+    .toBe(7000);
+  const finalPaths = await child.evaluate(() =>
+    [...document.querySelectorAll(".curve")].map((path) =>
+      path.getAttribute("d"),
+    ),
+  );
+  await page.locator("#tab-credit").click();
+  await page.locator("#tab-trajectory").click();
+  await page.locator(".trajectory-scroll").scrollIntoViewIfNeeded();
+  expect(await child.evaluate(() => RSI_PLAYER.getState().time)).toBe(7000);
+  expect(
+    await child.evaluate(() =>
+      [...document.querySelectorAll(".curve")].map((path) =>
+        path.getAttribute("d"),
+      ),
+    ),
+  ).toEqual(finalPaths);
+});
+
+test("restored methods fit mobile, tablet and desktop without clipped controls", async ({
+  page,
+}) => {
+  await open(page);
+  for (const width of [390, 768, 1024, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    for (const tab of ["loop", "credit"]) {
+      await page.locator(`#tab-${tab}`).click();
+      const overflows = await page
+        .locator(`#panel-${tab}`)
+        .evaluate((panel) => {
+          const bounds = panel.getBoundingClientRect();
+          return [
+            ...panel.querySelectorAll(
+              "button, input, code, .tokens, .parameter-cards, .observation-block",
+            ),
+          ]
+            .filter((el) => {
+              const box = el.getBoundingClientRect();
+              return box.left < bounds.left - 1 || box.right > bounds.right + 1;
+            })
+            .map((el) => el.id || el.className || el.tagName);
+        });
+      expect(overflows, `${width} / ${tab}`).toEqual([]);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1,
+        ),
+      ).toBe(true);
+    }
   }
 });
 
