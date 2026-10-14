@@ -1,0 +1,17 @@
+{
+  "name": "terminal-rsi-project-page",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Terminal-RSI academic project page and evidence-backed interactive visualizations",
+  "scripts": {
+    "dev": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "playwright test",
+    "check": "node --check main.js && node --check app.js && node --check research.js"
+  },
+  "dependencies": {
+    "echarts": "5.6.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}
