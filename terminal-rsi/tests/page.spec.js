@@ -681,21 +681,34 @@ test("method walkthrough plays and pauses when its tab is hidden", async ({
   await expect(page.locator("#loop-counter")).toHaveText("01 / 05");
 });
 
-test("credit explainer replays and observation length does not add credit boundaries", async ({
+test("credit explainer propagates backward with decay only at turn boundaries", async ({
   page,
 }) => {
   await open(page, false);
   await page.locator("#tab-credit").click();
+  await expect(page.locator("#panel-credit input[type=range]")).toHaveCount(0);
+  await expect(page.locator("#observation-length, #observation-output")).toHaveCount(0);
+  await expect(page.locator(".token-turn")).toHaveCount(3);
+  await expect(page.locator(".turn-boundary")).toHaveCount(2);
+  await expect(page.locator(".turn-caption annotation")).toHaveText([
+    String.raw`\gamma = \lambda = 1`,
+    String.raw`\gamma = \lambda = 1`,
+    String.raw`\gamma = \lambda = 1`,
+  ]);
+  await expect(page.locator(".turn-weight annotation")).toHaveText([
+    String.raw`(\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}})^2`,
+    String.raw`\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}}`,
+    "1",
+  ]);
   await page.locator("#credit-play").click();
   await expect(page.locator("#token-timeline")).toHaveClass(/credit-flow/);
-  await page.locator("#observation-length").fill("3");
-  await expect(page.locator("#observation-output")).toHaveText("long");
-  await expect(page.locator(".observation-block div")).toHaveCSS(
-    "height",
-    "51px",
+  const delays = await page.locator(".tokens b").evaluateAll((tokens) =>
+    tokens.map((token) => parseFloat(getComputedStyle(token).animationDelay)),
   );
+  expect(delays).toEqual([2.1, 1.95, 1.8, 1.2, 1.05, 0.9, 0.3, 0.15, 0]);
+  await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
   await expect(page.locator(".credit-route")).toContainText(
-    "one boundary, one decay",
+    "Across K turn boundaries",
   );
   await expect(page.locator("#panel-credit")).toContainText(
     "deployment in the reported checkpoints remains unverified",
@@ -709,6 +722,36 @@ test("credit explainer replays and observation length does not add credit bounda
   await page.locator("#credit-play").click();
   await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
 });
+
+for (const source of ["http", "file"]) {
+  test(`reward formulas render as local LaTeX with valid-report and fallback branches (${source})`, async ({ page }) => {
+    const errors = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    if (source === "file") {
+      const { pathToFileURL } = require("node:url");
+      const path = require("node:path");
+      await page.goto(pathToFileURL(path.resolve(__dirname, "../index.html")).href);
+    } else {
+      await page.goto("/");
+    }
+    await page.locator("#tab-credit").click();
+    await expect(page.locator(".katex-error")).toHaveCount(0);
+    for (const id of ["formula-fdr", "formula-spr"]) {
+      const formula = page.locator(`#${id}`);
+      await expect(formula.locator(".katex-display .katex-html")).toBeVisible();
+      await expect(formula.locator("math mfrac")).toHaveCount(1);
+      await expect(formula.locator("math mtable mtr")).toHaveCount(2);
+      await expect(formula.locator("annotation")).toContainText(String.raw`\text{valid report}`);
+      await expect(formula.locator("annotation")).toContainText(String.raw`S, & \text{otherwise}`);
+    }
+    await expect(page.locator("#formula-fdr annotation")).toContainText(String.raw`\max\!\left(\dfrac{P}{D_f},0\right)`);
+    await expect(page.locator("#formula-spr annotation")).toContainText(String.raw`S + \dfrac{P}{P + D'_f}`);
+    await page.evaluate(() => document.fonts.ready);
+    expect(await page.evaluate(() => document.fonts.check('16px KaTeX_Main'))).toBe(true);
+    expect(errors).toEqual([]);
+  });
+}
 
 test("Panorama pauses while another method tab is active and retains its final frame", async ({
   page,
@@ -766,17 +809,24 @@ test("restored methods fit mobile, tablet and desktop without clipped controls",
   page,
 }) => {
   await open(page);
-  for (const width of [390, 768, 1024, 1440]) {
+  for (const width of [320, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     for (const tab of ["loop", "credit"]) {
       await page.locator(`#tab-${tab}`).click();
+      if (tab === "credit") {
+        await page.evaluate(() => document.fonts.ready);
+        const clippedFormulas = await page.locator(".math-display").evaluateAll((elements) =>
+          elements.filter((element) => element.scrollWidth > element.clientWidth + 1).map((element) => element.id),
+        );
+        expect(clippedFormulas, `${width} / formulas`).toEqual([]);
+      }
       const overflows = await page
         .locator(`#panel-${tab}`)
         .evaluate((panel) => {
           const bounds = panel.getBoundingClientRect();
           return [
             ...panel.querySelectorAll(
-              "button, input, code, .tokens, .parameter-cards, .observation-block",
+              "button, input, code, .tokens, .parameter-cards, .token-turn, .turn-boundary, .math-display, .math-display .katex-html",
             ),
           ]
             .filter((el) => {

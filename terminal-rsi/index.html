@@ -20,7 +20,9 @@
     <meta property="og:image" content="assets/figures/trajectories.png" />
     <title>Terminal-RSI | Recursive Self-Improving Terminal Agents</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/vendor/katex/katex.min.css" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="assets/vendor/katex/katex.min.js" defer></script>
     <script src="data.js" defer></script>
     <script src="research.js" defer></script>
     <script src="assets/vendor/echarts.min.js" defer></script>
@@ -471,45 +473,74 @@
                   <span class="pill">TB-GAE · METHOD DESIGN</span>
                   <h3>Count decisions.<br />Not observation tokens.</h3>
                   <p>
-                    Keep observations in context, but skip them in the advantage
-                    recursion. Credit decays only at turn boundaries.
+                    Propagate credit backward through generated tokens. Within
+                    each turn, γ = λ = 1; decay happens only across turns.
+                    Observations stay in context, not in the recursion.
                   </p>
-                  <div class="token-timeline" id="token-timeline">
-                    <div class="token-turn">
-                      <span>TURN 01</span>
-                      <div class="tokens"><b>a₁</b><b>a₂</b><b>a₃</b></div>
-                      <small>Generated tokens</small>
+                  <div class="token-timeline" id="token-timeline"
+                    role="group" aria-label="TB-GAE backward credit flow from Turn 03 to Turn 01">
+                    <div class="credit-legend">
+                      <span>GENERATED TOKENS · BACKWARD RECURSION</span>
+                      <span>TRACE WEIGHT FROM TURN 03</span>
                     </div>
-                    <div class="observation-block">
-                      <span>Environment observation</span>
-                      <div aria-hidden="true">···· ······· ····· ········</div>
-                      <strong>CONTEXT ONLY · SKIPPED</strong>
+                    <div class="token-turn" style="--flow-delay: 1.8s">
+                      <div class="turn-caption">
+                        <span>TURN 01</span>
+                        <small><span class="math-inline">\gamma = \lambda = 1</span> · no decay</small>
+                      </div>
+                      <div class="tokens">
+                        <b>a₁</b><i aria-hidden="true">←</i><b>a₂</b><i aria-hidden="true">←</i><b>a₃</b>
+                      </div>
+                      <div class="turn-weight">
+                        <span class="math-inline">(\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}})^2</span>
+                        <small>2 boundaries</small>
+                      </div>
                     </div>
-                    <div class="token-turn">
-                      <span>TURN 02</span>
-                      <div class="tokens"><b>a₄</b><b>a₅</b></div>
-                      <small>Generated tokens</small>
+                    <div class="turn-boundary" style="--flow-delay: 1.4s">
+                      <strong aria-hidden="true">↑</strong>
+                      <span class="math-inline">\times\,\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}}</span>
+                      <small>CROSS-TURN DECAY</small>
+                    </div>
+                    <div class="token-turn" style="--flow-delay: 0.9s">
+                      <div class="turn-caption">
+                        <span>TURN 02</span>
+                        <small><span class="math-inline">\gamma = \lambda = 1</span> · no decay</small>
+                      </div>
+                      <div class="tokens">
+                        <b>a₄</b><i aria-hidden="true">←</i><b>a₅</b><i aria-hidden="true">←</i><b>a₆</b>
+                      </div>
+                      <div class="turn-weight">
+                        <span class="math-inline">\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}}</span>
+                        <small>1 boundary</small>
+                      </div>
+                    </div>
+                    <div class="turn-boundary" style="--flow-delay: 0.5s">
+                      <strong aria-hidden="true">↑</strong>
+                      <span class="math-inline">\times\,\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}}</span>
+                      <small>CROSS-TURN DECAY</small>
+                    </div>
+                    <div class="token-turn" style="--flow-delay: 0s">
+                      <div class="turn-caption">
+                        <span>TURN 03</span>
+                        <small><span class="math-inline">\gamma = \lambda = 1</span> · no decay</small>
+                      </div>
+                      <div class="tokens">
+                        <b>a₇</b><i aria-hidden="true">←</i><b>a₈</b><i aria-hidden="true">←</i><b>a₉</b>
+                      </div>
+                      <div class="turn-weight">
+                        <span class="math-inline">1</span>
+                        <small>0 boundaries</small>
+                      </div>
                     </div>
                   </div>
                   <div class="credit-route">
-                    <span>same turn: no decay</span
-                    ><strong>↶ γ<sub>turn</sub> λ<sub>turn</sub></strong
-                    ><span>one boundary, one decay</span>
+                    <span>Across K turn boundaries</span>
+                    <span class="math-inline">(\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}})^K</span>
                   </div>
                   <div class="credit-controls">
                     <button id="credit-play" class="button">
-                      Replay credit flow ↶</button
-                    ><label
-                      >Observation length
-                      <input
-                        id="observation-length"
-                        type="range"
-                        min="1"
-                        max="3"
-                        value="2"
-                        aria-label="Illustrative observation length"
-                      /><output id="observation-output">medium</output></label
-                    >
+                      Replay credit flow ↑
+                    </button>
                   </div>
                   <p class="evidence-note">
                     Each generated token keeps its own value baseline. Pass both
@@ -527,14 +558,33 @@
                   </p>
                   <div class="reward-formulas">
                     <div>
-                      <span>FDR</span><code>P / D<sub>f</sub></code
-                      ><small>Family-normalized progress</small>
+                      <span class="reward-label">FDR · Family Dense Reward</span>
+                      <div class="math-display" id="formula-fdr">
+                        R_{\mathrm{FDR}} = \begin{cases}
+                        \max\!\left(\dfrac{P}{D_f},0\right), &amp; \text{valid report}, \\
+                        S, &amp; \text{otherwise}.
+                        \end{cases}
+                      </div>
+                      <small>Family-normalized progress · <span class="math-inline">D_f &gt; 0</span></small>
                     </div>
                     <div>
-                      <span>SPR</span><code>S + P / (P + D′<sub>f</sub>)</code
-                      ><small>Strict success + saturating progress</small>
+                      <span class="reward-label">SPR · Success-Prioritized Reward</span>
+                      <div class="math-display" id="formula-spr">
+                        R_{\mathrm{SPR}} = \begin{cases}
+                        S + \dfrac{P}{P + D'_f}, &amp; \text{valid report}, \\
+                        S, &amp; \text{otherwise}.
+                        \end{cases}
+                      </div>
+                      <small>Strict success + saturating progress · <span class="math-inline">D'_f &gt; 0</span></small>
                     </div>
                   </div>
+                  <p class="reward-definitions">
+                    <span class="math-inline">P</span>: passed semantic checks;
+                    <span class="math-inline">S \in \{0,1\}</span>: strict terminal success.
+                    <span class="math-inline">D_f</span>: family calibration divisor;
+                    <span class="math-inline">D'_f</span>: recalibrated divisor.
+                    Both divisors are frozen within each phase.
+                  </p>
                   <div class="reward-comparison">
                     <span>REWARD MASS ALLOCATED TO FAILED TRAJECTORIES</span>
                     <div>

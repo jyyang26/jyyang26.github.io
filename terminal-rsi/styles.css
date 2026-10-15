@@ -777,9 +777,6 @@ h3 {
 .credit-layout > div {
   min-width: 0;
 }
-.reward-formulas code {
-  overflow-wrap: anywhere;
-}
 @media (max-width: 649px) {
   .panorama-workbench .method-tabbar {
     padding: 8px;
@@ -1152,26 +1149,51 @@ h3 {
   margin-top: 15px;
 }
 .token-timeline {
+  display: grid;
+  gap: 0;
+  margin-top: 26px;
+}
+.credit-legend {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  margin-top: 30px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font: 7px/1.6 var(--mono);
+  letter-spacing: 0.3px;
+}
+.credit-legend > span:last-child {
+  text-align: right;
 }
 .token-turn {
-  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 12px;
+  padding: 12px;
+  border: 1px solid #d7e4f7;
+  border-radius: 8px;
+  background: #fafcff;
 }
-.token-turn > span {
-  font: 8px var(--mono);
+.turn-caption {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+.turn-caption > span {
+  font: 9px var(--mono);
   color: var(--blue);
 }
 .tokens {
   display: flex;
-  gap: 4px;
-  margin: 8px 0;
+  align-items: center;
+  gap: 5px;
 }
 .tokens b {
-  width: 26px;
-  height: 34px;
+  width: 30px;
+  height: 32px;
   border: 1px solid #a7c3f1;
   background: var(--blue-light);
   display: grid;
@@ -1180,58 +1202,64 @@ h3 {
   font: 11px var(--mono);
   color: var(--blue);
 }
+.tokens i {
+  color: #7f9fcf;
+  font: 12px var(--mono);
+}
 .token-turn small {
-  font-size: 8px;
+  font-size: 9px;
   color: var(--muted);
 }
-.observation-block {
-  flex: 1;
-  min-width: 70px;
-  border: 1px dashed #c8d2e1;
-  padding: 12px 8px;
-  border-radius: 6px;
-  background: #f4f6f9;
-  text-align: center;
-  transition: flex 0.4s;
+.turn-weight {
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  text-align: right;
+  color: var(--blue);
+  font-size: 12px;
 }
-.observation-block span {
-  font-size: 9px;
-  color: #768399;
+.turn-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 0;
+  border-radius: 5px;
+  color: var(--blue);
+  font-size: 12px;
 }
-.observation-block div {
-  font: 11px var(--mono);
-  height: 27px;
-  padding-top: 6px;
-  overflow: hidden;
-  overflow-wrap: anywhere;
-  color: #b2bccb;
+.turn-boundary > strong {
+  font-size: 18px;
+  line-height: 1;
 }
-.observation-block strong {
+.turn-boundary > small {
   font: 7px var(--mono);
-  letter-spacing: 0.4px;
-  color: #8792a5;
+  letter-spacing: 0.3px;
 }
 .credit-route {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
   color: var(--blue);
+  font-size: 12px;
 }
-.credit-route span {
-  font: 8px var(--mono);
+.credit-route > span:first-child {
+  font: 9px var(--mono);
 }
-.credit-route strong {
-  font-size: 13px;
-  font-weight: 500;
+.credit-flow .tokens b,
+.credit-flow .turn-boundary {
+  animation: credit-flow 0.7s both;
+  animation-delay: var(--flow-delay);
 }
-.credit-flow .tokens b {
-  animation: credit-flow 1.6s both;
+.credit-flow .tokens b:nth-of-type(2) {
+  animation-delay: calc(var(--flow-delay) + 0.15s);
 }
-.credit-flow .token-turn:first-child .tokens b {
-  animation-delay: 0.65s;
+.credit-flow .tokens b:first-of-type {
+  animation-delay: calc(var(--flow-delay) + 0.3s);
 }
 .credit-controls {
   display: flex;
@@ -1245,46 +1273,46 @@ h3 {
   padding: 9px 11px;
   min-height: 34px;
 }
-.credit-controls label {
-  font-size: 9px;
-  color: var(--muted);
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.credit-controls input {
-  width: 60px;
-  accent-color: var(--blue);
-}
-.credit-controls output {
-  width: 40px;
-  font: 9px var(--mono);
-}
 .reward-formulas {
-  margin: 23px 0;
+  margin: 23px 0 15px;
 }
 .reward-formulas > div {
   display: grid;
-  grid-template-columns: 41px 1fr;
-  gap: 8px;
-  margin-bottom: 12px;
-  padding: 15px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 16px 12px;
   background: #fafcff;
   border: 1px solid var(--line);
   border-radius: 7px;
 }
-.reward-formulas span {
+.reward-formulas .reward-label {
   color: var(--blue);
-  font: 10px var(--mono);
-  align-self: center;
+  font: 9px/1.6 var(--mono);
 }
-.reward-formulas code {
-  font: 14px var(--mono);
-  letter-spacing: -0.5px;
+.math-display {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+  font-size: 13px;
+}
+.math-display .katex-display {
+  margin: 0;
+  text-align: left;
+}
+.math-display .katex-display > .katex {
+  text-align: left;
 }
 .reward-formulas small {
-  grid-column: 2;
   font-size: 9px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.reward-definitions {
+  margin-bottom: 22px;
+  font-size: 10px;
+  line-height: 1.9;
   color: var(--muted);
 }
 .reward-comparison > span {
@@ -2252,18 +2280,6 @@ dialog .dialog-note {
   .credit-layout {
     grid-template-columns: 1fr 1fr;
   }
-  .token-timeline {
-    gap: 7px;
-  }
-  .tokens b {
-    width: 20px;
-  }
-  .observation-block {
-    padding: 10px 5px;
-  }
-  .credit-route span {
-    font-size: 7px;
-  }
   .terminal-recorded {
     display: none;
   }
@@ -2509,21 +2525,6 @@ dialog .dialog-note {
   .credit-card {
     border-right: 0;
     border-bottom: 1px solid var(--line);
-  }
-  .token-timeline {
-    gap: 16px;
-  }
-  .tokens b {
-    width: 35px;
-  }
-  .token-turn small {
-    font-size: 10px;
-  }
-  .observation-block span {
-    font-size: 11px;
-  }
-  .credit-route span {
-    font-size: 9px;
   }
   .credit-card,
   .reward-card {
@@ -2961,32 +2962,24 @@ dialog .dialog-note {
   .credit-layout h3 + p {
     font-size: 11px;
   }
-  .token-timeline {
-    gap: 7px;
+  .token-turn {
+    padding: 10px;
+    column-gap: 8px;
+  }
+  .tokens {
+    gap: 4px;
   }
   .tokens b {
-    width: 23px;
+    width: 25px;
   }
-  .token-turn small {
-    font-size: 7px;
-  }
-  .observation-block span {
-    font-size: 8px;
-  }
-  .observation-block strong {
-    font-size: 6px;
-  }
-  .credit-route span {
-    font-size: 7px;
-  }
-  .credit-route strong {
+  .turn-weight {
     font-size: 11px;
+  }
+  .math-display {
+    font-size: clamp(10px, 3vw, 11px);
   }
   .credit-controls {
     gap: 12px;
-  }
-  .credit-controls label {
-    font-size: 8px;
   }
   .evidence-note {
     font-size: 9px;

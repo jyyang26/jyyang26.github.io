@@ -4,6 +4,15 @@
   const $$ = (selector, root = document) => [
     ...root.querySelectorAll(selector),
   ];
+  if (window.katex) {
+    $$(".math-inline, .math-display").forEach((element) => {
+      window.katex.render(element.textContent.trim(), element, {
+        displayMode: element.classList.contains("math-display"),
+        throwOnError: false,
+        trust: false,
+      });
+    });
+  }
   const research = window.TERMINAL_RESEARCH;
   const motion = matchMedia("(prefers-reduced-motion: reduce)");
   const blue = "#0052D9";
@@ -313,27 +322,16 @@
     stopCredit();
     if (motion.matches) {
       announce(
-        "Observations remain in context. Credit skips them and decays once across the turn boundary.",
+        "Credit propagates backward from Turn 03 to Turn 01. Gamma and lambda are both one within each turn. Each turn boundary multiplies the trace by gamma turn times lambda turn; two boundaries apply this factor twice. Observations remain in context and add no decay.",
       );
       return;
     }
     if (activeMethod !== "credit" || document.hidden) return;
     void $("#token-timeline").offsetWidth;
     $("#token-timeline").classList.add("credit-flow");
-    creditTimer = setTimeout(stopCredit, 2400);
+    creditTimer = setTimeout(stopCredit, 2800);
   }
   $("#credit-play").addEventListener("click", replayCredit);
-  $("#observation-length").addEventListener("input", (event) => {
-    const length = Number(event.target.value);
-    $("#observation-output").textContent = ["short", "medium", "long"][
-      length - 1
-    ];
-    $(".observation-block div").textContent = "···· ······· ".repeat(
-      length + 1,
-    );
-    $(".observation-block div").style.height = `${15 + length * 12}px`;
-    replayCredit();
-  });
   const methodTabs = $$("#method-tabs [role=tab]");
   function activateMethod(key) {
     if (activeMethod === key) return;
