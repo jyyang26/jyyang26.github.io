@@ -653,12 +653,54 @@ test("method tabs restore both explainers with keyboard navigation and persisten
   await expect(page.locator("#panel-trajectory")).toBeVisible();
 });
 
+test("method walkthrough repeats and preserves user pause across lifecycle changes", async ({ page }) => {
+  await page.clock.install();
+  await open(page, false);
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 1000));
+  await page.locator("#tab-loop").click();
+  await page.locator("#loop-play").scrollIntoViewIfNeeded();
+  await expect(page.locator(".loop-layout")).not.toHaveClass(/motion-paused/);
+  for (let cycle = 0; cycle < 2; cycle++) {
+    for (const step of ["02", "03", "04", "05", "01"]) {
+      await page.clock.runFor(3600);
+      await expect(page.locator("#loop-counter")).toHaveText(`${step} / 05`);
+    }
+  }
+  await page.locator("#loop-play").click();
+  await page.locator("#tab-credit").click();
+  await page.locator("#tab-loop").click();
+  await page.clock.runFor(7200);
+  await expect(page.locator("#loop-counter")).toHaveText("01 / 05");
+  await page.evaluate(() => {
+    dispatchEvent(new PageTransitionEvent("pagehide"));
+    dispatchEvent(new PageTransitionEvent("pageshow"));
+  });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await expect(page.locator("#loop-play")).toHaveAttribute("aria-pressed", "false");
+  await page.locator("#loop-play").click();
+  await page.clock.runFor(3600);
+  await expect(page.locator("#loop-counter")).toHaveText("02 / 05");
+  await page.evaluate(() => {
+    Object.defineProperty(document, "hidden", { configurable: true, value: true });
+    document.dispatchEvent(new Event("visibilitychange"));
+  });
+  await page.clock.runFor(7200);
+  await expect(page.locator("#loop-counter")).toHaveText("02 / 05");
+  await page.evaluate(() => {
+    Object.defineProperty(document, "hidden", { configurable: true, value: false });
+    document.dispatchEvent(new Event("visibilitychange"));
+  });
+  await page.clock.runFor(3600);
+  await expect(page.locator("#loop-counter")).toHaveText("03 / 05");
+});
+
 test("method walkthrough plays and pauses when its tab is hidden", async ({
   page,
 }) => {
   await open(page, false);
   await page.locator("#tab-loop").click();
-  await page.locator("#loop-play").click();
+  await expect(page.locator("#loop-play")).toHaveText("Pause walkthrough");
   await expect(page.locator("#loop-counter")).toHaveText("02 / 05", {
     timeout: 6000,
   });
@@ -686,6 +728,7 @@ test("credit explainer propagates backward with decay only at turn boundaries", 
 }) => {
   await open(page, false);
   await page.locator("#tab-credit").click();
+  await page.locator("#token-timeline").scrollIntoViewIfNeeded();
   await expect(page.locator("#panel-credit input[type=range]")).toHaveCount(0);
   await expect(page.locator("#observation-length, #observation-output")).toHaveCount(0);
   await expect(page.locator(".token-turn")).toHaveCount(3);
@@ -700,13 +743,26 @@ test("credit explainer propagates backward with decay only at turn boundaries", 
     String.raw`\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}}`,
     "1",
   ]);
+  await expect(page.locator("#token-timeline")).toHaveClass(/credit-flow/);
+  await expect(page.locator("#credit-play")).toHaveText("Pause credit flow");
+  const delays = await page.locator(".tokens b").evaluateAll((tokens) =>
+    tokens.map((token) => Math.round(token.getAnimations()[0].effect.getKeyframes()[1].offset * 3400)),
+  );
+  expect(delays).toEqual([2100, 1950, 1800, 1200, 1050, 900, 300, 150, 0]);
+  await expect.poll(() => page.locator(".tokens b").last().evaluate((token) =>
+    token.getAnimations()[0].effect.getComputedTiming().currentIteration,
+  ), { timeout: 10000 }).toBeGreaterThanOrEqual(2);
+  await page.locator("#credit-play").click();
+  await expect(page.locator("#credit-play")).toHaveText("Continue credit flow");
+  await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
+  const pausedTime = await page.locator(".tokens b").last().evaluate((token) => token.getAnimations()[0].currentTime);
+  await page.waitForTimeout(250);
+  expect(await page.locator(".tokens b").last().evaluate((token) => token.getAnimations()[0].currentTime)).toBe(pausedTime);
+  await page.locator("#tab-loop").click();
+  await page.locator("#tab-credit").click();
+  await expect(page.locator("#credit-play")).toHaveAttribute("aria-pressed", "false");
   await page.locator("#credit-play").click();
   await expect(page.locator("#token-timeline")).toHaveClass(/credit-flow/);
-  const delays = await page.locator(".tokens b").evaluateAll((tokens) =>
-    tokens.map((token) => parseFloat(getComputedStyle(token).animationDelay)),
-  );
-  expect(delays).toEqual([2.1, 1.95, 1.8, 1.2, 1.05, 0.9, 0.3, 0.15, 0]);
-  await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
   await expect(page.locator(".credit-route")).toContainText(
     "Across K turn boundaries",
   );
@@ -719,7 +775,7 @@ test("credit explainer propagates backward with decay only at turn boundaries", 
   await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.locator("#tab-credit").click();
-  await page.locator("#credit-play").click();
+  await expect(page.locator("#credit-play")).toBeDisabled();
   await expect(page.locator("#token-timeline")).not.toHaveClass(/credit-flow/);
 });
 
@@ -805,6 +861,74 @@ test("Panorama pauses while another method tab is active and retains its final f
   ).toEqual(finalPaths);
 });
 
+test("approach tabs share the full row with author-sized labels", async ({ page }) => {
+  await open(page);
+  await expect(page.locator(".method-tabbar")).not.toContainText("INTERACTIVE EXPLAINER");
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    const layout = await page.locator("#method-tabs").evaluate((tabs) => {
+      const row = tabs.getBoundingClientRect();
+      const author = getComputedStyle(document.querySelector(".authors"));
+      return {
+        left: row.left, right: row.right,
+        authorFont: author.fontFamily, authorSize: author.fontSize,
+        buttons: [...tabs.querySelectorAll("button")].map((button) => {
+          const box = button.getBoundingClientRect();
+          const label = getComputedStyle(button.querySelector("span"));
+          return { left: box.left, right: box.right, width: box.width, top: box.top, font: label.fontFamily, size: label.fontSize, weight: label.fontWeight };
+        }),
+      };
+    });
+    expect(Math.abs(layout.buttons[0].left - layout.left)).toBeLessThan(1);
+    expect(Math.abs(layout.buttons[2].right - layout.right)).toBeLessThan(1);
+    for (const button of layout.buttons) {
+      expect(Math.abs(button.width - layout.buttons[0].width)).toBeLessThan(1);
+      expect(button.top).toBe(layout.buttons[0].top);
+      expect(button.font).toBe(layout.authorFont);
+      expect(button.size).toBe(layout.authorSize);
+      expect(button.weight).toBe("700");
+    }
+  }
+});
+
+test("Discover and verify animates generation, verification and selection with playback controls", async ({ page }) => {
+  await open(page, false);
+  await page.locator("#tab-loop").click();
+  await page.locator('[data-loop-step="0"]').click();
+  await page.locator("#discovery-visual").scrollIntoViewIfNeeded();
+  await expect(page.locator("#discovery-visual")).toBeVisible();
+  await expect(page.locator("#parameter-visual")).toBeHidden();
+  await expect(page.locator(".discovery-trace")).toHaveCount(3);
+  await expect(page.locator(".discovery-pass")).toHaveCount(1);
+  await expect(page.locator("#loop-play")).toHaveText("Pause walkthrough");
+  await page.locator("#loop-play").click();
+  const animations = page.locator("#discovery-visual");
+  expect(await animations.evaluate((el) => el.getAnimations({ subtree: true }).length)).toBeGreaterThan(8);
+  await expect(page.locator(".discovery-trace").first()).toHaveCSS("animation-play-state", "paused");
+  await animations.evaluate((el) => el.getAnimations({ subtree: true }).forEach((animation) => animation.currentTime = 400));
+  await expect(page.locator(".discovery-trace").first()).toHaveCSS("stroke-dashoffset", "100px");
+  await expect(page.locator(".discovery-verdict").first()).toHaveCSS("opacity", "0");
+  await animations.evaluate((el) => el.getAnimations({ subtree: true }).forEach((animation) => animation.currentTime = 1500));
+  const drawing = await page.locator(".discovery-trace").first().evaluate((el) => parseFloat(getComputedStyle(el).strokeDashoffset));
+  expect(drawing).toBeGreaterThan(0);
+  expect(drawing).toBeLessThan(100);
+  await animations.evaluate((el) => el.getAnimations({ subtree: true }).forEach((animation) => animation.currentTime = 3200));
+  await expect(page.locator(".discovery-pass")).toHaveCSS("opacity", "1");
+  await expect(page.locator(".discovery-selection")).toHaveCSS("opacity", "1");
+  await expect(page.locator(".discovery-rejected").first()).toHaveCSS("opacity", "0.5");
+  await page.locator("#loop-play").click();
+  await expect(page.locator(".discovery-trace").first()).toHaveCSS("animation-play-state", "running");
+  await page.locator('[data-loop-step="1"]').click();
+  await expect(page.locator("#discovery-visual")).toBeHidden();
+  await expect(page.locator("#parameter-visual")).toBeVisible();
+  await page.locator('[data-loop-step="0"]').click();
+  await expect(page.locator("#loop-counter")).toHaveText("01 / 05");
+  await expect(page.locator("#loop-play")).toHaveText("Pause walkthrough");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".discovery-trace").first()).toHaveCSS("animation-name", "none");
+  await expect(page.locator(".discovery-selection")).toHaveCSS("opacity", "1");
+});
+
 test("restored methods fit mobile, tablet and desktop without clipped controls", async ({
   page,
 }) => {
@@ -826,10 +950,11 @@ test("restored methods fit mobile, tablet and desktop without clipped controls",
           const bounds = panel.getBoundingClientRect();
           return [
             ...panel.querySelectorAll(
-              "button, input, code, .tokens, .parameter-cards, .token-turn, .turn-boundary, .math-display, .math-display .katex-html",
+              "button, input, code, .tokens, .parameter-cards, .discovery-visual, .discovery-visual svg, .token-turn, .turn-boundary, .math-display, .math-display .katex-html",
             ),
           ]
             .filter((el) => {
+              if (!el.getClientRects().length) return false;
               const box = el.getBoundingClientRect();
               return box.left < bounds.left - 1 || box.right > bounds.right + 1;
             })

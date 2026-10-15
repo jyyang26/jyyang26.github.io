@@ -766,10 +766,30 @@ h3 {
   padding: 10px 20px;
 }
 #method-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
   min-width: 0;
+  gap: 10px;
 }
 #method-tabs button {
-  min-height: 40px;
+  min-width: 0;
+  min-height: 56px;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+}
+#method-tabs button span {
+  font: 700 0.975rem/1.4 var(--sans);
+  color: #526580;
+}
+#method-tabs button[aria-selected="true"] {
+  background: var(--blue-light);
+  border-color: #adc8f3;
+  box-shadow: 0 2px 8px #0052d90c;
+}
+#method-tabs button[aria-selected="true"] span {
+  color: var(--blue);
 }
 #panel-loop,
 #panel-credit,
@@ -782,18 +802,17 @@ h3 {
     padding: 8px;
   }
   #method-tabs {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 3px;
+    gap: 4px;
   }
   #method-tabs button {
-    padding: 8px 3px;
-    gap: 4px;
+    min-height: 82px;
+    padding: 9px 4px;
+    gap: 5px;
+    flex-direction: column;
     justify-content: center;
   }
   #method-tabs button span {
-    font-size: 9px;
+    font-size: 0.925rem;
     line-height: 1.4;
   }
   .loop-layout,
@@ -995,6 +1014,149 @@ h3 {
 .loop-inspector > .mini-eyebrow {
   display: flex;
   justify-content: space-between;
+}
+.loop-visual {
+  display: grid;
+  align-items: center;
+  min-height: 230px;
+  margin: 20px 0 14px;
+}
+.loop-visual .parameter-cards {
+  margin-top: 0;
+}
+.discovery-visual {
+  margin: 0;
+  padding: 10px;
+  background: #f8faff;
+  border: 1px solid #dce6f3;
+  border-radius: 12px;
+}
+.discovery-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font: 15px var(--sans);
+  fill: #687a93;
+}
+.discovery-model rect {
+  fill: #fff;
+  stroke: #203654;
+  stroke-width: 2.5;
+}
+.discovery-model text {
+  fill: #203654;
+  font-size: 20px;
+  font-weight: 700;
+}
+.discovery-branches path,
+.discovery-trace,
+.discovery-verdict path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.discovery-branches path {
+  stroke: #7c94b5;
+  stroke-width: 2;
+  stroke-dasharray: 100;
+}
+.discovery-harness {
+  fill: #fff;
+  stroke: #c3cfdf;
+  stroke-width: 2;
+}
+.discovery-trace {
+  stroke: #7388a4;
+  stroke-width: 3.5;
+  stroke-dasharray: 100;
+}
+.discovery-selected .discovery-harness,
+.discovery-selected .discovery-trace {
+  stroke: var(--blue);
+}
+.discovery-selected > text {
+  fill: var(--blue);
+  font-weight: 700;
+}
+.discovery-selection {
+  fill: #eaf2ff;
+  stroke: #9cbeef;
+  stroke-width: 1;
+}
+.discovery-verdict path {
+  stroke-width: 3.5;
+}
+.discovery-verdict text {
+  font: 9px var(--mono);
+  letter-spacing: 0.5px;
+}
+.discovery-fail path {
+  stroke: #97a5b8;
+}
+.discovery-pass path {
+  stroke: #228660;
+}
+.discovery-pass text {
+  fill: #228660;
+}
+.discovery-rejected {
+  opacity: 0.5;
+}
+.discovery-visual figcaption {
+  display: grid;
+  gap: 5px;
+  padding: 10px 4px 3px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+}
+.discovery-result {
+  color: var(--blue);
+  font-size: 11px;
+}
+.discovery-active .discovery-model rect {
+  animation: discovery-model var(--discovery-duration, 3600ms) linear both;
+}
+.discovery-active .discovery-branches path {
+  animation: discovery-branch var(--discovery-duration, 3600ms) linear both;
+}
+.discovery-active .discovery-trace {
+  animation: discovery-trace var(--discovery-duration, 3600ms) linear both;
+}
+.discovery-active .discovery-verdict {
+  animation: discovery-verify var(--discovery-duration, 3600ms) linear both;
+}
+.discovery-active .discovery-selection,
+.discovery-active .discovery-result {
+  animation: discovery-select var(--discovery-duration, 3600ms) linear both;
+}
+.discovery-active .discovery-rejected {
+  animation: discovery-reject var(--discovery-duration, 3600ms) linear both;
+}
+@keyframes discovery-model {
+  0%, 28% { fill: #fff; stroke: #203654; }
+  10%, 20% { fill: #dceaff; stroke: #0052d9; }
+}
+@keyframes discovery-branch {
+  0%, 12% { stroke-dashoffset: 100; }
+  32%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes discovery-trace {
+  0%, 27% { stroke-dashoffset: 100; }
+  54%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes discovery-verify {
+  0%, 54% { opacity: 0; }
+  66%, 100% { opacity: 1; }
+}
+@keyframes discovery-select {
+  0%, 68% { opacity: 0; }
+  82%, 100% { opacity: 1; }
+}
+@keyframes discovery-reject {
+  0%, 68% { opacity: 1; }
+  82%, 100% { opacity: 0.5; }
 }
 .parameter-cards {
   display: grid;
@@ -1249,17 +1411,6 @@ h3 {
 }
 .credit-route > span:first-child {
   font: 9px var(--mono);
-}
-.credit-flow .tokens b,
-.credit-flow .turn-boundary {
-  animation: credit-flow 0.7s both;
-  animation-delay: var(--flow-delay);
-}
-.credit-flow .tokens b:nth-of-type(2) {
-  animation-delay: calc(var(--flow-delay) + 0.15s);
-}
-.credit-flow .tokens b:first-of-type {
-  animation-delay: calc(var(--flow-delay) + 0.3s);
 }
 .credit-controls {
   display: flex;
@@ -2129,19 +2280,6 @@ dialog .dialog-note {
   30% {
     background: #0052d9;
     color: white;
-  }
-}
-@keyframes credit-flow {
-  0%,
-  100% {
-    background: #ebf2ff;
-    color: #0052d9;
-  }
-  40%,
-  60% {
-    background: #0052d9;
-    color: white;
-    box-shadow: 0 0 0 4px #0052d915;
   }
 }
 @media (min-width: 1600px) {
@@ -3759,11 +3897,32 @@ dialog .dialog-note {
   margin-bottom: 21px;
   padding-top: 17px;
 }
-#overview .authors {
+#overview .hero-metrics > div,
+#overview .hero-metrics .metric-label,
+#overview .hero-metrics strong,
+#overview .hero-metrics strong span,
+#overview .hero-metrics p {
+  font-family: var(--sans);
+  font-weight: 700;
+  color: var(--blue);
+}
+#overview .hero-metrics .metric-label {
+  letter-spacing: 0;
+}
+#overview .hero-metrics .gain-number {
+  font-size: inherit;
+  letter-spacing: inherit;
+  font-variant-numeric: tabular-nums;
+}
+#overview .authors,
+#overview .hero-metrics .metric-label {
+  font-family: var(--sans);
   font-size: 0.975rem;
   font-weight: 700;
-  color: #000;
   line-height: 1.85;
+}
+#overview .authors {
+  color: #000;
 }
 #overview .authors sup {
   font-size: 0.65em;
@@ -3794,7 +3953,8 @@ dialog .dialog-note {
   #overview .byline {
     margin-top: 25px;
   }
-  #overview .authors {
+  #overview .authors,
+  #overview .hero-metrics .metric-label {
     font-size: 0.925rem;
     line-height: 1.8;
   }

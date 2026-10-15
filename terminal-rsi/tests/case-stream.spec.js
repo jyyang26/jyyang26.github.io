@@ -23,9 +23,59 @@ test("Hero identity and Approach labels are updated", async ({ page }) => {
   expect(layout.contentWidth).toBeLessThanOrEqual(layout.width);
   if (desktop) expect(layout.height).toBeLessThanOrEqual(layout.lineHeight + 1);
   await expect(page.locator(".affiliation-row")).toContainText(
-    "Tencent Hy Foundation Model Frontier",
+    "Tencent Hy Frontier",
   );
+  await expect(page.locator('a[href*="huggingface.co"]')).toHaveCount(0);
+  await expect(page.locator("#overview")).not.toContainText("Don’t just solve the next task.");
+  await expect(page.locator("#overview")).not.toContainText("Build a better agent for the one after it.");
+  await expect(page.locator("#overview")).not.toContainText("RPR-2 = TERMINAL-RSI-27B");
+  await expect(page.locator(".metric-label")).toHaveText(["TERMINAL-BENCH 4.0", "TERMINAL-BENCH 2.1"]);
+  const authorFont = await authors.evaluate((element) => getComputedStyle(element).fontFamily);
+  for (const element of await page.locator(".hero-metrics .metric-label, .hero-metrics strong, .hero-metrics strong span, .hero-metrics p").all()) {
+    await expect(element).toHaveCSS("font-family", authorFont);
+    await expect(element).toHaveCSS("font-weight", "700");
+    await expect(element).toHaveCSS("color", "rgb(0, 82, 217)");
+  }
+  await expect(page.locator(".metric-label").first()).toHaveCSS("font-size", desktop ? "15.6px" : "14.8px");
+  await page.locator("#authors-info").click();
+  await expect(page.locator("#info-dialog")).toContainText("Tencent Hy Frontier");
+  await expect(page.locator("#info-dialog")).not.toContainText("Foundation Model");
+  await page.locator(".dialog-close").click();
+  await page.locator('[data-resource="model"]').click();
+  await expect(page.locator('a[href*="huggingface.co"]')).toHaveCount(0);
 });
+
+test("hero gains count up from zero and settle at exact two-decimal gains", async ({ page }) => {
+  await page.clock.install();
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 100));
+  await expect(page.locator("[data-gain]")).toHaveText(["+0.00", "+0.00"]);
+  await page.locator(".hero-metrics").scrollIntoViewIfNeeded();
+  const samples = [];
+  for (let i = 0; i < 24; i++) {
+    await page.clock.runFor(100);
+    samples.push(await page.locator("[data-gain]").evaluateAll((nodes) => nodes.map((node) => Number(node.textContent))));
+  }
+  for (let j = 0; j < 2; j++) {
+    const target = [19.84, 34.82][j];
+    expect(samples.some((sample) => sample[j] > 0 && sample[j] < target)).toBe(true);
+    for (let i = 1; i < samples.length; i++) expect(samples[i][j]).toBeGreaterThanOrEqual(samples[i - 1][j]);
+    expect(samples.at(-1)[j]).toBe(target);
+  }
+  await expect(page.locator("[data-gain]")).toHaveText(["+19.84", "+34.82"]);
+});
+
+for (const mode of ["reduced-motion", "no-javascript"]) {
+  test(`hero gains preserve final values with ${mode}`, async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: mode !== "no-javascript", reducedMotion: "reduce" });
+    const page = await context.newPage();
+    await page.goto("http://127.0.0.1:4173/");
+    await expect(page.locator("[data-gain]")).toHaveText(["+19.84", "+34.82"]);
+    await context.close();
+  });
+}
+
 test("RPR-2 uses new independent trials and no repeated RSR-2 excerpt", async ({
   page,
 }) => {

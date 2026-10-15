@@ -587,7 +587,6 @@
     if (chart.dual) {
       tooltip.append(tooltipLine("Correct tasks", `${node.correct} / ${node.total}`), tooltipLine("Process reward", fixed(node.reward)));
     } else tooltip.append(tooltipLine("Performance (%)", fixed(node.value)));
-    tooltip.append(tooltipLine("Source CSV row", String(node.source_row)));
     const status = document.createElement("div"); status.className = `tooltip-status${node.discarded ? " discarded" : ""}`;
     status.textContent = node.discarded ? "Discarded · Not carried forward" : node.final ? "Retained · Final selected checkpoint" : node.selected ? "Retained · Root for the next phase" : "Retained · Main training trajectory";
     tooltip.append(status);

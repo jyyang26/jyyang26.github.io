@@ -46,7 +46,7 @@
       </nav>
       <a
         class="header-paper"
-        href="Terminal-RSI_1014.pdf"
+        href="Terminal-RSI.pdf"
         target="_blank"
         rel="noopener"
         >Read the paper <span aria-hidden="true">↗</span></a
@@ -90,15 +90,10 @@
                   via Recursive Self-Rewrite and Policy-Refine</span
                 >
               </h1>
-              <p class="hero-description hero-enter">
-                Don’t just solve the next task.<br /><strong
-                  >Build a better agent for the one after it.</strong
-                >
-              </p>
               <div class="resource-actions hero-enter">
                 <a
                   class="button primary"
-                  href="Terminal-RSI_1014.pdf"
+                  href="Terminal-RSI.pdf"
                   target="_blank"
                   rel="noopener"
                   ><svg viewBox="0 0 20 20" aria-hidden="true">
@@ -117,13 +112,6 @@
                     /></svg
                   >Model <span class="button-meta">soon</span>
                 </button>
-                <a
-                  class="button text-button"
-                  href="https://huggingface.co/Teriminal-RSI"
-                  target="_blank"
-                  rel="noopener"
-                  >Hugging Face <span aria-hidden="true">↗</span></a
-                >
               </div>
             </div>
             <div
@@ -165,9 +153,7 @@
                   ></div>
                 </article>
                 <div class="art-bottomline">
-                  <span
-                    ><i class="legend-dot"></i> RPR-2 = TERMINAL-RSI-27B</span
-                  ><span>INDEPENDENT LINEAR AXES</span>
+                  <span>INDEPENDENT LINEAR AXES</span>
                 </div>
               </div>
               <div class="floating-label float-refine">
@@ -197,7 +183,7 @@
               Liang<sup>1</sup>
             </p>
             <div class="affiliation-row">
-              <strong>Tencent Hy Foundation Model Frontier</strong
+              <strong>Tencent Hy Frontier</strong
               ><span class="affiliation-slash">/</span><strong>NUS</strong
               ><span class="affiliation-slash">/</span><strong>UMD</strong
               ><span class="affiliation-slash">/</span><strong>UGA</strong
@@ -210,15 +196,17 @@
           </div>
           <div class="hero-metrics hero-enter independent-metrics">
             <div>
-              <span class="metric-label"
-                >TERMINAL-BENCH 4.0 · GAIN OVER BASE</span
-              ><strong>+19.84<span> pp</span></strong>
+              <span class="metric-label">TERMINAL-BENCH 4.0</span>
+              <strong aria-label="Gain of 19.84 percentage points">
+                <span class="gain-number" data-gain="19.84" aria-hidden="true">+19.84</span><span aria-hidden="true"> pp</span>
+              </strong>
               <p>0.00% → 19.84%</p>
             </div>
             <div>
-              <span class="metric-label"
-                >TERMINAL-BENCH 2.1 · GAIN OVER BASE</span
-              ><strong>+34.82<span> pp</span></strong>
+              <span class="metric-label">TERMINAL-BENCH 2.1</span>
+              <strong aria-label="Gain of 34.82 percentage points">
+                <span class="gain-number" data-gain="34.82" aria-hidden="true">+34.82</span><span aria-hidden="true"> pp</span>
+              </strong>
               <p>51.70% → 86.52%</p>
             </div>
             <a class="explore-link" href="#method"
@@ -289,7 +277,6 @@
                   03 <span>Credit &amp; reward</span>
                 </button>
               </div>
-              <span class="workbench-label">INTERACTIVE EXPLAINER</span>
             </div>
             <div
               id="panel-trajectory"
@@ -399,30 +386,87 @@
                 </div>
                 <div class="loop-inspector">
                   <div class="mini-eyebrow">
-                    PARAMETER HANDOFF <span id="loop-counter">01 / 05</span>
+                    <span id="loop-visual-label">TRAJECTORY DISCOVERY</span>
+                    <span id="loop-counter">01 / 05</span>
                   </div>
-                  <div class="parameter-cards">
-                    <div id="actor-state">
-                      <span>ACTOR · θ</span
-                      ><strong id="actor-status">Roll out</strong>
-                      <div class="parameter-bars" aria-hidden="true">
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                  <div class="loop-visual">
+                    <figure id="discovery-visual" class="discovery-visual">
+                      <svg viewBox="0 0 480 250" role="img" aria-labelledby="discovery-title discovery-description">
+                        <title id="discovery-title">Discover and verify terminal trajectories</title>
+                        <desc id="discovery-description">One model generates trajectories through harnesses A, B and C. The terminal verifier rejects A and C; the successful trajectory B is selected for rewriting. Illustrative example.</desc>
+                        <defs>
+                          <marker id="discovery-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                            <path d="M0 0L10 5L0 10Z" fill="#7c94b5" />
+                          </marker>
+                        </defs>
+                        <rect class="discovery-selection" x="157" y="91" width="309" height="74" rx="12" />
+                        <g class="discovery-model">
+                          <rect x="12" y="102" width="100" height="50" rx="12" />
+                          <text x="62" y="132" text-anchor="middle">model</text>
+                        </g>
+                        <g class="discovery-branches">
+                          <path pathLength="100" d="M112 127H137V43H167" marker-end="url(#discovery-arrow)" />
+                          <path pathLength="100" d="M112 127H167" marker-end="url(#discovery-arrow)" />
+                          <path pathLength="100" d="M112 127H137V211H167" marker-end="url(#discovery-arrow)" />
+                        </g>
+                        <g class="discovery-candidate discovery-rejected">
+                          <rect class="discovery-harness" x="170" y="22" width="112" height="42" rx="9" />
+                          <text x="226" y="48" text-anchor="middle">harness A</text>
+                          <path class="discovery-trace" pathLength="100" d="M300 43H321V27H346V60H369V38H401" />
+                          <g class="discovery-verdict discovery-fail">
+                            <path d="M428 35L444 51M444 35L428 51" />
+                            <text x="436" y="75" text-anchor="middle">FAIL</text>
+                          </g>
+                        </g>
+                        <g class="discovery-candidate discovery-selected">
+                          <rect class="discovery-harness" x="170" y="106" width="112" height="42" rx="9" />
+                          <text x="226" y="132" text-anchor="middle">harness B</text>
+                          <path class="discovery-trace" pathLength="100" d="M300 127H322V144H345V111H374V127H401" />
+                          <g class="discovery-verdict discovery-pass">
+                            <path d="M425 127L433 135L447 116" />
+                            <text x="436" y="158" text-anchor="middle">PASS</text>
+                          </g>
+                        </g>
+                        <g class="discovery-candidate discovery-rejected">
+                          <rect class="discovery-harness" x="170" y="190" width="112" height="42" rx="9" />
+                          <text x="226" y="216" text-anchor="middle">harness C</text>
+                          <path class="discovery-trace" pathLength="100" d="M300 211H320V192H347V205H368V223H401" />
+                          <g class="discovery-verdict discovery-fail">
+                            <path d="M428 203L444 219M444 203L428 219" />
+                            <text x="436" y="243" text-anchor="middle">FAIL</text>
+                          </g>
+                        </g>
+                      </svg>
+                      <figcaption>
+                        <span>Generate → verify → retain</span>
+                        <strong class="discovery-result">Verified trajectory → Self-Rewrite</strong>
+                      </figcaption>
+                    </figure>
+                    <div id="parameter-visual" hidden>
+                      <div class="parameter-cards">
+                        <div id="actor-state">
+                          <span>ACTOR · θ</span
+                          ><strong id="actor-status">Roll out</strong>
+                          <div class="parameter-bars" aria-hidden="true">
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                        <div id="critic-state">
+                          <span>CRITIC · φ</span
+                          ><strong id="critic-status">Seed warm-up</strong>
+                          <div class="parameter-bars" aria-hidden="true">
+                            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        id="calibration-count"
+                        class="calibration-count"
+                        aria-label="Four critic-only calibration updates"
+                      >
+                        <span>1</span><span>2</span><span>3</span><span>4</span>
                       </div>
                     </div>
-                    <div id="critic-state">
-                      <span>CRITIC · φ</span
-                      ><strong id="critic-status">Seed warm-up</strong>
-                      <div class="parameter-bars" aria-hidden="true">
-                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    id="calibration-count"
-                    class="calibration-count"
-                    aria-label="Four critic-only calibration updates"
-                  >
-                    <span>1</span><span>2</span><span>3</span><span>4</span>
                   </div>
                   <h3 id="loop-title">Start with reproducible success.</h3>
                   <p id="loop-description">
@@ -434,9 +478,9 @@
                     <button
                       id="loop-play"
                       class="button primary"
-                      aria-pressed="false"
+                      aria-pressed="true"
                     >
-                      Play walkthrough</button
+                      Pause walkthrough</button
                     ><button id="loop-next" class="button">Next step →</button
                     ><button
                       id="loop-reset"
@@ -538,8 +582,8 @@
                     <span class="math-inline">(\gamma_{\mathrm{turn}}\lambda_{\mathrm{turn}})^K</span>
                   </div>
                   <div class="credit-controls">
-                    <button id="credit-play" class="button">
-                      Replay credit flow ↑
+                    <button id="credit-play" class="button" aria-pressed="true">
+                      Pause credit flow
                     </button>
                   </div>
                   <p class="evidence-note">
@@ -787,7 +831,7 @@
                 Inspect all chart data ↓</button
               ><a
                 class="inline-link"
-                href="Terminal-RSI_1014.pdf#page=8"
+                href="Terminal-RSI.pdf#page=8"
                 target="_blank"
                 rel="noopener"
                 >Paper · Figure 4 ↗</a
@@ -1034,7 +1078,7 @@
               </p>
               <a
                 class="button primary"
-                href="Terminal-RSI_1014.pdf"
+                href="Terminal-RSI.pdf"
                 target="_blank"
                 rel="noopener"
                 >Read the full paper <span aria-hidden="true">↗</span></a
@@ -1072,13 +1116,8 @@
             >
             <p>Recursive learning. Verifiable progress.</p>
             <nav aria-label="Footer navigation">
-              <a href="Terminal-RSI_1014.pdf" target="_blank" rel="noopener"
+              <a href="Terminal-RSI.pdf" target="_blank" rel="noopener"
                 >Paper ↗</a
-              ><a
-                href="https://huggingface.co/Teriminal-RSI"
-                target="_blank"
-                rel="noopener"
-                >Hugging Face ↗</a
               ><a href="#overview">Back to top ↑</a>
             </nav>
           </footer>

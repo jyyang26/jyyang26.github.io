@@ -33,6 +33,47 @@
   }
 
   document.documentElement.classList.add("js");
+  let pageActive = true;
+  const gainNumbers = $$("[data-gain]");
+  let gainVisible = false,
+    gainElapsed = -500,
+    gainFrame = null,
+    gainLastTime = null,
+    gainComplete = motion.matches;
+  function renderGains(progress) {
+    const eased = 1 - Math.pow(1 - progress, 3);
+    gainNumbers.forEach((element) => {
+      element.textContent = `+${fmt(Number(element.dataset.gain) * eased)}`;
+    });
+  }
+  function stopGains() {
+    cancelAnimationFrame(gainFrame);
+    gainFrame = null;
+    gainLastTime = null;
+  }
+  function syncGains() {
+    stopGains();
+    if (motion.matches) {
+      gainComplete = true;
+      renderGains(1);
+    }
+    if (gainComplete || !gainVisible || document.hidden || !pageActive) return;
+    const tick = (time) => {
+      if (gainLastTime !== null) gainElapsed += time - gainLastTime;
+      gainLastTime = time;
+      const progress = Math.max(0, Math.min(gainElapsed / 1100, 1));
+      renderGains(progress);
+      gainComplete = progress === 1;
+      if (gainComplete) stopGains();
+      else gainFrame = requestAnimationFrame(tick);
+    };
+    gainFrame = requestAnimationFrame(tick);
+  }
+  renderGains(gainComplete ? 1 : 0);
+  new IntersectionObserver((entries) => {
+    gainVisible = entries[0].isIntersecting;
+    syncGains();
+  }, { threshold: 0.2 }).observe($(".hero-metrics"));
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -242,13 +283,25 @@
       criticOn: false,
     },
   ];
+  const LOOP_STEP_MS = 3600;
+  const CREDIT_CYCLE_MS = 3400;
   let loopStep = 0,
-    loopPlaying = false,
+    loopPlaying = true,
     loopVisible = false,
-    loopTimer = null;
-  let creditTimer = null;
+    loopTimer = null,
+    loopRemaining = LOOP_STEP_MS,
+    loopDeadline = 0;
+  let creditPlaying = true,
+    creditVisible = false;
+  const creditAnimations = [];
   function renderLoop() {
     const state = loopSteps[loopStep];
+    const discovering = loopStep === 0;
+    $(".loop-layout").classList.toggle("discovery-active", discovering);
+    $(".loop-layout").style.setProperty("--discovery-duration", `${LOOP_STEP_MS}ms`);
+    $("#discovery-visual").hidden = !discovering;
+    $("#parameter-visual").hidden = discovering;
+    $("#loop-visual-label").textContent = discovering ? "TRAJECTORY DISCOVERY" : "PARAMETER HANDOFF";
     $("#loop-counter").textContent =
       `${String(loopStep + 1).padStart(2, "0")} / 05`;
     $("#loop-title").textContent = state.title;
@@ -264,33 +317,79 @@
       if (active) button.setAttribute("aria-current", "step");
       else button.removeAttribute("aria-current");
     });
-    $("#loop-play").textContent = loopPlaying
-      ? "Pause walkthrough"
-      : "Play walkthrough";
-    $("#loop-play").setAttribute("aria-pressed", String(loopPlaying));
+    $("#loop-play").textContent = motion.matches
+      ? "Reduced motion · use steps"
+      : loopPlaying ? "Pause walkthrough" : "Continue walkthrough";
+    $("#loop-play").disabled = motion.matches;
+    $("#loop-play").setAttribute("aria-pressed", String(loopPlaying && !motion.matches));
   }
-  function stopCredit() {
-    clearTimeout(creditTimer);
-    creditTimer = null;
-    $("#token-timeline").classList.remove("credit-flow");
+  function stopLoop() {
+    if (loopTimer !== null) {
+      loopRemaining = Math.max(0, loopDeadline - performance.now());
+      clearTimeout(loopTimer);
+      loopTimer = null;
+    }
+  }
+  function syncCredit() {
+    const running = creditPlaying && creditVisible && activeMethod === "credit"
+      && !document.hidden && pageActive && !motion.matches;
+    if (running && !creditAnimations.length) {
+      $$("#token-timeline .tokens b, #token-timeline .turn-boundary").forEach((element) => {
+        let delay = parseFloat(getComputedStyle(element).getPropertyValue("--flow-delay")) * 1000;
+        if (element.matches(".tokens b")) {
+          const tokens = $$("b", element.parentElement);
+          delay += (tokens.length - 1 - tokens.indexOf(element)) * 150;
+        }
+        const base = { backgroundColor: "#ebf2ff", color: blue, boxShadow: "0 0 0 0 transparent" };
+        const highlight = { backgroundColor: blue, color: "#fff", boxShadow: "0 0 0 4px #0052d915" };
+        const animation = element.animate([
+          { ...base, offset: 0 },
+          { ...base, offset: delay / CREDIT_CYCLE_MS },
+          { ...highlight, offset: (delay + 280) / CREDIT_CYCLE_MS },
+          { ...highlight, offset: (delay + 420) / CREDIT_CYCLE_MS },
+          { ...base, offset: (delay + 700) / CREDIT_CYCLE_MS },
+          { ...base, offset: 1 },
+        ], { duration: CREDIT_CYCLE_MS, iterations: Infinity });
+        animation.pause();
+        animation.currentTime = 0;
+        creditAnimations.push(animation);
+      });
+    }
+    creditAnimations.forEach((animation) => running ? animation.play() : animation.pause());
+    $("#token-timeline").classList.toggle("credit-flow", running);
+    $("#credit-play").textContent = motion.matches
+      ? "Reduced motion · static view"
+      : creditPlaying ? "Pause credit flow" : "Continue credit flow";
+    $("#credit-play").disabled = motion.matches;
+    $("#credit-play").setAttribute("aria-pressed", String(creditPlaying && !motion.matches));
   }
   function syncMethodPlayback() {
-    clearTimeout(loopTimer);
-    loopTimer = null;
-    const running =
-      loopPlaying && loopVisible && activeMethod === "loop" && !document.hidden;
+    const running = loopPlaying && loopVisible && activeMethod === "loop"
+      && !document.hidden && pageActive && !motion.matches;
     $(".loop-layout").classList.toggle("motion-paused", !running);
-    if (running)
+    if (!running) stopLoop();
+    else if (loopTimer === null) {
+      loopDeadline = performance.now() + loopRemaining;
       loopTimer = setTimeout(() => {
-        if (loopStep === loopSteps.length - 1) loopPlaying = false;
-        else loopStep++;
+        loopTimer = null;
+        loopRemaining = LOOP_STEP_MS;
+        loopStep = (loopStep + 1) % loopSteps.length;
         renderLoop();
         syncMethodPlayback();
-      }, 3600);
-    if (activeMethod !== "credit" || document.hidden) stopCredit();
+      }, loopRemaining);
+    }
+    if (loopStep === 0) {
+      const remaining = running ? Math.max(0, loopDeadline - performance.now()) : loopRemaining;
+      $("#discovery-visual").getAnimations({ subtree: true }).forEach((animation) => {
+        animation.currentTime = LOOP_STEP_MS - remaining;
+      });
+    }
+    syncCredit();
   }
-  function setLoopStep(index) {
-    loopPlaying = false;
+  function setLoopStep(index, play = false) {
+    stopLoop();
+    loopRemaining = LOOP_STEP_MS;
+    loopPlaying = play;
     loopStep = index;
     renderLoop();
     syncMethodPlayback();
@@ -298,7 +397,6 @@
   }
   $("#loop-play").addEventListener("click", () => {
     loopPlaying = !loopPlaying;
-    if (loopPlaying && loopStep === loopSteps.length - 1) loopStep = 0;
     renderLoop();
     syncMethodPlayback();
   });
@@ -308,7 +406,7 @@
   $("#loop-reset").addEventListener("click", () => setLoopStep(0));
   $$("[data-loop-step]").forEach((button) =>
     button.addEventListener("click", () =>
-      setLoopStep(Number(button.dataset.loopStep)),
+      setLoopStep(Number(button.dataset.loopStep), button.dataset.loopStep === "0"),
     ),
   );
   new IntersectionObserver((entries) => {
@@ -316,22 +414,13 @@
     syncMethodPlayback();
   }).observe($(".loop-layout"));
   new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) stopCredit();
+    creditVisible = entries[0].isIntersecting;
+    syncCredit();
   }).observe($("#token-timeline"));
-  function replayCredit() {
-    stopCredit();
-    if (motion.matches) {
-      announce(
-        "Credit propagates backward from Turn 03 to Turn 01. Gamma and lambda are both one within each turn. Each turn boundary multiplies the trace by gamma turn times lambda turn; two boundaries apply this factor twice. Observations remain in context and add no decay.",
-      );
-      return;
-    }
-    if (activeMethod !== "credit" || document.hidden) return;
-    void $("#token-timeline").offsetWidth;
-    $("#token-timeline").classList.add("credit-flow");
-    creditTimer = setTimeout(stopCredit, 2800);
-  }
-  $("#credit-play").addEventListener("click", replayCredit);
+  $("#credit-play").addEventListener("click", () => {
+    creditPlaying = !creditPlaying;
+    syncCredit();
+  });
   const methodTabs = $$("#method-tabs [role=tab]");
   function activateMethod(key) {
     if (activeMethod === key) return;
@@ -350,7 +439,6 @@
       frameObserver.unobserve($(".trajectory-scroll"));
       frameObserver.observe($(".trajectory-scroll"));
     }
-    if (key === "credit") replayCredit();
   }
   methodTabs.forEach((tab, index) => {
     tab.addEventListener("click", () => activateMethod(tab.dataset.methodTab));
@@ -1206,6 +1294,7 @@
     });
     syncFrame();
     syncMethodPlayback();
+    syncGains();
     scheduleCase();
   });
   motion.addEventListener("change", () => {
@@ -1213,14 +1302,13 @@
       stopCaseFrame();
       casePlaying = false;
       caseElapsed = CASE_STAGE_MS;
-      loopPlaying = false;
-      stopCredit();
       sendPlayerCommand("finish");
     }
     renderCase();
     renderLoop();
     syncFrame();
     syncMethodPlayback();
+    syncGains();
     scheduleCase();
     charts.forEach((chart) => chart.setOption({ animation: !motion.matches }));
   });
@@ -1247,13 +1335,6 @@
         showInfo("Model weights are not public yet.", [
           "The Hugging Face organization is available, but currently lists no public models. No specific Terminal-RSI-27B model URL has been supplied.",
         ]);
-        const a = document.createElement("a");
-        a.href = "https://huggingface.co/Teriminal-RSI";
-        a.target = "_blank";
-        a.rel = "noopener";
-        a.className = "button";
-        a.textContent = "Visit the Hugging Face organization ↗";
-        dialogContent.append(a);
       }
     }),
   );
@@ -1263,7 +1344,7 @@
     ]);
     const list = document.createElement("ul");
     [
-      "1 · Tencent Hy Foundation Model Frontier",
+      "1 · Tencent Hy Frontier",
       "2 · National University of Singapore",
       "3 · University of Maryland, College Park",
       "4 · University of Georgia",
@@ -1331,17 +1412,20 @@
   });
   addEventListener("resize", updateNavigation, { passive: true });
   addEventListener("pagehide", () => {
+    pageActive = false;
     stopCaseFrame();
     clearTimeout(copyTimer);
-    clearTimeout(loopTimer);
-    stopCredit();
+    syncMethodPlayback();
+    stopGains();
     lastFrameVisibility = null;
     sendPlayerCommand("visible", false);
   });
   addEventListener("pageshow", () => {
+    pageActive = true;
     updateNavigation();
     syncFrame();
     syncMethodPlayback();
+    syncGains();
     scheduleCase();
   });
 })();
