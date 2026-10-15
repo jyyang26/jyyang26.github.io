@@ -1,7 +1,7 @@
 window.RSI_DATA = {
   "schemaVersion": 1,
   "source": "RSI Result.csv",
-  "sourceSHA256": "0b627fe80e51784e94ad9d9540f6aa068dd6ae96a98fb95852622d20cf023844",
+  "sourceSHA256": "56eb2c0c648b590e9fbfda9251cad523da52e039f8323f2a59ee13d43e49b161",
   "coordinateSystem": "Equally spaced stages; ordinal local checkpoints; linear y axes",
   "selectedCheckpoints": {
     "rl1": 20,
@@ -845,13 +845,31 @@ window.RSI_DATA = {
         "step": null
       },
       "rl1": {
-        "value": 7.0,
-        "correct": 7.0,
+        "value": 6.0,
+        "correct": 6.0,
         "total": 100,
         "reward": null,
         "source_row": 12,
         "x": 3.0,
         "step": 20
+      },
+      "rsr2": {
+        "value": 6.0,
+        "correct": 6.0,
+        "total": 100,
+        "reward": null,
+        "source_row": 16,
+        "x": 4.5,
+        "step": null
+      },
+      "long": {
+        "value": 6.0,
+        "correct": 6.0,
+        "total": 100,
+        "reward": null,
+        "source_row": 31,
+        "x": 6.0,
+        "step": 18
       }
     },
     "LHTB": {
@@ -892,18 +910,15 @@ window.RSI_DATA = {
         "step": null
       },
       "long": {
-        "value": 8.695652173913043,
-        "correct": 4,
+        "value": 10.869565217391305,
+        "correct": 5,
         "total": 46,
-        "reward": 0.35,
+        "reward": 0.37,
         "source_row": 31,
         "x": 6.0,
         "step": 18
       }
     }
   },
-  "missing": [
-    "SWR100: rsr2",
-    "SWR100: long"
-  ]
+  "missing": []
 };

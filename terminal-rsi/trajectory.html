@@ -15,8 +15,8 @@
       if (new URLSearchParams(location.search).has("embed"))
         document.documentElement.classList.add("embedded");
     </script>
-    <script src="data.js" defer></script>
-    <script src="app.js" defer></script>
+    <script src="data.js?v=20261016" defer></script>
+    <script src="app.js?v=20261016" defer></script>
   </head>
   <body>
     <main class="workspace" aria-label="Measured RSI training trajectories">
@@ -252,7 +252,7 @@
         Extracted from the first main table of <code>RSI Result.csv</code>,
         using the stage mapping of <code>plot_rsi_results.py</code>. The
         repeated summary table is excluded.
-        <strong id="record-count">128</strong> measured records.
+        <strong id="record-count">130</strong> measured records.
       </p>
       <dl class="methodology">
         <div>
@@ -264,17 +264,17 @@
           </dd>
         </div>
         <div>
-          <dt>Missing values are not imputed</dt>
+          <dt>Five measured SWR100 checkpoints</dt>
           <dd>
-            SWR100 is measured only at Base, RSR-1, and RPR-1: 3.00, 5.00, and
-            7.00%. Its line stops at the last observation.
+            Base, RSR-1, RPR-1, RSR-2, and RPR-2 report 3.00, 5.00, 6.00,
+            6.00, and 6.00%. Every stage is measured; no missing values are imputed.
           </dd>
         </div>
         <div>
           <dt>Independent dual axes</dt>
           <dd>
-            LHTB: blue = completed tasks (0, 0, 2, 4, 4 of 46); light blue =
-            process reward (0.21, 0.29, 0.30, 0.31, 0.35). The two linear axes
+            LHTB: blue = completed tasks (0, 0, 2, 4, 5 of 46); light blue =
+            process reward (0.21, 0.29, 0.30, 0.31, 0.37). The two linear axes
             have different units.
           </dd>
         </div>

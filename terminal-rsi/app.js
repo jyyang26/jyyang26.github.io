@@ -20,7 +20,7 @@
   const STRIDE = RUN + HOLD + MORPH;
   const TOTAL = panoramaOnly ? 7000 : STRIDE * 2 + RUN + HOLD;
   const STARTS = [0, STRIDE, STRIDE * 2];
-  const ORDER = ["TB4", "TB3", "TB2.1", "TBH", "SWR100", "LHTB"];
+  const ORDER = ["TB4", "TB3", "TB2.1", "TBH", "LHTB", "SWR100"];
   const STAGES = ["base", "rsr1", "rl1", "rsr2", "long"];
   const STAGE_TITLES = { base: "Base", base_dump: "Direct PPO · Base dump", rsr1: "RSR-1 · SWR-RSR", rl1: "RPR-1", rl1_dump: "RPR-1 · Discarded tail", rsr2: "RSR-2", rl2_dump: "RPR-2 · Standard reward dump", long: "RPR-2 · Long-Reward", long_dump: "Long-Reward · Discarded tail" };
   const EVENTS = { base: [300, 750], base_dump: [950, 3000], rsr1: [3650, 5000], rl1: [5350, 8350], rl1_dump: [8700, 10800], rsr2: [12600, 14000], rl2_dump: [14200, 16750], long: [18100, 21600], long_dump: [22300, 23200] };
@@ -175,8 +175,9 @@
       this.retrace = svg("circle", { class: "retrace", fill: C.blue, r: 4, opacity: 0 }, this.effectsLayer);
       this.byStage = {};
       if (this.terminal) this.buildTerminal(); else this.buildAuxiliary();
-      if (name === "SWR100") {
-        this.missing = svg("g", { "aria-label": "RSR-2 and RPR-2 not measured; no extrapolation" }, this.root);
+      const missingStages = this.terminal ? [] : STAGES.filter((stage) => !DATA.auxiliary[name][stage]);
+      if (name === "SWR100" && missingStages.length) {
+        this.missing = svg("g", { "aria-label": `${missingStages.map((stage) => STAGE_TITLES[stage]).join(" and ")} not measured; no extrapolation` }, this.root);
         this.missingLine = svg("line", { stroke: "#E3E9F0", "stroke-dasharray": "2 4" }, this.missing);
         this.missingLabel = svg("text", { fill: "#94A3B8", "text-anchor": "middle", "font-size": 10 }, this.missing, "NOT REPORTED");
         this.missingNote = svg("text", { fill: "#A6B1C0", "text-anchor": "middle", "font-size": 9 }, this.missing, "No extrapolation");
@@ -262,8 +263,9 @@
       }
       this.final = this.byStage.long?.[0];
       this.selected = this.byStage.rl1[0];
-      this.domain = this.dual ? [-3.6, 6.8] : [2.5, 10.5];
-      this.tickValues = this.dual ? [0, 2, 4] : [2.5, 5, 7.5, 10];
+      const maxCorrect = this.dual ? Math.max(...Object.values(stages).map((record) => record.correct)) : 0;
+      this.domain = this.dual ? [-maxCorrect * 0.9, maxCorrect * 1.7] : [2.5, 7.5];
+      this.tickValues = this.dual ? [0, 2, 4, 6] : [3, 4, 5, 6, 7];
       this.rewardDomain = [0.1, 0.8];
     }
 
@@ -453,7 +455,7 @@
   const LAYOUTS = [
     { TB4: [82, 66, 1236, 521] },
     { TB4: [26, 66, 657, 255], TB3: [715, 66, 657, 255], "TB2.1": [26, 336, 657, 255], TBH: [715, 336, 657, 255] },
-    { TB4: [18, 66, 446, 255], TB3: [474, 66, 446, 255], "TB2.1": [930, 66, 446, 255], TBH: [18, 336, 446, 255], SWR100: [474, 336, 446, 255], LHTB: [930, 336, 446, 255] }
+    { TB4: [18, 66, 446, 255], TB3: [474, 66, 446, 255], "TB2.1": [930, 66, 446, 255], TBH: [18, 336, 446, 255], LHTB: [474, 336, 446, 255], SWR100: [930, 336, 446, 255] }
   ];
   const charts = ORDER.map((name) => new Chart(name));
   const legend = $("#legend");

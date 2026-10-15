@@ -242,6 +242,72 @@ test("Panorama plays automatically once in seven seconds, holds its final frame 
   expect(duration).toBeLessThan(8500);
 });
 
+test("Panorama matches the updated six-benchmark stage measurements", async ({ page }) => {
+  await open(page);
+  await page.locator("#trajectory-frame").scrollIntoViewIfNeeded();
+  const frame = page.frameLocator("#trajectory-frame");
+  await expect(frame.locator("#visualization")).toHaveAttribute("data-time", "7000");
+  const stages = ["base", "rsr1", "rl1", "rsr2", "long"];
+  const values = {
+    TB4: ["0.00", "6.10", "16.67", "17.46", "19.84"],
+    TB3: ["0.00", "6.80", "14.29", "15.00", "16.95"],
+    "TB2.1": ["51.70", "70.10", "77.53", "86.52", "86.52"],
+    TBH: ["31.00", "54.00", "69.50", "76.00", "79.00"],
+    SWR100: ["3.00", "5.00", "6.00", "6.00", "6.00"],
+  };
+  for (const [key, measurements] of Object.entries(values)) {
+    for (const [i, stage] of stages.entries()) {
+      await expect(frame.locator(`[data-benchmark="${key}"] [data-label="${stage}-value"] text`)).toHaveText(measurements[i]);
+    }
+  }
+  for (const [i, stage] of stages.entries()) {
+    await expect(frame.locator(`[data-benchmark="LHTB"] [data-label="${stage}-correct"] text`)).toHaveText(["0/46", "0/46", "2/46", "4/46", "5/46"][i]);
+    await expect(frame.locator(`[data-benchmark="LHTB"] [data-label="${stage}-reward"] text`)).toHaveText(["0.21", "0.29", "0.30", "0.31", "0.37"][i]);
+  }
+  await expect(frame.locator('[data-benchmark="SWR100"]')).not.toContainText("NOT REPORTED");
+  const child = page.frames().find((f) => f.url().includes("trajectory.html"));
+  const order = await frame.locator("[data-benchmark]").evaluateAll((nodes) => nodes.map((node) => node.dataset.benchmark));
+  expect(order).toEqual(["TB4", "TB3", "TB2.1", "TBH", "LHTB", "SWR100"]);
+  const auxiliary = await child.evaluate(() => RSI_DATA.auxiliary);
+  expect(auxiliary.LHTB.long.value).toBeCloseTo(100 * 5 / 46, 12);
+  expect(auxiliary.SWR100.rl1.step).toBe(20);
+  expect(auxiliary.SWR100.long.step).toBe(18);
+  expect(await child.evaluate(() => RSI_DATA.missing)).toEqual([]);
+  await expect(frame.locator("#record-count")).toHaveText("130");
+});
+
+test("Panorama point tooltips omit source CSV rows for mouse, keyboard and touch", async ({ page }) => {
+  await open(page);
+  await page.locator("#trajectory-frame").scrollIntoViewIfNeeded();
+  const frame = page.frameLocator("#trajectory-frame");
+  await expect(frame.locator("#visualization")).toHaveAttribute("data-time", "7000");
+  for (const selector of [
+    '[data-point="TB4-long-18-value"]',
+    '[data-point="TB4-rl1_dump-35-value"]',
+    '[data-point="LHTB-long-18-correct"]',
+    '[data-point="LHTB-long-18-reward"]',
+    '[data-point="SWR100-long-18-value"]',
+  ]) {
+    const point = frame.locator(selector);
+    await point.scrollIntoViewIfNeeded();
+    for (const interaction of ["pointerenter", "focus", "pointerdown"]) {
+      if (interaction === "focus") await point.focus();
+      else await point.dispatchEvent(interaction, { pointerType: interaction === "pointerdown" ? "touch" : "mouse", clientX: 150, clientY: 150 });
+      await expect(frame.locator("#tooltip")).toBeVisible();
+      await expect(frame.locator("#tooltip")).toContainText("Training step");
+      await expect(frame.locator("#tooltip")).not.toContainText(/Source CSV row|source_row/i);
+      await expect(point).toHaveAttribute("aria-describedby", "tooltip");
+      await expect(point).not.toHaveAttribute("aria-label", /Source CSV row|source_row/i);
+      if (selector.includes("LHTB")) {
+        await expect(frame.locator("#tooltip")).toContainText("5 / 46");
+        await expect(frame.locator("#tooltip")).toContainText("0.37");
+      }
+      await point.dispatchEvent("pointerleave");
+      await point.evaluate((node) => node.blur());
+    }
+  }
+});
+
 test("Panorama respects reduced motion, remains six-panel, and suspends when offscreen", async ({
   page,
 }) => {
