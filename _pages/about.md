@@ -450,7 +450,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
-        <li><span class="news-tag">2026.10</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2610.22192">Terminal-RSI</a></strong>! Recursively coupling verified trajectory rewriting with critic-inheriting policy refinement to improve terminal agents. <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>.</li>
+        <li><span class="news-tag">2026.10</span> We release <strong><a href="https://arxiv.org/abs/2610.22192">Terminal-RSI</a></strong>! Recursively coupling verified trajectory rewriting with critic-inheriting policy refinement to improve terminal agents. <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>.</li>
       <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://arxiv.org/abs/2609.11042">T1</a></strong>. A terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
        <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
         <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
