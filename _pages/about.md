@@ -495,7 +495,7 @@ redirect_from:
             <span class="paper-venue venue-arxiv">arXiv Preprint</span>
             <a href="https://arxiv.org/abs/2610.22192" class="paper-title">Terminal-RSI: Recursive Self-Improving Terminal Agents via Recursive Self-Rewrite and Policy-Refine</a>
             <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*, Zongxia Li*, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Ruiwen Zhou, Haitao Mi, Shuicheng Yan<sup>&dagger;</sup>, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Alternating verified trajectory rewriting with critic-inheriting policy refinement, using turn-boundary credit assignment and stage-specific rewards to advance terminal agents from partial progress to strict task completion; Terminal-RSI-27B achieves **19.84% on Terminal-Bench 4.0** and **86.52% on Terminal-Bench 2.1**.</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Alternating verified trajectory rewriting with critic-inheriting policy refinement, using turn-boundary credit assignment and stage-specific rewards to advance terminal agents from partial progress to strict task completion; Terminal-RSI-27B achieves <strong>19.84% on Terminal-Bench 4.0</strong> and <strong>86.52% on Terminal-Bench 2.1</strong>.</div>
             <div class="paper-links">
               <a href="https://arxiv.org/abs/2610.22192">Paper</a>
               <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>
