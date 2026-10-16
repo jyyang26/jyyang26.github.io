@@ -1060,9 +1060,13 @@ test("resources, citation and runtime remain functional", async ({
   }
   await page.locator("#copy-citation").click();
   await expect(page.locator("#copy-citation")).toContainText("Copied");
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toContain(
-    "@misc{yang2026terminalrsi",
-  );
+  const citation = await page.evaluate(() => navigator.clipboard.readText());
+  expect(citation).toBe((await page.locator("#bibtex").textContent()).trim());
+  expect(citation).toContain("@misc{yang2026terminalrsirecursiveselfimprovingterminal,");
+  expect(citation).toContain("eprint={2610.22192}");
+  expect(citation).toContain("archivePrefix={arXiv}");
+  expect(citation).toContain("primaryClass={cs.AI}");
+  expect(citation).toContain("url={https://arxiv.org/abs/2610.22192}");
   for (const path of [
     "assets/terminal-rsi-paper.pdf",
     "assets/figures/trajectories.png",
