@@ -450,6 +450,7 @@ redirect_from:
     <section id="news" class="content-box">
       <div class="box-header"><h2 class="box-title">News</h2></div>
       <ul class="news-list">
+        <li><span class="news-tag">2026.10</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2610.22192">Terminal-RSI</a></strong>! Recursively coupling verified trajectory rewriting with critic-inheriting policy refinement to improve terminal agents. <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>.</li>
       <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://arxiv.org/abs/2609.11042">T1</a></strong>. A terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
        <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
         <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
@@ -486,8 +487,21 @@ redirect_from:
         </div>
       </div>
 
-      <!-- Selected Publications (accepted only, incl. Tech Report) -->
+      <!-- Selected Publications -->
       <div id="pub-selected" class="pub-list active">
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2610.22192" class="paper-title">Terminal-RSI: Recursive Self-Improving Terminal Agents via Recursive Self-Rewrite and Policy-Refine</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*, Zongxia Li*, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Ruiwen Zhou, Haitao Mi, Shuicheng Yan<sup>&dagger;</sup>, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Alternating verified trajectory rewriting with critic-inheriting policy refinement, using turn-boundary credit assignment and stage-specific rewards to advance terminal agents from partial progress to strict task completion; Terminal-RSI-27B achieves 86.52% on Terminal-Bench 2.1 and 79.00% on Terminal-Bench Hard.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2610.22192">Paper</a>
+              <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>
+            </div>
+          </div>
+        </div>
 
         <div class="paper-entry">
           <div class="paper-info">
@@ -656,6 +670,19 @@ redirect_from:
 
       <!-- Full Publications (all, incl. arXiv preprints & Tech Report) -->
       <div id="pub-full" class="pub-list">
+
+        <div class="paper-entry">
+          <div class="paper-info">
+            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
+            <a href="https://arxiv.org/abs/2610.22192" class="paper-title">Terminal-RSI: Recursive Self-Improving Terminal Agents via Recursive Self-Rewrite and Policy-Refine</a>
+            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*, Zongxia Li*, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Ruiwen Zhou, Haitao Mi, Shuicheng Yan<sup>&dagger;</sup>, Leowei Liang</div>
+            <div class="paper-tldr"><strong>TL;DR:</strong> Alternating verified trajectory rewriting with critic-inheriting policy refinement, using turn-boundary credit assignment and stage-specific rewards to advance terminal agents from partial progress to strict task completion; Terminal-RSI-27B achieves 86.52% on Terminal-Bench 2.1 and 79.00% on Terminal-Bench Hard.</div>
+            <div class="paper-links">
+              <a href="https://arxiv.org/abs/2610.22192">Paper</a>
+              <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>
+            </div>
+          </div>
+        </div>
 
         <div class="paper-entry">
           <div class="paper-info">
