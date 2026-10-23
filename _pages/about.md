@@ -1,6 +1,6 @@
 ---
 permalink: /
-layout: null
+layout: academic-home
 sitemap: false
 redirect_from:
   - /about/
@@ -9,1095 +9,422 @@ redirect_from:
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Junyao Yang</title>
-<meta name="description" content="Junyao Yang's personal homepage. Graduate student at NUS, researcher at Tencent HY. NLP, XAI, Representation Learning.">
+<meta name="description" content="Junyao Yang — graduate student at NUS and research intern at Tencent Hy Frontier. Research on terminal agents, recursive self-improvement, reinforcement learning, and trustworthy AI.">
+<meta name="theme-color" content="#ffffff">
+<title>Junyao Yang · AI Research</title>
+<link rel="canonical" href="{{ '/' | absolute_url }}">
 <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
-
+  :root { --bg: #ffffff; --surface: #f9fafb; --ink: #111827; --text: #374151; --muted: #6b7280; --accent: #2563eb; --accent-hover: #1d4ed8; --line: #e5e7eb; }
   * { box-sizing: border-box; }
-  html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #faf9f6;
-    color: #201d18;
-    font-family: 'Source Serif 4', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
-    font-weight: 400;
-    font-size: 17px;
-    line-height: 1.72;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+  html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; transition: color .18s ease, background .18s ease, border-color .18s ease, transform .18s ease; }
+  a:hover { color: var(--accent-hover); }
+  button, summary { font: inherit; cursor: pointer; }
+  button { color: inherit; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid #93c5fd; outline-offset: 4px; border-radius: 4px; }
+  ::selection { background: #dbeafe; color: var(--ink); }
+  h1, h2, h3, p { margin: 0; }
+  h1, h2, h3, strong { color: var(--ink); }
+  img { display: block; max-width: 100%; }
+  [hidden] { display: none !important; }
+  .container { width: min(1080px, calc(100% - 80px)); margin-inline: auto; }
+  .skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 10px 16px; background: var(--ink); color: white; transform: translateY(-160%); }
+  .skip-link:focus { transform: translateY(0); color: white; }
+  .site-header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(229,231,235,.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 76px; }
+  .wordmark { color: var(--ink); font-size: 15px; font-weight: 700; letter-spacing: -.5px; white-space: nowrap; }
+  .wordmark span { color: var(--accent); }
+  .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+  .nav-links a { color: var(--muted); font-size: 12px; font-weight: 500; padding-block: 8px; }
+  .nav-links a:hover, .nav-links a[aria-current="location"] { color: var(--accent); }
+  .menu-toggle { display: none; border: 1px solid var(--line); background: white; border-radius: 8px; padding: 7px 12px; font-size: 13px; }
+  .hero { padding: 86px 0 65px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+  .hero h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.12; letter-spacing: -.055em; font-weight: 800; margin: 16px 0 23px; }
+  .affiliations { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 0; margin-bottom: 25px; font-size: 13px; color: #4b5563; }
+  .affiliations span + span { border-left: 1px solid #d1d5db; padding-left: 16px; margin-left: 16px; }
+  .hero-bio { max-width: 850px; font-size: 17px; line-height: 1.7; }
+  .hero-bio + .hero-bio { margin-top: 12px; }
+  .name-note { color: var(--muted); font-size: 13px; margin-top: 16px; }
+  .social-links, .action-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .social-links { margin-top: 26px; }
+  .pill { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 38px; border: 1px solid var(--line); border-radius: 999px; background: white; color: var(--text); font-size: 12px; font-weight: 500; padding: 7px 14px; }
+  .pill:hover { border-color: #bfdbfe; background: #eff6ff; color: var(--accent); }
+  .link-icon { display: inline-block; width: 15px; height: 15px; flex-shrink: 0; vertical-align: -.18em; margin-right: 5px; }
+  .pill .link-icon { width: 16px; height: 16px; margin-right: 0; }
+  .social-links .link-icon { width: 20px; height: 20px; }
+  .pill--small { min-height: 32px; padding: 4px 11px; font-size: 11px; }
+  .action-links .pill { color: var(--accent); font-weight: 700; }
+  .action-links .pill:hover { color: var(--accent-hover); }
+  .research-topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .research-topics span { background: var(--surface); padding: 5px 10px; border-radius: 5px; color: var(--muted); font-size: 11px; }
+  .section { padding-top: 58px; scroll-margin-top: 95px; }
+  .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 23px; }
+  .section-heading h2 { font-size: 25px; letter-spacing: -.035em; line-height: 1.3; font-weight: 700; }
+  .section-heading .eyebrow { display: block; margin-bottom: 8px; }
+  .section-aside { color: var(--muted); font-size: 12px; }
+  .section-intro { font-size: 13px; color: var(--muted); margin: -10px 0 22px; }
+  .news-list { list-style: none; padding: 0; margin: 0; }
+  .news-list li { display: grid; grid-template-columns: 84px minmax(0,1fr); gap: 22px; padding: 11px 0; font-size: 13px; }
+  .news-list time { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .news-more { margin-top: 10px; }
+  .news-more summary { display: inline-flex; align-items: center; color: var(--accent); font-size: 12px; font-weight: 600; padding: 8px 0; list-style: none; }
+  .news-more summary::-webkit-details-marker { display: none; }
+  .news-more .when-open, .news-more[open] .when-closed { display: none; }
+  .news-more[open] .when-open { display: inline; }
+  .publications-section { position: relative; }
+  .anchor-alias { position: absolute; top: 0; scroll-margin-top: 95px; }
+  .publication-radio { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); }
+  .publication-switch { display: inline-flex; padding: 4px; gap: 3px; border: 1px solid var(--line); background: var(--surface); border-radius: 999px; }
+  .publication-switch label { padding: 8px 14px; border-radius: 999px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; }
+  .publication-switch label span { font-size: 10px; opacity: .65; }
+  .pub-full, .full-title { display: none; }
+  #pub-view-full:checked ~ .pub-panels .pub-selected, #pub-view-full:checked ~ .publication-heading .selected-title { display: none; }
+  #pub-view-full:checked ~ .pub-panels .pub-full, #pub-view-full:checked ~ .publication-heading .full-title { display: block; }
+  #pub-view-selected:checked ~ .publication-heading label[for='pub-view-selected'], #pub-view-full:checked ~ .publication-heading label[for='pub-view-full'] { background: white; color: var(--accent); }
+  .publication-radio:focus-visible ~ .publication-heading .publication-switch { outline: 3px solid #93c5fd; }
+  .reveal-pending { opacity: 0; transform: translateY(24px); }
+  .reveal-ready { transition: opacity .65s ease, transform .65s ease; }
+  .reveal-visible { opacity: 1; transform: none; }
+  .paper-list { display: grid; gap: 18px; }
+  .paper-card { display: grid; grid-template-columns: 232px minmax(0,1fr); align-items: start; gap: 25px; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 12px; }
+  .paper-card--featured { border-color: #93b7f5; background: linear-gradient(120deg, #eff6ff 0%, #fafcff 48%, white 100%); box-shadow: 0 5px 24px rgba(37,99,235,.055); }
+  .paper-teaser { overflow: hidden; aspect-ratio: 8 / 5; border: 1px solid var(--line); border-radius: 8px; background: white; display: flex; align-items: center; justify-content: center; }
+  .paper-teaser img { width: 100%; height: 100%; object-fit: contain; padding: 8px; transition: transform .25s ease; }
+  .paper-teaser:hover img { transform: scale(1.025); }
+  .paper-body { min-width: 0; }
+  .paper-title { font-size: 17px; font-weight: 650; line-height: 1.45; letter-spacing: -.02em; }
+  .paper-title a { color: var(--ink); }
+  .paper-title a:hover { color: var(--accent); }
+  .paper-authors { color: #4b5563; font-size: 12px; line-height: 1.7; margin-top: 9px; overflow-wrap: anywhere; }
+  .author-self { color: var(--ink); font-weight: 700; }
+  sup { line-height: 0; font-size: .8em; }
+  .paper-status { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .badge { display: inline-flex; align-items: center; border-radius: 5px; background: #f3f4f6; color: #4b5563; font-size: 10px; font-weight: 600; padding: 3px 8px; letter-spacing: .01em; }
+  .badge--venue { background: #eff6ff; color: #1d4ed8; }
+  .badge--accepted { color: #047857; background: #ecfdf5; }
+  .featured-label { display: inline-flex; margin-bottom: 9px; font-size: 10px; font-weight: 700; letter-spacing: .04em; color: var(--accent); }
+  .author-note { font-size: 10px; color: var(--muted); line-height: 1.6; margin-top: 7px; }
+  .paper-tldr { font-size: 12px; line-height: 1.7; color: #6b7280; margin-top: 11px; }
+  .paper-tldr > span { color: #4b5563; font-size: 10px; font-weight: 700; margin-right: 4px; }
+  .action-links { margin-top: 14px; }
+  .contributor-details { margin-top: 8px; font-size: 11px; color: #4b5563; }
+  .contributor-details summary { color: var(--muted); }
+  .contributor-details p { margin-top: 9px; }
+  .year-heading { font-size: 14px; color: var(--muted); font-weight: 600; margin: 28px 0 14px; font-variant-numeric: tabular-nums; }
+  .year-heading:first-child { margin-top: 0; }
+  .record-list { display: grid; gap: 12px; }
+  .record { display: grid; grid-template-columns: 42px minmax(0,1fr) auto; gap: 18px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; }
+  .record-logo { width: 42px; height: 42px; border-radius: 8px; object-fit: contain; padding: 4px; background: white; }
+  .record h3 { font-size: 14px; font-weight: 600; line-height: 1.5; }
+  .record p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .record-meta { text-align: right; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .record-meta span { display: block; margin-top: 4px; }
+  .record-icon { width: 42px; height: 42px; border-radius: 8px; background: var(--surface); display: grid; place-items: center; color: #9ca3af; }
+  .record-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .writing-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+  .writing-card { border: 1px solid var(--line); border-radius: 10px; padding: 22px; background: var(--surface); }
+  .writing-card h3 { font-size: 14px; line-height: 1.5; margin-top: 13px; }
+  .writing-card p { font-size: 12px; color: var(--muted); margin: 10px 0 15px; }
+  .writing-card > a { font-size: 12px; font-weight: 600; }
+  .site-footer { margin-top: 64px; padding: 28px 0 34px; border-top: 1px solid var(--line); }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 11px; }
+  .copy-toast { position: fixed; bottom: 24px; left: 50%; transform: translate(-50%, 15px); background: var(--ink); color: white; padding: 11px 18px; border-radius: 8px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 30; max-width: calc(100% - 32px); }
+  .copy-toast.show { opacity: 1; transform: translate(-50%, 0); }
+  @media (max-width: 980px) {
+    .container { width: calc(100% - 48px); }
+    .header-inner { gap: 16px; }
+    .nav-links { gap: 13px; }
+    .nav-links a { font-size: 11px; }
+    .paper-card { grid-template-columns: 200px minmax(0,1fr); gap: 22px; padding: 22px; }
   }
-
-  a { color: #1c5cab; text-decoration: none; }
-  a:hover { color: #2a78d6; text-decoration: underline; }
-  a:active { color: #2a78d6; }
-
-  /* Selection: blue background + white text + underline */
-  ::selection { background-color: #2a78d6; color: #ffffff; text-decoration: underline; }
-  ::-moz-selection { background-color: #2a78d6; color: #ffffff; text-decoration: underline; }
-
-  /* Theme Toggle */
-  .theme-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    margin-left: 8px;
+  @media (max-width: 760px) {
+    html { scroll-padding-top: 82px; }
+    .container { width: calc(100% - 36px); }
+    .header-inner { flex-wrap: wrap; min-height: 64px; padding-block: 16px; }
+    .nav-links { width: 100%; gap: 4px 18px; }
+    .js-enabled .menu-toggle { display: block; }
+    .js-enabled .nav-links:not(.is-open) { display: none; }
+    .hero { padding: 50px 0 40px; }
+    .hero h1 { margin-top: 14px; }
+    .hero-bio { font-size: 15px; }
+    .affiliations { font-size: 12px; }
+    .section { padding-top: 42px; }
+    .section-heading h2 { font-size: 22px; }
+    .section-heading { align-items: flex-start; }
+    .section-aside { font-size: 10px; text-align: right; }
+    .paper-card { grid-template-columns: minmax(0,1fr); padding: 18px; gap: 18px; }
+    .paper-teaser { width: 100%; max-width: 480px; margin-inline: auto; }
+    .paper-title { font-size: 16px; }
+    .news-list li { grid-template-columns: 63px minmax(0,1fr); gap: 13px; font-size: 12px; }
+    .news-list time { font-size: 11px; }
+    .record { grid-template-columns: 36px minmax(0,1fr); padding: 16px; gap: 12px; }
+    .record-logo, .record-icon { width: 36px; height: 36px; }
+    .record-meta { grid-column: 2; text-align: left; white-space: normal; }
+    .record-meta span { display: inline; margin-left: 8px; }
+    .writing-list { grid-template-columns: minmax(0,1fr); }
   }
-  .theme-toggle svg { width: 18px; height: 18px; transition: fill 0.2s; }
-  .theme-toggle .icon-sun { fill: #f5b400; }
-  .theme-toggle .icon-moon { fill: #8b949e; display: none; }
-  body.dark-mode .theme-toggle .icon-sun { display: none; }
-  body.dark-mode .theme-toggle .icon-moon { display: block; fill: #6c5ce7; }
-
-  /* ---------- Navigation ---------- */
-  .custom-nav {
-    position: sticky;
-    top: 0;
-    z-index: 9999;
-    background: #faf9f6;
-    border-bottom: 1px solid #e6e2d8;
-    padding: 12px 0;
-    margin-bottom: 28px;
+  @media (max-width: 400px) {
+    .affiliations { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .affiliations span + span { border: 0; padding: 0; margin: 0; }
+    .section-heading { flex-wrap: wrap; }
+    .section-aside { text-align: left; }
   }
-  .nav-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+    .paper-teaser:hover img { transform: none; }
+    .reveal-pending { opacity: 1; transform: none; }
   }
-  .nav-link {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    color: #6f6a61;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s;
+  @media (max-width: 760px) {
+    .publication-heading { flex-wrap: wrap; }
+    .publication-switch label { padding: 7px 12px; }
   }
-  .nav-link:hover { color: #2a78d6; text-decoration: underline; }
-  section { scroll-margin-top: 60px; }
-
-  /* ---------- Layout ---------- */
-  .profile-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px 60px;
-  }
-
-  .custom-sidebar {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 35px;
-    padding-bottom: 28px;
-    border-bottom: 1px solid #e6e2d8;
-  }
-  .name-title {
-    font-size: 28px;
-    font-weight: 600;
-    color: #201d18;
-    margin: 0 0 5px 0;
-  }
-  .name-title span { font-size: 20px; color: #4a463f; }
-  .role-text  { color: #6f6a61; font-size: 14px; margin-bottom: 5px; }
-  .affil-text { color: #6f6a61; font-size: 14px; }
-
-  .social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-    justify-content: flex-start;
-  }
-  .s-icon {
-    color: #6f6a61;
-    transition: color 0.2s;
-  }
-  .s-icon:hover { color: #2a78d6; }
-  .s-icon svg { width: 20px; height: 20px; fill: currentColor; }
-  .wechat-copy-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  /* ---------- Content Sections ---------- */
-  .custom-content { display: flex; flex-direction: column; gap: 28px; }
-  .content-box   { background: transparent; }
-  .box-header    { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .box-title     { font-size: 18px; font-weight: 600; color: #201d18; margin: 0; border: none; padding: 0; }
-
-  /* News */
-  .news-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 250px;
-    overflow-y: auto;
-  }
-  .news-list li {
-    padding: 7px 0;
-    border-bottom: 1px solid #e6e2d8;
-    font-size: 14px;
-    color: #4a463f;
-  }
-  .news-list li:last-child { border-bottom: none; }
-  .news-list a { color: #201d18; text-decoration: none; }
-  .news-list a:hover { color: #2a78d6; text-decoration: underline; }
-  .news-tag { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; color: #6f6a61; font-size: 12px; }
-
-  /* Papers */
-  .paper-entry {
-    line-height: 1.28;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e6e2d8;
-  }
-  .paper-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .paper-venue {
-    display: block;
-    font-size: 14px;
-    color: #2a78d6;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    margin-bottom: 6px;
-  }
-  .paper-venue.venue-conf { color: #B1642B; }
-  .paper-venue.venue-arxiv { color: #5A574F; }
-  .paper-venue.venue-tech { color: #755CC1; }
-
-  /* Publications section title (Selected Publications) - blue & bold */
-  #publications .box-title {
-    color: #2a78d6;
-    font-weight: 700;
-  }
-
-  /* Resume inline links in About Me - light blue, serif body font */
-  .about-text a.resume-link {
-    color: #2a78d6;
-    font-family: inherit;
-    font-weight: inherit;
-    text-decoration: none;
-  }
-  .about-text a.resume-link:hover { color: #2a78d6; text-decoration: underline; }
-  body.dark-mode .about-text a.resume-link { color: #4e92e6; }
-  body.dark-mode .about-text a.resume-link:hover { color: #4e92e6; text-decoration: underline; }
-
-  /* Publications tabs */
-  .pub-tabs {
-    display: flex;
-    gap: 20px;
-    margin-left: auto;
-    align-items: center;
-  }
-  .pub-tab {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    background: none;
-    border: none;
-    padding: 4px 0;
-    font-size: 14px;
-    color: #6f6a61;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .pub-tab:hover { color: #2a78d6; }
-  .pub-tab.active {
-    color: #2a78d6;
-    border-bottom-color: #2a78d6;
-    font-weight: 600;
-  }
-  .pub-list { display: none; }
-  .pub-list.active { display: block; }
-
-  /* GitHub star badge */
-  .gh-star {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 2px 8px;
-    margin-left: 8px;
-    font-size: 12px;
-    color: #201d18;
-    background: #f2f0e9;
-    border: 1px solid #e6e2d8;
-    border-radius: 10px;
-    text-decoration: none;
-    vertical-align: middle;
-  }
-  .gh-star:hover { color: #2a78d6; border-color: #2a78d6; text-decoration: none; }
-  .gh-star svg { width: 12px; height: 12px; fill: #f5b400; }
-  .paper-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #201d18;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 6px;
-  }
-  .paper-title:hover { color: #2a78d6; text-decoration: underline; }
-  /* Row that keeps title and inline badges (e.g. GitHub star) on the same line */
-  .paper-title-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 6px;
-  }
-  .paper-title-row .paper-title {
-    display: inline;
-    margin-bottom: 0;
-  }
-  .paper-auth  { font-size: 14px; color: #4a463f; margin-bottom: 8px; }
-  .paper-tldr  { font-size: 14px; color: #4a463f; background: transparent; padding: 0; }
-  .paper-links { margin-top: 8px; font-size: 14px; }
-  .paper-links a { color: #6f6a61; text-decoration: none; margin-right: 15px; }
-  .paper-links a:hover { color: #2a78d6; text-decoration: underline; }
-
-  /* Education */
-  .edu-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-  .edu-card { padding: 15px; border: 1px solid #e6e2d8; border-radius: 0; }
-  .edu-logo {
-    width: 40px; height: 40px; object-fit: contain;
-    margin-bottom: 10px; background: #f2f0e9; padding: 4px;
-  }
-  .edu-deg { font-size: 14px; font-weight: 600; color: #201d18; }
-  .edu-sch { font-size: 13px; color: #4a463f; }
-  .edu-yr  { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 12px; color: #6f6a61; margin-top: 8px; }
-
-  /* Experience */
-  .exp-item {
-    display: flex; align-items: center; gap: 15px;
-    padding: 8px 0; border-bottom: 1px solid #e6e2d8;
-  }
-  .exp-item:last-child { border-bottom: none; }
-  .exp-logo {
-    width: 36px; height: 36px; object-fit: contain;
-    border: 1px solid #e6e2d8; padding: 2px; background: #f2f0e9;
-  }
-
-  /* Honors */
-  ul.honors-list { font-size: 14px; color: #4a463f; padding-left: 20px; }
-  ul.honors-list li { padding: 5px 0; }
-
-  /* About text block */
-  .about-text { font-size: 17px; line-height: 1.72; color: #4a463f; }
-
-  /* Copy toast */
-  .copy-toast {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    padding: 10px 14px;
-    border: 1px solid #e6e2d8;
-    background: #f2e8d8;
-    color: #5a4937;
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    font-size: 13px;
-    line-height: 1.4;
-    border-radius: 8px;
-    box-shadow: 0 10px 24px rgba(32, 29, 24, 0.12);
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 10000;
-  }
-  .copy-toast.show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Footer */
-  .site-footer {
-    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    text-align: center;
-    padding: 30px 20px 40px;
-    font-size: 12px;
-    color: #8d887e;
-    border-top: 1px solid #e6e2d8;
-  }
-
-  /* Mobile */
-  @media (max-width: 600px) {
-    .custom-sidebar { flex-direction: column; text-align: center; }
-    .social-icons   { justify-content: center; }
-  }
-
-  /* ---------- Dark Mode ---------- */
-  body.dark-mode {
-    background-color: #131311;
-    color: #eae8e1;
-  }
-  body.dark-mode a { color: #86b6ef; }
-  body.dark-mode a:hover { color: #4e92e6; text-decoration: underline; }
-  body.dark-mode .custom-nav { background: #131311; border-bottom-color: #2b2a26; }
-  body.dark-mode .nav-link { color: #9b968b; }
-  body.dark-mode .nav-link:hover { color: #4e92e6; }
-  body.dark-mode .name-title { color: #eae8e1; }
-  body.dark-mode .name-title span { color: #9b968b; }
-  body.dark-mode .affil-text,
-  body.dark-mode .role-text { color: #9b968b; }
-  body.dark-mode .box-title { color: #eae8e1; }
-  body.dark-mode .paper-venue { color: #4e92e6; }
-  body.dark-mode .paper-venue.venue-conf { color: #D8894A; }
-  body.dark-mode .paper-venue.venue-arxiv { color: #A8A498; }
-  body.dark-mode .paper-venue.venue-tech { color: #9C86E0; }
-  body.dark-mode .paper-title { color: #eae8e1; }
-  body.dark-mode .paper-title:hover { color: #4e92e6; }
-  body.dark-mode .paper-auth,
-  body.dark-mode .paper-tldr { color: #c3c0b6; }
-  body.dark-mode .paper-links a { color: #9b968b; }
-  body.dark-mode .paper-links a:hover { color: #4e92e6; }
-  body.dark-mode .paper-entry { border-bottom-color: #2b2a26; }
-  body.dark-mode .custom-sidebar { border-bottom-color: #2b2a26; }
-  body.dark-mode .news-list li { color: #c3c0b6; border-bottom-color: #2b2a26; }
-  body.dark-mode .news-list a { color: #eae8e1; }
-  body.dark-mode .news-list a:hover { color: #4e92e6; }
-  body.dark-mode .news-tag { color: #9b968b; }
-  body.dark-mode .edu-card { border-color: #2b2a26; }
-  body.dark-mode .edu-deg { color: #eae8e1; }
-  body.dark-mode .edu-sch,
-  body.dark-mode .edu-yr { color: #c3c0b6; }
-  body.dark-mode .edu-logo { background: #ffffff; }
-  body.dark-mode .exp-item { border-bottom-color: #2b2a26; }
-  body.dark-mode .exp-logo { border-color: #2b2a26; background: #ffffff; }
-  body.dark-mode .exp-item > div > div { color: #c3c0b6 !important; }
-  body.dark-mode .exp-item > div > div:first-of-type { color: #eae8e1 !important; }
-  body.dark-mode ul.honors-list { color: #c3c0b6; }
-  body.dark-mode .about-text { color: #c3c0b6; }
-  body.dark-mode .about-text strong { color: #eae8e1; }
-  body.dark-mode .site-footer { border-top-color: #2b2a26; color: #7c786e; }
-  body.dark-mode .gh-star { background: #22211d; border-color: #2b2a26; color: #eae8e1; }
-  body.dark-mode .gh-star:hover { color: #4e92e6; border-color: #4e92e6; }
-  body.dark-mode .pub-tab { color: #9b968b; }
-  body.dark-mode .pub-tab.active { color: #4e92e6; border-bottom-color: #4e92e6; }
-  body.dark-mode .pub-tab:hover { color: #4e92e6; }
-  body.dark-mode .s-icon { color: #9b968b; }
-  body.dark-mode .s-icon:hover { color: #4e92e6; }
-  body.dark-mode .copy-toast {
-    background: #e9d8b7;
-    border-color: #c9b791;
-    color: #4f3c29;
-  }
-  body.dark-mode ::selection { background-color: #4e92e6; color: #131311; }
-  body.dark-mode ::-moz-selection { background-color: #4e92e6; color: #131311; }
 </style>
 </head>
 <body>
-
-<nav class="custom-nav">
-  <div class="nav-container">
-    <a href="#about" class="nav-link">About Me</a>
-    <a href="#news" class="nav-link">News</a>
-    <a href="#publications" class="nav-link">Publications</a>
-    <a href="#blogs" class="nav-link">Blogs</a>
-    <a href="#education" class="nav-link">Education</a>
-    <a href="#experience" class="nav-link">Internship</a>
-    <a href="#honors" class="nav-link">Honors</a>
-    <button class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
-      <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1H12z"/></svg>
-    </button>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href="#about" aria-label="Junyao Yang, home">Junyao Yang<span>.</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#news">News</a><a href="#selected-publications">Selected Publications</a><a href="#full-publications">Full Publications</a><a href="#experience">Experience</a><a href="#honors">Awards</a><a href="#blogs">Writing</a>
+    </nav>
   </div>
-</nav>
+</header>
+<main id="main" class="container">
+  <section class="hero" id="about" aria-labelledby="hero-name">
+    <h1 id="hero-name">Junyao Yang</h1>
+    <div class="affiliations"><span>National University of Singapore</span></div>
+    <p class="hero-bio">Hi, I'm Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong>, specializing in Artificial Intelligence, and a research intern at <strong>Tencent Hy Frontier Lab</strong>.</p>
+    <p class="hero-bio">My current research interests focus on <strong>Agentic AI</strong>, including Agentic RL, Recursive Self-Improving, and Long-Horizon Terminus Agents; <strong>Reinforcement Learning</strong>, with a focus on RL Stability; and <strong>Trustworthy Artificial Intelligence</strong>.</p>
+    <p class="name-note">杨竣尧 <span lang="en">/jɑːŋ dʒuːn jaʊ/</span></p>
+    <div class="social-links" aria-label="Contact and academic profiles">
+      <a class="pill" href="mailto:junyaoyang@u.nus.edu">{% include link-icon.html icon='email' %}Email</a>
+      <a class="pill" href="https://scholar.google.com/citations?hl=en&amp;user=oY6uhJQAAAAJ">{% include link-icon.html icon='scholar' %}Google Scholar</a>
+      <a class="pill" href="https://github.com/jyyang26">{% include link-icon.html icon='github' %}GitHub</a>
+      <a class="pill" href="https://x.com/TonyworldLove">{% include link-icon.html icon='x' %}X</a>
+      <a class="pill" href="https://xhslink.cn/o/998NlpzZrFE">{% include link-icon.html icon='rednote' %}Rednote · 小红书</a>
+      <a class="pill" href="https://www.linkedin.com/in/junyao-yang-371282301/">{% include link-icon.html icon='linkedin' %}LinkedIn</a>
+      <a class="pill" href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link">{% include link-icon.html icon='document' %}CV · EN</a>
+      <a class="pill" href="https://drive.google.com/file/d/1C2bD366Qj5I_hCi5HpAY-v_Ra-Lp110_/view?usp=drive_link">{% include link-icon.html icon='document' %}CV · 中文</a>
+      <button class="pill wechat-copy" type="button" data-wechat-id="FrWorld_LuvAndPeaze" hidden>{% include link-icon.html icon='wechat' %}WeChat</button>
+    </div>
+    <div class="research-topics" aria-label="Research interests"><span>Agentic RL</span><span>Recursive Self-Improvement</span><span>Long-Horizon Agents</span><span>RL Stability</span><span>Explainable AI</span></div>
+  </section>
 
-<div class="profile-wrapper">
+  <section class="section" id="news" aria-labelledby="news-heading">
+    <div class="section-heading"><div><span class="eyebrow">Latest updates</span><h2 id="news-heading">News</h2></div></div>
+    <ul class="news-list">
+      <li><time datetime="2026-10">10/2026</time><div>We release <strong><a href="https://arxiv.org/abs/2610.22192">Terminal-RSI</a></strong>: recursive trajectory rewriting and critic-inheriting policy refinement for terminal agents. <a href="https://jyyang26.github.io/terminal-rsi">Project page ↗</a></div></li>
+      <li><time datetime="2026-09">09/2026</time><div>Tech report: <strong><a href="https://arxiv.org/abs/2609.11042">T1</a></strong>, a terminal agent for long-horizon tasks with stable RL training and dense verification rewards.</div></li>
+      <li><time datetime="2026-08">08/2026</time><div>Conducting my dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&amp;hl=en">Shuicheng Yan</a>.</div></li>
+      <li><time datetime="2026-04">04/2026</time><div>Joined <strong>Tencent Hy LLM Team</strong>, working on agentic RL stability and self-evolving long-horizon terminal agents.</div></li>
+      <li><time datetime="2026-04">04/2026</time><div>First-author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</div></li>
+    </ul>
+    <details class="news-more">
+      <summary><span class="when-closed">Show more ↓</span><span class="when-open">Show less ↑</span></summary>
+      <ul class="news-list">
+        <li><time datetime="2026-01">01/2026</time><div>Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>, a diagnostic guardrail framework with an agentic attribution module.</div></li>
+        <li><time datetime="2025-11">11/2025</time><div>First-author paper <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a> accepted to <strong>AAAI 2026 Main Track</strong>.</div></li>
+        <li><time datetime="2025-08">08/2025</time><div><a href="https://arxiv.org/abs/2502.18517">RewardDS</a> accepted to <strong>EMNLP 2025 Main</strong>.</div></li>
+        <li><time datetime="2025-08">08/2025</time><div>Joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a research intern, working with <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</div></li>
+        <li><time datetime="2025-05">05/2025</time><div>Co-first-author paper <a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a> accepted to <strong>ACL 2025 Main</strong>.</div></li>
+        <li><time datetime="2024-07">07/2024</time><div>Joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a research assistant, advised by Professor <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</div></li>
+        <li><time datetime="2024-07">07/2024</time><div><strong>Contextless CS</strong> reached <strong>20,000 daily active users</strong>.</div></li>
+        <li><time datetime="2024-04">04/2024</time><div>Joined Tencent as a machine learning intern.</div></li>
+        <li><time datetime="2024-03">03/2024</time><div>Completed my machine learning internship at Shenzhen Stock Exchange.</div></li>
+      </ul>
+    </details>
+  </section>
 
-  <aside class="custom-sidebar">
-    <div>
-      <h1 class="name-title">Junyao Yang</h1>
-      <div class="affil-text">National University of Singapore</div>
-      <div class="role-text">Tencent Hy Frontier, Singapore</div>
-      <div class="social-icons">
-        <a href="mailto:junyaoyang@u.nus.edu" class="s-icon" title="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
-        <a href="https://scholar.google.com/citations?hl=en&user=oY6uhJQAAAAJ" class="s-icon" title="Google Scholar"><svg viewBox="0 0 24 24"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg></a>
-        <a href="https://github.com/jyyang26" class="s-icon" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-        <a href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link" class="s-icon" title="Curriculum Vitae"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></a>
-        <a href="https://www.linkedin.com/in/junyao-yang-371282301/" class="s-icon" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
-        <a href="https://x.com/TonyworldLove" class="s-icon" title="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <button type="button" class="s-icon wechat-copy-btn" title="WeChat" aria-label="Copy WeChat ID" data-wechat-id="FrWorld_LuvAndPeaze">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.42 5C4.87 5 2 7.49 2 10.56c0 1.78.96 3.37 2.46 4.4L3.6 18l3.08-1.69c.56.1 1.14.15 1.74.15.25 0 .5-.01.74-.04a6.25 6.25 0 0 1-.75-2.93c0-3.07 2.87-5.56 6.42-5.56.13 0 .25 0 .38.01C14.61 6.2 11.76 5 8.42 5zm-2.34 4.32a.86.86 0 1 1 0 1.72.86.86 0 0 1 0-1.72zm4.68 0a.86.86 0 1 1 0 1.72.86.86 0 0 1 0-1.72zM15.9 9.5c-3.37 0-6.1 2.28-6.1 5.09 0 1.53.82 2.9 2.12 3.83l-.73 2.58 2.63-1.45c.66.16 1.36.24 2.08.24 3.37 0 6.1-2.28 6.1-5.09s-2.73-5.2-6.1-5.2zm-2.23 4.18a.78.78 0 1 1 0 1.56.78.78 0 0 1 0-1.56zm4.46 0a.78.78 0 1 1 0 1.56.78.78 0 0 1 0-1.56z"/></svg>
-        </button>
+  {% assign all_papers = site.publications | where_exp: 'paper', 'paper.paper_id != nil' | sort: 'order' %}
+  {% assign selected_papers = all_papers | where: 'selected', true | sort: 'selected_order' %}
+  {% assign terminal_rsi = all_papers | where: 'paper_id', 'terminal-rsi' | first %}
+  <section class="section publications-section" id="publications" aria-labelledby="publications-heading">
+    <span class="anchor-alias" id="selected-publications"></span><span class="anchor-alias" id="full-publications"></span>
+    <input class="publication-radio" type="radio" name="publication-view" id="pub-view-selected" value="selected" aria-controls="pub-selected" checked>
+    <input class="publication-radio" type="radio" name="publication-view" id="pub-view-full" value="full" aria-controls="pub-full">
+    <div class="section-heading publication-heading">
+      <div><span class="eyebrow">Research highlights</span><h2 id="publications-heading"><span class="selected-title">Selected Publications</span><span class="full-title">Full Publications</span></h2></div>
+      <div class="publication-switch" role="group" aria-label="Choose publications to display">
+        <label for="pub-view-selected">Selected <span>{{ selected_papers.size }}</span></label>
+        <label for="pub-view-full">Full <span>{{ all_papers.size }}</span></label>
       </div>
     </div>
-  </aside>
-
-  <main class="custom-content">
-
-    <section id="about" class="content-box">
-      <div class="box-header"><h2 class="box-title">About Me</h2></div>
-      <!-- <div class="about-text">
-        Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), where I am pursuing a specialization in Artificial Intelligence. I am currently working as a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>, working on <strong>Agentic RL</strong>, <strong>Recursive Self-Improving</strong>, <strong>Long-Horizon Terminus Agent</strong> and <strong>RL Stability</strong>. My research interests lie in <strong>Agentic AI</strong>, <strong>Large Language Models</strong>, <strong>Reinforcement Learning</strong>, <strong>Recursive Self-Improving</strong> and <strong>Explainable Artificial Intelligence</strong>. -->
-        <div class="about-text">
-    <p>Hi there, this is Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong> (NUS), specializing in Artificial Intelligence, and currently a Research Intern at <strong>Tencent Hy Frontier Lab, Singapore</strong>. My current research interests focus on <strong>Agentic AI</strong> (Agentic RL, Recursive Self-Improving, Long-Horizon Terminus Agent), <strong>Reinforcement Learning</strong> (RL Stability), and <strong>Trustworthy Artificial Intelligence</strong>.
-        <!-- <br> -->
-        My Chinese name is 杨竣尧 (/jɑːŋ dʒuːn jaʊ/).
-        <br>
-        CVs: <a href="https://drive.google.com/file/d/1wTeBg7zFGLGaUFitWrxp_FEvvMH-8nw9/view?usp=drive_link" class="resume-link">EN</a>,&nbsp;<a href="https://drive.google.com/file/d/1C2bD366Qj5I_hCi5HpAY-v_Ra-Lp110_/view?usp=drive_link" class="resume-link">中文</a>
-        <!-- <br><br>
-        My research story revolves around <strong>the Underlying Principles and Understanding of Artificial Intelligence</strong>, which connects to related areas such as <strong>Reinforcement Learning</strong> [<strong><a href="https://arxiv.org/abs/2605.17770">CorR-PO</a></strong>], <strong>Reasoning</strong> [<strong><a href="https://arxiv.org/abs/2508.03140">AAAI 2026</a></strong>, <strong><a href="https://arxiv.org/abs/2601.18491">ACL 2026 Main</a></strong>], <strong>Trustworthy LLM</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>, <strong><a href="https://arxiv.org/abs/2502.18517">EMNLP 2025 Main</a></strong>] and <strong>Agent</strong> [<strong><a href="https://arxiv.org/abs/2601.15075">Agentic Attribution</a></strong>, <strong><a href="https://arxiv.org/abs/2601.15075">AgentDoG</a></strong>], and <strong>Model Malicious Attacks</strong> [<strong><a href="https://arxiv.org/abs/2406.01394">ACL 2025 Main</a></strong>]. -->
-      <br>  
-
-    <section id="news" class="content-box">
-      <div class="box-header"><h2 class="box-title">News</h2></div>
-      <ul class="news-list">
-        <li><span class="news-tag">2026.10</span> We release <strong><a href="https://arxiv.org/abs/2610.22192">Terminal-RSI</a></strong>! Recursively coupling verified trajectory rewriting with critic-inheriting policy refinement to improve terminal agents. <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>.</li>
-      <li><span class="news-tag">2026.09</span> Tech report: <strong><a href="https://arxiv.org/abs/2609.11042">T1</a></strong>. A terminal agent for long-horizon tasks, featuring stable reinforcement learning training and dense verification rewards.</li>
-       <li><span class="news-tag">2026.08</span> Conducting my Dissertation under the guidance of Professor <a href="https://scholar.google.com/citations?user=DNuiPHwAAAAJ&hl=en">Shuicheng Yan</a>.</li>
-        <!-- <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.18722">Stale but Stable</a></strong>! Staleness-adaptive trust regions stabilize asynchronous RL by tightening high-mismatch updates while preserving ordinary-token behavior.</li>
-        <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.13285">Harness Handbook</a></strong>! A behavior-centric representation and BGPD framework that help agents localize implementation sites and plan edits for evolving agent harnesses.</li>
-        <li><span class="news-tag">2026.07</span> New paper: <strong><a href="https://arxiv.org/abs/2607.08964">Long-Horizon-Terminal-Bench</a></strong>! A long-horizon terminal benchmark of 46 tasks with dense subtask-level rewards for partial-credit evaluation of frontier agents.</li>
-        <li><span class="news-tag">2026.05</span> First-Author paper: <strong><a href="https://arxiv.org/abs/2605.17770v1">Entropy-Gradient Inversion</a></strong>! Leverage entropy gradient inversion to enhance reinforcement learning for reasoning models.</li> -->
-        <li><span class="news-tag">2026.04</span> Joined <strong>Tencent Hy LLM Team</strong>, working on <strong>Agentic RL Stability</strong> and <strong>Self-Evolving Long-Horizon Terminus Agent</strong>.</li>
-        <li><span class="news-tag">2026.04</span> First-Author paper <a href="https://arxiv.org/abs/2601.05560">ReasonAny</a> accepted to <strong>ACL 2026 Main</strong>.</li>
-        <li><span class="news-tag">2026.01</span> Tech report: <strong><a href="https://arxiv.org/abs/2601.18491">AgentDoG</a></strong>. State-of-the-art diagnostic guardrail framework with an Agentic XAI attribution module.</li>
-        <!-- <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/pdf/2601.15075">Agentic Attribution</a></strong>! A hierarchical framework to unveil internal factors driving LLM-based agent actions.</li>
-        <li><span class="news-tag">2026.01</span> Attending <strong>AAAI 2026 at Singapore during Jan 20-27, 2026</strong>.</li>
-        <li><span class="news-tag">2026.01</span> Paper: <strong><a href="https://arxiv.org/abs/2601.05560">ReasonAny</a></strong>! Contrastive gradient identification to resolve destructive performance collapse in model merging.</li> -->
-        <li><span class="news-tag">2025.11</span> First-Author paper <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a> accepted to <strong>AAAI 2026 Main Track</strong>.</li>
-        <li><span class="news-tag">2025.08</span> <a href="https://arxiv.org/abs/2502.18517">RewardDS</a> accepted to <strong>EMNLP 2025 Main</strong>.</li>
-        <li><span class="news-tag">2025.08</span> Joined <a href="https://ai45.shlab.org.cn/">Shanghai AI Lab</a> as a Research Intern, working with <a href="https://shenqildr.github.io/">Dongrui Liu</a>.</li>
-        <!-- <li><span class="news-tag">2025.08</span> New work: <a href="https://arxiv.org/abs/2508.03140">RCP-Merging</a>! Integrating long CoT capability into domain-specific LLMs.</li> -->
-        <!-- <li><span class="news-tag">2025.05</span> Passed undergraduate thesis defense.</li> -->
-        <li><span class="news-tag">2025.05</span> Co-First-Author paper <a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a> accepted to <strong>ACL 2025 Main</strong>.</li>
-        <!-- <li><span class="news-tag">2025.02</span> New papers: <strong><a href="https://arxiv.org/abs/2502.18517">RewardDS</a></strong> and <strong><a href="https://arxiv.org/abs/2406.01394">PrivacyRestore</a></strong>.</li> -->
-        <li><span class="news-tag">2024.07</span> Joined <a href="https://github.com/ZeroNLP">ZeroNLP</a> as a Research Assistant, advised by Prof. <a href="https://ziqianzeng.github.io/">Ziqian Zeng</a>.</li>
-        <!-- <li><span class="news-tag">2024.07</span> Completed internship at Tencent as a machine learning intern.</li> -->
-        <li><span class="news-tag">2024.07</span> <strong>Contextless CS</strong> reached <strong>20,000 DAU</strong>.</li>
-        <li><span class="news-tag">2024.04</span> Joined Tencent as a machine learning intern.</li>
-        <li><span class="news-tag">2024.03</span> Completed internship at ShenZhen Stock Exchange as a machine learning intern.</li>
-      </ul>
-    </section>
-
-    <section id="publications" class="content-box">
-      <div class="box-header">
-        <h2 class="box-title" id="pub-heading">Selected Publications</h2>
-        <div class="pub-tabs" role="tablist">
-          <button type="button" class="pub-tab active" data-target="pub-selected" role="tab" aria-selected="true">Selected</button>
-          <button type="button" class="pub-tab" data-target="pub-full" role="tab" aria-selected="false">Full</button>
+    <p class="section-intro">Work on agents, learning, and trustworthy AI. Author contribution markers are explained per paper.</p>
+    <div class="pub-panels">
+      <div class="pub-selected" id="pub-selected" aria-label="Selected Publications">
+        <div class="paper-list">
+          {% if terminal_rsi %}{% include academic-paper.html paper=terminal_rsi highlight=true %}{% endif %}
+          {% for paper in selected_papers %}{% unless paper.paper_id == 'terminal-rsi' %}{% include academic-paper.html paper=paper highlight=true %}{% endunless %}{% endfor %}
         </div>
       </div>
-
-      <!-- Selected Publications -->
-      <div id="pub-selected" class="pub-list active">
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2610.22192" class="paper-title">Terminal-RSI: Recursive Self-Improving Terminal Agents via Recursive Self-Rewrite and Policy-Refine</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*, Zongxia Li*, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Ruiwen Zhou, Haitao Mi, Shuicheng Yan<sup>&dagger;</sup>, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Alternating verified trajectory rewriting with critic-inheriting policy refinement, using turn-boundary credit assignment and stage-specific rewards to advance terminal agents from partial progress to strict task completion; Terminal-RSI-27B achieves <strong>19.84% on Terminal-Bench 4.0</strong> and <strong>86.52% on Terminal-Bench 2.1</strong>.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2610.22192">Paper</a>
-              <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-tech">Tech Report (Core Contributor)</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2609.11042" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
-            </div>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Zongxia Li, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2609.11042">Paper</a>
-              <a href="https://jyyang26.github.io/t1/">Project Page</a>
-              <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
-              
-            </div>
-          </div>
-        </div>
-
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">ACL 2026</span>
-            <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.05560">Paper</a>
-              <a href="https://github.com/jyyang26/ReasonAny">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">AAAI 2026</span>
-            <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2508.03140">Paper</a>
-              <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2607.18722" class="paper-title">Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Yucheng Shi, Zongxia Li, Zhongzhi Li, Ruhan Wang, Xiangxin Zhou, Kishan Panaganti, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Stabilizing asynchronous RL by adapting trust regions to rollout staleness, tightening high-mismatch updates while preserving ordinary-token behavior.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2607.18722">Paper</a>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">ACL 2025</span>
-            <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
-            <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2406.01394">Paper</a>
-              <a href="https://github.com/ZeroNLP/PrivacyRestore">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-tech">Tech Report</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
-            </div>
-            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
-              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
-              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
-              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2610.02826" class="paper-title">RSR: Scaling Trajectories for Complex Tasks through Recursive Self-Rewrite</a>
-            <div class="paper-auth">Zongxia Li<sup>&dagger;</sup>, Yucheng Shi<sup>&dagger;</sup>, Zhongzhi Li<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Chengsong Huang, Fuxiao Liu, Haitao Mi, Jordan Boyd-Graber, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Recursively rewriting successful trajectories discovered under diverse harnesses into reusable capabilities under a general harness, expanding 2,001 to 11,094 high-quality trajectories and lifting Qwen-3.8-27B pass@3 from 57.0% to 74.2% on Terminal-Bench 2.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2610.02826">Paper</a>
-              <a href="https://huggingface.co/IntelligenceLab/RSR-27B">Model</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2610.02710" class="paper-title">SWR: Self-Supervised Scaling of Terminal Environments for Scientific Domains</a>
-            <div class="paper-auth">Zhongzhi Li*, Yucheng Shi*, Zongxia Li*, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Yu Wang, Jingyuan Huang, Jichao Yu, Ninghao Liu<sup>&dagger;</sup>, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Software-in-the-loop reconstruction derives reference behavior and verifiers from existing scientific software workflows, scaling to 500 workflows across 46 software families and six domains and improving Qwen3.8-27B on Terminal-Bench 2 from 47.94% to 53.56%.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2610.02710">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
-            <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A dense-reward terminal benchmark for measuring how far agents can progress on long, complex terminal workflows.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2607.08964">Paper</a>
-              <a href="https://github.com/zli12321/LHTB">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/pdf/2608.05466" class="paper-title">RST: Recursive Synthesis for Long-Horizon Terminal Tasks</a>
-            <div class="paper-auth">Zhongzhi Li, Yucheng Shi, Zongxia Li, Ruhan Wang, Anhao Li, Zixun Huang, <strong><u>Junyao Yang</u></strong>, Lei Ke, Ninghao Liu, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A recursive verified synthesis framework that scales long-horizon terminal-agent tasks, yielding 37,484 tasks at ~$0.05 each and lifting Qwen3.5 by up to 10 points across terminal benchmarks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/pdf/2608.05466">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2607.13285" class="paper-title">Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable</a>
-            <div class="paper-auth">Ruhan Wang, Yucheng Shi, Zongxia Li, Zhongzhi Li, Yue Yu, <strong><u>Junyao Yang</u></strong>, Kishan Panaganti, Haitao Mi, Dongruo Zhou, Leoweiliang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A behavior-centric map and BGPD framework that help agents find code and plan harness edits.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2607.13285">Paper</a>
-              <a href="https://ruhan-wang.github.io/Harness-Handbook/">Project</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">EMNLP 2025</span>
-            <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
-            <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2502.18517">Paper</a>
-              <a href="https://github.com/wjw136/RewardDS">Code</a>
-            </div>
-          </div>
-        </div>
-
+      <div class="pub-full" id="pub-full" aria-label="Full Publications">
+        {% assign previous_year = '' %}
+        {% for paper in all_papers %}
+          {% if paper.year != previous_year %}{% unless forloop.first %}</div>{% endunless %}<h3 class="year-heading">{{ paper.year }}</h3><div class="paper-list">{% assign previous_year = paper.year %}{% endif %}
+          {% include academic-paper.html paper=paper highlight=true %}
+          {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
       </div>
+    </div>
+  </section>
 
-      <!-- Full Publications (all, incl. arXiv preprints & Tech Report) -->
-      <div id="pub-full" class="pub-list">
+  <section class="section" id="education" aria-labelledby="education-heading">
+    <div class="section-heading"><div><span class="eyebrow">Academic background</span><h2 id="education-heading">Education</h2></div></div>
+    <div class="record-list">
+      <article class="record"><img class="record-logo" src="{{ '/images/NUS.jpg' | relative_url }}" alt="National University of Singapore" width="42" height="42" loading="lazy"><div><h3>National University of Singapore</h3><p>MComp · Artificial Intelligence</p></div><div class="record-meta">2025 – 2027 (Expected)<span>Singapore</span></div></article>
+      <article class="record"><img class="record-logo" src="{{ '/images/South_China_University_of_Technology_Logo_(Since_2022).svg.png' | relative_url }}" alt="South China University of Technology" width="42" height="42" loading="lazy"><div><h3>South China University of Technology</h3><p>B.S. in Computer Science · With honor</p></div><div class="record-meta">2021 – 2025<span>Guangzhou, China</span></div></article>
+    </div>
+  </section>
 
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2610.22192" class="paper-title">Terminal-RSI: Recursive Self-Improving Terminal Agents via Recursive Self-Rewrite and Policy-Refine</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*, Zongxia Li*, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Ruiwen Zhou, Haitao Mi, Shuicheng Yan<sup>&dagger;</sup>, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Alternating verified trajectory rewriting with critic-inheriting policy refinement, using turn-boundary credit assignment and stage-specific rewards to advance terminal agents from partial progress to strict task completion; Terminal-RSI-27B achieves 86.52% on Terminal-Bench 2.1 and 79.00% on Terminal-Bench Hard.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2610.22192">Paper</a>
-              <a href="https://jyyang26.github.io/terminal-rsi">Project Page</a>
-            </div>
-          </div>
-        </div>
+  <section class="section" id="experience" aria-labelledby="experience-heading">
+    <div class="section-heading"><div><span class="eyebrow">Research &amp; industry</span><h2 id="experience-heading">Experience</h2></div></div>
+    <div class="record-list">
+      <article class="record"><img class="record-logo" src="{{ '/images/tencent_hunyuan.png' | relative_url }}" alt="Tencent Hy" width="42" height="42" loading="lazy"><div><h3>Tencent Hy Frontier</h3><p>Research Intern · 青云计划</p></div><div class="record-meta">04/2026 – Present<span>Singapore</span></div></article>
+      <article class="record"><img class="record-logo" src="{{ '/images/ailab.png' | relative_url }}" alt="Shanghai AI Lab" width="42" height="42" loading="lazy"><div><h3>Shanghai AI Lab</h3><p>Research Intern</p></div><div class="record-meta">06/2025 – 04/2026<span>Shanghai, China</span></div></article>
+      <article class="record"><img class="record-logo" src="{{ '/images/South_China_University_of_Technology_Logo_(Since_2022).svg.png' | relative_url }}" alt="South China University of Technology" width="42" height="42" loading="lazy"><div><h3>South China University of Technology</h3><p>Research Intern</p></div><div class="record-meta">07/2024 – 06/2025<span>Guangzhou, China</span></div></article>
+      <article class="record"><img class="record-logo" src="{{ '/images/Tencent.png' | relative_url }}" alt="Tencent" width="42" height="42" loading="lazy"><div><h3>Tencent</h3><p>Machine Learning Intern</p></div><div class="record-meta">04/2024 – 07/2024</div></article>
+      <article class="record"><img class="record-logo" src="{{ '/images/SZSE.png' | relative_url }}" alt="Shenzhen Stock Exchange" width="42" height="42" loading="lazy"><div><h3>Shenzhen Stock Exchange</h3><p>Machine Learning Intern</p></div><div class="record-meta">01/2024 – 04/2024<span>Shenzhen, China</span></div></article>
+    </div>
+  </section>
 
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-tech">Tech Report (Core Contributor)</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2609.11042" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
-            </div>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>*<sup>&dagger;</sup>, Yucheng Shi*, Zhongzhi Li, Ruhan Wang, Zongxia Li, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2609.11042">Paper</a>
-              <a href="https://jyyang26.github.io/t1/">Project Page</a>
-              <a href="https://huggingface.co/TberiusJunyao/T1-122B-A10B">Model</a>
-              
-            </div>
-          </div>
-        </div>
-        
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">ACL 2026</span>
-            <a href="https://arxiv.org/abs/2601.05560" class="paper-title">ReasonAny: Incorporating Reasoning Capability to Any Model via Simple and Effective Model Merging</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Dongrui Liu<sup>&dagger;</sup>, Wen Shen, Yong Liu<sup>&dagger;</sup>, Jing Shao<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Merging robust chain-of-thought capabilities into domain-specific models (Safety, Biomedicine) using Contrastive Gradient Identification.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.05560">Paper</a>
-              <a href="https://github.com/jyyang26/ReasonAny">Code</a>
-            </div>
-          </div>
-        </div>
+  <section class="section" id="honors" aria-labelledby="honors-heading">
+    <div class="section-heading"><div><span class="eyebrow">Recognition</span><h2 id="honors-heading">Honors &amp; Awards</h2></div></div>
+    <div class="record-list">
+      {% assign award_names = 'Excellent Graduation Thesis|Outstanding Student Leader|Second-Class Scholarship of SCUT|Second-Class Award · CUMCM|Second Prize · Olympic Mathematics Competition|Second Prize · Olympic Physics Competition' | split: '|' %}
+      {% assign award_dates = '06/2025|2022 – 2024|10/2024|09/2022|05/2020|02/2020' | split: '|' %}
+      {% for award in award_names %}<article class="record"><span class="record-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg></span><div><h3>{{ award }}</h3>{% if forloop.index0 == 3 %}<p>Guangdong Province</p>{% endif %}</div><div class="record-meta">{{ award_dates[forloop.index0] }}</div></article>{% endfor %}
+    </div>
+  </section>
 
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">AAAI 2026</span>
-            <a href="https://arxiv.org/abs/2508.03140" class="paper-title">RCP-Merging: Merging Long Chain-of-Thought Models with Domain-Specific Models by Considering Reasoning Capability as Prior</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Jianwei Wang, Huiping Zhuang, Cen Chen, Ziqian Zeng*<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Enhancing domain performance while preserving chain-of-thought reasoning abilities by treating reasoning as a prior.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2508.03140">Paper</a>
-              <a href="https://github.com/ZeroNLP/RCP-Merging">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2607.18722" class="paper-title">Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Yucheng Shi, Zongxia Li, Zhongzhi Li, Ruhan Wang, Xiangxin Zhou, Kishan Panaganti, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Stabilizing asynchronous RL by adapting trust regions to rollout staleness, tightening high-mismatch updates while preserving ordinary-token behavior.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2607.18722">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">ACL 2025</span>
-            <a href="https://arxiv.org/abs/2406.01394" class="paper-title">PrivacyRestore: Privacy-Preserving Inference in Large Language Models via Privacy Removal and Restoration</a>
-            <div class="paper-auth">Ziqian Zeng*<sup>&dagger;</sup>, Jianwei Wang*, <strong><u>Junyao Yang</u>*</strong>, Zhengdong Lu, Haoran Li, Huiping Zhuang, Cen Chen</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Protecting privacy via activation steering using a protected meta-vector without retraining.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2406.01394">Paper</a>
-              <a href="https://github.com/ZeroNLP/PrivacyRestore">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2607.08964" class="paper-title">Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading</a>
-            <div class="paper-auth">Zongxia Li, Zhongzhi Li, Yucheng Shi, Ruhan Wang, <strong><u>Junyao Yang</u></strong>, Zhichao Liu, Xiyang Wu, Anhao Li, Yue Yu, Ninghao Liu, Lichao Sun, Haotao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A dense-reward terminal benchmark for measuring how far agents can progress on long, complex terminal workflows.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2607.08964">Paper</a>
-              <a href="https://github.com/zli12321/LHTB">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/pdf/2608.05466" class="paper-title">RST: Recursive Synthesis for Long-Horizon Terminal Tasks</a>
-            <div class="paper-auth">Zhongzhi Li, Yucheng Shi, Zongxia Li, Ruhan Wang, Anhao Li, Zixun Huang, <strong><u>Junyao Yang</u></strong>, Lei Ke, Ninghao Liu, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A recursive verified synthesis framework that scales long-horizon terminal-agent tasks, yielding 37,484 tasks at ~$0.05 each and lifting Qwen3.5 by up to 10 points across terminal benchmarks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/pdf/2608.05466">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2607.13285" class="paper-title">Harness Handbook: Making Evolving Agent Harnesses Readable, Navigable, and Editable</a>
-            <div class="paper-auth">Ruhan Wang, Yucheng Shi, Zongxia Li, Zhongzhi Li, Yue Yu, <strong><u>Junyao Yang</u></strong>, Kishan Panaganti, Haitao Mi, Dongruo Zhou, Leoweiliang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A behavior-centric map and BGPD framework that help agents find code and plan harness edits.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2607.13285">Paper</a>
-              <a href="https://ruhan-wang.github.io/Harness-Handbook/">Project</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-tech">Tech Report</span>
-            <div class="paper-title-row">
-              <a href="https://arxiv.org/abs/2601.18491" class="paper-title">AgentDoG: A Diagnostic Guardrail Framework for AI Agent Safety and Security</a>
-            </div>
-            <div class="paper-auth">Shanghai Artificial Intelligence Laboratory (Contributor)</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A state-of-the-art diagnostic guardrail framework utilizing a unified three-dimensional taxonomy to provide fine-grained monitoring and root-cause analysis of AI agent safety risks.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2601.18491">Paper</a>
-              <a href="https://github.com/AI45Lab/AgentDoG">Code</a>
-              <a href="https://huggingface.co/collections/AI45Research/agentdog">Model</a>
-              <a href="https://huggingface.co/papers/date/2026-01-28">#1 Paper of the day</a>
-              <a href="https://mp.weixin.qq.com/s/gGcM_fBGnRCoGe4mxZZePw">机器之心</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2610.02826" class="paper-title">RSR: Scaling Trajectories for Complex Tasks through Recursive Self-Rewrite</a>
-            <div class="paper-auth">Zongxia Li<sup>&dagger;</sup>, Yucheng Shi<sup>&dagger;</sup>, Zhongzhi Li<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Chengsong Huang, Fuxiao Liu, Haitao Mi, Jordan Boyd-Graber, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Recursively rewriting successful trajectories discovered under diverse harnesses into reusable capabilities under a general harness, expanding 2,001 to 11,094 high-quality trajectories and lifting Qwen-3.8-27B pass@3 from 57.0% to 74.2% on Terminal-Bench 2.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2610.02826">Paper</a>
-              <a href="https://huggingface.co/IntelligenceLab/RSR-27B">Model</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/abs/2610.02710" class="paper-title">SWR: Self-Supervised Scaling of Terminal Environments for Scientific Domains</a>
-            <div class="paper-auth">Zhongzhi Li*, Yucheng Shi*, Zongxia Li*, <strong><u>Junyao Yang</u></strong>, Ruhan Wang, Yu Wang, Jingyuan Huang, Jichao Yu, Ninghao Liu<sup>&dagger;</sup>, Haitao Mi, Leowei Liang</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Software-in-the-loop reconstruction derives reference behavior and verifiers from existing scientific software workflows, scaling to 500 workflows across 46 software families and six domains and improving Qwen3.8-27B on Terminal-Bench 2 from 47.94% to 53.56%.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2610.02710">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/pdf/2605.17770v4" class="paper-title">Entropy-Gradient Inversion: Moving Toward Internal Mechanism of Large Reasoning Models</a>
-            <div class="paper-auth"><strong><u>Junyao Yang</u></strong>, Chen Qian, Kun Wang, Linfeng Zhang, Quanshi Zhang, Yong Liu, Dongrui Liu<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Identifying <em>Entropy-Gradient Inversion</em>&mdash;a robust negative correlation between token entropy and logit gradients&mdash;as a geometric fingerprint of LRM reasoning capability, and proposing <strong>CorR-PO</strong> that embeds this signature into RL reward regularization to stabilize reasoning optimization without costly external verifiers.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/pdf/2605.17770v4">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-arxiv">arXiv Preprint</span>
-            <a href="https://arxiv.org/pdf/2601.15075" class="paper-title">The Why Behind the Action: Unveiling Internal Drivers via Agentic Attribution</a>
-            <div class="paper-auth">Chen Qian, Peng Wang, Dongrui Liu<sup>&dagger;</sup>, <strong><u>Junyao Yang</u></strong>, Dadi Guo, Ling Tang, Jilin Mei, Qihan Ren, Shuai Shao, Yong Liu, Jie Fu, Jing Shao, Xia Hu</div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> A hierarchical framework for agentic attribution, using temporal likelihood and perturbation-based analysis to unveil internal factors driving LLM-based agent actions.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/pdf/2601.15075">Paper</a>
-            <a href="https://arxiv.org/pdf/2601.15075">Code</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="paper-entry">
-          <div class="paper-info">
-            <span class="paper-venue venue-conf">EMNLP 2025</span>
-            <a href="https://arxiv.org/abs/2502.18517" class="paper-title">RewardDS: Privacy-Preserving Fine-Tuning for Large Language Models via Reward Driven Data Synthesis</a>
-            <div class="paper-auth">Jianwei Wang, Chengming Shi, <strong><u>Junyao Yang</u></strong>, Haoran Li, Qianli Ma, Huiping Zhuang, Cen Chen, Ziqian Zeng<sup>&dagger;</sup></div>
-            <div class="paper-tldr"><strong>TL;DR:</strong> Using client-side reward models to filter synthetic data, mitigating noise while protecting privacy.</div>
-            <div class="paper-links">
-              <a href="https://arxiv.org/abs/2502.18517">Paper</a>
-              <a href="https://github.com/wjw136/RewardDS">Code</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section id="blogs" class="content-box">
-      <div class="box-header"><h2 class="box-title">Blogs</h2></div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="https://jyyang26.github.io/t1/" class="paper-title">T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> A 122B MoE terminal agent trained by reinforcement learning — with stable MoE RL training framework and dense verification reward design aiming for Long-Horizon terminal tasks.</div>
-        </div>
-      </div>
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="https://jyyang26.github.io/stable_async_analysis/" class="paper-title">Stale but Stable: Staleness-Adaptive Trust Regions for Stabilizing Asynchronous Reinforcement Learning</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> Staleness analysis in asynchronous reinforcement learning: principled origins, diagnostics, and mitigations.</div>
-        </div>
-      </div>
-    
-      <div class="paper-entry">
-        <div class="paper-info">
-          <a href="{{ '/blogs/reasoning_token.html' | relative_url }}" class="paper-title">The Entropy-Gradient Inversion: A New Perspective on LLM Reasoning Capabilities</a>
-          <div class="paper-tldr"><strong>TL;DR:</strong> We discover that reasoning models exhibit a unique "fingerprint": a significant negative correlation between gradient strength and token entropy, which contradicts traditional base models. This capability emerges rapidly within the first 200 steps of SFT.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="education" class="content-box">
-      <div class="box-header"><h2 class="box-title">Education</h2></div>
-      <div class="edu-row">
-        <div class="edu-card">
-          <img src="{{ '/images/NUS.jpg' | relative_url }}" alt="NUS" class="edu-logo">
-          <div class="edu-deg">MComp in AI</div>
-          <div class="edu-sch">National University of Singapore</div>
-          <span class="edu-yr">2025 - 2027 (Expected)</span>
-        </div>
-        <div class="edu-card">
-          <img src="{{ '/images/South_China_University_of_Technology_Logo_(Since_2022).svg.png' | relative_url }}" alt="SCUT" class="edu-logo">
-          <div class="edu-deg">B.S. in CS (with honor)</div>
-          <div class="edu-sch">South China University of Technology</div>
-          <span class="edu-yr">2021 - 2025</span>
-        </div>
-        <!-- <div class="edu-card">
-          <img src="{{ '/images/SZSY_Logo.png' | relative_url }}" alt="SZSY" class="edu-logo">
-          <div class="edu-deg">High School</div>
-          <div class="edu-sch">Shenzhen Experimental School</div>
-          <span class="edu-yr">2018 - 2021</span>
-        </div> -->
-      </div>
-    </section>
-
-    <section id="experience" class="content-box">
-      <div class="box-header"><h2 class="box-title">Internship and Experience</h2></div>
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <div class="exp-item">
-          <img src="{{ '/images/tencent_hunyuan.png' | relative_url }}" class="exp-logo" alt="Tencent HY">
-          <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent Hy</div>
-            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">青云计划 - Research Intern | 2026.04 - Present</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img src="{{ '/images/ailab.png' | relative_url }}" class="exp-logo" alt="Shanghai AI Lab">
-          <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Shanghai AI Lab</div>
-            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2025.06 - 2026.04</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img src="{{ '/images/South_China_University_of_Technology_Logo_(Since_2022).svg.png' | relative_url }}" class="exp-logo" alt="SCUT">
-          <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">South China University of Technology</div>
-            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Research Intern | 2024.07 - 2025.06</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img src="{{ '/images/Tencent.png' | relative_url }}" class="exp-logo" alt="Tencent">
-          <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">Tencent</div>
-            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 14px; color: #6f6a61;">Machine Learning Intern | 2024.04 - 2024.07</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img src="{{ '/images/SZSE.png' | relative_url }}" class="exp-logo" alt="SZSE">
-          <div>
-            <div style="font-weight: 600; font-size: 15px; color: #201d18;">SZSE</div>
-            <div style="font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; font-size: 13px; color: #6f6a61;">Machine Learning Intern | 2024.01 - 2024.04</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="honors" class="content-box">
-      <div class="box-header"><h2 class="box-title">Honor &amp; Awards</h2></div>
-      <ul class="honors-list">
-        <li>Excellent Graduation Thesis (2025.06)</li>
-        <li>Outstanding Student Leader (2022-2024)</li>
-        <li>Second-Class Scholarship of SCUT (2024.10)</li>
-        <li>Second-Class Award in CUMCM at Guangdong Province (2022.09)</li>
-        <li>Second-Prize of Olympic Mathematics Competition (2020.05)</li>
-        <li>Second-Prize of Olympic Physics Competition (2020.02)</li>
-      </ul>
-    </section>
-
-  </main>
-</div>
-
-<footer class="site-footer">
-  &copy; <span id="year"></span> Junyao Yang. All rights reserved.
-</footer>
-
-<div id="copy-toast" class="copy-toast" role="status" aria-live="polite">微信号已复制至剪贴板</div>
-
+  <section class="section" id="blogs" aria-labelledby="writing-heading">
+    <div class="section-heading"><div><span class="eyebrow">Beyond the paper</span><h2 id="writing-heading">Writing</h2></div></div>
+    <div class="writing-list">
+      <article class="writing-card"><span class="eyebrow">Recursive self-improvement</span><h3>Terminal-RSI: Recursive Self-Improving Terminal Agents</h3><p>Verified trajectory rewriting and critic-inheriting policy refinement for long-horizon terminal agents.</p><a href="https://jyyang26.github.io/terminal-rsi/">{% include link-icon.html icon='globe' %}Read article ↗</a></article>
+      <article class="writing-card"><span class="eyebrow">Terminal agents</span><h3>T1: Learning for Long-Horizon Tasks</h3><p>Stable MoE reinforcement learning and dense verification rewards for a 122B terminal agent.</p><a href="https://jyyang26.github.io/t1/">{% include link-icon.html icon='globe' %}Read article ↗</a></article>
+      <article class="writing-card"><span class="eyebrow">Reinforcement learning</span><h3>Stale but Stable</h3><p>Understanding rollout staleness in asynchronous RL: origins, diagnostics, and mitigations.</p><a href="https://jyyang26.github.io/stable_async_analysis/">{% include link-icon.html icon='globe' %}Read article ↗</a></article>
+      <article class="writing-card"><span class="eyebrow">Reasoning</span><h3>Entropy-Gradient Inversion</h3><p>A geometric perspective on the internal mechanisms of large reasoning models.</p><a href="{{ '/blogs/reasoning_token.html' | relative_url }}">{% include link-icon.html icon='document' %}Read article ↗</a></article>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="container footer-inner"><span>© {{ 'now' | date: '%Y' }} Junyao Yang</span><a href="#about">Back to top ↑</a></div></footer>
+<div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
 <script>
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Publication tabs (Selected / Full)
-  (function () {
-    var tabs = document.querySelectorAll('.pub-tab');
-    var lists = document.querySelectorAll('.pub-list');
-    var heading = document.getElementById('pub-heading');
-    tabs.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var target = btn.getAttribute('data-target');
-        tabs.forEach(function (b) {
-          var active = b === btn;
-          b.classList.toggle('active', active);
-          b.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-        lists.forEach(function (l) {
-          l.classList.toggle('active', l.id === target);
-        });
-        if (heading) {
-          heading.textContent = target === 'pub-full' ? 'Full Publications' : 'Selected Publications';
-        }
+(function () {
+  document.body.classList.add('js-enabled');
+  const menu = document.querySelector('.menu-toggle');
+  const nav = document.getElementById('primary-nav');
+  const setMenu = open => {
+    menu.setAttribute('aria-expanded', String(open));
+    nav.classList.toggle('is-open', open);
+  };
+  menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') !== 'true'));
+  nav.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { setMenu(false); menu.focus(); } });
+  const selectedView = document.getElementById('pub-view-selected');
+  const fullView = document.getElementById('pub-view-full');
+  const publications = document.getElementById('publications');
+  const links = Array.from(nav.querySelectorAll('a'));
+  const setPublicationView = view => {
+    selectedView.checked = view === 'selected';
+    fullView.checked = view === 'full';
+    links.filter(link => link.hash.endsWith('-publications')).forEach(link => {
+      if (link.hash === '#' + view + '-publications') link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  const viewFromHash = () => {
+    if (location.hash === '#full-publications') setPublicationView('full');
+    else if (location.hash === '#selected-publications' || location.hash === '#publications') setPublicationView('selected');
+  };
+  selectedView.addEventListener('change', () => setPublicationView('selected'));
+  fullView.addEventListener('change', () => setPublicationView('full'));
+  nav.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link || !link.hash.endsWith('-publications')) return;
+    setPublicationView(link.hash === '#full-publications' ? 'full' : 'selected');
+  });
+  window.addEventListener('hashchange', viewFromHash);
+  viewFromHash();
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const hash = entry.target === publications ? (fullView.checked ? '#full-publications' : '#selected-publications') : '#' + entry.target.id;
+        links.forEach(link => { if (link.hash === hash) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); });
       });
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    new Set(links.map(link => link.hash.endsWith('-publications') ? publications : document.querySelector(link.hash))).forEach(section => { if (section) observer.observe(section); });
+  }
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if ('IntersectionObserver' in window && !reducedMotion.matches) {
+    const blocks = document.querySelectorAll('.section-heading, .paper-card, .record, .writing-card, .news-list li');
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.remove('reveal-pending');
+        entry.target.classList.add('reveal-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -24px 0px' });
+    blocks.forEach(block => {
+      const bounds = block.getBoundingClientRect();
+      if (bounds.height > 0 && bounds.top < innerHeight - 24) return;
+      block.classList.add('reveal-pending');
+      requestAnimationFrame(() => block.classList.add('reveal-ready'));
+      revealObserver.observe(block);
     });
-  })();
-
-  // Live GitHub star count (fallback to hard-coded number on failure)
-  (function () {
-    var badges = document.querySelectorAll('.gh-star[data-repo]');
-    if (!badges.length || !window.fetch) return;
-    var cache = {};
-    badges.forEach(function (badge) {
-      var repo = badge.getAttribute('data-repo');
-      if (!repo) return;
-      var countEl = badge.querySelector('.gh-star-count');
-      if (!countEl) return;
-      var render = function (n) {
-        if (typeof n !== 'number' || isNaN(n)) return;
-        countEl.textContent = n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
-      };
-      if (cache[repo] != null) { render(cache[repo]); return; }
-      fetch('https://api.github.com/repos/' + repo, {
-        headers: { 'Accept': 'application/vnd.github+json' }
-      })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (data) {
-          if (data && typeof data.stargazers_count === 'number') {
-            cache[repo] = data.stargazers_count;
-            render(data.stargazers_count);
-          }
-        })
-        .catch(function () { /* keep fallback */ });
-    });
-  })();
-
-  // WeChat copy button
-  (function () {
-    var button = document.querySelector('.wechat-copy-btn');
-    var toast = document.getElementById('copy-toast');
-    var toastTimer = null;
-    if (!button || !toast) return;
-
-    var showToast = function () {
-      toast.classList.add('show');
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(function () {
-        toast.classList.remove('show');
-      }, 2200);
-    };
-
-    var fallbackCopy = function (text) {
-      var input = document.createElement('input');
-      input.type = 'text';
-      input.value = text;
-      input.setAttribute('readonly', 'readonly');
-      input.style.position = 'fixed';
-      input.style.opacity = '0';
-      document.body.appendChild(input);
-      input.focus();
-      input.select();
-      try {
-        document.execCommand('copy');
-        showToast();
-      } catch (e) {}
-      document.body.removeChild(input);
-    };
-
-    button.addEventListener('click', function () {
-      var wechatId = button.getAttribute('data-wechat-id') || 'FrWorld_LuvAndPeaze';
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(wechatId)
-          .then(showToast)
-          .catch(function () {
-            fallbackCopy(wechatId);
-          });
-      } else {
-        fallbackCopy(wechatId);
+    document.addEventListener('focusin', event => {
+      const block = event.target.closest('.reveal-pending');
+      if (block) {
+        block.classList.remove('reveal-pending');
+        block.classList.add('reveal-visible');
+        revealObserver.unobserve(block);
       }
     });
-  })();
-
-  // Dark mode toggle
-  (function () {
-    var toggle = document.querySelector('.theme-toggle');
-    if (!toggle) return;
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark-mode');
-    }
-    toggle.addEventListener('click', function () {
-      var isDark = document.body.classList.toggle('dark-mode');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    reducedMotion.addEventListener('change', event => {
+      if (!event.matches) return;
+      revealObserver.disconnect();
+      blocks.forEach(block => { block.classList.remove('reveal-pending'); block.classList.add('reveal-visible'); });
     });
-  })();
+  }
+  const copy = document.querySelector('.wechat-copy');
+  const toast = document.getElementById('copy-toast');
+  let toastTimer;
+  const showToast = message => {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+  };
+  copy.hidden = false;
+  copy.addEventListener('click', async () => {
+    const id = copy.dataset.wechatId;
+    try {
+      if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(id);
+      else {
+        const input = document.createElement('textarea');
+        input.value = id;
+        input.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+        document.body.appendChild(input);
+        input.select();
+        let copied = false;
+        try { copied = document.execCommand('copy'); } finally { input.remove(); copy.focus(); }
+        if (!copied) throw new Error('Copy unavailable');
+      }
+      showToast('WeChat ID copied');
+    } catch (error) { showToast('WeChat: ' + id); }
+  });
+})();
 </script>
-
 </body>
 </html>

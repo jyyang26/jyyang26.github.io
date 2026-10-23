@@ -78,7 +78,7 @@ publication_category:
   books:
     title: 'Books'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Preprints & Technical Reports'
   conferences:
     title: 'Conference Papers'
 
@@ -156,6 +156,12 @@ include:
   - _pages
   - files
 exclude:
+  - _pages/about_1023.md
+  - _pages/about_old.md
+  - _publications/arXiv-*
+  - .venv-homepage
+  - .browser-tools
+  - .playwright-cli
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache

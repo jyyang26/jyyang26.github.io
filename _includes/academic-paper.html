@@ -1,0 +1,29 @@
+{% assign paper = include.paper %}
+<article class="paper-card{% if paper.featured and include.highlight %} paper-card--featured{% endif %}" data-paper-id="{{ paper.paper_id | escape }}">
+  <a class="paper-teaser" href="{{ paper.paperurl | escape }}" aria-label="Read {{ paper.title | escape }}">
+    <img src="{{ paper.image | relative_url }}" alt="{{ paper.image_alt | escape }}" width="720" height="450" loading="lazy" decoding="async">
+  </a>
+  <div class="paper-body">
+    {% if paper.featured and include.highlight %}<span class="featured-label">Featured research · {{ paper.title | split: ':' | first | escape }}</span>{% endif %}
+    <h3 class="paper-title"><a href="{{ paper.paperurl | escape }}">{{ paper.title | escape }}</a></h3>
+    <p class="paper-authors">{% for author in paper.authors %}{% if author.name == 'Junyao Yang' %}<strong class="author-self">{{ author.name | escape }}</strong>{% else %}{{ author.name | escape }}{% endif %}{% if author.marks %}<sup>{{ author.marks | escape }}</sup>{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+    {% if paper.contributor_groups %}
+    <details class="contributor-details">
+      <summary>Full contributor list · <strong>Junyao Yang</strong>, contributor</summary>
+      {% for group in paper.contributor_groups %}
+      <p><strong>{{ group.label | escape }}:</strong> {% for name in group.names %}{% if name == 'Junyao Yang' %}<strong class="author-self">{{ name | escape }}</strong>{% else %}{{ name | escape }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+      {% endfor %}
+    </details>
+    {% endif %}
+    <div class="paper-status">
+      <span class="badge{% if paper.accepted %} badge--venue{% endif %}">{{ paper.venue | escape }}</span>
+      {% if paper.accepted %}<span class="badge badge--accepted">Accepted</span>{% endif %}
+      {% if paper.role %}<span class="badge">{{ paper.role | escape }}</span>{% endif %}
+    </div>
+    {% if paper.author_note %}<p class="author-note">{{ paper.author_note | escape }}</p>{% endif %}
+    <p class="paper-tldr"><span>TL;DR</span> {{ paper.tldr | escape }}</p>
+    <div class="action-links" aria-label="Resources for {{ paper.title | escape }}">
+      {% for link in paper.links %}{% unless link.label == 'arXiv' %}<a class="pill pill--small" href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% endunless %}{% endfor %}
+    </div>
+  </div>
+</article>
