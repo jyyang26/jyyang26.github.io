@@ -204,7 +204,7 @@ redirect_from:
     <h1 id="hero-name">Junyao Yang</h1>
     <div class="affiliations"><span>National University of Singapore</span></div>
     <p class="hero-bio">Hi, I'm Junyao. I am a first-year graduate student at the School of Computing, <strong>National University of Singapore</strong>, specializing in Artificial Intelligence, and a research intern at <strong>Tencent Hy Frontier Lab</strong>.</p>
-    <p class="hero-bio">My current research interests focus on <strong>Agentic AI</strong>, including Agentic RL, Recursive Self-Improving, and Long-Horizon Terminus Agents; <strong>Reinforcement Learning</strong>, with a focus on RL Stability; and <strong>Trustworthy Artificial Intelligence</strong>.</p>
+    <p class="hero-bio">My current research interests focus on <strong>Agentic AI</strong>, including Agentic RL, Recursive Self-Improving, and Long-Horizon Terminus Agents; <strong>Reinforcement Learning</strong>, with a focus on RL Stability.</p>
     <p class="name-note">杨竣尧 <span lang="en">/jɑːŋ dʒuːn jaʊ/</span></p>
     <div class="social-links" aria-label="Contact and academic profiles">
       <a class="pill" href="mailto:junyaoyang@u.nus.edu">{% include link-icon.html icon='email' %}Email</a>
