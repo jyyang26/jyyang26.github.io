@@ -2,6 +2,17 @@
 permalink: /
 layout: academic-home
 sitemap: false
+selected_publication_order:
+  - terminal-rsi
+  - t1
+  - rsr
+  - swr
+  - lhtb
+  - rst
+  - reasonany
+  - rcp-merging
+  - privacyrestore
+  - agentdog
 redirect_from:
   - /about/
   - /about.html
@@ -119,6 +130,7 @@ redirect_from:
   .contributor-details p { margin-top: 9px; }
   .year-heading { font-size: 14px; color: var(--muted); font-weight: 600; margin: 28px 0 14px; font-variant-numeric: tabular-nums; }
   .year-heading:first-child { margin-top: 0; }
+  .publication-year + .publication-year { margin-top: 28px; }
   .record-list { display: grid; gap: 12px; }
   .record { display: grid; grid-template-columns: 42px minmax(0,1fr) auto; gap: 18px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; }
   .record-logo { width: 42px; height: 42px; border-radius: 8px; object-fit: contain; padding: 4px; background: white; }
@@ -208,7 +220,7 @@ redirect_from:
     <p class="name-note">杨竣尧 <span lang="en">/jɑːŋ dʒuːn jaʊ/</span></p>
     <div class="social-links" aria-label="Contact and academic profiles">
       <a class="pill" href="mailto:junyaoyang@u.nus.edu">{% include link-icon.html icon='email' %}Email</a>
-      <a class="pill" href="https://scholar.google.com/citations?hl=en&amp;user=oY6uhJQAAAAJ">{% include link-icon.html icon='scholar' %}Google Scholar</a>
+      <a class="pill" href="https://scholar.google.com/citations?hl=en&amp;user=oY6uhJQAAAAJ"><img class="link-icon" src="{{ '/images/google-scholar--v3.jpg' | relative_url }}" width="20" height="20" alt="" aria-hidden="true" decoding="async">Google Scholar</a>
       <a class="pill" href="https://github.com/jyyang26">{% include link-icon.html icon='github' %}GitHub</a>
       <a class="pill" href="https://x.com/TonyworldLove">{% include link-icon.html icon='x' %}X</a>
       <a class="pill" href="https://xhslink.cn/o/998NlpzZrFE">{% include link-icon.html icon='rednote' %}Rednote · 小红书</a>
@@ -245,9 +257,13 @@ redirect_from:
     </details>
   </section>
 
-  {% assign all_papers = site.publications | where_exp: 'paper', 'paper.paper_id != nil' | sort: 'order' %}
-  {% assign selected_papers = all_papers | where: 'selected', true | sort: 'selected_order' %}
-  {% assign terminal_rsi = all_papers | where: 'paper_id', 'terminal-rsi' | first %}
+  {% assign all_papers = site.publications | where_exp: 'paper', 'paper.paper_id != nil' | sort: 'order' | uniq: 'paper_id' %}
+  {% assign selected_papers = '' | split: ',' %}
+  {% for paper_id in page.selected_publication_order %}
+    {% assign matching_papers = all_papers | where: 'paper_id', paper_id %}
+    {% assign selected_papers = selected_papers | concat: matching_papers %}
+  {% endfor %}
+  {% assign publication_years = all_papers | group_by: 'year' | sort: 'name' | reverse %}
   <section class="section publications-section" id="publications" aria-labelledby="publications-heading">
     <span class="anchor-alias" id="selected-publications"></span><span class="anchor-alias" id="full-publications"></span>
     <input class="publication-radio" type="radio" name="publication-view" id="pub-view-selected" value="selected" aria-controls="pub-selected" checked>
@@ -263,16 +279,23 @@ redirect_from:
     <div class="pub-panels">
       <div class="pub-selected" id="pub-selected" aria-label="Selected Publications">
         <div class="paper-list">
-          {% if terminal_rsi %}{% include academic-paper.html paper=terminal_rsi highlight=true %}{% endif %}
-          {% for paper in selected_papers %}{% unless paper.paper_id == 'terminal-rsi' %}{% include academic-paper.html paper=paper highlight=true %}{% endunless %}{% endfor %}
+          {% for paper in selected_papers %}{% include academic-paper.html paper=paper highlight=true %}{% endfor %}
         </div>
       </div>
       <div class="pub-full" id="pub-full" aria-label="Full Publications">
-        {% assign previous_year = '' %}
-        {% for paper in all_papers %}
-          {% if paper.year != previous_year %}{% unless forloop.first %}</div>{% endunless %}<h3 class="year-heading">{{ paper.year }}</h3><div class="paper-list">{% assign previous_year = paper.year %}{% endif %}
-          {% include academic-paper.html paper=paper highlight=true %}
-          {% if forloop.last %}</div>{% endif %}
+        {% for year_group in publication_years %}
+          <div class="publication-year" data-year="{{ year_group.name | escape }}">
+            <h3 class="year-heading">{{ year_group.name }}</h3>
+            <div class="paper-list">
+              {% for paper in selected_papers %}
+                {% assign paper_year = paper.year | append: '' %}
+                {% if paper_year == year_group.name %}{% include academic-paper.html paper=paper highlight=true %}{% endif %}
+              {% endfor %}
+              {% for paper in year_group.items %}
+                {% unless page.selected_publication_order contains paper.paper_id %}{% include academic-paper.html paper=paper highlight=true %}{% endunless %}
+              {% endfor %}
+            </div>
+          </div>
         {% endfor %}
       </div>
     </div>
